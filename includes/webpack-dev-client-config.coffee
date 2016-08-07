@@ -97,6 +97,7 @@ module.exports =
 		new webpack.HotModuleReplacementPlugin()
 		new webpack.IgnorePlugin /^\.\/locale$/, [/moment$/]
 		# new webpack.optimize.OccurenceOrderPlugin true
+		new webpack.ProgressPlugin (percentage, msg) => console.info parseInt(percentage * 100, 10), msg
 		new webpack.ProvidePlugin __DEV__: true
 		new webpack.WatchIgnorePlugin [
 			'./conf/'

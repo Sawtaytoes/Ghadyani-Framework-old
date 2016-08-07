@@ -107,6 +107,7 @@ module.exports =
 			output:
 				comments: false
 				screw_ie8: true
+		new webpack.ProgressPlugin (percentage, msg) => console.info parseInt(percentage * 100, 10), msg
 		new webpack.WatchIgnorePlugin [
 			'./conf/'
 			'./includes/'
