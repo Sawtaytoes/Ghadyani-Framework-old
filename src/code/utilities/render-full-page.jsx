@@ -22,7 +22,6 @@ module.exports = function renderFullPage(renderedContent = undefined, state = {}
 			<title>{`${state.locationChange && state.locationChange.title}${htmlMeta.titlePostfix}`}</title>
 
 			{/* Site Info */}
-			<meta name="robots" content={htmlMeta.robots} />
 			<meta name="author" content={htmlMeta.author} />
 			<meta name="copyright" content={htmlMeta.copyright} />
 			<meta name="description" content={state.locationChange && state.locationChange.description} />
