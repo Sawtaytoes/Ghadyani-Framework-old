@@ -19,8 +19,6 @@ module.exports =
 		## Routes
 		path: '*'
 		getComponent: (location, cb) =>
-			console.log 'here 1'
 			require.ensure [], (require) =>
-				console.log 'here 2'
 				cb null, require './views/404'
 	]
