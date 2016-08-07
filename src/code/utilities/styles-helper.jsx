@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
 import murmurhash3_32_gc from 'murmurhash-js'
 
@@ -6,7 +6,7 @@ var styles = [],
 	cssDictionary = {}
 
 export function stylesHelper(ComposedComponent, stylesFiles) {
-	return class Styles extends PureComponent {
+	return class Styles extends Component {
 		componentWillMount() {
 			this.styleRemovers = this.setStyles(stylesFiles)
 		}
