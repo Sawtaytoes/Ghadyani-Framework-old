@@ -88,6 +88,7 @@ module.exports =
 			loader: 'file-loader'
 			# include: [fontFiles]
 		]
+	noInfo: true
 	output:
 		filename: 'backend.js'
 		libraryTarget: 'commonjs2'

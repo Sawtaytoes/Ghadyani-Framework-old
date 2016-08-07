@@ -88,6 +88,7 @@ module.exports =
 			loader: 'file-loader'
 			# include: [fontFiles]
 		]
+	noInfo: true
 	output:
 		filename: 'bundle.js'
 		path: './web/'
