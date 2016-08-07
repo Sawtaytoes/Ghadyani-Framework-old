@@ -17,7 +17,8 @@ sendEmail = (req, res) ->
 	require(__includes + 'send-email')(req.body, res)
 
 loadSite = (req, res) ->
-	res.end require(__base + 'src/code/utilities/render-full-page.jsx')()
+	res.end require(__base + 'src/code/utilities/render-full-page.jsx') undefined,
+		locationChange: title: req.originalUrl
 
 module.exports = do ->
 	new webpackDevServer webpack(webpackClientConfig), webpackServerConfig
