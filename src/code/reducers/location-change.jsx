@@ -8,8 +8,8 @@ import navItems from 'content/nav-items'
 
 let pageMeta = {}
 
-const changePageMetaOnLinkMatch = (item, path) => {
-	let re = new RegExp('^' + item.to + '$'),
+const changePageMetaOnLinkMatch = (item, path, itemPathTo) => {
+	let re = new RegExp(`^/${itemPathTo}${item.to}$`),
 		linkMatch = re.test(path)
 
 	if (linkMatch) {
@@ -22,13 +22,13 @@ const changePageMetaOnLinkMatch = (item, path) => {
 	return linkMatch
 }
 
-function getMetaFromNavItems(items, path) {
+function getMetaFromNavItems(items, path, itemPathTo = '') {
 	return items.some((item) => {
 		if (item.subitems) {
-			return getMetaFromNavItems(item.subitems, path)
+			return getMetaFromNavItems(item.subitems, path, `${item.to}/`)
 		}
 
-		return changePageMetaOnLinkMatch(item, path)
+		return changePageMetaOnLinkMatch(item, path, itemPathTo)
 	})
 }
 
