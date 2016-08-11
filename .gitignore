@@ -1,16 +1,15 @@
 ## Project Files ##
 ~res
 
-## App Config ##
+## Configs ##
+.env
+.happypack
 config.coffee
 
 ## Logs ##
 logs
 *.log
 npm-debug.log*
-
-## Node.js ##
-.env
 
 ## npm ##
 node_modules
@@ -20,6 +19,10 @@ newrelic.js
 
 ## Public ##
 web/*
+!web/favicons
+!web/images
+!web/press-kit
+!web/songs
 !web/static
 
 ## Misc ##
