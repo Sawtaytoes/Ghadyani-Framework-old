@@ -5,7 +5,11 @@ import { connect } from 'react-redux'
 // Utilities
 import { stylesHelper } from 'utilities/styles-helper'
 
-const styles = []
+const styles = [
+	require('normalize.css'),
+	require('styl/global'),
+	require('styl/site'),
+]
 
 class Master extends PureComponent {
 	render() { return (

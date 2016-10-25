@@ -1,0 +1,57 @@
+//-------------------------------------------
+// Unit Size Calculations
+//-------------------------------------------
+
+base-font-size = 16px
+
+convert-px-to-rem(pixel-unit, base-font-size, unit-type)
+	unit(pixel-unit / base-font-size, unit-type)
+
+unit-calc(pixel-units, unit-type, units = false)
+	if length(pixel-units) == 1
+		convert-px-to-rem(pixel-units, base-font-size, unit-type)
+
+	else
+		for pixel-unit in pixel-units
+			pixel-unit = convert-px-to-rem(pixel-unit, base-font-size, unit-type)
+
+			if !units
+				units = pixel-unit
+			else
+				units = join(' ', units, pixel-unit)
+
+		unquote(units)
+
+rem(args)
+	unit-calc(args, 'rem')
+
+em(args)
+	unit-calc(args, 'em')
+
+
+//-------------------------------------------
+// Math
+//-------------------------------------------
+
+abs(n)
+	if n < 0
+		return n * -1
+	return n
+
+lower-bound(range)
+	if length(range) <= 0
+		return 0
+	return range[0]
+
+upper-bound(range)
+	if length(range) < 1
+		return 999999
+	return range[1]
+
+
+//-------------------------------------------
+// Import Media Query Section Includes
+//-------------------------------------------
+
+import-section-includes(media-type)
+	@require 'media-queries/' + media-type + '/**/*'

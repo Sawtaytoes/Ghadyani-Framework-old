@@ -1,6 +1,11 @@
 export default [{
 	displayInHeader: true,
 	name: 'Homepage',
-	to: '/',
+	to: '',
+	description: ""
+}, {
+	displayInHeader: true,
+	name: 'About',
+	to: 'about',
 	description: ""
 }]
