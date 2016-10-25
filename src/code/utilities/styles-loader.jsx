@@ -12,8 +12,8 @@ class StylesLoader {
 		this.stylesFiles = []
 	}
 
-	add(filename) {
-		this.stylesFiles.push(filename)
+	add(file) {
+		this.stylesFiles.push(file)
 		return this
 	}
 

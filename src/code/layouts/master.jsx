@@ -4,6 +4,7 @@ import GoogleAnalytics from 'react-g-analytics'
 // Utilities
 import StylesLoader from 'utilities/styles-loader'
 
+// Styles
 const stylesLoader = StylesLoader.create()
 	.add(require('normalize.css'))
 	.add(require('styl/global'))
