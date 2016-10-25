@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Link } from 'react-router'
 
 // Utilities
-import { stylesHelper } from 'utilities/styles-helper'
+import { stylesLoader } from 'utilities/styles-loader'
 
 // Styles
 const styles = []
@@ -16,4 +16,4 @@ class NoMatch extends PureComponent {
 	)}
 }
 
-module.exports = stylesHelper(NoMatch, styles)
+module.exports = stylesLoader(NoMatch, styles)

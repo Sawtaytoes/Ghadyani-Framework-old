@@ -2,9 +2,9 @@ import React, { PureComponent } from 'react'
 import { Link } from 'react-router'
 
 // Utilities
-import { stylesHelper } from 'utilities/styles-helper'
+import StylesLoader from 'utilities/styles-loader'
 
-const styles = []
+const stylesLoader = StylesLoader.create()
 
 class Home extends PureComponent {
 	render() { return (
@@ -19,4 +19,4 @@ class Home extends PureComponent {
 	)}
 }
 
-module.exports = stylesHelper(Home, styles)
+module.exports = stylesLoader.render(Home)

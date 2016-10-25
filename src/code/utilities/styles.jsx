@@ -2,23 +2,27 @@ import React, { Component } from 'react'
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
 import hash from 'murmurhash-js'
 
-var styles = [],
+const styles = [],
 	cssDictionary = {}
 
-export function stylesHelper(ComposedComponent, stylesFiles) {
+export function getStyles() {
+	return styles.join('')
+}
+
+export default function renderStyles(ComposedComponent, stylesFiles) {
 	return class Styles extends Component {
 		componentWillMount() {
-			this.styleRemovers = this.setStyles(stylesFiles)
+			this.styleRemovers = this.setStyles()
 		}
 
 		componentWillUnmount() {
 			this.removeStyles()
 		}
 
-		setStyles(stylesFiles) {
+		setStyles() {
 			let renderedCollection = []
 
-			stylesFiles && stylesFiles.forEach((stylesFile) => {
+			stylesFiles && stylesFiles.forEach(stylesFile => {
 				let css = stylesFile._getCss()
 
 				if (canUseDOM) {
@@ -47,7 +51,9 @@ export function stylesHelper(ComposedComponent, stylesFiles) {
 
 		removeStyles() {
 			setTimeout(() => {
-				this.styleRemovers && this.styleRemovers.forEach(styleRemover => typeof styleRemover === 'function' && styleRemover())
+				this.styleRemovers && this.styleRemovers.forEach(styleRemover => {
+					typeof styleRemover === 'function' && styleRemover()
+				})
 			}, 0)
 		}
 
@@ -55,8 +61,4 @@ export function stylesHelper(ComposedComponent, stylesFiles) {
 			return <ComposedComponent {...this.props} />
 		}
 	}
-}
-
-export function renderStyles() {
-	return styles.join('')
 }
