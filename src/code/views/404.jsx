@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react'
 import { Link } from 'react-router'
 
 // Utilities
-import { stylesLoader } from 'utilities/styles-loader'
+import StylesLoader from 'utilities/styles-loader'
 
 // Styles
-const styles = []
+const stylesLoader = StylesLoader.create()
 
 class NoMatch extends PureComponent {
 	render() { return (
@@ -16,4 +16,4 @@ class NoMatch extends PureComponent {
 	)}
 }
 
-module.exports = stylesLoader(NoMatch, styles)
+module.exports = stylesLoader.render(NoMatch)
