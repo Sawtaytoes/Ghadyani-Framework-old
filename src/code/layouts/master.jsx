@@ -1,15 +1,14 @@
 import React, { PureComponent } from 'react'
 import GoogleAnalytics from 'react-g-analytics'
-import { connect } from 'react-redux'
 
 // Utilities
-import { stylesHelper } from 'utilities/styles-helper'
+import StylesLoader from 'utilities/styles-loader'
 
-const styles = [
-	require('normalize.css'),
-	require('styl/global'),
-	require('styl/site'),
-]
+// Styles
+const stylesLoader = StylesLoader.create()
+	.add(require('normalize.css'))
+	.add(require('styl/global'))
+	.add(require('styl/site'))
 
 class Master extends PureComponent {
 	render() { return (
@@ -20,4 +19,4 @@ class Master extends PureComponent {
 	)}
 }
 
-export default stylesHelper(Master, styles)
+export default stylesLoader.render(Master)

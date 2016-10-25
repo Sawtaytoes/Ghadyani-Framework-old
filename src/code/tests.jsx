@@ -5,7 +5,7 @@ import { render } from 'react-dom'
 import TapOutput from 'components/tap-output'
 
 // Utilities
-import { store } from 'utilities/store-tests'
+import { store } from 'utilities/tests-store'
 
 // Setup which files `.spec.jsx` are tests to be run
 var context = require.context('../code', true, /^\.\/.*\.spec\.jsx$/)

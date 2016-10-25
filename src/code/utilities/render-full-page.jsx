@@ -7,10 +7,10 @@ import {
 	dnsPrefetches,
 	thirdPartyAssets
 } from './render-full-page-extras'
-import { renderStyles } from './styles-helper'
+import { getStyles } from './styles'
 
-const cacheAge = 604800, // 1wk -> 60s x 60m x 24h x 7d
-	prod = process.env.NODE_ENV === 'production'
+const cacheAge = 604800 // 1wk -> 60s x 60m x 24h x 7d
+const prod = process.env.NODE_ENV === 'production'
 
 module.exports = function renderFullPage(renderedContent = undefined, state = {}) {
 	return '<!DOCTYPE html>' + renderToStaticMarkup(
@@ -56,7 +56,7 @@ module.exports = function renderFullPage(renderedContent = undefined, state = {}
 
 			{/* Styles */}
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<style dangerouslySetInnerHTML={{__html: renderStyles()}} />
+			<style dangerouslySetInnerHTML={{__html: getStyles()}} />
 		</head>
 		<body>
 			{/* HTML */}
