@@ -26,21 +26,23 @@ npm install
 
 #### Config Settings
 Default configs are `config-settings.coffee`. Here's an example of what defaults might look like
-
 ```coffee
-env: 'production'             # Can be 'development' or 'production'.
+env: 'production'                            # Can be 'development' or 'production'.
 
 ## Server
-protocol: 'http'              # Using `https` requires valid certificates.
-hostname: 'localhost'         # Can be 0.0.0.0 for binding to all ports.
-port: 3000                    # Port of webserver.
-# proxyPort: 3001             # Optional. Will be `port + 1` if not defined.
+protocol: 'http'                             # Using `https` requires valid certificates.
+hostname: '0.0.0.0'                          # Can be 0.0.0.0 for binding to all ports.
+port: 3000                                   # Port of webserver.
+# proxyPort: 3001                            # Optional. Will be `port + 1` if not defined.
 
-## Email Sending
-mailSendPath: '/contact/send' # Path that's used when doing a POST to send mail.
-mailOptions:                  # Options for Nodemailer.
-	from: 'Fake User <fake.user@example.com>'
-smtpCredentials:              # Configuration for a local maildev server.
+## Testing
+testsPath: '/tests'                          # Path used when performing unit-tests
+
+## Email Submission
+mailSendPath: '/contact/send'                # Path that's used when doing a POST to send mail.
+mailOptions:                                 # Options for Nodemailer.
+	from: 'Fake User <fake.user@example.com>' # When sending mail, this appears in the `FROM` field
+smtpCredentials:                             # Configuration for a local maildev server.
 	host: 'localhost'
 	port: 1025
 	tls: rejectUnauthorized: false
@@ -52,7 +54,7 @@ To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROT
 module.exports =
 	env: 'development'
 	protocol: 'https'
-	port: 80
+	port: 443
 ```
 
 
