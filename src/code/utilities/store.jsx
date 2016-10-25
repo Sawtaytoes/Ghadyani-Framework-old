@@ -10,16 +10,6 @@ const history = createBrowserHistory()
 
 let middlewares = []
 
-if (process.env.NODE_ENV === `development`) {
-	middlewares.push(
-		require('redux-thunk').default,
-		require(`redux-logger`)({
-			diff: true,
-			logErrors: true
-		})
-	)
-}
-
 const store = compose(applyMiddleware(...middlewares))
 	(window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)
 	(rootReducer, initialState)

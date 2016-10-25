@@ -1,19 +1,23 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router'
 
+// Components
+import Sample from 'components/sample'
+
 // Utilities
 import { stylesHelper } from 'utilities/styles-helper'
 
-// Styles
 const styles = []
 
-class NoMatch extends PureComponent {
+class Home extends PureComponent {
 	render() { return (
 		<div>
-			<h1>404</h1>
-			<Link to="/" title="Go to landing page">Go Back</Link>
+			<h1>About</h1>
+			<Sample />
+
+			<Link to="/" title="Go to Home">Home</Link>
 		</div>
 	)}
 }
 
-module.exports = stylesHelper(NoMatch, styles)
+module.exports = stylesHelper(Home, styles)

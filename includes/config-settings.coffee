@@ -9,6 +9,9 @@ configDefaults =
 	port: 3000                                   # Port of webserver.
 	# proxyPort: 3001                            # Optional. Will be `port + 1` if not defined.
 
+	## Testing
+	testsPath: '/tests'                          # Path used when performing unit-tests
+
 	## Email Submission
 	mailSendPath: '/contact/send'                # Path that's used when doing a POST to send mail.
 	mailOptions:                                 # Options for Nodemailer.
@@ -23,7 +26,9 @@ configEnv =
 	protocol: process.env.PROTOCOL
 	hostname: process.env.HOSTNAME
 	port: process.env.PORT
+	proxyHostname: process.env.PROXY_HOSTNAME
 	proxyPort: process.env.PROXY_PORT
+	testsPath: process.env.TESTS_PATH
 	mailSendPath: process.env.MAIL_SEND_PATH
 	mailOptions: process.env.MAIL_FROM and from: process.env.MAIL_FROM
 	smtpCredentials: process.env.SMTP_CREDENTIALS
@@ -33,7 +38,7 @@ Object.keys configEnv
 
 config = Object.assign {}, configDefaults, configEnv, configCustom
 config.port = Number config.port
-config.proxyHostname = config.hostname != '0.0.0.0' and config.hostname or 'localhost'
+config.proxyHostname = config.proxyHostname or config.hostname != '0.0.0.0' and config.hostname or 'localhost'
 config.proxyPort = Number config.proxyPort || config.port + 1
 
 module.exports =
@@ -47,14 +52,20 @@ module.exports =
 	getEnv: ->
 		config.env
 
+	getProtocol: ->
+		config.protocol
 	getHostname: ->
 		config.hostname
-	getProxyHostname: ->
-		config.proxyHostname
 	getPort: ->
 		config.port
+
 	getProxyPort: ->
 		config.proxyPort
+	getProxyHostname: ->
+		config.proxyHostname
+
+	getTestsPath: ->
+		config.testsPath
 
 	getServerUrl: ->
 		config.protocol + '://' + config.hostname + ':' + config.port

@@ -8,15 +8,17 @@ entryFile = './' + paths.code.src + 'server'
 happyThreadPool = HappyPack.ThreadPool size: 2
 
 webpackConfig =
-	entry: entryFile
+	entry: main: entryFile
 	output:
-		filename: 'backend.js'
+		filename: '[name].backend.js'
+		chunkFilename: '[id].backend.js'
 		libraryTarget: 'commonjs2'
 		path: './web/'
 		pathinfo: false
 		publicPath: '/'
 	plugins: [
-		new webpack.ProgressPlugin (percentage, msg) => msg.search('build modules') == -1 and console.info parseInt(percentage * 100, 10), msg
+		new webpack.ProgressPlugin (percentage, msg) =>
+			console.info Math.round(percentage * 100), msg
 		new webpack.NoErrorsPlugin()
 		new webpack.IgnorePlugin /^\.\/locale$/, [/moment$/]
 		new webpack.WatchIgnorePlugin [
@@ -29,12 +31,6 @@ webpackConfig =
 		new HappyPack
 			id: 'jsx', threadPool: happyThreadPool, loaders: [
 				'babel'
-			]
-		new HappyPack
-			id: 'cjsx', threadPool: happyThreadPool, loaders: [
-				'babel'
-				'coffee'
-				'cjsx'
 			]
 		new HappyPack
 			id: 'css', threadPool: happyThreadPool, loaders: [

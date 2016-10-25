@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
-import murmurhash3_32_gc from 'murmurhash-js'
+import hash from 'murmurhash-js'
 
 var styles = [],
 	cssDictionary = {}
@@ -37,7 +37,7 @@ export function stylesHelper(ComposedComponent, stylesFiles) {
 		}
 
 		setPreRenderedStyles(css) {
-			let cssHash = murmurhash3_32_gc(css)
+			let cssHash = hash(css)
 
 			if (!cssDictionary[cssHash]) {
 				cssDictionary[cssHash] = true

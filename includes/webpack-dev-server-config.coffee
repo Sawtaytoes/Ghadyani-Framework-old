@@ -6,13 +6,12 @@ webpackClientConfig = require __includes + 'webpack-dev-client-config'
 
 webpackServerConfig =
 	https: config.isSecure()
-	cert: config.isSecure() and fs.readFileSync('./conf/cert.pem')
+	cert: config.isSecure() and fs.readFileSync('./conf/domain-crt.txt')
 	key: config.isSecure() and fs.readFileSync('./conf/key.pem')
 
 	contentBase: './' + paths.root.dest
 	historyApiFallback: true
 	hot: true
-	# noInfo: true
 	progress: true
 	proxy: '*': target: config.getProxyServerUrl()
 	publicPath: webpackClientConfig.output.publicPath

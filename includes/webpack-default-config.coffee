@@ -5,6 +5,7 @@ paths = require __includes + 'paths'
 p = (dir) ->
 	path.join __base, dir
 
+assetFiles = p paths.assets.src
 codeFiles = p paths.code.src
 fontFiles = p paths.assets.src + 'font/'
 imgFiles = p paths.assets.src + 'img/'
@@ -18,13 +19,8 @@ shared =
 		loader: 'happypack/loader?id=jsx'
 		include: [codeFiles]
 	,
-		test: /\.cjsx$/
-		loader: 'happypack/loader?id=cjsx'
-		include: [codeFiles]
-	,
 		test: /\.css$/
 		loader: 'happypack/loader?id=css'
-		# include: [p(paths.npm.normalize.src)]
 	,
 		test: /\.s[ac]ss$/
 		loader: 'happypack/loader?id=sass'
@@ -44,14 +40,17 @@ shared =
 	,
 		test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/
 		loader: 'file'
+	,
+		test: /\.html$|\.css$/
+		loader: 'file?name=[name].[ext]'
 	]
 	postcss: ->
 		[autoprefixer browsers: ['last 4 versions', '> 5%']]
 	resolve:
-		extensions: ['', '.js', '.jsx', '.cjsx', '.css', '.styl']
+		extensions: ['', '.js', '.jsx', '.json', '.css', '.styl']
 		root: [
-			p 'src/assets'
-			p 'src/code'
+			assetFiles
+			codeFiles
 		]
 
 dev =
@@ -81,9 +80,18 @@ prod =
 module.exports =
 	getDev: ->
 		webpackDefaultConfig = Object.assign {}, shared, dev
-		webpackDefaultConfig.module.loaders[5].loaders.push 'img?-minimize'
+		webpackDefaultConfig.module.loaders[4].loaders.push 'img?-minimize'
+
+		webpackDefaultConfig.module.loaders.push
+			test: /\.json$/
+			loaders: [
+				'json'
+				'transform?brfs'
+			]
+
 		webpackDefaultConfig
+
 	getProd: ->
 		webpackDefaultConfig = Object.assign {}, shared, prod
-		webpackDefaultConfig.module.loaders[5].loaders.push 'img?minimize'
+		webpackDefaultConfig.module.loaders[4].loaders.push 'img?minimize'
 		webpackDefaultConfig

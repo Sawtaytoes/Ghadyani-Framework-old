@@ -14,7 +14,7 @@ secureServer = (app) ->
 	.use enforce.HTTPS trustProtoHeader: true
 
 	return https.createServer
-		cert: fs.readFileSync('./conf/cert.pem')
+		cert: fs.readFileSync('./conf/domain-crt.txt')
 		key: fs.readFileSync('./conf/key.pem')
 	, app
 

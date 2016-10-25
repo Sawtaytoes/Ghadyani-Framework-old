@@ -1,7 +1,7 @@
 import { htmlMeta } from 'utilities/render-full-page-extras'
 
 // Actions
-import { UPDATE_PAGE_META } from 'actions'
+import { UPDATE_PAGE_META } from 'actions/page-meta'
 
 // Content
 import navItems from 'content/nav-items'
@@ -46,7 +46,10 @@ function updatePageMeta(path) {
 
 	let { title, description } = pageMeta
 	title && (document.title = `${title}${htmlMeta.titlePostfix}`)
-	description && (document.querySelector('meta[name=description]').content = description)
+	if (description) {
+		const descriptionMetaTag = document.querySelector('meta[name=description]')
+		descriptionMetaTag && (descriptionMetaTag.content = description)
+	}
 }
 
 function updateScrollPosition() {
