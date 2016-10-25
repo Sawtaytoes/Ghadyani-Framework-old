@@ -4,6 +4,7 @@ import { Link } from 'react-router'
 // Utilities
 import StylesLoader from 'utilities/styles-loader'
 
+// Styles
 const stylesLoader = StylesLoader.create()
 
 class Home extends PureComponent {

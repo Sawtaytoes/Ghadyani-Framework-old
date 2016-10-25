@@ -7,6 +7,7 @@ import Sample from 'components/sample'
 // Utilities
 import StylesLoader from 'utilities/styles-loader'
 
+// Styles
 const stylesLoader = StylesLoader.create()
 
 class About extends PureComponent {
