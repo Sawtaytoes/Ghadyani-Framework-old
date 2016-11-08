@@ -27,8 +27,8 @@ const routes = {
 		getComponent: (location, cb) => {
 			require.ensure([], (require) => cb(null, require('./views/about')))
 		},
-
 	}, {
+
 		path: '*',
 		getComponent: (location, cb) => {
 			require.ensure([], (require) => cb(null, require('./views/404')))
