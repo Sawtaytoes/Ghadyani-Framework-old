@@ -21,8 +21,6 @@ newrelic.js
 web/*
 !web/favicons
 !web/images
-!web/press-kit
-!web/songs
 !web/static
 
 ## Misc ##
