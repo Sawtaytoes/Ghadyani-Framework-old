@@ -11,10 +11,10 @@ export const htmlMeta = {
 }
 
 export const dnsPrefetches = [
-	// <link key="???" rel="dns-prefetch" href="//example.com" />
+	// <link key="???" rel="dns-prefetch" href="//example.com" />,
 ]
 
 export const thirdPartyAssets = [
 	// <link key="google-fonts" rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,400italic,700" />,
-	// <link key="font-awesome" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />
+	// <link key="font-awesome" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" />,
 ]
