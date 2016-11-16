@@ -10,8 +10,7 @@ happyThreadPool = HappyPack.ThreadPool size: 2
 webpackConfig =
 	entry: main: entryFile
 	output:
-		filename: '[name].backend.js'
-		chunkFilename: '[id].backend.js'
+		filename: 'backend.js'
 		libraryTarget: 'commonjs2'
 		path: './web/'
 		pathinfo: false
