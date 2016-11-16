@@ -8,7 +8,7 @@ entryFile = './' + paths.code.src + 'server'
 happyThreadPool = HappyPack.ThreadPool size: 2
 
 webpackConfig =
-	entry: main: entryFile
+	entry: entryFile
 	output:
 		filename: 'backend.js'
 		libraryTarget: 'commonjs2'
