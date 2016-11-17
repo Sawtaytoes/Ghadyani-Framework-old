@@ -8,4 +8,7 @@ export default [{
 	name: 'About',
 	to: 'about',
 	description: ""
+}, {
+	name: 'Unit Tests',
+	to: 'tests',
 }]
