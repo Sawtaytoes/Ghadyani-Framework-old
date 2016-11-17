@@ -12,9 +12,12 @@ import Sample from 'components/sample'
 
 class TestRun extends TestHelper {
 	static getVars() {
-		return {
-			store: MockStore.getStore(),
-		}
+		return {}
+	}
+
+	constructor(t) {
+		super(t)
+		this.store = MockStore.getStore()
 	}
 
 	getSampleElement() { return (
