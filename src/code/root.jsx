@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { browserHistory, Router } from 'react-router'
+import { Router, browserHistory } from 'react-router'
 
 // Store and Routes
 import { store } from 'utilities/store'
