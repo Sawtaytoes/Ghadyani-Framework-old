@@ -10,11 +10,13 @@ happyThreadPool = HappyPack.ThreadPool size: 4
 webpackConfig =
 	entry:
 		main: [
+			'react-hot-loader/patch'
 			'webpack-dev-server/client?' + config.getServerUrl()
 			'webpack/hot/dev-server'
 			'./' + paths.code.src + 'client'
 		]
 		tests: [
+			'react-hot-loader/patch'
 			'webpack-dev-server/client?' + config.getServerUrl()
 			'webpack/hot/dev-server'
 			'./' + paths.code.src + 'tests'
@@ -44,7 +46,7 @@ webpackConfig =
 		new webpack.DefinePlugin 'process.env.NODE_ENV': JSON.stringify config.getEnv()
 		new HappyPack
 			id: 'jsx', threadPool: happyThreadPool, loaders: [
-				'react-hot'
+				'react-hot-loader/webpack'
 				'babel'
 			]
 		new HappyPack
