@@ -1,7 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { match } from 'react-router'
-import { AppContainer } from 'react-hot-loader'
+// import { match } from 'react-router'
 
 // Root Component
 import Root from 'root'
@@ -11,29 +10,27 @@ import 'react-fastclick'
 import 'utilities/polyfills'
 
 // Store and Routes
-import { history } from 'utilities/store'
-import routes from './routes'
+// import { history } from 'utilities/store'
+// import routes from './routes'
 
 // Router
-match({ history, routes }, (error, redirectLocation, renderProps) => {
-	if (redirectLocation) {
-		window.location = redirectLocation.pathname
-	}
+const RootElement = document.getElementById('root')
+// match({ history, routes }, (error, redirectLocation, renderProps) => {
+	// if (redirectLocation) {
+	// 	window.location = redirectLocation.pathname
+	// }
 
 	render(
-		<AppContainer>
-			<Root renderProps={renderProps} />
-		</AppContainer>
-	, document.getElementById('root'))
+		<Root />
+	, RootElement)
 
 	if (module.hot) {
 		module.hot.accept('./root', () => {
 			const RootContainer = require('./root').default
+
 			render(
-				<AppContainer>
-					<RootContainer renderProps={renderProps} />
-				</AppContainer>
-			, document.getElementById('root'))
+				<RootContainer />
+			, RootElement)
 		})
 	}
-})
+// })
