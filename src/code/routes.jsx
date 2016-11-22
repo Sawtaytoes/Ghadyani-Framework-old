@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Match, Miss } from 'react-router'
+import { Match, Miss, Redirect } from 'react-router'
 
 const isAsyncCapable = typeof window !== 'undefined'
 export default class Routes extends PureComponent {
@@ -8,6 +8,20 @@ export default class Routes extends PureComponent {
 
 		this.views = {}
 		this.viewReady = new Set()
+
+		this.redirs = [{
+			pattern: '/redirectTest',
+			to: '/',
+		}, {
+			pattern: '**/',
+			to: ({ location }) => location.pathname.slice(0, -1),
+		}].map(redir => {
+			const { to } = redir
+			return {
+				...redir,
+				to: typeof to !== 'function' ? () => to : to
+			}
+		})
 
 		this.routes = [{
 			name: 'home',
@@ -44,8 +58,24 @@ export default class Routes extends PureComponent {
 		.then(View => this.views[fileName] = <View />)
 		.then(() => this.viewReady.add(fileName))
 		.then(() => this.forceUpdate())
+		.catch(err => {
+			console.error(err)
+			throw err
+		})
 
 		return <div />
+	}
+
+	renderRedirs() {
+		return this.redirs.map(redir => this.renderRedir(redir))
+	}
+
+	renderRedir({ pattern, to }) {
+		return <Match key={pattern} exactly pattern={pattern} render={props => <Redirect to={to(props)} />} />
+	}
+
+	renderRoutes() {
+		return this.routes.map(route => this.renderRoute(route))
 	}
 
 	renderRoute({ name, pattern, component }) {
@@ -56,11 +86,10 @@ export default class Routes extends PureComponent {
 		}
 	}
 
-	renderRoutes() {
-		return this.routes.map(route => this.renderRoute(route))
-	}
-
 	render() { return (
-		<div>{this.renderRoutes()}</div>
+		<div>
+			{this.renderRoutes()}
+			{this.renderRedirs()}
+		</div>
 	)}
 }
