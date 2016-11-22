@@ -9,8 +9,9 @@ config = require __includes + 'config-settings'
 
 # Set App Mode
 runMode = process.argv[2]
-runCompiler = !runMode || runMode == 'compile'
-runServer = !runMode || runMode == 'server'
+global.__testingProduction = !runMode
+runCompiler = __testingProduction || runMode == 'compile'
+runServer = __testingProduction || runMode == 'server'
 
 # Start Webservers
 if config.isProd()

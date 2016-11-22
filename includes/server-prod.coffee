@@ -22,7 +22,9 @@ sendEmail = (req, res) ->
 	require(__includes + 'send-email')(req.body, res)
 
 loadSite = (req, res) ->
-	require(__base + 'web/backend.js')(req, res)
+	fileName = require.resolve(__base + 'web/backend.js')
+	__testingProduction && delete require.cache[fileName]
+	require(fileName)(req, res)
 
 module.exports = do ->
 	app = express()
