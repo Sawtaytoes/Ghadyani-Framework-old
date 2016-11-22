@@ -16,4 +16,4 @@ class NoMatch extends PureComponent {
 	)}
 }
 
-module.exports = stylesLoader.render(NoMatch)
+export default stylesLoader.render(NoMatch)

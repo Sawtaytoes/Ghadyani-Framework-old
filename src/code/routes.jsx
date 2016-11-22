@@ -7,7 +7,6 @@ export default class Routes extends PureComponent {
 		super()
 
 		this.views = {}
-		this.viewReady = new Set()
 
 		this.redirs = [{
 			pattern: '/redirect',
@@ -49,16 +48,16 @@ export default class Routes extends PureComponent {
 	}
 
 	asyncLoader(fileName) {
-		if (this.viewReady.has(fileName)) {
-			this.viewReady.delete(fileName)
-			return this.views[fileName]
+		const storedView = this.views[fileName]
+		if (storedView) {
+			delete this.views[fileName]
+			return storedView
 		}
 
 		new Promise(resolve => require.ensure([], () => {
-			resolve(require(`./views/${fileName}`))
+			resolve(require(`./views/${fileName}`).default)
 		}))
 		.then(View => this.views[fileName] = <View />)
-		.then(() => this.viewReady.add(fileName))
 		.then(() => this.forceUpdate())
 		.catch(err => {
 			console.error(err)
