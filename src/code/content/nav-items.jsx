@@ -1,6 +1,6 @@
 export default [{
 	displayInHeader: true,
-	name: 'Homepage',
+	name: 'Home',
 	to: '',
 	description: ""
 }, {
