@@ -2,7 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 
 // Root Component
-import Root from 'root'
+import ClientRoot from 'client-root'
 
 // Polyfills
 import 'react-fastclick'
@@ -12,15 +12,15 @@ import 'utilities/polyfills'
 const RootElement = document.getElementById('root')
 
 render(
-	<Root />
+	<ClientRoot />
 , RootElement)
 
 if (module.hot) {
-	module.hot.accept('./root', () => {
-		const RootContainer = require('./root').default
+	module.hot.accept('./client-root', () => {
+		const ClientRootContainer = require('./client-root').default
 
 		render(
-			<RootContainer />
+			<ClientRootContainer />
 		, RootElement)
 	})
 }

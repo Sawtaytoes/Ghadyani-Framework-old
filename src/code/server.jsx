@@ -1,47 +1,63 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { RouterContext, match, memoryHistory } from 'react-router'
+import { ServerRouter as Router, Match, Miss, createServerRenderContext } from 'react-router'
 import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
-import createMemoryHistory from 'history/lib/createMemoryHistory'
 
 // Polyfills
 import 'utilities/polyfills'
 import { getInitialState } from 'utilities/initial-state'
 import renderFullPage from 'utilities/render-full-page'
 
+// Views
+// import Home from 'views/home'
+// import About from 'views/about'
+// import NoMatch from 'views/404'
+
 // Actions
 import { updatePageMeta } from 'actions/page-meta'
 
 // Reducers & Routes
 import rootReducer from 'reducers'
-import routes from './routes'
 
-module.exports = function render(req, res) {
+// Components
+import Routes from 'routes'
+
+module.exports = (req, res) => {
+	const context = createServerRenderContext()
+	const result = context.getResult()
+
+	if (result.redirect) {
+		res.redirect(301, result.redirect.pathname + result.redirect.search)
+		return
+	}
+
 	const initialState = getInitialState()
-
-	const history = createMemoryHistory()
 	const store = compose()(createStore)(rootReducer, initialState)
 
-	match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-		if (error) {
-			res.status(500).send(error.message)
-		} else if (redirectLocation) {
-			res.redirect(302, redirectLocation.pathname + redirectLocation.search)
-		} else if (renderProps) {
-			const renderedContent = renderToString(
-				<Provider store={store}>
-					<RouterContext history={memoryHistory} {...renderProps} />
-				</Provider>
-			)
+	const renderedContent = renderToString(
+		<Provider store={store}>
+			<Router
+				location={req.url}
+				context={context}
+			>
+				<Routes />
+				{/*<div>
+					<Match exactly pattern="/" component={Home} />
+					<Match exactly pattern="/about" component={About} />
+					<Miss component={NoMatch} />
+				</div>*/}
+			</Router>
+		</Provider>
+	)
 
-			store.dispatch(updatePageMeta(req.originalUrl))
+	store.dispatch(updatePageMeta(req.originalUrl))
+	const renderedPage = renderFullPage(renderedContent, store.getState())
 
-			const finalState = store.getState()
-			const renderedPage = renderFullPage(renderedContent, finalState)
-			res.status(200).send(renderedPage)
-		} else {
-			res.status(404).send('Not Found')
-		}
-	})
+	if (result.missed) {
+		res.status(404).send(renderedPage).end()
+
+	} else {
+		res.status(200).send(renderedPage).end()
+	}
 }
