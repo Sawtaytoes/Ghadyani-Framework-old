@@ -10,11 +10,12 @@ export default class Routes extends PureComponent {
 		this.viewReady = new Set()
 
 		this.redirs = [{
-			pattern: '/redirectTest',
+			pattern: '/redirect',
 			to: '/',
 		}, {
 			pattern: '**/',
 			to: ({ location }) => location.pathname.slice(0, -1),
+			exactly: true,
 		}].map(redir => {
 			const { to } = redir
 			return {
@@ -26,6 +27,7 @@ export default class Routes extends PureComponent {
 		this.routes = [{
 			name: 'home',
 			pattern: '/',
+			exactly: true,
 		}, {
 			name: 'about',
 			pattern: '/about',
@@ -60,7 +62,7 @@ export default class Routes extends PureComponent {
 		.then(() => this.forceUpdate())
 		.catch(err => {
 			console.error(err)
-			throw err
+			throw new Error(err)
 		})
 
 		return <div />
@@ -70,19 +72,32 @@ export default class Routes extends PureComponent {
 		return this.redirs.map(redir => this.renderRedir(redir))
 	}
 
-	renderRedir({ pattern, to }) {
-		return <Match key={pattern} exactly pattern={pattern} render={props => <Redirect to={to(props)} />} />
+	renderRedir({ pattern, exactly, to }) {
+		return <Match
+			key={pattern}
+			pattern={pattern}
+			exactly={exactly}
+			render={props => <Redirect to={to(props)} />}
+		/>
 	}
 
 	renderRoutes() {
 		return this.routes.map(route => this.renderRoute(route))
 	}
 
-	renderRoute({ name, pattern, component }) {
+	renderRoute({ name, pattern, exactly, component }) {
 		if (pattern) {
-			return <Match key={name} exactly pattern={pattern} component={component} />
+			return <Match
+				key={name}
+				pattern={pattern}
+				exactly={exactly}
+				component={component}
+			/>
 		} else {
-			return <Miss key={name} component={component} />
+			return <Miss
+				key={name}
+				component={component}
+			/>
 		}
 	}
 
