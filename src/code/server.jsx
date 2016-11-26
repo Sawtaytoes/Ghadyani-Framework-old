@@ -9,11 +9,6 @@ import 'utilities/polyfills'
 import { getInitialState } from 'utilities/initial-state'
 import renderFullPage from 'utilities/render-full-page'
 
-// Views
-// import Home from 'views/home'
-// import About from 'views/about'
-// import NoMatch from 'views/404'
-
 // Actions
 import { updatePageMeta } from 'actions/page-meta'
 
@@ -42,11 +37,6 @@ module.exports = (req, res) => {
 				context={context}
 			>
 				<Routes />
-				{/*<div>
-					<Match exactly pattern="/" component={Home} />
-					<Match exactly pattern="/about" component={About} />
-					<Miss component={NoMatch} />
-				</div>*/}
 			</Router>
 		</Provider>
 	)
