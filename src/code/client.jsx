@@ -8,7 +8,7 @@ import ClientRoot from 'client-root'
 import 'react-fastclick'
 import 'utilities/polyfills'
 
-// Router
+// Vars
 const RootElement = document.getElementById('root')
 
 render(
@@ -17,10 +17,10 @@ render(
 
 if (module.hot) {
 	module.hot.accept('./client-root', () => {
-		const ClientRootContainer = require('./client-root').default
+		const ClientRootHotReload = require('./client-root').default
 
 		render(
-			<ClientRootContainer />
+			<ClientRootHotReload />
 		, RootElement)
 	})
 }
