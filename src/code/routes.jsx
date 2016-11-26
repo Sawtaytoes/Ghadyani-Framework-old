@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 
-const isAsyncCapable = typeof window !== 'undefined'
+// Components
+import AsyncComponent from 'components/async-component'
+
 export default class Routes extends PureComponent {
 	constructor() {
 		super()
-
-		this.views = {}
 
 		this.redirs = [{
 			pattern: '/redirect',
@@ -34,37 +34,9 @@ export default class Routes extends PureComponent {
 			name: '404',
 		}].map(route => ({
 			...route,
-			component: this.loadView.bind(this, route.name),
+			// component: () => <AsyncComponent fileLocation={() => require(`views/${route.name}`)} />,
+			component: () => <AsyncComponent fileLocation={`views/${route.name}`} />,
 		}))
-	}
-
-	loadView(fileName) {
-		return isAsyncCapable ? this.asyncLoader(fileName) : this.syncLoader(fileName)
-	}
-
-	syncLoader(fileName) {
-		const View = require(`./views/${fileName}`)
-		return <View />
-	}
-
-	asyncLoader(fileName) {
-		const storedView = this.views[fileName]
-		if (storedView) {
-			delete this.views[fileName]
-			return storedView
-		}
-
-		new Promise(resolve => require.ensure([], () => {
-			resolve(require(`./views/${fileName}`).default)
-		}))
-		.then(View => this.views[fileName] = <View />)
-		.then(() => this.forceUpdate())
-		.catch(err => {
-			console.error(err)
-			throw new Error(err)
-		})
-
-		return <div />
 	}
 
 	renderRedirs() {
