@@ -90,17 +90,6 @@ OR
 coffee index.coffee
 ```
 
-### Production: Heroku
-[Using the Sawtaytoes fork of the CoffeeScript buildpack for Heroku Ceder-14](https://github.com/sawtaytoes/heroku-buildpack-coffee)
-
-`APP_NAME` is the Application Name in Heroku.
-
-```shell
-heroku buildpacks:set https://github.com/sawtaytoes/heroku-buildpack-coffee
-heroku stack:set cedar-14
-git push heroku master
-```
-
 ### Production: Hosted VPS
 [Using PM2](http://pm2.keymetrics.io/)
 
