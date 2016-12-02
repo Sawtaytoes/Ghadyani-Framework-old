@@ -2,7 +2,7 @@ require 'babel-core/register'
 config = require __includes + 'config-settings'
 fs = require 'fs'
 paths = require __includes + 'paths'
-webpackClientConfig = require __includes + 'webpack-dev-client-config'
+webpackClientConfig = require __webpack + 'webpack.config.client.dev'
 
 webpackServerConfig =
 	https: config.isSecure()
