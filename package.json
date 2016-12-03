@@ -48,6 +48,8 @@
     "nodemailer": "^2.6.4",
     "normalize.css": "^4.2.0",
     "postcss-loader": "^0.9.1",
+    "preact": "^7.1.0",
+    "preact-compat": "^3.9.3",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-fastclick": "^2.1.2",

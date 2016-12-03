@@ -47,6 +47,9 @@ shared =
 	postcss: ->
 		[autoprefixer browsers: ['last 4 versions', '> 5%']]
 	resolve:
+		alias:
+			react: 'preact-compat'
+			'react-dom': 'preact-compat'
 		extensions: ['', '.js', '.jsx', '.json', '.css', '.styl']
 		root: [
 			assetFiles
