@@ -1,6 +1,9 @@
 import React, { PureComponent } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 
+// Components
+import Master from 'layouts/master'
+
 const isAsyncCapable = typeof window !== 'undefined'
 export default class Routes extends PureComponent {
 	constructor() {
@@ -101,9 +104,9 @@ export default class Routes extends PureComponent {
 	}
 
 	render() { return (
-		<div>
+		<Master>
 			{this.renderRoutes()}
 			{this.renderRedirs()}
-		</div>
+		</Master>
 	)}
 }
