@@ -1,7 +1,7 @@
 webpack = require 'webpack'
 
-webpackServerConfig = require __includes + 'webpack-prod-server-config'
-webpackClientConfig = require __includes + 'webpack-prod-client-config'
+webpackServerConfig = require __webpack + 'webpack.config.server.prod'
+webpackClientConfig = require __webpack + 'webpack.config.client.prod'
 
 onBuild = (taskName, err, stats) ->
 	throw (console.error)('webpack', err) if err

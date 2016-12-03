@@ -2,16 +2,16 @@ config = require __includes + 'config-settings'
 HappyPack = require 'happypack'
 paths = require __includes + 'paths'
 webpack = require 'webpack'
-webpackDefaultConfig = require __includes + 'webpack-default-config'
+webpackDefaultConfig = require __webpack + 'webpack.config.default'
 
-entryFile = './' + paths.code.src + 'client'
+entryFile = './' + paths.code.src + 'server'
 happyThreadPool = HappyPack.ThreadPool size: 2
 
 webpackConfig =
-	entry: main: entryFile
+	entry: entryFile
 	output:
-		filename: '[name].bundle.js'
-		chunkFilename: '[id].bundle.js'
+		filename: 'backend.js'
+		libraryTarget: 'commonjs2'
 		path: './web/'
 		pathinfo: false
 		publicPath: '/'
@@ -62,5 +62,6 @@ webpackConfig =
 				comments: false
 				screw_ie8: true
 	]
+	target: 'node'
 
 module.exports = Object.assign {}, webpackDefaultConfig.getProd(), webpackConfig

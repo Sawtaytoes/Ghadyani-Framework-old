@@ -19,7 +19,7 @@ secureServer = (app) ->
 	, app
 
 sendEmail = (req, res) ->
-	require(__includes + 'send-email')(req.body, res)
+	require(__services + 'send-email')(req.body, res)
 
 loadSite = (req, res) ->
 	fileName = require.resolve(__base + 'web/backend.js')

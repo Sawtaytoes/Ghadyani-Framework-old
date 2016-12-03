@@ -3,7 +3,7 @@ config = require __includes + 'config-settings'
 HappyPack = require 'happypack'
 paths = require __includes + 'paths'
 webpack = require 'webpack'
-webpackDefaultConfig = require __includes + 'webpack-default-config'
+webpackDefaultConfig = require __webpack + 'webpack.config.default'
 
 happyThreadPool = HappyPack.ThreadPool size: 4
 

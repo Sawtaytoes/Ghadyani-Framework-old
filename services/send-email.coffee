@@ -27,10 +27,10 @@ module.exports = (reqBody, res) ->
 
 	## Set `To:` Email Address
 	switch reqBody.reason
-		when 'press' then mailTo = 'Press <press@pulsengame.com>'
-		when 'submission' then mailTo = 'Submissions <submission@pulsengame.com>'
-		when 'general' then mailTo = 'Inquiries <info@pulsengame.com>'
-		else mailTo = 'Customer Service <customerservice@pulsengame.com>'
+		when 'press' then mailTo = 'Press <press@example.com>'
+		when 'submission' then mailTo = 'Submissions <submission@example.com>'
+		when 'general' then mailTo = 'Inquiries <info@example.com>'
+		else mailTo = 'Customer Service <customerservice@example.com>'
 
 	## Configure Mail Options
 	mailOptions = Object.assign {},
