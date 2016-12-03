@@ -6,15 +6,15 @@ paths = require __includes + 'paths'
 webpack = require 'webpack'
 webpackDevServer = require 'webpack-dev-server'
 
-webpackClientConfig = require __includes + 'webpack-dev-client-config'
-webpackServerConfig = require __includes + 'webpack-dev-server-config'
+webpackClientConfig = require __webpack + 'webpack.config.client.dev'
+webpackServerConfig = require __webpack + 'webpack-dev-server.config'
 
 onBuild = (taskName, getServerUrl, err, stats) ->
 	throw (console.error)('webpack', err) if err
 	console.info "[#{taskName}]", getServerUrl()
 
 sendEmail = (req, res) ->
-	require(__includes + 'send-email')(req.body, res)
+	require(__services + 'send-email')(req.body, res)
 
 loadTests = (req, res) ->
 	res.end require(__base + 'src/code/utilities/render-tests-page.jsx')()

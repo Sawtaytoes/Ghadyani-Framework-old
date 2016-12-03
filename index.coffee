@@ -3,6 +3,8 @@ try require 'newrelic'
 # Configure global directories
 global.__base = __dirname + '/'
 global.__includes = __base + 'includes/'
+global.__services = __base + 'services/'
+global.__webpack = __base + 'webpack/'
 
 # Load Config settings
 config = require __includes + 'config-settings'
