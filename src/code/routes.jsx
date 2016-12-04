@@ -46,7 +46,7 @@ export default class Routes extends PureComponent {
 	}
 
 	syncLoader(fileName) {
-		const View = require(`./views/${fileName}`)
+		const View = require(`./views/${fileName}`).default
 		return <View />
 	}
 
