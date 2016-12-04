@@ -1,6 +1,6 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { ServerRouter as Router, Match, Miss, createServerRenderContext } from 'react-router'
+import { ServerRouter as Router, createServerRenderContext } from 'react-router'
 import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
 
