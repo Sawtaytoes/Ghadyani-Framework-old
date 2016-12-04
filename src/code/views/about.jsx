@@ -21,4 +21,4 @@ class About extends PureComponent {
 	)}
 }
 
-module.exports = stylesLoader.render(About)
+export default stylesLoader.render(About)

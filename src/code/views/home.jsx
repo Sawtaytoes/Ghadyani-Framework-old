@@ -20,4 +20,4 @@ class Home extends PureComponent {
 	)}
 }
 
-module.exports = stylesLoader.render(Home)
+export default stylesLoader.render(Home)

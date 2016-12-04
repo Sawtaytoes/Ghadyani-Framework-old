@@ -5,11 +5,17 @@
   },
   "env": {
     "browser": true,
+    "es6": true,
     "node": true
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "parser": "babel-eslint",
   "rules": {
     "strict": [2, "never"],
+    "no-console": 0,
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2
