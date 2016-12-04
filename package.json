@@ -17,7 +17,6 @@
   "dependencies": {
     "autoprefixer": "^6.5.3",
     "babel-core": "^6.18.2",
-    "babel-eslint": "^6.1.2",
     "babel-loader": "^6.2.7",
     "babel-plugin-transform-runtime": "^6.15.0",
     "babel-preset-es2015": "^6.18.0",
@@ -29,9 +28,6 @@
     "coffee-script": "^1.11.1",
     "compression": "^1.6.2",
     "css-loader": "^0.23.1",
-    "enzyme": "^2.6.0",
-    "eslint": "^3.10.2",
-    "eslint-plugin-react": "^5.2.2",
     "expose-loader": "^0.7.1",
     "express": "^4.14.0",
     "express-sslify": "^1.1.0",
@@ -62,21 +58,24 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.3",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^1.13.3"
   },
   "optionalDependencies": {},
   "peerDependencies": {},
   "devDependencies": {
+    "babel-eslint": "^6.1.2",
     "bell-on-bundler-error-plugin": "^1.0.8",
     "brfs": "^1.4.3",
-    "enzyme": "^2.4.1",
+    "enzyme": "^2.6.0",
+    "eslint": "^3.10.2",
+    "eslint-plugin-react": "^5.2.2",
     "json-loader": "^0.5.4",
     "react-addons-test-utils": "^15.4.0",
     "react-hot-loader": "^3.0.0-beta.6",
     "tap-dev-tool": "^1.3.0",
     "tape": "^4.6.2",
     "tape-catch": "^1.0.6",
-    "transform-loader": "^0.2.3"
+    "transform-loader": "^0.2.3",
+    "webpack-dev-server": "^1.16.2"
   }
 }
