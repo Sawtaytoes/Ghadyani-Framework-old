@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import GoogleAnalytics from 'react-g-analytics'
+// import GoogleAnalytics from 'react-g-analytics'
 
 // Utilities
 import StylesLoader from 'utilities/styles-loader'
@@ -14,7 +14,7 @@ class Master extends PureComponent {
 	render() { return (
 		<div>
 			{this.props.children}
-			<GoogleAnalytics id="UA-????????-?" />
+			{/*<GoogleAnalytics id="UA-????????-?" />*/}
 		</div>
 	)}
 }
