@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import { Link } from 'react-router'
+import Inferno from 'inferno'
+import { Link } from 'inferno-router'
 
 // Utilities
 import StylesLoader from 'utilities/styles-loader'

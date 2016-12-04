@@ -21,10 +21,6 @@ webpackConfig =
 			'webpack/hot/dev-server'
 			'./' + paths.code.src + 'tests'
 		]
-	externals:
-		'react/addons': true
-		'react/lib/ExecutionEnvironment': true
-		'react/lib/ReactContext': true
 	node: fs: 'empty'
 	output:
 		filename: '[name].bundle.js'

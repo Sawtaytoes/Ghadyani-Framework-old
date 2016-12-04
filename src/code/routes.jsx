@@ -1,15 +1,16 @@
-import React, { PureComponent } from 'react'
-import { Match, Miss, Redirect } from 'react-router'
+import Inferno from 'inferno'
+import Component from 'inferno-component'
+import { Route } from 'inferno-router'
 
 // Components
 import Master from 'layouts/master'
 
-const isAsyncCapable = typeof window !== 'undefined'
-export default class Routes extends PureComponent {
+// const isAsyncCapable = typeof window !== 'undefined'
+export default class Routes extends Component {
 	constructor() {
 		super()
 
-		this.views = {}
+		// this.views = {}
 
 		this.redirs = [{
 			pattern: '/redirect',
@@ -41,72 +42,73 @@ export default class Routes extends PureComponent {
 		}))
 	}
 
-	loadView(fileName) {
-		return isAsyncCapable ? this.asyncLoader(fileName) : this.syncLoader(fileName)
-	}
+	// loadView(fileName) {
+	// 	return isAsyncCapable ? this.asyncLoader(fileName) : this.syncLoader(fileName)
+	// }
 
-	syncLoader(fileName) {
-		const View = require(`./views/${fileName}`)
-		return <View />
-	}
+	// syncLoader(fileName) {
+	// 	const View = require(`./views/${fileName}`)
+	// 	return <View />
+	// }
 
 	asyncLoader(fileName) {
-		const storedView = this.views[fileName]
-		if (storedView) {
-			delete this.views[fileName]
-			return storedView
-		}
+		// const storedView = this.views[fileName]
+		// if (storedView) {
+		// 	delete this.views[fileName]
+		// 	return storedView
+		// }
 
-		new Promise(resolve => require.ensure([], () => {
+		return new Promise(resolve => require.ensure([], () => {
 			resolve(require(`./views/${fileName}`).default)
 		}))
-		.then(View => this.views[fileName] = <View />)
-		.then(() => this.forceUpdate())
-		.catch(err => {
-			console.error(err)
-			throw new Error(err)
-		})
+		// .then(View => this.views[fileName] = <View />)
+		// .then(() => this.forceUpdate())
+		// .catch(err => {
+		// 	console.error(err)
+		// 	throw new Error(err)
+		// })
 
-		return <div />
+		// return <div />
 	}
 
-	renderRedirs() {
-		return this.redirs.map(redir => this.renderRedir(redir))
-	}
+	// renderRedirs() {
+	// 	return this.redirs.map(redir => this.renderRedir(redir))
+	// }
 
-	renderRedir({ pattern, exactly, to }) {
-		return <Match
-			key={pattern}
-			pattern={pattern}
-			exactly={exactly}
-			render={props => <Redirect to={to(props)} />}
-		/>
-	}
+	// renderRedir({ pattern, exactly, to }) {
+	// 	return <Match
+	// 		key={pattern}
+	// 		pattern={pattern}
+	// 		exactly={exactly}
+	// 		render={props => <Redirect to={to(props)} />}
+	// 	/>
+	// }
 
-	renderRoutes() {
-		return this.routes.map(route => this.renderRoute(route))
-	}
+	// renderRoutes() {
+	// 	return this.routes.map(route => this.renderRoute(route))
+	// }
 
-	renderRoute({ name, pattern, exactly, component }) {
-		if (pattern) {
-			return <Match
-				key={name}
-				pattern={pattern}
-				exactly={exactly}
-				component={component}
-			/>
-		} else {
-			return <Miss
-				key={name}
-				component={component}
-			/>
-		}
-	}
+	// renderRoute({ name, pattern, exactly, component }) {
+	// 	if (pattern) {
+	// 		return <Match
+	// 			key={name}
+	// 			pattern={pattern}
+	// 			exactly={exactly}
+	// 			component={component}
+	// 		/>
+	// 	} else {
+	// 		return <Miss
+	// 			key={name}
+	// 			component={component}
+	// 		/>
+	// 	}
+	// }
 
 	render() { return (
 		<Master>
-			{this.renderRoutes()}
-			{this.renderRedirs()}
+			<Route path="/" async={this.asyncLoader.bind('home')} />
+			{/*this.renderRoutes()*/}
+			{/*this.renderRedirs()*/}
 		</Master>
 	)}
 }

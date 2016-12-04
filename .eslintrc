@@ -1,20 +1,29 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
-  "env": {
-    "browser": true,
-    "node": true
-  },
-  "parser": "babel-eslint",
-  "rules": {
-    "strict": [2, "never"],
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
-  },
-  "plugins": [
-    "react"
-  ]
+	"ecmaFeatures": {
+		"jsx": true,
+		"modules": true
+	},
+
+	"env": {
+		"browser": true,
+		"node": true
+	},
+
+	"extends": [
+		"eslint:recommended",
+		"plugin:inferno/recommended"
+	],
+
+	"parser": "babel-eslint",
+
+	"rules": {
+		"strict": [2, "never"],
+		"inferno/jsx-uses-inferno": "error",
+		"inferno/jsx-uses-vars": "error",
+		"inferno/inferno-in-jsx-scope": 2
+	},
+
+	"plugins": [
+		"inferno"
+	]
 }

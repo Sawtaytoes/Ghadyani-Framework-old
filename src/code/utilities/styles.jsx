@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import Inferno from 'inferno'
+import Component from 'inferno-component'
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
 import hash from 'murmurhash-js'
 

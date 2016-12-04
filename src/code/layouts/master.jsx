@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react'
-import GoogleAnalytics from 'react-g-analytics'
+import Inferno from 'inferno'
+import Component from 'inferno-component'
 
 // Utilities
 import StylesLoader from 'utilities/styles-loader'
@@ -10,11 +10,10 @@ const stylesLoader = StylesLoader.create()
 .add(require('styl/global'))
 .add(require('styl/site'))
 
-class Master extends PureComponent {
+class Master extends Component {
 	render() { return (
 		<div>
 			{this.props.children}
-			<GoogleAnalytics id="UA-????????-?" />
 		</div>
 	)}
 }
