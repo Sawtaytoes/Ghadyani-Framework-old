@@ -60,8 +60,6 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.3"
   },
-  "optionalDependencies": {},
-  "peerDependencies": {},
   "devDependencies": {
     "babel-eslint": "^6.1.2",
     "bell-on-bundler-error-plugin": "^1.0.8",
