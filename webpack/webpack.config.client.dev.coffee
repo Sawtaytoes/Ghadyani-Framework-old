@@ -54,6 +54,7 @@ webpackConfig =
 				'isomorphic-style'
 				'css'
 				'postcss'
+			]
 		new HappyPack
 			id: 'styl', threadPool: happyThreadPool, loaders: [
 				'isomorphic-style'

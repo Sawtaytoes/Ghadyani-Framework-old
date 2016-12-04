@@ -75,7 +75,7 @@ prod =
 module.exports =
 	getDev: ->
 		webpackDefaultConfig = Object.assign {}, shared, dev
-		webpackDefaultConfig.module.loaders[4].loaders.push 'img?-minimize'
+		webpackDefaultConfig.module.loaders[3].loaders.push 'img?-minimize'
 
 		webpackDefaultConfig.module.loaders.push
 			test: /\.json$/
@@ -88,5 +88,5 @@ module.exports =
 
 	getProd: ->
 		webpackDefaultConfig = Object.assign {}, shared, prod
-		webpackDefaultConfig.module.loaders[4].loaders.push 'img?minimize'
+		webpackDefaultConfig.module.loaders[3].loaders.push 'img?minimize'
 		webpackDefaultConfig
