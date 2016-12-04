@@ -9,7 +9,6 @@ assetFiles = p paths.assets.src
 codeFiles = p paths.code.src
 fontFiles = p paths.assets.src + 'font/'
 imgFiles = p paths.assets.src + 'img/'
-sassFiles = p paths.assets.src + 'sass/'
 stylFiles = p paths.assets.src + 'styl/'
 
 shared =
@@ -21,10 +20,6 @@ shared =
 	,
 		test: /\.css$/
 		loader: 'happypack/loader?id=css'
-	,
-		test: /\.s[ac]ss$/
-		loader: 'happypack/loader?id=sass'
-		include: [sassFiles, p(paths.npm.slickCarousel.src)]
 	,
 		test: /\.styl$/
 		loader: 'happypack/loader?id=styl'

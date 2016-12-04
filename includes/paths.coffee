@@ -43,7 +43,6 @@ module.exports = do ->
 	##----------------------------------------
 
 	paths.npm = src: 'node_modules/'
-	paths.npm.slickCarousel = src: paths.npm.src + 'slick-carousel/'
 
 
 	##----------------------------------------

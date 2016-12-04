@@ -38,13 +38,6 @@ webpackConfig =
 				'postcss'
 			]
 		new HappyPack
-			id: 'sass', threadPool: happyThreadPool, loaders: [
-				'isomorphic-style'
-				'css'
-				'postcss'
-				'sass?compress=true'
-			]
-		new HappyPack
 			id: 'styl', threadPool: happyThreadPool, loaders: [
 				'isomorphic-style'
 				'css'
