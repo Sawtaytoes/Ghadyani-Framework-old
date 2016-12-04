@@ -3,6 +3,7 @@ import { Match, Miss, Redirect } from 'react-router'
 
 // Components
 import AsyncComponent from 'components/async-component'
+import Master from 'layouts/master'
 
 export default class Routes extends PureComponent {
 	constructor() {
@@ -73,9 +74,9 @@ export default class Routes extends PureComponent {
 	}
 
 	render() { return (
-		<div>
+		<Master>
 			{this.renderRoutes()}
 			{this.renderRedirs()}
-		</div>
+		</Master>
 	)}
 }
