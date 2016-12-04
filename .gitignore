@@ -4,7 +4,7 @@
 ## Configs ##
 .env
 .happypack
-config.coffee
+includes/config.js
 
 ## Logs ##
 logs
