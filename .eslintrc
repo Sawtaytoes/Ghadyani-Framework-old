@@ -7,6 +7,10 @@
     "browser": true,
     "node": true
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
   "parser": "babel-eslint",
   "rules": {
     "strict": [2, "never"],
