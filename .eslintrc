@@ -1,8 +1,8 @@
 {
   "ecmaFeatures": {
     "jsx": true,
-  },
     "modules": true
+  },
   "env": {
     "browser": true,
     "es6": true,
@@ -10,17 +10,17 @@
   },
   "extends": [
     "eslint:recommended",
-		"plugin:inferno/recommended"
-	],
-	"parser": "babel-eslint",
-	"rules": {
-		"strict": [2, "never"],
+    "plugin:inferno/recommended"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "strict": [2, "never"],
     "no-console": 0,
-		"inferno/jsx-uses-inferno": "error",
-		"inferno/jsx-uses-vars": "error",
-		"inferno/inferno-in-jsx-scope": 2
-	},
-	"plugins": [
-		"inferno"
-	]
+    "inferno/jsx-uses-inferno": "error",
+    "inferno/jsx-uses-vars": "error",
+    "inferno/inferno-in-jsx-scope": 2
+   },
+  "plugins": [
+    "inferno"
+  ]
 }
