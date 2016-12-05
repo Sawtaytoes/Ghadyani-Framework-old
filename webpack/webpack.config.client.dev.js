@@ -39,6 +39,9 @@ const webpackConfig = {
 		publicPath: '/',
 	},
 	plugins: [
+		new webpack.LoaderOptionsPlugin({
+			debug: true
+		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
 			!msg.includes('build modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
 		}),
@@ -54,23 +57,24 @@ const webpackConfig = {
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'jsx', threadPool, loaders: [
+				'eslint-loader',
 				'react-hot-loader/webpack',
-				'babel',
+				'babel-loader',
 			]
 		}),
 		new HappyPack({
 			id: 'css', threadPool, loaders: [
-				'isomorphic-style',
-				'css',
-				'postcss',
+				'isomorphic-style-loader',
+				'css-loader',
+				'postcss-loader',
 			]
 		}),
 		new HappyPack({
 			id: 'styl', threadPool, loaders: [
-				'isomorphic-style',
-				'css',
-				'postcss',
-				'stylus?linenos=false',
+				'isomorphic-style-loader',
+				'css-loader',
+				'postcss-loader',
+				'stylus-loader?linenos=false',
 			]
 		}),
 		new webpack.HotModuleReplacementPlugin(),

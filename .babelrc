@@ -1,4 +1,13 @@
 {
-  "plugins": ["transform-runtime"],
-  "presets": ["es2017", "es2016", "es2015", "react", "stage-0"]
+  "plugins": [
+    "transform-runtime",
+  ],
+  "presets": [
+    "latest",
+    // ["latest", {
+    //   "es2015": { "modules": false }
+    // }],
+    "stage-0",
+    "react",
+  ]
 }

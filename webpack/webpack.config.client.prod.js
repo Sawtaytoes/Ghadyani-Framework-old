@@ -34,25 +34,24 @@ const webpackConfig = {
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'jsx', threadPool, loaders: [
-				'babel',
+				'babel-loader',
 			]
 		}),
 		new HappyPack({
 			id: 'css', threadPool, loaders: [
-				'isomorphic-style',
-				'css',
-				'postcss',
+				'isomorphic-style-loader',
+				'css-loader',
+				'postcss-loader',
 			]
 		}),
 		new HappyPack({
 			id: 'styl', threadPool, loaders: [
-				'isomorphic-style',
-				'css',
-				'postcss',
-				'stylus?linenos=false&compress=true',
+				'isomorphic-style-loader',
+				'css-loader',
+				'postcss-loader',
+				'stylus-loader?linenos=false&compress=true',
 			]
 		}),
-		new webpack.optimize.OccurenceOrderPlugin(true),
 		new webpack.optimize.CommonsChunkPlugin({ async: true }),
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.DedupePlugin(),
@@ -63,6 +62,7 @@ const webpackConfig = {
 				comments: false,
 				screw_ie8: true,
 			},
+			sourceMap: true,
 		}),
 	],
 }
