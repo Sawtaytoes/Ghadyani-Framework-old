@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 const webpack = require('webpack')
-const webpackDevServer = require('webpack-dev-server')
+const WebpackDevServer = require('webpack-dev-server')
 
 // Configs
 const dir = require(`${global.baseDir}/global-dirs`)
@@ -29,7 +29,7 @@ const loadSite = (req, res) => {
 	}))
 }
 
-new webpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
+new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
 .listen(config.getPort(), config.getHostname(), onBuild.bind(null, 'webpack-dev-server', config.getServerUrl))
 
 express()
