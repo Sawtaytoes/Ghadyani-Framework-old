@@ -1,10 +1,9 @@
 import React from 'react'
-import ReactTestUtils, { renderIntoDocument } from 'react-addons-test-utils'
-import { mount } from 'enzyme'
+import ReactTestUtils from 'react-addons-test-utils'
 
 // Utilities
 import MockStore from 'mocks/store.mock'
-import MockSample from 'mocks/sample.mock'
+// import MockSample from 'mocks/sample.mock'
 import TestHelper from 'utilities/test-helper'
 
 // Components
