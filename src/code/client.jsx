@@ -1,5 +1,8 @@
 import Inferno, { render } from 'inferno'
-import { Router, Route, browserHistory } from 'inferno-router'
+import { Router, Route } from 'inferno-router'
+import createBrowserHistory from 'history/createBrowserHistory'
+
+const browserHistory = createBrowserHistory()
 
 // Root Component
 // import ClientRoot from 'client-root'
