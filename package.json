@@ -6,7 +6,6 @@
     ]
   },
   "scripts": {
-    "postinstall": "npm prune",
     "prestart": "npm install",
     "start": "node index.js"
   },
