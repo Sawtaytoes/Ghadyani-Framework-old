@@ -47,7 +47,7 @@ export default class Routes extends Component {
 	// }
 
 	// syncLoader(fileName) {
-	// 	const View = require(`./views/${fileName}`)
+	// 	const View = require(`./views/${fileName}`).default
 	// 	return <View />
 	// }
 
