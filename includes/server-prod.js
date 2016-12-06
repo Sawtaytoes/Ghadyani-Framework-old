@@ -42,6 +42,11 @@ app
 .use(bodyParser.json())
 .use(bodyParser.urlencoded({ extended: false }))
 .disable('x-powered-by')
+.get('*.js', (req, res, next) => {
+	req.url = `${req.url}.gz`
+	res.set('Content-Encoding', 'gzip')
+	next()
+})
 .post(config.getMailSendPath(), sendEmail)
 .all('*', loadSite)
 
