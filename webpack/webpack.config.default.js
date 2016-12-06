@@ -36,6 +36,9 @@ const shared = {
 			files.asset,
 			files.code,
 		],
+		react: 'inferno-compat',
+		'react-dom': 'inferno-compat',
+		'react-dom/server': 'inferno-compat',
 	},
 }
 
