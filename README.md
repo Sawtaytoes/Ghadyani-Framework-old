@@ -18,59 +18,64 @@
 ### Assets
 ```shell
 npm config set msvs_version 2013 --global # Windows requires VS2013 installed
-npm install -g npm coffee-script # Upgrades npm and sets coffee-script to run in CLI
 npm install
 ```
 
 ### Configuration Customization
 
 #### Config Settings
-Default configs are `config-settings.coffee`. Here's an example of what defaults might look like
-```coffee
-env: 'production'                            # Can be 'development' or 'production'.
+Default configs are `config-settings.js`. Here's an example of what defaults might look like
+```js
+env: 'production',                            // Can be 'development' or 'production'.
 
-## Server
-protocol: 'http'                             # Using `https` requires valid certificates.
-hostname: '0.0.0.0'                          # Can be 0.0.0.0 for binding to all ports.
-port: 3000                                   # Port of webserver.
-# proxyPort: 3001                            # Optional. Will be `port + 1` if not defined.
+//- Server
+protocol: 'http',                             // Using `https` requires valid certificates.
+hostname: '0.0.0.0',                          // Can be 0.0.0.0 for binding to all ports.
+port: 3000,                                   // Port of webserver.
+// proxyPort: 3001,                           // Optional. Will be `port + 1` if not defined.
 
-## Testing
-testsPath: '/tests'                          # Path used when performing unit-tests
+//- Testing
+testsPath: '/tests',                          // Path used when performing unit-tests
 
-## Email Submission
-mailSendPath: '/contact/send'                # Path that's used when doing a POST to send mail.
-mailOptions:                                 # Options for Nodemailer.
-	from: 'Fake User <fake.user@example.com>' # When sending mail, this appears in the `FROM` field
-smtpCredentials:                             # Configuration for a local maildev server.
-	host: 'localhost'
-	port: 1025
-	tls: rejectUnauthorized: false
+//- Email Submission
+mailSendPath: '/contact/send',                // Path that's used when doing a POST to send mail.
+mailOptions: {                                // Options for Nodemailer.
+	from: 'Fake User <fake.user@example.com>', // When sending mail, this appears in the `FROM` field
+},
+smtpCredentials: {                            // Configuration for a local maildev server.
+	host: 'localhost',
+	port: 1025,
+	tls: {
+		rejectUnauthorized: false,
+	}
+}
 ```
 
 To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROTOCOL`, `HOSTNAME`, `PORT`, etc or create a `./includes/config.coffee` file and have it return an object with overrides like so:
 
-```coffee
-module.exports =
-	env: 'development'
-	protocol: 'https'
-	port: 443
+```js
+module.exports = {
+	env: 'development',
+	protocol: 'https',
+	port: 443,
+}
 ```
 
 
 #### SMTP Configuration
 Example using **maildev** (`npm install -g maildev`):
 
-```coffee
-smtpCredentials:
-    host: 'localhost'
-    port: 1025
-    tls: rejectUnauthorized: false
+```js
+smtpCredentials: {
+	host: 'localhost',
+	port: 1025,
+	tls: { rejectUnauthorized: false },
+}
 ```
 
 Example gmail.com string:
 
-```coffee
+```js
 smtpCredentials: 'smtps://user%40gmail.com:pass@smtp.gmail.com'
 ```
 
@@ -81,13 +86,18 @@ Start the local catch-all SMTP server using the command `maildev`.
 
 ### Development: Local
 ```shell
+npm start
+```
+
+OR
+```shell
 bash local.sh
 ```
 
 OR
 
 ```shell
-coffee index.coffee
+node index.js
 ```
 
 ### Production: Hosted VPS
