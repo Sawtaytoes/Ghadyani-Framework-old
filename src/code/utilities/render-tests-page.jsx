@@ -1,7 +1,9 @@
+/* eslint-disable react/no-danger */
+
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-module.exports = function renderTestsPage() {
+module.exports = () => {
 	return '<!DOCTYPE html>' + renderToStaticMarkup(
 		<html lang="en">
 		<head>
