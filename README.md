@@ -9,7 +9,6 @@
 - [Visual Studio](https://www.microsoft.com/en-us/download/details.aspx?id=48131) (2013 only) `Windows only`
 
 ### Optional
-- [Heroku Toolbelt](https://toolbelt.heroku.com/) (3.42.25) `Deploying to Heroku`
 - [MailDev](http://danfarrelly.nyc/MailDev/) `Local Mail Server for Testing Email`
 
 
