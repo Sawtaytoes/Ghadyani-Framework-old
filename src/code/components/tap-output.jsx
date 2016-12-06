@@ -121,9 +121,9 @@ class TapOutput extends PureComponent {
 				}
 
 				output.push(this.renderNotOk(line))
-			} else if (line.search(/^(  )/) === 0) {
-				if (line.search(/^(  ---)/) === 0
-					|| line.search(/^(  \.\.\.)/) === 0
+			} else if (line.search(/^( {2})/) === 0) {
+				if (line.search(/^( {2}---)/) === 0
+					|| line.search(/^( {2}\.\.\.)/) === 0
 				) { return }
 
 				output.push(this.renderError(line))
