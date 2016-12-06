@@ -23,6 +23,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "body-parser": "^1.15.0",
     "compression": "^1.6.2",
+    "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.23.1",
     "expose-loader": "^0.7.1",
     "express": "^4.14.0",
