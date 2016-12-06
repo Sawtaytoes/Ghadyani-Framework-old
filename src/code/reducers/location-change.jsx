@@ -2,6 +2,7 @@ import { htmlMeta } from 'utilities/render-full-page-extras'
 
 // Actions
 import { UPDATE_PAGE_META } from 'actions/page-meta'
+import { LOCATION_CHANGED } from 'actions/location-change'
 
 // Content
 import navItems from 'content/nav-items'
@@ -67,7 +68,7 @@ export default (state = {}, action) => {
 			description: pageMeta.description
 		}
 
-	case '@@router/LOCATION_CHANGE': {
+	case LOCATION_CHANGED: {
 		const currentPath = payload.pathname
 		const previousPath = state.currentPath
 		const pathChanged = currentPath !== previousPath

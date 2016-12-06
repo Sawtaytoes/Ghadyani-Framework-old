@@ -1,8 +1,25 @@
 import React, { PureComponent } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
+import { connect } from 'react-redux'
 
 // Components
 import Master from 'layouts/master'
+
+// Actions
+import { locationChanged } from 'actions/location-change'
+
+class ReduxLocation extends PureComponent {
+	componentWillMount() {
+		const { location, dispatch } = this.props
+		dispatch(locationChanged(location))
+	}
+
+	render() { return (
+		<div />
+	)}
+}
+
+const ConnectedReduxLocation = connect(() => ({}))(ReduxLocation)
 
 const isAsyncCapable = typeof window !== 'undefined'
 export default class Routes extends PureComponent {
@@ -89,17 +106,31 @@ export default class Routes extends PureComponent {
 
 	renderRoute({ name, pattern, exactly, component }) {
 		if (pattern) {
-			return <Match
-				key={name}
-				pattern={pattern}
-				exactly={exactly}
-				component={component}
-			/>
+			return [
+				<Match
+					key={name}
+					pattern={pattern}
+					exactly={exactly}
+					component={component}
+				/>,
+				<Match
+					key={`${name}redux`}
+					pattern={pattern}
+					exactly={exactly}
+					component={ConnectedReduxLocation}
+				/>,
+			]
 		} else {
-			return <Miss
-				key={name}
-				component={component}
-			/>
+			return [
+				<Miss
+					key={name}
+					component={component}
+				/>,
+				<Miss
+					key={`${name}redux`}
+					component={ConnectedReduxLocation}
+				/>,
+			]
 		}
 	}
 
