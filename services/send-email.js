@@ -16,7 +16,9 @@ const validation = [
 module.exports = (reqBody, res) => {
 	// Setup SMTP Transport
 	if (!global.__transporter) {
-		global.__transporter = nodemailer.createTransport(smtpTransport(config.getSmtpCredentials()))
+		global.__transporter = nodemailer.createTransport(
+			smtpTransport(config.getSmtpCredentials())
+		)
 	}
 
 	let validationIssues = ''
