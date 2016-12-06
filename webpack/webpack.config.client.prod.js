@@ -69,7 +69,7 @@ const webpackConfig = {
 			asset: "[path].gz[query]",
 			algorithm: "gzip",
 			test: /\.js$/,
-			threshold: 10240,
+			threshold: 0,
 			minRatio: 0.8
 		}),
 	],
