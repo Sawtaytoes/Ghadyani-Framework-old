@@ -17,7 +17,7 @@
 ### Assets
 ```shell
 npm config set msvs_version 2013 --global # Windows requires VS2013 installed
-npm install
+npm i
 ```
 
 ### Configuration Customization
@@ -62,7 +62,7 @@ module.exports = {
 
 
 #### SMTP Configuration
-Example using **maildev** (`npm install -g maildev`):
+Example using **maildev** (`npm i -g maildev`):
 
 ```js
 smtpCredentials: {
@@ -192,5 +192,5 @@ Using [ZeroSSL](https://zerossl.com/free-ssl):
 Install packages globally for Sublime Text's `SublimeLinter-contrib-eslint` plugin.
 
 ```shell
-npm install -g babel-eslint eslint-plugin-react
+npm i -g babel-eslint eslint-plugin-react
 ```
