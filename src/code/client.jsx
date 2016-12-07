@@ -1,11 +1,8 @@
 import Inferno, { render } from 'inferno'
 import { Router, Route } from 'inferno-router'
-import history from 'history'
-console.log(history);
-// import createBrowserHistory from 'history/createBrowserHistory'
+import createBrowserHistory from 'history/createBrowserHistory'
 
-// const browserHistory = createBrowserHistory()
-const browserHistory = {}
+const browserHistory = createBrowserHistory()
 
 // Root Component
 // import ClientRoot from 'client-root'
@@ -13,10 +10,13 @@ const browserHistory = {}
 // Vars
 const RootElement = document.getElementById('root')
 // render(<div>hi</div>, RootElement)
+const Test = () => <div>hi</div>
 render(
-	<Router history={browserHistory}>
-		<Route path="*" component={<div>hi</div>} />
-	</Router>
+	<div>
+		<Router history={browserHistory}>
+			<Route path="*" component={Test} />
+		</Router>
+	</div>
 , RootElement)
 
 // render(
