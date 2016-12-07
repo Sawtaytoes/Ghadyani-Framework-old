@@ -1,6 +1,8 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 import { connect } from 'react-redux'
+import { redirs, routes } from 'content/route-config'
+import AsyncComponent from 'utilities/async-component'
 
 // Components
 import Master from 'layouts/master'
@@ -9,6 +11,11 @@ import Master from 'layouts/master'
 import { locationChanged } from 'actions/location-change'
 
 class ReduxLocation extends PureComponent {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired,
+		location: PropTypes.object.isRequired,
+	}
+
 	componentWillMount() {
 		const { location, dispatch } = this.props
 		dispatch(locationChanged(location))
@@ -21,70 +28,28 @@ class ReduxLocation extends PureComponent {
 
 const ConnectedReduxLocation = connect(() => ({}))(ReduxLocation)
 
-const isAsyncCapable = typeof window !== 'undefined'
 export default class Routes extends PureComponent {
 	constructor() {
 		super()
 
 		this.views = {}
+		this.count = 0
 
-		this.redirs = [{
-			pattern: '/redirect',
-			to: '/',
-		}, {
-			pattern: '**/',
-			to: ({ location }) => location.pathname.slice(0, -1),
-			exactly: true,
-		}].map(redir => {
-			const { to } = redir
-			return {
-				...redir,
-				to: typeof to !== 'function' ? () => to : to
-			}
-		})
-
-		this.routes = [{
-			name: 'home',
-			pattern: '/',
-			exactly: true,
-		}, {
-			name: 'about',
-			pattern: '/about',
-		}, {
-			name: '404',
-		}].map(route => ({
+		this.redirs = redirs
+		this.routes = routes.map(route => ({
 			...route,
-			component: this.loadView.bind(this, route.name),
+			component: this.loadComponent.bind(this, route),
 		}))
 	}
 
-	loadView(fileName) {
-		return isAsyncCapable ? this.asyncLoader(fileName) : this.syncLoader(fileName)
-	}
+	// loadComponent({ componentLoader }) {
+	loadComponent({ name, componentLoader }) {
+		return <AsyncComponent name={name + (++this.count)} componentLoader={componentLoader} />
+		// if (!this.views[name]) {
+		// 	this.views[name] = <AsyncComponent name={name + (++this.count)} componentLoader={componentLoader} />
+		// }
 
-	syncLoader(fileName) {
-		const View = require(`./views/${fileName}`).default
-		return <View />
-	}
-
-	asyncLoader(fileName) {
-		const storedView = this.views[fileName]
-		if (storedView) {
-			delete this.views[fileName]
-			return storedView
-		}
-
-		new Promise(resolve => require.ensure([], () => {
-			resolve(require(`./views/${fileName}`).default)
-		}))
-		.then(View => this.views[fileName] = <View />)
-		.then(() => this.forceUpdate())
-		.catch(err => {
-			console.error(err)
-			throw new Error(err)
-		})
-
-		return <div />
+		// return this.views[name]
 	}
 
 	renderRedirs() {
