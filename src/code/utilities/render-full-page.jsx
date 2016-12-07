@@ -1,3 +1,5 @@
+/* eslint-disable inferno/no-danger */
+
 import Inferno from 'inferno'
 import InfernoServer from 'inferno-server'
 
@@ -12,7 +14,7 @@ import { getStyles } from './styles'
 const cacheAge = 604800 // 1wk -> 60s x 60m x 24h x 7d
 const prod = process.env.NODE_ENV === 'production'
 
-module.exports = function renderFullPage(renderedContent = undefined, state = {}) {
+module.exports = (renderedContent = undefined, state = {}) => {
 	return '<!DOCTYPE html>' + InfernoServer.renderToString(
 		<html lang="en">
 		<head>
