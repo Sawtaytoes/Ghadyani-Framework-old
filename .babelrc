@@ -1,4 +1,4 @@
 {
-  "plugins": ["transform-runtime"],
+  "plugins": ["inferno", "transform-runtime"],
   "presets": ["latest", "stage-0", "react"]
 }
