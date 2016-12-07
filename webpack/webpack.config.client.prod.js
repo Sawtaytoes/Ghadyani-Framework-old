@@ -1,3 +1,4 @@
+const CompressionPlugin = require('compression-webpack-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
@@ -63,6 +64,13 @@ const webpackConfig = {
 				comments: false,
 				screw_ie8: true,
 			},
+		}),
+		new CompressionPlugin({
+			asset: "[path].gz[query]",
+			algorithm: "gzip",
+			test: /\.js$/,
+			threshold: 0,
+			minRatio: 0.8
 		}),
 	],
 }

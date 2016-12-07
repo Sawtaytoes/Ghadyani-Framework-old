@@ -11,9 +11,9 @@ import {
 
 let middlewares = []
 
-const store = compose(applyMiddleware(...middlewares))
-	(window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)
-	(combineReducers({ tap }), { tap: { messages: [] }})
+const store = compose(applyMiddleware(...middlewares))(
+	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
+)(combineReducers({ tap }), { tap: { messages: [] }})
 
 module.hot && module.hot.accept('reducers', () => {
 	store.replaceReducer(combineReducers(require('reducers/tap')))

@@ -18,6 +18,9 @@ const shared = {
 		loader: 'happypack/loader?id=styl',
 		include: [files.styl],
 	}, {
+		test: /\.(jpe?g|png|gif|svg)$/i,
+		loader: 'url?limit=10000',
+	}, {
 		test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 		loader: 'url?limit=10000&minetype=application/font-woff',
 	}, {

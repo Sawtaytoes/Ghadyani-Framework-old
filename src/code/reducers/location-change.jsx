@@ -2,21 +2,20 @@ import { htmlMeta } from 'utilities/render-full-page-extras'
 
 // Actions
 import { UPDATE_PAGE_META } from 'actions/page-meta'
+import { LOCATION_CHANGED } from 'actions/location-change'
 
 // Content
 import navItems from 'content/nav-items'
 
-let pageMeta = {}
+const pageMeta = {}
 
 const changePageMetaOnLinkMatch = (item, path, itemPathTo) => {
-	let re = new RegExp(`^/${itemPathTo}${item.to}$`),
+	const re = new RegExp(`^/${itemPathTo}${item.to}$`),
 		linkMatch = re.test(path)
 
 	if (linkMatch) {
-		pageMeta = {
-			title: item.name,
-			description: item.description
-		}
+		pageMeta.title = item.name
+		pageMeta.description = item.description
 	}
 
 	return linkMatch
@@ -34,17 +33,15 @@ function getMetaFromNavItems(items, path, itemPathTo = '') {
 
 function updatePageMeta(path) {
 	if (!getMetaFromNavItems(navItems, path)) {
-		pageMeta = {
-			title: '404',
-			description: '404 - File Not Found'
-		}
+		pageMeta.title = '404'
+		pageMeta.description = '404 - File Not Found'
 	}
 
 	if (typeof window === 'undefined') {
 		return
 	}
 
-	let { title, description } = pageMeta
+	const { title, description } = pageMeta
 	title && (document.title = `${title}${htmlMeta.titlePostfix}`)
 	if (description) {
 		const descriptionMetaTag = document.querySelector('meta[name=description]')
@@ -59,7 +56,7 @@ function updateScrollPosition() {
 }
 
 export default (state = {}, action) => {
-	let { type, path, payload } = action
+	const { type, path, payload } = action
 
 	switch (type) {
 	case UPDATE_PAGE_META:
@@ -71,10 +68,10 @@ export default (state = {}, action) => {
 			description: pageMeta.description
 		}
 
-	case '@@router/LOCATION_CHANGE':
-		let currentPath = payload.pathname,
-			previousPath = state.currentPath,
-			pathChanged = currentPath !== previousPath
+	case LOCATION_CHANGED: {
+		const currentPath = payload.pathname
+		const previousPath = state.currentPath
+		const pathChanged = currentPath !== previousPath
 
 		updatePageMeta(currentPath)
 		pathChanged && updateScrollPosition()
@@ -87,6 +84,7 @@ export default (state = {}, action) => {
 			title: pageMeta.title,
 			description: pageMeta.description
 		}
+	}
 
 	default:
 		return state

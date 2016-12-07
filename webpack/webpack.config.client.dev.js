@@ -51,6 +51,7 @@ const webpackConfig = {
 			id: 'jsx', threadPool, loaders: [
 				'react-hot-loader/webpack',
 				'babel',
+				'eslint',
 			]
 		}),
 		new HappyPack({

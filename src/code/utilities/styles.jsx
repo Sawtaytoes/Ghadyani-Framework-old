@@ -3,15 +3,13 @@ import Component from 'inferno-component'
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
 import hash from 'murmurhash-js'
 
-const styles = [],
-	cssDictionary = {}
+const styles = []
+const cssDictionary = {}
 
-export function getStyles() {
-	return styles.join('')
-}
+export const getStyles = () => styles.join('')
 
 export default function renderStyles(ComposedComponent, stylesFiles) {
-	return class Styles extends Component {
+	return class Styles extends PureComponent {
 		componentWillMount() {
 			this.styleRemovers = this.setStyles()
 		}

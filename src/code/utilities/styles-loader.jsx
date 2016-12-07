@@ -1,5 +1,3 @@
-import React, { Component } from 'react'
-
 // Utilities
 import renderStyles from 'utilities/styles'
 

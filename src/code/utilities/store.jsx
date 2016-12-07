@@ -10,9 +10,9 @@ const history = createBrowserHistory()
 
 let middlewares = []
 
-const store = compose(applyMiddleware(...middlewares))
-	(window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore)
-	(rootReducer, initialState)
+const store = compose(applyMiddleware(...middlewares))(
+	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
+)(rootReducer, initialState)
 
 module.hot && module.hot.accept('reducers', () => {
 	store.replaceReducer(require('reducers'))
