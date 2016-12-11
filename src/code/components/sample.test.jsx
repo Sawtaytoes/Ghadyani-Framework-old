@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactTestUtils from 'react-addons-test-utils'
+import test from 'tape-catch'
 
 // Utilities
 import MockStore from 'mocks/store.mock'
@@ -31,4 +32,12 @@ class TestRun extends TestHelper {
 	}
 }
 
-export default TestRun
+test('Render <Sample />', t => {
+	const testRun = new TestRun(t)
+	// const options = TestRun.getVars()
+
+	const component = testRun.renderSample()
+	t.ok(component, "<Sample /> component should exist")
+
+	t.end()
+})
