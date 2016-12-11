@@ -2,13 +2,12 @@ import React, { PureComponent, PropTypes } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { redirs, routes } from 'content/route-config'
-import AsyncComponent from 'utilities/async-component'
 
 // Components
 import Master from 'layouts/master'
 
 // Actions
-import { locationChanged } from 'actions/location-change'
+import { changeLocation } from 'ducks/location'
 
 class ReduxLocation extends PureComponent {
 	static propTypes = {
@@ -18,7 +17,7 @@ class ReduxLocation extends PureComponent {
 
 	componentWillMount() {
 		const { location, dispatch } = this.props
-		dispatch(locationChanged(location))
+		dispatch(changeLocation(location))
 	}
 
 	render() { return (
@@ -36,20 +35,7 @@ export default class Routes extends PureComponent {
 		this.count = 0
 
 		this.redirs = redirs
-		this.routes = routes.map(route => ({
-			...route,
-			component: this.loadComponent.bind(this, route),
-		}))
-	}
-
-	// loadComponent({ componentLoader }) {
-	loadComponent({ name, componentLoader }) {
-		return <AsyncComponent name={name + (++this.count)} componentLoader={componentLoader} />
-		// if (!this.views[name]) {
-		// 	this.views[name] = <AsyncComponent name={name + (++this.count)} componentLoader={componentLoader} />
-		// }
-
-		// return this.views[name]
+		this.routes = routes
 	}
 
 	renderRedirs() {

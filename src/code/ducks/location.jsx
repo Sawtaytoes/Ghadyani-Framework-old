@@ -1,8 +1,35 @@
-import { htmlMeta } from 'utilities/render-full-page-extras'
-
+// --------------------------------------------------------
 // Actions
-import { UPDATE_PAGE_META } from 'actions/page-meta'
-import { LOCATION_CHANGED } from 'actions/location-change'
+// --------------------------------------------------------
+
+const LOCATION_CHANGED = 'LOCATION_CHANGED'
+const PAGE_META_CHANGED = 'PAGE_META_CHANGED'
+
+
+// --------------------------------------------------------
+// Action Creators
+// --------------------------------------------------------
+
+export const changeLocation = payload => {
+	return {
+		type: LOCATION_CHANGED,
+		payload,
+	}
+}
+
+export const updatePageMeta = path => {
+	return {
+		type: PAGE_META_CHANGED,
+		path
+	}
+}
+
+
+// --------------------------------------------------------
+// Reducer
+// --------------------------------------------------------
+
+import { htmlMeta } from 'utilities/render-full-page-extras'
 
 // Content
 import navItems from 'content/nav-items'
@@ -21,7 +48,7 @@ const changePageMetaOnLinkMatch = (item, path, itemPathTo) => {
 	return linkMatch
 }
 
-function getMetaFromNavItems(items, path, itemPathTo = '') {
+const getMetaFromNavItems = (items, path, itemPathTo = '') => {
 	return items.some((item) => {
 		if (item.subitems) {
 			return getMetaFromNavItems(item.subitems, path, `${item.to}/`)
@@ -31,7 +58,7 @@ function getMetaFromNavItems(items, path, itemPathTo = '') {
 	})
 }
 
-function updatePageMeta(path) {
+const changePageMeta = (path) => {
 	if (!getMetaFromNavItems(navItems, path)) {
 		pageMeta.title = '404'
 		pageMeta.description = '404 - File Not Found'
@@ -59,8 +86,8 @@ export default (state = {}, action) => {
 	const { type, path, payload } = action
 
 	switch (type) {
-	case UPDATE_PAGE_META:
-		updatePageMeta(path)
+	case PAGE_META_CHANGED:
+		changePageMeta(path)
 
 		return {
 			...state,

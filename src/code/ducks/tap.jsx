@@ -1,7 +1,33 @@
-import {
-	SET_TAP_START_TIME,
-	ADD_TAP_MESSAGE,
-} from 'actions/tap'
+// --------------------------------------------------------
+// Actions
+// --------------------------------------------------------
+
+const SET_TAP_START_TIME = 'SET_TAP_START_TIME'
+const ADD_TAP_MESSAGE = 'ADD_TAP_MESSAGE'
+
+
+// --------------------------------------------------------
+// Action Creators
+// --------------------------------------------------------
+
+export const setTapStartTime = () => {
+	return {
+		type: SET_TAP_START_TIME,
+		startTime: new Date()
+	}
+}
+
+export const addTapMessage = message => {
+	return {
+		type: ADD_TAP_MESSAGE,
+		message
+	}
+}
+
+
+// --------------------------------------------------------
+// Reducer
+// --------------------------------------------------------
 
 const getMessageFromLine = (line, identifier) => {
 	return line.match(new RegExp(`^${identifier}[ ]*(.+)$`))[1]
