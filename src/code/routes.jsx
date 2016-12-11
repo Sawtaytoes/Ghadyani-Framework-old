@@ -2,6 +2,7 @@ import React, { PureComponent, PropTypes } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 import { connect } from 'react-redux'
 import { redirs, routes } from 'content/route-config'
+import AsyncComponent from 'utilities/async-component'
 
 // Components
 import Master from 'layouts/master'
@@ -35,7 +36,20 @@ export default class Routes extends PureComponent {
 		this.count = 0
 
 		this.redirs = redirs
-		this.routes = routes
+		this.routes = routes.map(route => ({
+			...route,
+			component: this.loadComponent.bind(this, route),
+		}))
+	}
+
+	// loadComponent({ componentLoader }) {
+	loadComponent({ name, componentLoader }) {
+		return <AsyncComponent name={name + (++this.count)} componentLoader={componentLoader} />
+		// if (!this.views[name]) {
+		// 	this.views[name] = <AsyncComponent name={name + (++this.count)} componentLoader={componentLoader} />
+		// }
+
+		// return this.views[name]
 	}
 
 	renderRedirs() {
