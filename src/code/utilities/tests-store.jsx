@@ -1,13 +1,13 @@
 import { compose, applyMiddleware, createStore, combineReducers } from 'redux'
 
 // Reducers
-import tap from 'reducers/tap'
+import tap from 'ducks/tap'
 
 // Actions
 import {
 	setTapStartTime,
 	addTapMessage,
-} from 'actions/tap'
+} from 'ducks/tap'
 
 let middlewares = []
 
@@ -16,7 +16,7 @@ const store = compose(applyMiddleware(...middlewares))(
 )(combineReducers({ tap }), { tap: { messages: [] }})
 
 module.hot && module.hot.accept('reducers', () => {
-	store.replaceReducer(combineReducers(require('reducers/tap')))
+	store.replaceReducer(combineReducers(require('ducks/tap')))
 })
 
 const log = console.log

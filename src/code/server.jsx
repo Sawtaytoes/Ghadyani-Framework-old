@@ -10,7 +10,7 @@ import { getInitialState } from 'utilities/initial-state'
 import renderFullPage from 'utilities/render-full-page'
 
 // Actions
-import { updatePageMeta } from 'actions/page-meta'
+import { updatePageMeta } from 'ducks/location'
 
 // Reducers & Routes
 import rootReducer from 'reducers'
