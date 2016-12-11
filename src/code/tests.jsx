@@ -8,7 +8,7 @@ import TapOutput from 'components/tap-output'
 import { store } from 'utilities/tests-store'
 
 // Setup which files `.spec.jsx` are tests to be run
-var context = require.context('../code', true, /^\.\/.*\.spec\.jsx$/)
+var context = require.context('../code', true, /^\.\/.*\.test\.jsx$/)
 context.keys().forEach(context)
 
 render(
