@@ -14,14 +14,6 @@
 
 ## Setup
 
-### Assets
-```shell
-npm config set msvs_version 2013 --global # Windows requires VS2013 installed
-npm i
-```
-
-### Configuration Customization
-
 #### Config Settings
 Default configs are `config-settings.js`. Here's an example of what defaults might look like
 ```js
