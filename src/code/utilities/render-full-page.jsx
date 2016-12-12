@@ -21,12 +21,12 @@ module.exports = (renderedContent = undefined, state = {}) => {
 			{/* Document Info */}
 			<meta charSet="utf-8" />
 			<meta httpEquiv="content-language" content="en-us" />
-			<title>{`${state.locationChange && state.locationChange.title}${htmlMeta.titlePostfix}`}</title>
+			<title>{`${state.location && state.location.title}${htmlMeta.titlePostfix}`}</title>
 
 			{/* Site Info */}
 			<meta name="author" content={htmlMeta.author} />
 			<meta name="copyright" content={htmlMeta.copyright} />
-			<meta name="description" content={state.locationChange && state.locationChange.description} />
+			<meta name="description" content={state.location && state.location.description} />
 			<meta name="keywords" content={htmlMeta.keywords} />
 
 			{/* Cache */}

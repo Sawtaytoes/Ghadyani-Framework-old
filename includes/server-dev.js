@@ -25,7 +25,7 @@ const loadTests = (req, res) => {
 
 const loadSite = (req, res) => {
 	res.end(require(`${global.baseDir}src/code/utilities/render-full-page.jsx`)(undefined, {
-		locationChange: { title: req.originalUrl }
+		location: { title: req.originalUrl }
 	}))
 }
 
