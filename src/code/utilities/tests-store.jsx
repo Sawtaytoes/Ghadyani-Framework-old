@@ -5,15 +5,22 @@ import tap from 'ducks/tap'
 
 // Actions
 import {
+	TAP_START_REGEX,
+	TAP_MESSAGE_REGEX,
+	TAP_FAILURE_REGEX,
 	setTapStartTime,
 	addTapMessage,
+	addTapFailure,
+	getInitialState as tapInitialState,
 } from 'ducks/tap'
+
+// import 'tap-dev-tool/register'
 
 let middlewares = []
 
 const store = compose(applyMiddleware(...middlewares))(
 	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
-)(combineReducers({ tap }), { tap: { messages: [] }})
+)(combineReducers({ tap }), { tap: tapInitialState()})
 
 module.hot && module.hot.accept('reducers', () => {
 	store.replaceReducer(combineReducers(require('ducks/tap')))
@@ -21,13 +28,21 @@ module.hot && module.hot.accept('reducers', () => {
 
 const log = console.log
 window.console.log = function(message) {
-	store.dispatch(addTapMessage(message))
 	log.apply(console, arguments)
+
+	// Is valid TAP message
+	if (store.getState().tap.testsComplete) {
+		window.console.log = log
+
+	} else if (message.search(TAP_START_REGEX) === 0) {
+		store.dispatch(setTapStartTime())
+
+	} else if (message.search(TAP_MESSAGE_REGEX) === 0) {
+		store.dispatch(addTapMessage(message))
+
+	} else if (message.search(TAP_FAILURE_REGEX) === 0) {
+		store.dispatch(addTapFailure(message))
+	}
 }
-
-store.dispatch(setTapStartTime())
-
-// Initialize `console.log` Tap Output now that we're listening for updates
-import 'tap-dev-tool/register'
 
 export { store }

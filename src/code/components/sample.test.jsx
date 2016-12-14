@@ -41,3 +41,42 @@ test('Render <Sample />', t => {
 
 	t.end()
 })
+
+test('Purposefully Failed Test 1', t => {
+	t.equal(1, 2, "Math should equal")
+	t.notEqual(2, 3, "Math should equal")
+
+	t.end()
+})
+
+test('Purposefully Failed Test 2', () => {
+	throw 'This should error!'
+})
+
+test('Purposefully Failed Test 3', t => {
+	t.notok(true, "This should error")
+	t.notok(true, "This should also error")
+	t.notok(true, "Even this should error")
+	t.end()
+})
+
+test('2 Second Test', t => {
+	t.ok(true, "This happens immediately")
+
+	setTimeout(() => {
+		t.ok(true, "This happened after 2 seconds")
+		t.end()
+	}, 5000)
+})
+
+
+test('Render <Sample />', t => {
+	const testRun = new TestRun(t)
+	// const options = TestRun.getVars()
+
+	const component = testRun.renderSample()
+	t.ok(component, "<Sample /> component should exist")
+	t.ok(component, "<Sample /> component should exist")
+
+	t.end()
+})
