@@ -29,38 +29,42 @@ export const addTapMessage = message => {
 // Reducer
 // --------------------------------------------------------
 
-const getMessageFromLine = (line, identifier) => {
-	return line.match(new RegExp(`^${identifier}[ ]*(.+)$`))[1]
-}
+const getMessageFromLine = (line, identifier) => (
+	line.match(new RegExp(`^${identifier}[ ]*(.+)$`))[1]
+)
 
-const getTapStats = (state) => {
-	const { messages, total, passed, failed, hasFailures } = state
+const getStateFromTapMessages = (state, messages) => {
+	const newState = { ...state, messages }
+	const { total, passed, failed, hasFailures } = newState
 
+	// No further TAP output available; all tests already run
 	if (total && passed && failed && hasFailures) {
-		return state
+		return newState
 	}
 
 	messages.forEach(line => {
 		if (!hasFailures && line.search(/^(not ok)/) === 0) {
-			state.hasFailures = true
+			newState.hasFailures = true
 
 		} else if (!total && line.search(/^(# tests)/) === 0) {
-			state.endTime = new Date()
+			newState.endTime = new Date()
 
 			const secondInMilliseconds = 1000
-			state.duration = (state.endTime - state.startTime) / secondInMilliseconds
+			newState.duration = (
+				(newState.endTime - newState.startTime) / secondInMilliseconds
+			)
 
-			state.total = getMessageFromLine(line, '# tests')
+			newState.total = getMessageFromLine(line, '# tests')
 
 		} else if (!passed && line.search(/^(# pass)/) === 0) {
-			state.passed = getMessageFromLine(line, '# pass')
+			newState.passed = getMessageFromLine(line, '# pass')
 
 		} else if (!failed && line.search(/^(# fail)/) === 0) {
-			state.failed = getMessageFromLine(line, '# fail')
+			newState.failed = getMessageFromLine(line, '# fail')
 		}
 	})
 
-	return state
+	return newState
 }
 
 export default (state = {}, action) => {
@@ -81,14 +85,11 @@ export default (state = {}, action) => {
 		const messages = state.messages ? state.messages.slice() : []
 		let newState = {}
 
-		// Check if we've gotten a valid TAP message
+		// Check if this is a valid TAP message
 		if (message.search(/^[(not ok)(ok)(\s\s)(#\s)]+.+$/) === 0) {
 			messages.push(message)
 
-			newState = getTapStats({
-				...state,
-				messages
-			})
+			newState = getStateFromTapMessages(state, messages)
 		}
 
 		return {

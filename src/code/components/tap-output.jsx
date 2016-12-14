@@ -14,38 +14,33 @@ class TapOutput extends PureComponent {
 		this.startTime = new Date()
 	}
 
-	getMessageInfoFromLine(line, identifier) {
+	getMessageFromLine(line, identifier) {
 		return line.match(new RegExp(`^${identifier}[ ]*(.+)$`))
 	}
 
-	getMessageFromLine(line, identifier) {
-		return this.getMessageInfoFromLine(line, identifier)[1]
-	}
-
 	renderHeading(line) {
-		let message = this.getMessageFromLine(line, '#')
+		const message = this.getMessageFromLine(line, '#')[1]
 		return <h2 key={hash(message)}>{message}</h2>
 	}
 
 	renderOk(line) {
-		let messageInfo = this.getMessageInfoFromLine(line, 'ok (\\d+)')
-		return this.renderMessageInfo(messageInfo, {
+		const messageInfo = this.getMessageFromLine(line, 'ok (\\d+)')
+		return this.renderMessage(messageInfo, {
 			color: 'greenyellow',
 			backgroundColor: this.color.pass,
 		})
 	}
 
 	renderNotOk(line) {
-		let messageInfo = this.getMessageInfoFromLine(line, 'not ok (\\d+)')
-		return this.renderMessageInfo(messageInfo, {
+		const messageInfo = this.getMessageFromLine(line, 'not ok (\\d+)')
+		return this.renderMessage(messageInfo, {
 			color: 'white',
 			backgroundColor: this.color.fail,
 		})
 	}
 
-	renderMessageInfo(messageInfo, styles = {}) {
-		let testNumber = messageInfo[1],
-			message = messageInfo[2]
+	renderMessage(messageInfo, styles = {}) {
+		const [testNumber, message] = messageInfo
 
 		return (
 			<p key={hash(testNumber + message)} style={{
@@ -134,7 +129,7 @@ class TapOutput extends PureComponent {
 	}
 
 	renderTestsInfo() {
-		let { total, passed, failed, duration } = this.props
+		const { total, passed, failed, duration } = this.props
 		return [
 			<h1 key="stats-title">Stats</h1>,
 
