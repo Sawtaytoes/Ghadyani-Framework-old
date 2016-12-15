@@ -16,8 +16,8 @@ class TestsFailures extends PureComponent {
 
 		return (
 			<div>
-				{failures.length && <hr />}
-				{failures.length && <h2>Failures</h2>}
+				{failures.length > 0 && <hr />}
+				{failures.length > 0 && <h2>Failures</h2>}
 				{failures.map((_, index) => <TestFailure
 					key={index}
 					id={index}
