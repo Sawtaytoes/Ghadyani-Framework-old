@@ -12,49 +12,7 @@ import {
 	TAP_COLOR,
 } from 'ducks/tap'
 
-class TapOutput extends PureComponent {
-	renderError(message, styles = {}) {
-		return <pre key={hash(message)} style={{
-			margin: '0',
-			padding: '0 10px',
-			lineHeight: '2em',
-			...styles,
-		}}>{message}</pre>
-	}
-
-	renderFailMessages() {
-		var { messages } = this.props,
-			output = [
-				<h1 key="failures-title">Failures</h1>
-			]
-
-		messages.forEach((line, index) => {
-			if (!line) { return }
-
-			if (line.search(/^(not ok)/) === 0) {
-				var i = index
-
-				while(i >= 0) {
-					let text = messages[--i]
-					if (text && text.search(/^(#)/) === 0) {
-						output.push(this.renderHeading(text))
-						break
-					}
-				}
-
-				output.push(this.renderNotOk(line))
-			} else if (line.search(/^( {2})/) === 0) {
-				if (line.search(/^( {2}---)/) === 0
-					|| line.search(/^( {2}\.\.\.)/) === 0
-				) { return }
-
-				output.push(this.renderError(line))
-			}
-		})
-
-		return output
-	}
-
+class TestsOutput extends PureComponent {
 	render() { return (
 		<div>
 			<TestsStats />
@@ -62,10 +20,8 @@ class TapOutput extends PureComponent {
 			<TestsList />
 		</div>
 	)}
-	// {this.props.hasFailure && <div>{this.renderFailMessages()}</div>}
-	// <div>{this.renderTapMessages()}</div>
 }
 
 export default connect(({ tap }) => ({
 	failures: tap.failures,
-}))(TapOutput)
+}))(TestsOutput)
