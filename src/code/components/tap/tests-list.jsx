@@ -9,7 +9,7 @@ class TestsList extends PureComponent {
 		const { tests } = this.props
 
 		return (
-			<div>
+			<div style={{ marginTop: '1em' }}>
 				{tests.map((_, index) => <Test key={index} id={index} />)}
 			</div>
 		)
