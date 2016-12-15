@@ -14,11 +14,14 @@
   ],
   "parser": "babel-eslint",
   "rules": {
-    "strict": [2, "never"],
     "no-console": 0,
+    "no-unused-vars": ["error", {
+	    "varsIgnorePattern": "_"
+    }],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
+    "react/react-in-jsx-scope": 2,
+    "strict": [2, "never"]
   },
   "plugins": [
     "react"

@@ -1,12 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 
-// Root Component
-import ClientRoot from 'client-root'
-
 // Polyfills
 import 'react-fastclick'
 import 'utilities/polyfills'
+
+// Root Component
+import ClientRoot from 'client-root'
 
 // Vars
 const RootElement = document.getElementById('root')

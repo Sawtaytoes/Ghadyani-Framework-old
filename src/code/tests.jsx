@@ -1,16 +1,22 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+
+// Polyfills
+import 'utilities/polyfills'
 
 // Components
-import TapOutput from 'components/tap-output'
+import TestsOutput from 'components/tap/tests-output'
 
 // Utilities
 import { store } from 'utilities/tests-store'
 
-// Setup which files `.spec.jsx` are tests to be run
+// Setup testing files to watch
 var context = require.context('../code', true, /^\.\/.*\.test\.jsx$/)
 context.keys().forEach(context)
 
 render(
-	<TapOutput store={store} />
+	<Provider store={store}>
+		<TestsOutput />
+	</Provider>
 , document.getElementById('root'))
