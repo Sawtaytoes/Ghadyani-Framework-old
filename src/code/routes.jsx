@@ -74,7 +74,7 @@ export default class Routes extends PureComponent {
 			return storedView
 		}
 
-		new Promise(resolve => require.ensure([], () => {
+		new Promise(resolve => require.ensure([], require => {
 			resolve(require(`./views/${fileName}`).default)
 		}))
 		.then(View => this.views[fileName] = <View />)
