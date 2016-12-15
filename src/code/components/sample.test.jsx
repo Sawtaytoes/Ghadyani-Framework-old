@@ -60,13 +60,13 @@ test('Purposefully Failed Test 3', t => {
 	t.end()
 })
 
-test('2 Second Test', t => {
+test('4 Second Test', t => {
 	t.ok(true, "This happens immediately")
 
 	setTimeout(() => {
-		t.ok(true, "This happened after 2 seconds")
+		t.ok(true, "This happened after 4 seconds")
 		t.end()
-	}, 5000)
+	}, 4000)
 })
 
 
