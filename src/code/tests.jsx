@@ -2,6 +2,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
+// Polyfills
+import 'utilities/polyfills'
+
 // Components
 import TapOutput from 'components/tap-output'
 
