@@ -14,7 +14,8 @@ import {
 	getInitialState as tapInitialState,
 } from 'ducks/tap'
 
-// import 'tap-dev-tool/register'
+// Pretty TAP output in the console
+import 'tap-dev-tool/register'
 
 let middlewares = []
 
