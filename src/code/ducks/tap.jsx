@@ -44,6 +44,7 @@ export const getInitialState = () => ({
 export const TAP_START_REGEX = /^TAP version \d+$/
 export const TAP_MESSAGE_REGEX = /^((ok|not ok|(# (ok|tests|pass|fail)?))[ ]*)(.+)$/
 export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
+export const TAP_TEST_INFO_REGEX = /^(\d+)[ ](.+)$/
 
 const Enum = () => ({})
 export const TAP_MESSAGE_TYPE = {
@@ -63,7 +64,7 @@ const isInString = (string, critiera) => (
 )
 
 const getTestInfo = string => {
-	const [_, testNumber, text] = string.match(/^(\d+)[ ](.+)$/)
+	const [_, testNumber, text] = string.match(TAP_TEST_INFO_REGEX)
 
 	return {
 		testNumber,
