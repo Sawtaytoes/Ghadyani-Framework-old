@@ -31,7 +31,12 @@ export const addTapFailure = message => ({
 // Values & Helper Functions
 // --------------------------------------------------------
 
-const secondInMilliseconds = 1000
+const SECOND_IN_MILLISECONDS = 1000
+
+export const TAP_START_REGEX = /^TAP version \d+$/
+export const TAP_MESSAGE_REGEX = /^((ok|not ok|(# (ok|tests|pass|fail)?))[ ]*)(.+)$/
+export const TAP_TEST_INFO_REGEX = /^(\d+)[ ](.+)$/
+export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
 
 export const getInitialState = () => ({
 	tests: [],
@@ -40,11 +45,6 @@ export const getInitialState = () => ({
 	numPassed: 0,
 	numFailed: 0,
 })
-
-export const TAP_START_REGEX = /^TAP version \d+$/
-export const TAP_MESSAGE_REGEX = /^((ok|not ok|(# (ok|tests|pass|fail)?))[ ]*)(.+)$/
-export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
-export const TAP_TEST_INFO_REGEX = /^(\d+)[ ](.+)$/
 
 const Enum = () => ({})
 export const TAP_MESSAGE_TYPE = {
@@ -97,7 +97,7 @@ export default (state = getInitialState(), action) => {
 		newState.endTime = new Date()
 
 		newState.duration = (
-			(newState.endTime - newState.startTime) / secondInMilliseconds
+			(newState.endTime - newState.startTime) / SECOND_IN_MILLISECONDS
 		)
 
 		const test = {}
