@@ -8,9 +8,11 @@ import {
 	TAP_START_REGEX,
 	TAP_MESSAGE_REGEX,
 	TAP_FAILURE_REGEX,
+
 	setTapStartTime,
 	addTapMessage,
 	addTapFailure,
+
 	getInitialState as tapInitialState,
 } from 'ducks/tap'
 
