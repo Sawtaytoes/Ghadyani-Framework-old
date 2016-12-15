@@ -62,8 +62,6 @@ class Test extends PureComponent {
 	}
 }
 
-const mapStateToProps = (_, initialProps) => ({ tap }) => ({
+export default connect((_, initialProps) => ({ tap }) => ({
 	...(tap.tests[initialProps.id] || {})
-})
-
-export default connect(mapStateToProps)(Test)
+}))(Test)
