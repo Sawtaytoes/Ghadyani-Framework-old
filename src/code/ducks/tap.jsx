@@ -43,7 +43,7 @@ export const getInitialState = () => ({
 
 export const TAP_START_REGEX = /^TAP version \d+$/
 export const TAP_MESSAGE_REGEX = /^((ok|not ok|(# (ok|tests|pass|fail)?))[ ]*)(.+)$/
-export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual):)|\s{6})[ ]*(.+)$/
+export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
 
 const Enum = () => ({})
 export const TAP_MESSAGE_TYPE = {
@@ -63,7 +63,6 @@ const isInString = (string, critiera) => (
 )
 
 const getTestInfo = string => {
-	console.debug(string)
 	const [_, testNumber, text] = string.match(/^(\d+)[ ](.+)$/)
 
 	return {
@@ -121,12 +120,18 @@ export default (state = getInitialState(), action) => {
 			test.type = TAP_MESSAGE_TYPE.HEADER
 			test.text = value
 
+			newState.tests = state.tests.slice()
+			newState.tests.push(test)
+
 		} else if (tapMessageIs('ok')) {
 			const { testNumber, text } = getTestInfo(value)
 
 			test.type = TAP_MESSAGE_TYPE.PASS
 			test.text = text
 			test.testNumber = testNumber
+
+			newState.tests = state.tests.slice()
+			newState.tests.push(test)
 
 			newState.numTotal += 1
 			newState.numPassed += 1
@@ -138,28 +143,51 @@ export default (state = getInitialState(), action) => {
 			test.text = text
 			test.testNumber = testNumber
 
+			newState.tests = state.tests.slice()
+			newState.tests.push(test)
+
 			newState.numTotal += 1
 			newState.numFailed += 1
 		}
-
-		const tests = state.tests ? state.tests.slice() : []
-		tests.push(test)
-		newState.tests = tests
 
 		return { ...newState }
 	}
 
 	case ADD_TAP_FAILURE: {
 		const newState = { ...state }
-		const failureText = message.match(TAP_FAILURE_REGEX)
-		const failure = {}
+		const failureInfo = message.match(TAP_FAILURE_REGEX)
 
-		failure.description = failureText[4]
-		failure.text = failureText[5]
+		const failureType = failureInfo[3]
+		const failureReason = failureInfo[4]
 
-		const failures = state.failures ? state.failures.slice() : []
-		failures.push(failure)
-		newState.failures = failures
+		newState.failures = state.failures.slice()
+
+		if (failureType) {
+			if (failureType === 'operator') {
+				newState.failures.push({ [failureType]: failureReason })
+
+			} else {
+				newState.failures[newState.failures.length - 1][failureType] = failureReason
+			}
+
+		} else {
+			const prevFailure = newState.failures.pop()
+
+			if (prevFailure.expected === '|-') {
+				prevFailure.expected = failureReason
+
+			} else if (prevFailure.actual === '|-') {
+				prevFailure.actual = failureReason
+
+			} else if (prevFailure.stack === '|-') {
+				prevFailure.stack = `${failureReason}\n`
+
+			} else {
+				prevFailure.stack += `  ${failureReason}\n`
+			}
+
+			newState.failures.push(prevFailure)
+		}
 
 		return { ...newState }
 	}

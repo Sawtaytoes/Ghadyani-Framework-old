@@ -1,0 +1,32 @@
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+
+// Components
+import TestFailure from 'components/tap/test-failure'
+
+// Enums
+import { TAP_MESSAGE_TYPE } from 'ducks/tap'
+
+class TestsFailures extends PureComponent {
+	render() {
+		const { tests, failures } = this.props
+		const failedTests = tests
+			.map((test, index) => (test.id = index) && test)
+			.filter(({ type }) => type === TAP_MESSAGE_TYPE.FAIL)
+
+		return (
+			<div>
+				{failures.map((_, index) => <TestFailure
+					key={index}
+					id={index}
+					failedTest={failedTests[index]}
+				/>)}
+			</div>
+		)
+	}
+}
+
+export default connect(({ tap }) => ({
+	tests: tap.tests,
+	failures: tap.failures,
+}))(TestsFailures)

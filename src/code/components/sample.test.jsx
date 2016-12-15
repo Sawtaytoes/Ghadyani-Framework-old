@@ -50,6 +50,7 @@ test('Purposefully Failed Test 1', t => {
 })
 
 test('Purposefully Failed Test 2', () => {
+	blah
 	throw 'This should error!'
 })
 
