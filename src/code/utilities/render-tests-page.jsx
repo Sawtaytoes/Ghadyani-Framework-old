@@ -32,7 +32,7 @@ module.exports = () => {
 				href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto+Mono:400,700"
 			/>
 			<style dangerouslySetInnerHTML={{__html: `
-				h1, h2 {
+				h1, h2, h3 {
 					font-family: "Open Sans";
 				}
 				p {
