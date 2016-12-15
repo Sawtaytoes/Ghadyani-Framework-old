@@ -7,7 +7,7 @@ import {
 	TAP_COLOR,
 } from 'ducks/tap'
 
-class TestsList extends PureComponent {
+class TestsStats extends PureComponent {
 	render() {
 		const {
 			numTotal,
@@ -73,4 +73,4 @@ export default connect(({ tap }) => ({
 	numPassed: tap.numPassed,
 	numTotal: tap.numTotal,
 	testsComplete: tap.testsComplete,
-}))(TestsList)
+}))(TestsStats)
