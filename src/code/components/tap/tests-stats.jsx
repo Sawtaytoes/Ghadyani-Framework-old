@@ -16,50 +16,38 @@ class TestsStats extends PureComponent {
 			duration,
 			testsComplete,
 		} = this.props
-		const fontSize = '1.5rem'
+		const fontSize = '2em'
 
 		return (
 			<div>
-				<h1>{testsComplete ? 'Stats' : 'Running tests...'}</h1>
+				<h1 style={{ marginTop: 0 }}>
+					{testsComplete ? 'Stats' : 'Running tests...'}
+				</h1>
 
-				<p>
-					<span>
-						Total
-						<span> </span>
-						<span style={{
-							fontSize,
-							color: TAP_COLOR.INFO,
-						}}>{numTotal}</span>
-					</span>
+				<p style={{ margin: '0 0.4em' }}>
+					<span style={{
+						fontSize,
+						color: TAP_COLOR.INFO,
+					}}>{numTotal} </span>Total
 
 					<span style={{ fontSize }}> | </span>
-					<span>
-						{testsComplete ? 'Passed' : 'Passing'}
-						<span> </span>
-						<span style={{
-							fontSize,
-							color: TAP_COLOR.PASS,
-						}}>{numPassed}</span>
-					</span>
+					<span style={{
+						fontSize,
+						color: TAP_COLOR.PASS,
+					}}>{numPassed} </span>{testsComplete ? 'Passed' : 'Passing'}
 
 					<span style={{ fontSize }}> | </span>
-					<span>
-						{testsComplete ? 'Failed' : 'Failing'}
-						<span> </span>
-						<span style={{
-							fontSize,
-							color: TAP_COLOR.FAIL,
-						}}>{numFailed}</span>
-					</span>
+					<span style={{
+						fontSize,
+						color: TAP_COLOR.FAIL,
+					}}>{numFailed} </span>{testsComplete ? 'Failed' : 'Failing'}
 
 					{duration && <span style={{ fontSize }}> | </span>}
 					{duration && <span>
-						Duration
-						<span> </span>
 						<span style={{
 							fontSize,
 							color: TAP_COLOR.INFO,
-						}}>{duration.toFixed(1)}s</span>
+						}}>{duration.toFixed(1)}s </span>Duration
 					</span>}
 				</p>
 			</div>

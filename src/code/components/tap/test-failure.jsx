@@ -25,12 +25,34 @@ class TestFailure extends PureComponent {
 		const { failedTest, operator, expected, actual, stack } = this.props
 
 		return (
-			<div>
+			<div style={{ backgroundColor: 'pink' }}>
 				<Test {...failedTest} />
-				<div>
-					<h3>{operator}</h3>
-					<p>{!stack && `Expected: ${expected}. Actual: ${actual}`}</p>
-					{stack && <pre>{stack}</pre>}
+				<div style={{ padding: '0 1em 1em' }}>
+					<h3 style={{ margin: 0 }}>{operator}</h3>
+					{!stack && <div style={{ display: 'table' }}>
+						<p style={{ display: 'table-row' }}>
+							<span style={{
+								display: 'table-cell',
+								paddingRight: '1em',
+								fontWeight: 'bold',
+							}}>Expected</span>
+							<span style={{ display: 'table-cell' }}>{expected}</span>
+						</p>
+						<p style={{ display: 'table-row' }}>
+							<span style={{
+								display: 'table-cell',
+								paddingRight: '1em',
+								fontWeight: 'bold',
+							}}>Actual</span>
+							<span style={{ display: 'table-cell' }}>{actual}</span>
+						</p>
+					</div>}
+					{stack && <pre style={{
+						margin: 0,
+						padding: 0,
+						lineHeight: '1.5em',
+						overflowX: 'scroll',
+					}}>{stack}</pre>}
 				</div>
 			</div>
 		)
