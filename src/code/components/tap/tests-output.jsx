@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import hash from 'murmurhash-js'
 
 // Components
 import TestsStats from 'components/tap/tests-stats'
