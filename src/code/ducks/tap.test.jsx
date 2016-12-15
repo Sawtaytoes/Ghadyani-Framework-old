@@ -16,19 +16,6 @@ import tap, {
 	addTapFailure,
 } from 'ducks/tap'
 
-test('Nested Test Parent', t => {
-	t.pass("Passed parent test")
-
-	t.test('Nested Test Child', st => {
-		st.pass("Passed nested child test")
-		st.end()
-	})
-
-	t.pass("Passed parent test after child will execute before")
-
-	t.end()
-})
-
 test('TAP: RegEx Start', t => {
 	const re = new RegExp(TAP_START_REGEX)
 	t.ok(re.test("TAP version 13"), "TAP version accurate")
