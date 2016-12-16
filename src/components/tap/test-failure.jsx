@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 // Components
 import Test from 'components/tap/test'
 
-// Enums
-import { TAP_COLOR } from 'ducks/tap'
-
 class TestFailure extends PureComponent {
 	static PropTypes = {
 		id: PropTypes.number.isRequired,
@@ -59,6 +56,6 @@ class TestFailure extends PureComponent {
 	}
 }
 
-export default connect((_, initialProps) => ({ tap }) => ({
-	...(tap.failures[initialProps.id] || {})
+export default connect((_, initialProps) => ({ tap: { failures } }) => ({
+	...(failures[initialProps.id] || {})
 }))(TestFailure)
