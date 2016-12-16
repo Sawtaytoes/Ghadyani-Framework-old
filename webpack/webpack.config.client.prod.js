@@ -11,7 +11,7 @@ const webpackDefaultConfig = require(`${dir.webpack}webpack.config.default`)
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
-	entry: { main: `./${paths.code.src}client` },
+	entry: { main: `./${paths.root.src}client` },
 	output: {
 		filename: '[name].bundle.js',
 		chunkFilename: '[id].bundle.js',

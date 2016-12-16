@@ -2,10 +2,7 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
 // Enums
-import {
-	TAP_MESSAGE_TYPE,
-	TAP_COLOR,
-} from 'ducks/tap'
+import { TAP_COLOR } from 'ducks/tap'
 
 class TestsStats extends PureComponent {
 	render() {

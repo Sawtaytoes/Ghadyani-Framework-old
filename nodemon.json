@@ -1,0 +1,13 @@
+{
+  "ignore": [
+    ".git",
+    ".happypack",
+    "node_modules",
+    "web"
+  ],
+  "watch": [
+    "includes/*.js",
+    "services/*.js",
+    "webpack/*.js"
+  ]
+}

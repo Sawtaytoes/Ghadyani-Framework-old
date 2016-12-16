@@ -6,12 +6,6 @@ import TestsStats from 'components/tap/tests-stats'
 import TestsFailures from 'components/tap/tests-failures'
 import TestsList from 'components/tap/tests-list'
 
-// Enums
-import {
-	TAP_MESSAGE_TYPE,
-	TAP_COLOR,
-} from 'ducks/tap'
-
 class TestsOutput extends PureComponent {
 	render() { return (
 		<div>

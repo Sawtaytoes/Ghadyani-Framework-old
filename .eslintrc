@@ -16,7 +16,8 @@
   "rules": {
     "no-console": 0,
     "no-unused-vars": ["error", {
-	    "varsIgnorePattern": "_"
+      "argsIgnorePattern": "^_*$",
+      "varsIgnorePattern": "^_*$"
     }],
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,

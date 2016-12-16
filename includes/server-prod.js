@@ -28,7 +28,7 @@ const sendEmail = (req, res) => {
 }
 
 const loadSite = (req, res) => {
-	const fileName = require.resolve(`${global.baseDir}web/backend`)
+	const fileName = require.resolve(`${global.baseDir}${paths.root.dest}backend`)
 	serverRunMode.isLocalProductionTesting && delete require.cache[fileName]
 	require(fileName)(req, res)
 }
