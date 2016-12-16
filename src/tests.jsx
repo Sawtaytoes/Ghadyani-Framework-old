@@ -12,7 +12,7 @@ import TestsOutput from 'components/tap/tests-output'
 import { store } from 'utilities/tests-store'
 
 // Setup testing files to watch
-var context = require.context('../code', true, /^\.\/.*\.test\.jsx$/)
+var context = require.context('./', true, /^\.\/.*\.test\.jsx$/)
 context.keys().forEach(context)
 
 render(

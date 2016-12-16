@@ -3,7 +3,7 @@ import { Match, Miss, Redirect } from 'react-router'
 import { connect } from 'react-redux'
 
 // Components
-import Master from 'layouts/master'
+import SiteLayout from 'layouts/site-layout'
 
 // Actions
 import { changeLocation } from 'ducks/location'
@@ -135,9 +135,9 @@ export default class Routes extends PureComponent {
 	}
 
 	render() { return (
-		<Master>
+		<SiteLayout>
 			{this.renderRoutes()}
 			{this.renderRedirs()}
-		</Master>
+		</SiteLayout>
 	)}
 }

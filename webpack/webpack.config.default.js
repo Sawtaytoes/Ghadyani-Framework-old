@@ -9,14 +9,14 @@ const shared = {
 	module: { loaders: [{
 		test: /\.jsx$/,
 		loader: 'happypack/loader?id=jsx',
-		include: [files.code],
+		include: [files],
 	}, {
 		test: /\.css$/,
 		loader: 'happypack/loader?id=css',
 	}, {
 		test: /\.styl$/,
 		loader: 'happypack/loader?id=styl',
-		include: [files.styl],
+		include: [files],
 	}, {
 		test: /\.(jpe?g|png|gif|svg)$/i,
 		loader: 'url?limit=10000',
@@ -33,12 +33,12 @@ const shared = {
 	postcss: () => [
 		autoprefixer({ browsers: ['last 4 versions', '> 5%'] })
 	],
+	stylus: {
+		preferPathResolver: 'webpack',
+	},
 	resolve: {
 		extensions: ['', '.js', '.jsx', '.json', '.css', '.styl'],
-		root: [
-			files.asset,
-			files.code,
-		],
+		root: [files],
 	},
 }
 

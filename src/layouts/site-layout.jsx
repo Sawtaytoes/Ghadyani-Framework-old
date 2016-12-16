@@ -7,10 +7,10 @@ import StylesLoader from 'utilities/styles-loader'
 // Styles
 const stylesLoader = StylesLoader.create()
 .add(require('normalize.css'))
-.add(require('styl/global'))
-.add(require('styl/site'))
+.add(require('layouts/global.styl'))
+.add(require('layouts/site-layout.styl'))
 
-class Master extends PureComponent {
+class SiteLayout extends PureComponent {
 	render() { return (
 		<div>
 			{this.props.children}
@@ -19,4 +19,4 @@ class Master extends PureComponent {
 	)}
 }
 
-export default stylesLoader.render(Master)
+export default stylesLoader.render(SiteLayout)
