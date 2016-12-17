@@ -20,6 +20,9 @@ const webpackConfig = {
 		publicPath: '/',
 	},
 	plugins: [
+		new webpack.LoaderOptionsPlugin({
+			minimize: true,
+		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
 			console.info(Math.round(percentage * 100), `prod-client ${msg}`)
 		}),
