@@ -43,7 +43,7 @@ const dev = {
 	// colors: true,
 	devtool: 'eval-source-map',
 	// minimize: false,
-	prerender: false,
+	// prerender: false,
 }
 
 const prod = {
@@ -51,7 +51,7 @@ const prod = {
 	devtool: false,
 	// minimize: true,
 	noInfo: true,
-	prerender: true,
+	// prerender: true,
 }
 
 module.exports = {
