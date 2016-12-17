@@ -9,8 +9,8 @@ const webpackClientConfig = require(`${dir.webpack}webpack.config.client.dev`)
 
 module.exports = {
 	https: config.isSecure(),
-	// cert: config.isSecure() && fs.readFileSync('./conf/domain-crt.txt'),
-	// key: config.isSecure() && fs.readFileSync('./conf/key.pem'),
+	cert: config.isSecure() ? fs.readFileSync('./conf/domain-crt.txt') : '',
+	key: config.isSecure() ? fs.readFileSync('./conf/key.pem') : '',
 
 	contentBase: `${global.baseDir}${paths.root.dest}`,
 	historyApiFallback: true,
