@@ -43,7 +43,7 @@ const webpackConfig = {
 			debug: true
 		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
-			!msg.includes('build modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
+			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
