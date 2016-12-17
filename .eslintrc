@@ -1,8 +1,4 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
   "env": {
     "browser": true,
     "es6": true,
@@ -13,12 +9,19 @@
     "plugin:react/recommended"
   ],
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
   "rules": {
     "no-console": 0,
     "no-unused-vars": ["error", {
       "argsIgnorePattern": "^_*$",
       "varsIgnorePattern": "^_*$"
     }],
+    "react/prop-types": 1,
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
     "react/react-in-jsx-scope": 2,
