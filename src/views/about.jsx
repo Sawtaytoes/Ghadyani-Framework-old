@@ -14,9 +14,8 @@ class About extends PureComponent {
 	render() { return (
 		<div>
 			<h1>About</h1>
-			<Sample />
-
 			<Link to="/" title="Go to Home">Home</Link>
+			<Sample />
 		</div>
 	)}
 }
