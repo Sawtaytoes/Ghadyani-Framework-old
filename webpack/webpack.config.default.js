@@ -33,9 +33,6 @@ const shared = {
 		test: /\.html$|\.css$/,
 		loader: 'file-loader?name=[name].[ext]',
 	}]},
-	stylus: {
-		preferPathResolver: 'webpack',
-	},
 	resolve: {
 		extensions: ['.js', '.jsx', '.json', '.css', '.styl'],
 		modules: [files, 'node_modules'],
@@ -43,16 +40,16 @@ const shared = {
 }
 
 const dev = {
-	colors: true,
+	// colors: true,
 	devtool: 'eval-source-map',
-	minimize: false,
+	// minimize: false,
 	prerender: false,
 }
 
 const prod = {
-	colors: false,
+	// colors: false,
 	devtool: false,
-	minimize: true,
+	// minimize: true,
 	noInfo: true,
 	prerender: true,
 }
