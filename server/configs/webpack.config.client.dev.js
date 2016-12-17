@@ -4,9 +4,9 @@ const webpack = require('webpack')
 
 // Configs
 const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.includes}config-settings`)
+const config = require(`${dir.configs}config-settings`)
 const paths = require(`${dir.includes}paths`)
-const webpackDefaultConfig = require(`${dir.webpack}webpack.config.default`)
+const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
 
 const threadPool = HappyPack.ThreadPool({ size: 4 })
 

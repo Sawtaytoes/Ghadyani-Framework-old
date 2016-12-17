@@ -6,8 +6,8 @@
     "web"
   ],
   "watch": [
-    "includes/*.js",
-    "services/*.js",
-    "webpack/*.js"
+    "global-dirs.js",
+    "postcss.config.js",
+    "server/"
   ]
 }

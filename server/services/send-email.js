@@ -3,7 +3,7 @@ const smtpTransport = require('nodemailer-smtp-transport')
 
 // Configs
 const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.includes}config-settings`)
+const config = require(`${dir.configs}config-settings`)
 
 const validation = [
 	'name',

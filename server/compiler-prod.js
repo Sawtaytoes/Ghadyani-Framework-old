@@ -2,8 +2,8 @@ const webpack = require('webpack')
 
 // Config Vars
 const dir = require(`${global.baseDir}/global-dirs`)
-const webpackClientConfig = require(`${dir.webpack}webpack.config.client.prod`)
-const webpackServerConfig = require(`${dir.webpack}webpack.config.server.prod`)
+const webpackClientConfig = require(`${dir.configs}webpack.config.client.prod`)
+const webpackServerConfig = require(`${dir.configs}webpack.config.server.prod`)
 
 const onBuild = (taskName, err, stats) => {
 	if (err) { throw console.error('webpack', err) }
