@@ -1,4 +1,9 @@
-import { compose, applyMiddleware, createStore, combineReducers } from 'redux'
+import {
+	compose,
+	applyMiddleware,
+	createStore,
+	combineReducers,
+} from 'redux'
 
 // Reducers
 import tap from 'ducks/tap'

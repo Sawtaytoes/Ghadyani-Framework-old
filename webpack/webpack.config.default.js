@@ -1,5 +1,3 @@
-const autoprefixer = require('autoprefixer')
-
 // Configs
 const dir = require(`${global.baseDir}/global-dirs`)
 const files = require(`${dir.includes}files`)
@@ -30,9 +28,6 @@ const shared = {
 		test: /\.html$|\.css$/,
 		loader: 'file?name=[name].[ext]',
 	}]},
-	postcss: () => [
-		autoprefixer({ browsers: ['last 4 versions', '> 5%'] })
-	],
 	stylus: {
 		preferPathResolver: 'webpack',
 	},
