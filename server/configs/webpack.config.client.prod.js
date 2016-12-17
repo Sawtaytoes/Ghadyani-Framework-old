@@ -11,7 +11,24 @@ const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
-	entry: { main: `./${paths.root.src}client`, },
+	entry: {
+		main: `./${paths.root.src}client`,
+		vendor: [
+			'fbjs/lib/ExecutionEnvironment',
+			'history/createBrowserHistory',
+			'murmurhash-js',
+			'react',
+			'react-dom',
+			'react-dom/server',
+			'react-fastclick',
+			'react-g-analytics',
+			'react-hot-loader',
+			'react-redux',
+			'react-router',
+			'react-router-redux',
+			'redux',
+		]
+	},
 	output: {
 		filename: '[name].bundle.js',
 		chunkFilename: '[id].bundle.js',
@@ -56,7 +73,13 @@ const webpackConfig = {
 				'stylus-loader?linenos=false&compress=true',
 			]
 		}),
-		new webpack.optimize.CommonsChunkPlugin({ async: true }),
+		new webpack.optimize.CommonsChunkPlugin({
+			// async: true,
+			name: [
+				'vendor',
+				'manifest',
+			],
+		}),
 		new webpack.optimize.AggressiveMergingPlugin(),
 		// new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({
