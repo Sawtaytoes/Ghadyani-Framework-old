@@ -16,13 +16,13 @@ const webpackConfig = {
 			'react-hot-loader/patch',
 			`webpack-dev-server/client?${config.getServerUrl()}`,
 			'webpack/hot/dev-server',
-			`./${paths.code.src}client`,
+			`./${paths.root.src}client`,
 		],
 		tests: [
 			'react-hot-loader/patch',
 			`webpack-dev-server/client?${config.getServerUrl()}`,
 			'webpack/hot/dev-server',
-			`./${paths.code.src}tests`,
+			`./${paths.root.src}tests`,
 		],
 	},
 	externals: {
@@ -60,6 +60,7 @@ const webpackConfig = {
 				'eslint-loader',
 				'react-hot-loader/webpack',
 				'babel-loader',
+				'eslint',
 			]
 		}),
 		new HappyPack({

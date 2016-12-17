@@ -28,7 +28,7 @@ const sendEmail = (req, res) => {
 }
 
 const loadSite = (req, res) => {
-	const fileName = require.resolve(`${global.baseDir}web/backend`)
+	const fileName = require.resolve(`${global.baseDir}${paths.root.dest}backend`)
 	serverRunMode.isLocalProductionTesting && delete require.cache[fileName]
 	require(fileName)(req, res)
 }
@@ -42,6 +42,11 @@ app
 .use(bodyParser.json())
 .use(bodyParser.urlencoded({ extended: false }))
 .disable('x-powered-by')
+.get('*.js', (req, res, next) => {
+	req.url = `${req.url}.gz`
+	res.set('Content-Encoding', 'gzip')
+	next()
+})
 .post(config.getMailSendPath(), sendEmail)
 .all('*', loadSite)
 

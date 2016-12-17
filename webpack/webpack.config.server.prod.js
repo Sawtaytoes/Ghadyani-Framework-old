@@ -10,7 +10,7 @@ const webpackDefaultConfig = require(`${dir.webpack}webpack.config.default`)
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
-	entry: `./${paths.code.src}server`,
+	entry: `./${paths.root.src}server`,
 	output: {
 		filename: 'backend.js',
 		libraryTarget: 'commonjs2',

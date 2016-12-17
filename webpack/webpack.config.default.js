@@ -1,5 +1,3 @@
-const autoprefixer = require('autoprefixer')
-
 // Configs
 const dir = require(`${global.baseDir}/global-dirs`)
 const files = require(`${dir.includes}files`)
@@ -14,14 +12,17 @@ const shared = {
 		// 	'babel-loader',
 		// ],
 		loader: 'happypack/loader?id=jsx',
-		include: [files.code],
+		include: [files],
 	}, {
 		test: /\.css$/,
 		loader: 'happypack/loader?id=css',
 	}, {
 		test: /\.styl$/,
 		loader: 'happypack/loader?id=styl',
-		include: [files.styl],
+		include: [files],
+	}, {
+		test: /\.(jpe?g|png|gif|svg)$/i,
+		loader: 'url?limit=10000',
 	}, {
 		test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
 		loader: 'url-loader?limit=10000&minetype=application/font-woff',
@@ -32,10 +33,11 @@ const shared = {
 		test: /\.html$|\.css$/,
 		loader: 'file-loader?name=[name].[ext]',
 	}]},
-	postcss: () => [
-		autoprefixer({ browsers: ['last 4 versions', '> 5%'] })
-	],
+	stylus: {
+		preferPathResolver: 'webpack',
+	},
 	resolve: {
+		root: [files],
 		extensions: ['.js', '.jsx', '.json', '.css', '.styl'],
 		modules: [
 			files.asset,

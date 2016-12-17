@@ -1,3 +1,4 @@
+const CompressionPlugin = require('compression-webpack-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
@@ -10,7 +11,7 @@ const webpackDefaultConfig = require(`${dir.webpack}webpack.config.default`)
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
-	entry: { main: `./${paths.code.src}client` },
+	entry: { main: `./${paths.root.src}client` },
 	output: {
 		filename: '[name].bundle.js',
 		chunkFilename: '[id].bundle.js',
@@ -63,6 +64,13 @@ const webpackConfig = {
 				screw_ie8: true,
 			},
 			sourceMap: true,
+		}),
+		new CompressionPlugin({
+			asset: "[path].gz[query]",
+			algorithm: "gzip",
+			test: /\.js$/,
+			threshold: 0,
+			minRatio: 0.8
 		}),
 	],
 }

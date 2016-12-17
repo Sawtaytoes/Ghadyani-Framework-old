@@ -20,12 +20,12 @@ const sendEmail = (req, res) => {
 }
 
 const loadTests = (req, res) => {
-	res.end(require(`${global.baseDir}src/code/utilities/render-tests-page.jsx`)())
+	res.end(require(`${global.baseDir}${paths.root.src}utilities/render-tests-page.jsx`)())
 }
 
 const loadSite = (req, res) => {
-	res.end(require(`${global.baseDir}src/code/utilities/render-full-page.jsx`)(undefined, {
-		locationChange: { title: req.originalUrl }
+	res.end(require(`${global.baseDir}${paths.root.src}utilities/render-full-page.jsx`)(undefined, {
+		location: { title: req.originalUrl }
 	}))
 }
 
@@ -33,7 +33,7 @@ new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
 .listen(config.getPort(), config.getHostname(), onBuild.bind(null, 'webpack-dev-server', config.getServerUrl))
 
 express()
-.use(express.static(`${global.baseDir}${paths.code.dest}`, { redirect: false }))
+.use(express.static(`${global.baseDir}${paths.root.dest}`, { redirect: false }))
 .use(bodyParser.json())
 .use(bodyParser.urlencoded({ extended: false }))
 
