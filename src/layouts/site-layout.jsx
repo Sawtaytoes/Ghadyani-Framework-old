@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 // import GoogleAnalytics from 'react-g-analytics'
 
 // Utilities
@@ -11,6 +11,10 @@ const stylesLoader = StylesLoader.create()
 .add(require('layouts/site-layout.styl'))
 
 class SiteLayout extends PureComponent {
+	static propTypes = {
+		children: PropTypes.node.isRequired
+	};
+
 	render() { return (
 		<div>
 			{this.props.children}

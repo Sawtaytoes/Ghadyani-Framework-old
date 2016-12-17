@@ -5,17 +5,17 @@ import { connect } from 'react-redux'
 import Test from 'components/tap/test'
 
 class TestFailure extends PureComponent {
-	static PropTypes = {
-		id: PropTypes.number.isRequired,
-		operator: PropTypes.string.isRequired,
-		expected: PropTypes.string.isRequired,
+	static propTypes = {
 		actual: PropTypes.string.isRequired,
-		stack: PropTypes.string,
+		expected: PropTypes.string.isRequired,
 		failedTest: PropTypes.shape({
 			testNumber: PropTypes.number.isRequired,
 			text: PropTypes.string.isRequired,
 			type: PropTypes.object.isRequired,
 		}).isRequired,
+		id: PropTypes.number.isRequired,
+		operator: PropTypes.string.isRequired,
+		stack: PropTypes.string,
 	};
 
 	render() {

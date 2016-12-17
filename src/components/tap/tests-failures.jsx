@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Components
@@ -8,6 +8,11 @@ import TestFailure from 'components/tap/test-failure'
 import { TAP_MESSAGE_TYPE } from 'ducks/tap'
 
 class TestsFailures extends PureComponent {
+	static propTypes = {
+		tests: PropTypes.arrayOf(PropTypes.object).isRequired,
+		failures: PropTypes.arrayOf(PropTypes.object).isRequired,
+	};
+
 	render() {
 		const { tests, failures } = this.props
 		const failedTests = tests

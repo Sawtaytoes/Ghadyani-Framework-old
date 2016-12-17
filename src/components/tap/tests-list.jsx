@@ -1,10 +1,14 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Components
 import Test from 'components/tap/test'
 
 class TestsList extends PureComponent {
+	static propTypes = {
+		tests: PropTypes.arrayOf(PropTypes.object).isRequired,
+	};
+
 	render() {
 		const { tests } = this.props
 

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 import { connect } from 'react-redux'
 
@@ -9,6 +9,11 @@ import SiteLayout from 'layouts/site-layout'
 import { changeLocation } from 'ducks/location'
 
 class ReduxLocation extends PureComponent {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired,
+		location: PropTypes.object.isRequired,
+	};
+
 	componentWillMount() {
 		const { location, dispatch } = this.props
 		dispatch(changeLocation(location))

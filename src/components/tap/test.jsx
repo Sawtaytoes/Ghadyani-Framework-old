@@ -8,7 +8,7 @@ import {
 } from 'ducks/tap'
 
 class Test extends PureComponent {
-	static PropTypes = {
+	static propTypes = {
 		id: PropTypes.number.isRequired,
 		testNumber: PropTypes.number.isRequired,
 		text: PropTypes.string.isRequired,
