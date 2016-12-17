@@ -62,8 +62,8 @@ module.exports = {
 		webpackDefaultConfig.module.rules.push({
 			test: /\.json$/,
 			loaders: [
-				'json',
-				'transform?brfs',
+				'json-loader',
+				'transform-loader?brfs',
 			]
 		})
 
