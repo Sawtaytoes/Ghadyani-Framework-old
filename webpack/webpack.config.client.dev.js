@@ -60,7 +60,7 @@ const webpackConfig = {
 				'eslint-loader',
 				'react-hot-loader/webpack',
 				'babel-loader',
-				'eslint',
+				'eslint-loader',
 			]
 		}),
 		new HappyPack({

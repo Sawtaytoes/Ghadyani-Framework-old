@@ -37,13 +37,8 @@ const shared = {
 		preferPathResolver: 'webpack',
 	},
 	resolve: {
-		root: [files],
 		extensions: ['.js', '.jsx', '.json', '.css', '.styl'],
-		modules: [
-			files.asset,
-			files.code,
-			'node_modules',
-		],
+		modules: [files, 'node_modules'],
 	},
 }
 
