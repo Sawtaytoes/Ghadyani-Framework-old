@@ -20,6 +20,6 @@ module.exports = {
 		'*': { target: config.getProxyServerUrl() }
 	},
 	publicPath: webpackClientConfig.output.publicPath,
-	quiet: true,
-	stats: { colors: true },
+	// quiet: true,
+	stats: 'minimal',
 }
