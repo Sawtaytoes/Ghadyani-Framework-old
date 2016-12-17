@@ -54,7 +54,7 @@ const webpackConfig = {
 		}),
 		new webpack.optimize.CommonsChunkPlugin({ async: true }),
 		new webpack.optimize.AggressiveMergingPlugin(),
-		new webpack.optimize.DedupePlugin(),
+		// new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: { warnings: false },
 			mangle: { except: ['$super', '$', 'exports', 'require'] },

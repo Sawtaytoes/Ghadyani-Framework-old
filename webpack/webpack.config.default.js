@@ -52,7 +52,7 @@ const prod = {
 	// debug: false,
 	devtool: false,
 	// minimize: true,
-	noInfo: true,
+	// noInfo: true,
 	// prerender: true,
 }
 
