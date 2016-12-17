@@ -1,5 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { AppContainer } from 'react-hot-loader'
 
 // Polyfills
 import 'react-fastclick'
@@ -12,15 +13,18 @@ import ClientRoot from 'client-root'
 const RootElement = document.getElementById('root')
 
 render(
-	<ClientRoot />
+	<AppContainer>
+		<ClientRoot />
+	</AppContainer>
 , RootElement)
 
 if (module.hot) {
-	module.hot.accept('./client-root', () => {
-		const ClientRootHotReload = require('./client-root').default
-
-		render(
-			<ClientRootHotReload />
-		, RootElement)
-	})
+	module.hot.accept('./client-root', render)
 }
+
+// if (module.hot) {
+// 	module.hot.accept('./client-root', () => {
+// 		const ClientRootHotReload = require('./client-root').default
+// 		render(<ClientRootHotReload />, RootElement)
+// 	})
+// }

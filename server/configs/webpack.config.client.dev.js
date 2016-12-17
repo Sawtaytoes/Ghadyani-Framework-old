@@ -57,7 +57,7 @@ const webpackConfig = {
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'jsx', threadPool, loaders: [
-				'react-hot-loader/webpack',
+				// 'react-hot-loader/webpack',
 				'babel-loader',
 				'eslint-loader',
 			]
@@ -78,6 +78,7 @@ const webpackConfig = {
 			]
 		}),
 		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin(),
 	]
 }
 
