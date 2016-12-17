@@ -28,7 +28,6 @@
     "compression-webpack-plugin": "^0.3.2",
     "css-loader": "^0.26.1",
     "eslint": "^3.12.2",
-    "expose-loader": "^0.7.1",
     "express": "^4.14.0",
     "express-sslify": "^1.1.0",
     "file-loader": "^0.9.0",
@@ -49,11 +48,9 @@
     "react-router": "^4.0.0-alpha.6",
     "react-router-redux": "^4.0.7",
     "redux": "^3.6.0",
-    "script-loader": "^0.7.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.4.0",
-    "tape": "^4.6.3",
     "url-loader": "^0.5.7",
     "webpack": "2.2.0-rc.1"
   },
@@ -70,7 +67,7 @@
     "react-addons-test-utils": "^15.4.1",
     "react-hot-loader": "^3.0.0-beta.6",
     "tap-dev-tool": "^1.3.0",
-    "tape": "^4.6.2",
+    "tape": "^4.6.3",
     "tape-catch": "^1.0.6",
     "transform-loader": "^0.2.3",
     "webpack-dev-server": "2.2.0-rc.0"
