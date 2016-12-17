@@ -14,10 +14,11 @@ const webpackConfig = {
 	entry: {
 		main: `./${paths.root.src}client`,
 		vendor: [
-			'fbjs/lib/ExecutionEnvironment',
 			'history/createBrowserHistory',
 			'murmurhash-js',
 			'react',
+			'fbjs/lib/ExecutionEnvironment',
+			'redux',
 			'react-dom',
 			'react-dom/server',
 			'react-fastclick',
@@ -26,7 +27,6 @@ const webpackConfig = {
 			'react-redux',
 			'react-router',
 			'react-router-redux',
-			'redux',
 		]
 	},
 	output: {

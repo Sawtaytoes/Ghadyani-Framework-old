@@ -28,7 +28,6 @@ module.exports = () => {
 
 			{/* App */}
 			<script src="/manifest.bundle.js"></script>
-			<script src="/vendor.bundle.js"></script>
 			<script src="/tests.bundle.js"></script>
 
 			<link

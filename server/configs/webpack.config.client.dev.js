@@ -26,9 +26,9 @@ const webpackConfig = {
 		],
 	},
 	externals: {
-		'react/addons': true,
-		'react/lib/ExecutionEnvironment': true,
-		'react/lib/ReactContext': true,
+		'react/addons': 'react',
+		'react/lib/ExecutionEnvironment': 'react',
+		'react/lib/ReactContext': 'react',
 	},
 	node: { fs: 'empty' },
 	output: {
@@ -37,6 +37,9 @@ const webpackConfig = {
 		path: '/',
 		pathinfo: true,
 		publicPath: '/',
+	},
+	performance: {
+		hints: false,
 	},
 	plugins: [
 		new webpack.LoaderOptionsPlugin({
@@ -57,7 +60,6 @@ const webpackConfig = {
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'jsx', threadPool, loaders: [
-				// 'react-hot-loader/webpack',
 				'babel-loader',
 				'eslint-loader',
 			]
@@ -77,6 +79,7 @@ const webpackConfig = {
 				'stylus-loader?linenos=false',
 			]
 		}),
+		new webpack.optimize.CommonsChunkPlugin({ name: ['manifest'] }),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
 	]

@@ -67,7 +67,7 @@ module.exports = (renderedContent = undefined, state = {}) => {
 			{/* App */}
 			<script dangerouslySetInnerHTML={{__html: 'window.__INITIAL_STATE__ =' + JSON.stringify(state)}} />
 			<script src="/manifest.bundle.js"></script>
-			<script src="/vendor.bundle.js"></script>
+			{prod && <script src="/vendor.bundle.js"></script>}
 			<script src="/main.bundle.js"></script>
 
 			{/* 3rd Party Styles */}
