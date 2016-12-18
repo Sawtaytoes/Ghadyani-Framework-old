@@ -19,12 +19,11 @@ export default class AsyncComponent extends PureComponent {
 		promise
 		.then(module => module.default)
 		.then(View => this.component = <View />)
+		.then(() => this.forceUpdate())
 		.catch(err => this.component = <div>
 			<div>AsyncComponent failed to load component asynchronously.</div>
 			<div>{err}</div>
 		</div>)
-
-		this.forceUpdate()
 	}
 
 	render() { return (
