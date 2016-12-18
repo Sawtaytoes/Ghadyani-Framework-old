@@ -351,7 +351,6 @@ test('TAP: Reducer Tap Failures', t => {
 	), tap(getInitialState(), setTapStartTime()))
 
 	t.deepEqual(state.failures, tapFailures)
-	console.debug(state)
 
 	t.end()
 })
