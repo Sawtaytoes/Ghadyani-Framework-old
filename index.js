@@ -17,7 +17,7 @@ const runServer = serverRunMode.isLocalProductionTesting
 
 // Start Webservers
 if (config.isProd()) {
-	runCompiler && require(`${dir.server}compiler-prod`)(runServer)
+	runCompiler && require(`${dir.server}compiler-prod`)()
 	runServer && require(`${dir.server}server-prod`)
 } else {
 	require(`${dir.server}server-dev`)
