@@ -1,4 +1,3 @@
-require('babel-core/register')
 const fs = require('fs')
 
 // Configs

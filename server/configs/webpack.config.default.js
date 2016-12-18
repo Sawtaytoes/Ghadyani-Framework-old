@@ -6,11 +6,6 @@ const shared = {
 	cache: true,
 	module: { rules: [{
 		test: /\.jsx$/,
-		// loaders: [
-		// 	'eslint-loader',
-		// 	'react-hot-loader/webpack',
-		// 	'babel-loader',
-		// ],
 		loader: 'happypack/loader?id=jsx',
 		include: [files],
 	}, {
