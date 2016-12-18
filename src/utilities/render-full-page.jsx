@@ -34,8 +34,8 @@ module.exports = (renderedContent = undefined, state = {}) => {
 			{prod && <meta httpEquiv="expires" content={new Date(Date.now() + (cacheAge * 1000))} />}
 
 			{/* Favicons */}
-			<link rel="icon" href="/favicons/favicon.png" />
-			<link rel="shortcut icon" href="/favicons/favicon.ico" />
+			{/*<link rel="icon" href="/favicons/favicon.png" />*/}
+			{/*<link rel="shortcut icon" href="/favicons/favicon.ico" />*/}
 
 			{/* Windows & IE Icons */}
 			<meta name="application-name" content={htmlMeta.msAppName} />
@@ -64,12 +64,14 @@ module.exports = (renderedContent = undefined, state = {}) => {
 			{/* HTML */}
 			<div id="root" dangerouslySetInnerHTML={{__html: renderedContent}}></div>
 
-			{/* 3rd Party Styles */}
-			{thirdPartyAssets}
-
 			{/* App */}
 			<script dangerouslySetInnerHTML={{__html: 'window.__INITIAL_STATE__ =' + JSON.stringify(state)}} />
+			<script src="/manifest.bundle.js"></script>
+			{prod && <script src="/vendor.bundle.js"></script>}
 			<script src="/main.bundle.js"></script>
+
+			{/* 3rd Party Styles */}
+			{thirdPartyAssets}
 		</body>
 		</html>
 	)

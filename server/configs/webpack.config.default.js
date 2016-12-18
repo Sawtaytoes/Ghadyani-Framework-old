@@ -4,7 +4,7 @@ const files = require(`${dir.includes}files`)
 
 const shared = {
 	cache: true,
-	module: { loaders: [{
+	module: { rules: [{
 		test: /\.jsx$/,
 		loader: 'happypack/loader?id=jsx',
 		include: [files],
@@ -20,48 +20,45 @@ const shared = {
 		loader: 'url?limit=10000',
 	}, {
 		test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-		loader: 'url?limit=10000&minetype=application/font-woff',
+		loader: 'url-loader?limit=10000&minetype=application/font-woff',
 	}, {
 		test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-		loader: 'file',
+		loader: 'file-loader',
 	}, {
 		test: /\.html$|\.css$/,
-		loader: 'file?name=[name].[ext]',
+		loader: 'file-loader?name=[name].[ext]',
 	}]},
-	stylus: {
-		preferPathResolver: 'webpack',
-	},
 	resolve: {
-		extensions: ['', '.js', '.jsx', '.json', '.css', '.styl'],
-		root: [files],
+		extensions: ['.js', '.jsx', '.json', '.css', '.styl'],
+		modules: [files, 'node_modules'],
 	},
 }
 
 const dev = {
-	colors: true,
-	debug: true,
+	// colors: true,
+	// debug: true,
 	devtool: 'eval-source-map',
-	minimize: false,
-	prerender: false,
+	// minimize: false,
+	// prerender: false,
 }
 
 const prod = {
-	colors: false,
-	debug: false,
+	// colors: false,
+	// debug: false,
 	devtool: false,
-	minimize: true,
-	noInfo: true,
-	prerender: true,
+	// minimize: true,
+	// noInfo: true,
+	// prerender: true,
 }
 
 module.exports = {
 	getDev: () => {
 		const webpackDefaultConfig = Object.assign({}, shared, dev )
-		webpackDefaultConfig.module.loaders.push({
+		webpackDefaultConfig.module.rules.push({
 			test: /\.json$/,
 			loaders: [
-				'json',
-				'transform?brfs',
+				'json-loader',
+				'transform-loader?brfs',
 			]
 		})
 

@@ -4,9 +4,9 @@ const webpack = require('webpack')
 
 // Configs
 const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.includes}config-settings`)
+const config = require(`${dir.configs}config-settings`)
 const paths = require(`${dir.includes}paths`)
-const webpackDefaultConfig = require(`${dir.webpack}webpack.config.default`)
+const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
 
 const threadPool = HappyPack.ThreadPool({ size: 4 })
 
@@ -26,9 +26,9 @@ const webpackConfig = {
 		],
 	},
 	externals: {
-		'react/addons': true,
-		'react/lib/ExecutionEnvironment': true,
-		'react/lib/ReactContext': true,
+		'react/addons': 'react',
+		'react/lib/ExecutionEnvironment': 'react',
+		'react/lib/ReactContext': 'react',
 	},
 	node: { fs: 'empty' },
 	output: {
@@ -38,9 +38,15 @@ const webpackConfig = {
 		pathinfo: true,
 		publicPath: '/',
 	},
+	performance: {
+		hints: false,
+	},
 	plugins: [
+		new webpack.LoaderOptionsPlugin({
+			debug: true
+		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
-			!msg.includes('build modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
+			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
@@ -54,27 +60,28 @@ const webpackConfig = {
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'jsx', threadPool, loaders: [
-				'react-hot-loader/webpack',
-				'babel',
-				'eslint',
+				'babel-loader',
+				'eslint-loader',
 			]
 		}),
 		new HappyPack({
 			id: 'css', threadPool, loaders: [
-				'isomorphic-style',
-				'css',
-				'postcss',
+				'isomorphic-style-loader',
+				'css-loader',
+				'postcss-loader',
 			]
 		}),
 		new HappyPack({
 			id: 'styl', threadPool, loaders: [
-				'isomorphic-style',
-				'css',
-				'postcss',
-				'stylus?linenos=false',
+				'isomorphic-style-loader',
+				'css-loader',
+				'postcss-loader',
+				'stylus-loader?linenos=false',
 			]
 		}),
+		new webpack.optimize.CommonsChunkPlugin({ name: ['manifest'] }),
 		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin(),
 	]
 }
 

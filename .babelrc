@@ -1,4 +1,15 @@
 {
-  "plugins": ["transform-runtime"],
-  "presets": ["latest", "stage-0", "react"]
+  "plugins": [
+    "transform-runtime",
+  ],
+  "presets": [
+    ["latest", {
+      "es2015": { "modules": false }
+    }],
+    "stage-0",
+    "react",
+  ],
+  "plugins": [
+    "react-hot-loader/babel"
+  ]
 }

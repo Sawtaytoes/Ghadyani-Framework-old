@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import { Match, Miss, Redirect } from 'react-router'
 import { connect } from 'react-redux'
 
@@ -9,6 +9,11 @@ import SiteLayout from 'layouts/site-layout'
 import { changeLocation } from 'ducks/location'
 
 class ReduxLocation extends PureComponent {
+	static propTypes = {
+		dispatch: PropTypes.func.isRequired,
+		location: PropTypes.object.isRequired,
+	};
+
 	componentWillMount() {
 		const { location, dispatch } = this.props
 		dispatch(changeLocation(location))
@@ -21,6 +26,7 @@ class ReduxLocation extends PureComponent {
 
 const ConnectedReduxLocation = connect(() => ({}))(ReduxLocation)
 
+const prod = process.env.NODE_ENV === 'production'
 const isAsyncCapable = typeof window !== 'undefined'
 export default class Routes extends PureComponent {
 	constructor() {
@@ -70,13 +76,12 @@ export default class Routes extends PureComponent {
 	asyncLoader(fileName) {
 		const storedView = this.views[fileName]
 		if (storedView) {
-			delete this.views[fileName]
+			!prod && delete this.views[fileName]
 			return storedView
 		}
 
-		new Promise(resolve => require.ensure([], require => {
-			resolve(require(`./views/${fileName}`).default)
-		}))
+		System.import(`./views/${fileName}`)
+		.then(module => module.default)
 		.then(View => this.views[fileName] = <View />)
 		.then(() => this.forceUpdate())
 		.catch(err => {

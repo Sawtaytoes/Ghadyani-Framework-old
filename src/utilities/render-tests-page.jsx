@@ -27,10 +27,14 @@ module.exports = () => {
 			<div id="root" />
 
 			{/* App */}
+			<script src="/manifest.bundle.js"></script>
+			<script src="/tests.bundle.js"></script>
+
 			<link
 				rel="stylesheet"
 				href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Roboto+Mono:400,700"
 			/>
+
 			<style dangerouslySetInnerHTML={{__html: `
 				*, *::before, *::after {
 					box-sizing: border-box;
@@ -68,7 +72,6 @@ module.exports = () => {
 					font-size: 0.75em;
 				}
 			`}} />
-			<script src="/tests.bundle.js"></script>
 		</body>
 		</html>
 	)

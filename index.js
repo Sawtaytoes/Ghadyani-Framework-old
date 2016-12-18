@@ -1,12 +1,13 @@
-require('./setup-newrelic')
-
 // Global Dir Hack
 global.baseDir = `${__dirname}/`
 
 // Load Config settings
 const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.includes}config-settings`)
+const config = require(`${dir.configs}config-settings`)
 const serverRunMode = require(`${dir.includes}server-run-mode`)
+
+// Bring in NewRelic if it's available
+require(`${dir.services}setup-newrelic`)
 
 // Set App Mode
 const runCompiler = serverRunMode.isLocalProductionTesting
@@ -16,8 +17,8 @@ const runServer = serverRunMode.isLocalProductionTesting
 
 // Start Webservers
 if (config.isProd()) {
-	runCompiler && require(`${dir.includes}compiler-prod`)(runServer)
-	runServer && require(`${dir.includes}server-prod`)
+	runCompiler && require(`${dir.server}compiler-prod`)()
+	runServer && require(`${dir.server}server-prod`)
 } else {
-	require(`${dir.includes}server-dev`)
+	require(`${dir.server}server-dev`)
 }

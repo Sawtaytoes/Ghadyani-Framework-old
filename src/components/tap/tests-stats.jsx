@@ -1,10 +1,18 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Enums
 import { TAP_COLOR } from 'ducks/tap'
 
 class TestsStats extends PureComponent {
+	static propTypes = {
+		numTotal: PropTypes.number.isRequired,
+		numPassed: PropTypes.number.isRequired,
+		numFailed: PropTypes.number.isRequired,
+		duration: PropTypes.number.isRequired,
+		testsComplete: PropTypes.bool.isRequired,
+	};
+
 	render() {
 		const {
 			numTotal,

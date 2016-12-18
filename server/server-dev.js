@@ -1,14 +1,16 @@
+require('babel-core/register')({ presets: ['latest'] })
+
 const bodyParser = require('body-parser')
 const express = require('express')
 const webpack = require('webpack')
-const webpackDevServer = require('webpack-dev-server')
+const WebpackDevServer = require('webpack-dev-server')
 
 // Configs
 const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.includes}config-settings`)
+const config = require(`${dir.configs}config-settings`)
 const paths = require(`${dir.includes}paths`)
-const webpackClientConfig = require(`${dir.webpack}webpack.config.client.dev`)
-const webpackServerConfig = require(`${dir.webpack}webpack-dev-server.config`)
+const webpackClientConfig = require(`${dir.configs}webpack.config.client.dev`)
+const webpackServerConfig = require(`${dir.configs}webpack-dev-server.config`)
 
 const onBuild = (taskName, getServerUrl, err) => {
 	if (err) { console.error('webpack', err) }
@@ -29,7 +31,7 @@ const loadSite = (req, res) => {
 	}))
 }
 
-new webpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
+new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
 .listen(config.getPort(), config.getHostname(), onBuild.bind(null, 'webpack-dev-server', config.getServerUrl))
 
 express()
