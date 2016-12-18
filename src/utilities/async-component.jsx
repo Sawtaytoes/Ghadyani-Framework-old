@@ -2,7 +2,6 @@ import React, { PureComponent, PropTypes } from 'react'
 
 export default class AsyncComponent extends PureComponent {
 	static propTypes = {
-		name: PropTypes.string,
 		componentLoader: PropTypes.func.isRequired,
 	}
 
@@ -13,17 +12,18 @@ export default class AsyncComponent extends PureComponent {
 
 	componentWillMount() {
 		const { componentLoader } = this.props
-		console.debug('[render]', this.props.name);
-		componentLoader(this.asyncComponentLoaded.bind(this), this.props.name)
+		componentLoader(this.asyncComponentLoaded.bind(this))
 	}
 
-	componentWillUnmount() {
-		console.debug('[unmounted]', this.props.name)
-	}
+	asyncComponentLoaded(promise) {
+		promise
+		.then(module => module.default)
+		.then(View => this.component = <View />)
+		.catch(err => this.component = <div>
+			<div>AsyncComponent failed to load component asynchronously.</div>
+			<div>{err}</div>
+		</div>)
 
-	asyncComponentLoaded(View) {
-		// console.debug('render');
-		this.component = <View.default />
 		this.forceUpdate()
 	}
 

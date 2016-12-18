@@ -33,17 +33,16 @@ export default class Routes extends PureComponent {
 		super()
 
 		this.views = {}
-		this.count = 0
 
 		this.redirs = redirs
 		this.routes = routes.map(route => ({
 			...route,
-			component: this.loadComponent.bind(this, route),
+			component: this.loadComponent.bind(this, route.componentLoader),
 		}))
 	}
 
-	loadComponent({ name, componentLoader }) {
-		return <AsyncComponent name={name + (++this.count)} componentLoader={componentLoader} />
+	loadComponent(componentLoader) {
+		return <AsyncComponent componentLoader={componentLoader} />
 	}
 
 	renderRedirs() {

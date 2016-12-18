@@ -17,14 +17,12 @@ export const routes = [{
 	name: 'home',
 	pattern: '/',
 	exactly: true,
-	componentLoader: (cb, name) => require.ensure([], require => {console.debug('[require]', name); cb(require('../views/home')); console.debug('[require-END]', name)})
+	componentLoader: cb => cb(System.import('../views/home')),
 }, {
 	name: 'about',
 	pattern: '/about',
-	componentLoader: (cb, name) => require.ensure([], require => {console.debug('[require]', name); cb(require('../views/about')); console.debug('[require-END]', name)})
+	componentLoader: cb => cb(System.import('../views/about')),
 }, {
 	name: '404',
-	componentLoader: (cb, name) => require.ensure([], require => {console.debug('[require]', name); cb(require('../views/404')); console.debug('[require-END]', name)})
+	componentLoader: cb => cb(System.import('../views/404')),
 }]
-
-console.error('kevin')
