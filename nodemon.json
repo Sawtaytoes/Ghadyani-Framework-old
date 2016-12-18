@@ -1,0 +1,16 @@
+{
+  "ignore": [
+    ".git",
+    ".happypack",
+    "node_modules",
+    "web"
+  ],
+  "watch": [
+    "global-dirs.js",
+    "postcss.config.js",
+    "src/utilities/render-full-page.jsx",
+    "src/utilities/render-full-page-extras.jsx",
+    "src/utilities/render-tests-page.jsx",
+    "server/"
+  ]
+}
