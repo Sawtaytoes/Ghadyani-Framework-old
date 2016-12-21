@@ -16,8 +16,13 @@ class SiteLayout extends PureComponent {
 	};
 
 	render() { return (
-		<div>
-			{this.props.children}
+		<div className="site-layout">
+			<main className="site-layout__content">
+				{this.props.children}
+			</main>
+			<aside className="site-layout__tests">
+				<iframe className="site-layout__tests__frame" src="/tests" />
+			</aside>
 			{/*<GoogleAnalytics id="UA-????????-?" />*/}
 		</div>
 	)}

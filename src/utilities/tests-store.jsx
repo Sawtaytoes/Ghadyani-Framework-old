@@ -37,6 +37,7 @@ module.hot && module.hot.accept('reducers', () => {
 const log = console.log
 window.console.log = function(message) {
 	log.apply(console, arguments)
+	console.debug('message', message);
 
 	// Is valid TAP message
 	if (store.getState().tap.testsComplete) {
