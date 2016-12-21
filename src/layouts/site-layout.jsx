@@ -10,6 +10,8 @@ const stylesLoader = StylesLoader.create()
 .add(require('layouts/global.styl'))
 .add(require('layouts/site-layout.styl'))
 
+const prod = process.env.NODE_ENV === 'production'
+
 class SiteLayout extends PureComponent {
 	static propTypes = {
 		children: PropTypes.node.isRequired
@@ -17,12 +19,12 @@ class SiteLayout extends PureComponent {
 
 	render() { return (
 		<div className="site-layout">
-			<main className="site-layout__content">
+			<main className={`site-layout__container site-layout__content ${!prod ? 'site-layout__content--development' : ''}`}>
 				{this.props.children}
 			</main>
-			<aside className="site-layout__tests">
+			{!prod && <aside className="site-layout__container site-layout__tests">
 				<iframe className="site-layout__tests__frame" src="/tests" />
-			</aside>
+			</aside>}
 			{/*<GoogleAnalytics id="UA-????????-?" />*/}
 		</div>
 	)}
