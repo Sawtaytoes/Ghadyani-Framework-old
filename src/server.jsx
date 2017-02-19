@@ -9,14 +9,14 @@ import 'utilities/polyfills'
 import { getInitialState } from 'utilities/initial-state'
 import renderFullPage from 'utilities/render-full-page'
 
+// Components
+import Routes from 'routes'
+
 // Actions
 import { updatePageMeta } from 'ducks/location'
 
 // Reducers & Routes
 import rootReducer from 'reducers'
-
-// Components
-import Routes from 'routes'
 
 module.exports = (req, res) => {
 	const context = createServerRenderContext()
