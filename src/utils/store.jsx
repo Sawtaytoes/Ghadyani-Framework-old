@@ -3,7 +3,7 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 
 import rootReducer from 'ducks'
-import { getInitialState } from 'utilities/initial-state'
+import { getInitialState } from 'utils/initial-state'
 
 const initialState = getInitialState()
 const history = createBrowserHistory()

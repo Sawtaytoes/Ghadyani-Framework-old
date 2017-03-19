@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 
 // Utilities
-import { stylesLoader } from 'utilities/styles-loader'
+import { stylesLoader } from 'utils/styles-loader'
 
 class Sample extends PureComponent {
 	render() { return (

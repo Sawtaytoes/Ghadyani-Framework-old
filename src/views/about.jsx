@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Sample from 'components/sample'
 
 // Utilities
-import StylesLoader from 'utilities/styles-loader'
+import StylesLoader from 'utils/styles-loader'
 
 // Styles
 const stylesLoader = StylesLoader.create()

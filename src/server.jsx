@@ -5,9 +5,9 @@ import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
 
 // Polyfills
-import 'utilities/polyfills'
-import { getInitialState } from 'utilities/initial-state'
-import renderFullPage from 'utilities/render-full-page'
+import 'utils/polyfills'
+import { getInitialState } from 'utils/initial-state'
+import renderFullPage from 'utils/render-full-page'
 
 // Components
 import Routes from 'routes'

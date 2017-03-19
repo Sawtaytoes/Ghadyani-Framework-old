@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader'
 
 // Polyfills
 import 'react-fastclick'
-import 'utilities/polyfills'
+import 'utils/polyfills'
 
 // Root Component
 import ClientRoot from 'client-root'

@@ -1,5 +1,5 @@
 // Utilities
-import renderStyles from 'utilities/styles'
+import renderStyles from 'utils/styles'
 
 class StylesLoader {
 	static create() {

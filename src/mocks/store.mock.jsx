@@ -1,4 +1,4 @@
-import { store } from 'utilities/store'
+import { store } from 'utils/store'
 
 class MockStore {
 	static getStore() {
