@@ -21,9 +21,7 @@ class ReduxLocation extends PureComponent {
 		dispatch(changeLocation(location))
 	}
 
-	render() { return (
-		<div />
-	)}
+	render() { return <div /> }
 }
 
 const ConnectedReduxLocation = connect(() => ({}))(ReduxLocation)
