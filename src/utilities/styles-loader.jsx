@@ -21,3 +21,7 @@ class StylesLoader {
 }
 
 export default StylesLoader
+export const stylesLoader = file => {
+	const stylesLoader = StylesLoader.create().add(file)
+	return stylesLoader.render.bind(stylesLoader)
+}
