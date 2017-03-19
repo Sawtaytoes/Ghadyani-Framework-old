@@ -3,7 +3,7 @@
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-module.exports = () => {
+module.exports = testName => {
 	return '<!DOCTYPE html>' + renderToStaticMarkup(
 		<html lang="en">
 		<head>
@@ -28,6 +28,7 @@ module.exports = () => {
 
 			{/* App */}
 			<script src="/manifest.bundle.js"></script>
+			<script dangerouslySetInnerHTML={{__html: `window.__TESTNAME__ = '${testName}'` }} />
 			<script src="/tests.bundle.js"></script>
 
 			<link

@@ -6,8 +6,8 @@ import Test from 'components/tap/test'
 
 class TestFailure extends PureComponent {
 	static propTypes = {
-		actual: PropTypes.string.isRequired,
-		expected: PropTypes.string.isRequired,
+		actual: PropTypes.string,
+		expected: PropTypes.string,
 		failedTest: PropTypes.shape({
 			testNumber: PropTypes.number.isRequired,
 			text: PropTypes.string.isRequired,

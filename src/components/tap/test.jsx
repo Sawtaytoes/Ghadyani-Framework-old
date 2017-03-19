@@ -10,7 +10,7 @@ import {
 class Test extends PureComponent {
 	static propTypes = {
 		id: PropTypes.number.isRequired,
-		testNumber: PropTypes.number.isRequired,
+		testNumber: PropTypes.number,
 		text: PropTypes.string.isRequired,
 		type: PropTypes.object.isRequired,
 	};

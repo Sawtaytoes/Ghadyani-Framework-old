@@ -188,9 +188,9 @@ test('TAP: Initial State', t => {
 	const state = getInitialState()
 
 	t.equal(typeof state, 'object')
-	Object.values(state).forEach(value => (
-		t.ok(value === 0 || value.constructor.name === 'Array')
-	))
+	Object.values(state).forEach(value => {
+		t.ok(value === 0 || typeof value === 'boolean' || value.constructor.name === 'Array')
+	})
 
 	t.end()
 })
@@ -240,44 +240,44 @@ test('TAP: Reducer Tap Messages', t => {
 	}, {
 		type: TAP_MESSAGE_TYPE.PASS,
 		text: "Passes",
-		testNumber: '1',
+		testNumber: 1,
 	}, {
 		type: TAP_MESSAGE_TYPE.HEADER,
 		text: "Failing Test 1",
 	}, {
 		type: TAP_MESSAGE_TYPE.FAIL,
 		text: "Fails",
-		testNumber: '2',
+		testNumber: 2,
 	}, {
 		type: TAP_MESSAGE_TYPE.FAIL,
 		text: "Fails",
-		testNumber: '3',
+		testNumber: 3,
 	}, {
 		type: TAP_MESSAGE_TYPE.HEADER,
 		text: "Failing Test 2",
 	}, {
 		type: TAP_MESSAGE_TYPE.FAIL,
 		text: "Fails",
-		testNumber: '4',
+		testNumber: 4,
 	}, {
 		type: TAP_MESSAGE_TYPE.PASS,
 		text: "Passes",
-		testNumber: '5',
+		testNumber: 5,
 	}, {
 		type: TAP_MESSAGE_TYPE.PASS,
 		text: "Passes",
-		testNumber: '6',
+		testNumber: 6,
 	}, {
 		type: TAP_MESSAGE_TYPE.PASS,
 		text: "Passes",
-		testNumber: '7',
+		testNumber: 7,
 	}, {
 		type: TAP_MESSAGE_TYPE.HEADER,
 		text: "Passing Test 2",
 	}, {
 		type: TAP_MESSAGE_TYPE.PASS,
 		text: "Passes",
-		testNumber: '8',
+		testNumber: 8,
 	}]
 
 	const state = tapMessages.reduce((newState, message) => (
@@ -287,9 +287,9 @@ test('TAP: Reducer Tap Messages', t => {
 	t.ok(state.duration > 0)
 	t.ok(state.endTime > state.startTime)
 
-	t.equal(state.numTotal, '8')
-	t.equal(state.numPassed, '5')
-	t.equal(state.numFailed, '3')
+	t.equal(state.numTotal, 8)
+	t.equal(state.numPassed, 5)
+	t.equal(state.numFailed, 3)
 
 	t.deepEqual(state.tests, tapTests)
 
