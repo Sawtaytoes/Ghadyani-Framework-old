@@ -7,7 +7,7 @@
   },
   "scripts": {
     "prestart": "yarn",
-    "start": "yarn web",
+    "start": "yarn web:watch",
     "web": "node index.js",
     "web:watch": "nodemon --config nodemon.json index.js",
     "compile": "node index.js compile",
