@@ -9,7 +9,7 @@
     "prestart": "yarn",
     "start": "yarn web",
     "web": "node index.js",
-    "web-mon": "nodemon --config nodemon.json index.js",
+    "web:watch": "nodemon --config nodemon.json index.js",
     "compile": "node index.js compile",
     "server": "node index.js server"
   },
