@@ -5,7 +5,7 @@
 ### Required
 - [Git](http://www.git-scm.com/downloads) (2.6.1 or higher)
 - [NodeJS](https://nodejs.org/en/download/) (6.2.2 or higher)
-- [npm](https://docs.npmjs.com/) (3.7.2 or higher)
+- [yarn](https://yarnpkg.com/en/) (0.21.2 or higher)
 - [Visual Studio](https://www.microsoft.com/en-us/download/details.aspx?id=48131) (2013 only) `Windows only`
 
 ### Optional
@@ -77,7 +77,7 @@ Start the local catch-all SMTP server using the command `maildev`.
 
 ### Development: Local
 ```shell
-npm start
+yarn start
 ```
 
 OR

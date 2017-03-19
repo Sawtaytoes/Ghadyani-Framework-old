@@ -21,6 +21,7 @@ render(
 if (module.hot) {
 	module.hot.accept('./client-root', () => {
 		const ClientRootHotReload = require('./client-root').default
+
 		render(
 			<AppContainer>
 				<ClientRootHotReload />
