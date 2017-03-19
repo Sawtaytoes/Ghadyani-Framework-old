@@ -9,7 +9,9 @@
     "prestart": "yarn",
     "start": "yarn web",
     "web": "node index.js",
-    "web-mon": "nodemon --config nodemon.json index.js"
+    "web-mon": "nodemon --config nodemon.json index.js",
+    "compile": "node index.js compile",
+    "server": "node index.js server"
   },
   "engines": {
     "node": "7.2.0",
