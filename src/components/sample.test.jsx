@@ -3,8 +3,6 @@ import ReactTestUtils from 'react-addons-test-utils'
 import test from 'tape-catch'
 
 // Utilities
-import MockStore from 'mocks/store.mock'
-// import MockSample from 'mocks/sample.mock'
 import TestHelper from 'utils/test-helper'
 
 // Components
@@ -13,11 +11,6 @@ import Sample from 'components/sample'
 class TestRun extends TestHelper {
 	static getVars() {
 		return {}
-	}
-
-	constructor(t) {
-		super(t)
-		this.store = MockStore.getStore()
 	}
 
 	getSampleElement() { return (
