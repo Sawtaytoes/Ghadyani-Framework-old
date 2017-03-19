@@ -30,7 +30,7 @@ const store = compose(applyMiddleware(...middlewares))(
 	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
 )(combineReducers({ tap }), { tap: tapInitialState()})
 
-module.hot && module.hot.accept('reducers', () => {
+module.hot && module.hot.accept('ducks', () => {
 	store.replaceReducer(combineReducers(require('ducks/tap')))
 })
 

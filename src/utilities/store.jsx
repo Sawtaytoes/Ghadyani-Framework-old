@@ -2,7 +2,7 @@ import { compose, applyMiddleware, createStore } from 'redux'
 import { syncHistoryWithStore } from 'react-router-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
 
-import rootReducer from 'reducers'
+import rootReducer from 'ducks'
 import { getInitialState } from 'utilities/initial-state'
 
 const initialState = getInitialState()
@@ -14,8 +14,8 @@ const store = compose(applyMiddleware(...middlewares))(
 	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
 )(rootReducer, initialState)
 
-module.hot && module.hot.accept('reducers', () => {
-	store.replaceReducer(require('reducers'))
+module.hot && module.hot.accept('ducks', () => {
+	store.replaceReducer(require('ducks'))
 })
 
 syncHistoryWithStore(history, store)

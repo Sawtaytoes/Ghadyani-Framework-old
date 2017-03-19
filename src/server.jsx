@@ -16,7 +16,7 @@ import Routes from 'routes'
 import { updatePageMeta } from 'ducks/location'
 
 // Reducers & Routes
-import rootReducer from 'reducers'
+import rootReducer from 'ducks'
 
 module.exports = (req, res) => {
 	const context = createServerRenderContext()
