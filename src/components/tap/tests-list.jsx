@@ -1,23 +1,19 @@
-import React, { PureComponent, PropTypes } from 'react'
+import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Components
 import Test from 'components/tap/test'
 
-class TestsList extends PureComponent {
-	static propTypes = {
-		tests: PropTypes.arrayOf(PropTypes.object).isRequired,
-	};
+export const TestsList = ({ tests }) => {
+	return (
+		<div style={{ marginTop: '1em' }}>
+			{tests.map((_, index) => <Test key={index} id={index} />)}
+		</div>
+	)
+}
 
-	render() {
-		const { tests } = this.props
-
-		return (
-			<div style={{ marginTop: '1em' }}>
-				{tests.map((_, index) => <Test key={index} id={index} />)}
-			</div>
-		)
-	}
+TestsList.propTypes = {
+	tests: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
 export default connect(({ tap }) => ({
