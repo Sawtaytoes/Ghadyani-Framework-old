@@ -48,6 +48,7 @@ const webpackConfig = {
 		new webpack.ProgressPlugin((percentage, msg) => {
 			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
 		}),
+		new BellOnBundlerErrorPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
 			'./conf/',
@@ -56,7 +57,6 @@ const webpackConfig = {
 			'./services/',
 			'./webpack/',
 		]),
-		new BellOnBundlerErrorPlugin(),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'jsx', threadPool, loaders: [
@@ -82,7 +82,7 @@ const webpackConfig = {
 		new webpack.optimize.CommonsChunkPlugin({ name: ['manifest'] }),
 		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NamedModulesPlugin(),
-	]
+	],
 }
 
 module.exports = Object.assign({},
