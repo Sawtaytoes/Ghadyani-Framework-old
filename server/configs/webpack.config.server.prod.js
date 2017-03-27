@@ -25,7 +25,7 @@ const webpackConfig = {
 		new webpack.ProgressPlugin((percentage, msg) => {
 			console.info(Math.round(percentage * 100), `prod-server ${msg}`)
 		}),
-		new webpack.NoErrorsPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
 			'./conf/',

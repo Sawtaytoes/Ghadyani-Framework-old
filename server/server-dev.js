@@ -22,11 +22,11 @@ const sendEmail = (req, res) => {
 }
 
 const loadTests = (req, res) => {
-	res.end(require(`${global.baseDir}${paths.root.src}utilities/render-tests-page.jsx`)())
+	res.end(require(`${global.baseDir}${paths.root.src}utils/render-tests-page.jsx`)(req.params.testName))
 }
 
 const loadSite = (req, res) => {
-	res.end(require(`${global.baseDir}${paths.root.src}utilities/render-full-page.jsx`)(undefined, {
+	res.end(require(`${global.baseDir}${paths.root.src}utils/render-full-page.jsx`)(undefined, {
 		location: { title: req.originalUrl }
 	}))
 }
@@ -40,6 +40,7 @@ express()
 .use(bodyParser.urlencoded({ extended: false }))
 
 .get(config.getTestsPath(), loadTests)
+.get(`${config.getTestsPath()}/:testName`, loadTests)
 .post(config.getMailSendPath(), sendEmail)
 .all('*', loadSite)
 

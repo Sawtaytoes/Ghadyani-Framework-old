@@ -39,11 +39,12 @@ export const TAP_TEST_INFO_REGEX = /^(\d+)[ ](.+)$/
 export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
 
 export const getInitialState = () => ({
-	tests: [],
 	failures: [],
-	numTotal: 0,
-	numPassed: 0,
 	numFailed: 0,
+	numPassed: 0,
+	numTotal: 0,
+	tests: [],
+	testsComplete: false,
 })
 
 const Enum = () => ({})
@@ -67,7 +68,7 @@ const getTestInfo = string => {
 	const [_, testNumber, text] = string.match(TAP_TEST_INFO_REGEX)
 
 	return {
-		testNumber,
+		testNumber: Number(testNumber),
 		text,
 	}
 }
@@ -105,13 +106,13 @@ export default (state = getInitialState(), action) => {
 		const value = (message.match(TAP_MESSAGE_REGEX) || [])[5]
 
 		if (tapMessageIs('# tests')) {
-			newState.numTotal = value
+			newState.numTotal = Number(value)
 
 		} else if (tapMessageIs('# pass')) {
-			newState.numPassed = value
+			newState.numPassed = Number(value)
 
 		} else if (tapMessageIs('# fail')) {
-			newState.numFailed = value
+			newState.numFailed = Number(value)
 			newState.testsComplete = true
 
 		} else if (tapMessageIs('# ok')) {

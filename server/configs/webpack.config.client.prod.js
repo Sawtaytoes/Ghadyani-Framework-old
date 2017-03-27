@@ -22,7 +22,7 @@ const webpackConfig = {
 			'react-dom',
 			'react-dom/server',
 			'react-fastclick',
-			'react-g-analytics',
+			// 'react-g-analytics',
 			'react-hot-loader',
 			'react-redux',
 			'react-router',
@@ -43,7 +43,7 @@ const webpackConfig = {
 		new webpack.ProgressPlugin((percentage, msg) => {
 			console.info(Math.round(percentage * 100), `prod-client ${msg}`)
 		}),
-		new webpack.NoErrorsPlugin(),
+		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
 			'./conf/',
