@@ -14,7 +14,7 @@ const webpackConfig = {
 	output: {
 		filename: 'backend.js',
 		libraryTarget: 'commonjs2',
-		path: './web/',
+		path: `${global.baseDir}/web/`,
 		pathinfo: false,
 		publicPath: '/',
 	},

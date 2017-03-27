@@ -32,7 +32,7 @@ const webpackConfig = {
 	output: {
 		filename: '[name].bundle.js',
 		chunkFilename: '[id].bundle.js',
-		path: './web/',
+		path: `${global.baseDir}/web/`,
 		pathinfo: false,
 		publicPath: '/',
 	},
