@@ -74,14 +74,12 @@ const webpackConfig = {
 			]
 		}),
 		new webpack.optimize.CommonsChunkPlugin({
-			// async: true,
 			name: [
 				'vendor',
 				'manifest',
 			],
 		}),
 		new webpack.optimize.AggressiveMergingPlugin(),
-		// new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: { warnings: false },
 			mangle: { except: ['$super', '$', 'exports', 'require'] },
@@ -89,7 +87,7 @@ const webpackConfig = {
 				comments: false,
 				screw_ie8: true,
 			},
-			sourceMap: true,
+			sourceMap: config.isDev(),
 		}),
 		new CompressionPlugin({
 			asset: "[path].gz[query]",

@@ -10,15 +10,20 @@ const serverRunMode = require(`${dir.includes}server-run-mode`)
 require(`${dir.services}setup-newrelic`)
 
 // Set App Mode
+const runTests = serverRunMode.mode === 'test'
 const runCompiler = serverRunMode.isLocalProductionTesting
 	|| serverRunMode.mode === 'compile'
 const runServer = serverRunMode.isLocalProductionTesting
 	|| serverRunMode.mode === 'server'
 
 // Start Webservers
-if (config.isProd()) {
+if (runTests) {
+	require(`${dir.server}compiler-test`)()
+
+} else if (config.isProd()) {
 	runCompiler && require(`${dir.server}compiler-prod`)()
 	runServer && require(`${dir.server}server-prod`)
+
 } else {
 	require(`${dir.server}server-dev`)
 }

@@ -7,7 +7,9 @@ import {
 } from 'ducks/tap'
 
 const Header = ({ text }) => (
-	<h2>{text}</h2>
+	<h2 style={{ margin: '10px 0 6px' }}>
+		{text}
+	</h2>
 )
 
 Header.propTypes = {
@@ -17,15 +19,20 @@ Header.propTypes = {
 const Line = ({ styles, testNumber, text }) => (
 	<p style={{
 		display: 'flex',
+		margin: '2px 0',
 		padding: '10px',
 		...styles,
 	}}>
 		<b style={{
 			paddingRight: '2ex',
-		}}>{testNumber}</b>
+		}}>
+			{testNumber}
+		</b>
 		<span style={{
 			flex: '1 1 auto',
-		}}>{text}</span>
+		}}>
+			{text}
+		</span>
 	</p>
 )
 
@@ -39,28 +46,31 @@ export const Test = ({
 	testNumber,
 	text,
 	type,
-}) => (
-	<div>
-		{type === TAP_MESSAGE_TYPE.HEADER ? <Header text={text} />
-			: type === TAP_MESSAGE_TYPE.PASS ? <Line
-				testNumber={testNumber}
-				text={text}
-				styles={{
-					color: 'greenyellow',
-					backgroundColor: TAP_COLOR.PASS
-				}}
-			/>
-			: <Line
-				testNumber={testNumber}
-				text={text}
-				styles={{
-					color: 'white',
-					backgroundColor: TAP_COLOR.FAIL
-				}}
-			/>
-		}
-	</div>
-)
+}) => {
+	if (type === TAP_MESSAGE_TYPE.HEADER) {
+		return <Header text={text} />
+
+	} else if (type === TAP_MESSAGE_TYPE.PASS) {
+		return <Line
+			testNumber={testNumber}
+			text={text}
+			styles={{
+				color: 'greenyellow',
+				backgroundColor: TAP_COLOR.PASS
+			}}
+		/>
+
+	} else {
+		return <Line
+			testNumber={testNumber}
+			text={text}
+			styles={{
+				color: 'white',
+				backgroundColor: TAP_COLOR.FAIL
+			}}
+		/>
+	}
+}
 
 Test.propTypes = {
 		testNumber: PropTypes.number,
