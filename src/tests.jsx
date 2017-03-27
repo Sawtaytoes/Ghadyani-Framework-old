@@ -12,7 +12,7 @@ import TestsOutput from 'components/tap/tests-output'
 import store from 'utils/tests-store'
 
 // Setup testing files to watch
-const context = require.context('./', true, /^.*\.test\.jsx$/)
+const context = require.context('./', true, /^\.\/.*\.test\.jsx$/)
 const testName = window.__TESTNAME__
 
 if (testName === 'undefined') {
