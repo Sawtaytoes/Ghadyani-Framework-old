@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-// Components
 import TestFailure from 'components/tap/test-failure'
-
-// Enums
 import { TAP_MESSAGE_TYPE } from 'ducks/tap'
 
 export const TestsFailures = ({ tests, failures }) => {

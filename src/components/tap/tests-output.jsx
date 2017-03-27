@@ -1,6 +1,5 @@
 import React from 'react'
 
-// Components
 import TestsStats from 'components/tap/tests-stats'
 import TestsFailures from 'components/tap/tests-failures'
 import TestsList from 'components/tap/tests-list'
