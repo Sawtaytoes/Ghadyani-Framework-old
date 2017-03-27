@@ -4,7 +4,7 @@ import { AppContainer } from 'react-hot-loader'
 
 // Polyfills
 import 'react-fastclick'
-import 'utilities/polyfills'
+import 'utils/polyfills'
 
 // Root Component
 import ClientRoot from 'client-root'
@@ -21,6 +21,7 @@ render(
 if (module.hot) {
 	module.hot.accept('./client-root', () => {
 		const ClientRootHotReload = require('./client-root').default
+
 		render(
 			<AppContainer>
 				<ClientRootHotReload />

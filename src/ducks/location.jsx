@@ -29,7 +29,7 @@ export const updatePageMeta = path => {
 // Reducer
 // --------------------------------------------------------
 
-import { htmlMeta } from 'utilities/render-full-page-extras'
+import { htmlMeta } from 'utils/render-full-page-extras'
 
 // Content
 import navItems from 'content/nav-items'

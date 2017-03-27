@@ -1,13 +1,13 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { ServerRouter as Router, createServerRenderContext } from 'react-router'
+import { ServerRouter as Router, createServerRenderContext } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
 
 // Polyfills
-import 'utilities/polyfills'
-import { getInitialState } from 'utilities/initial-state'
-import renderFullPage from 'utilities/render-full-page'
+import 'utils/polyfills'
+import { getInitialState } from 'utils/initial-state'
+import renderFullPage from 'utils/render-full-page'
 
 // Components
 import Routes from 'routes'
@@ -16,7 +16,7 @@ import Routes from 'routes'
 import { updatePageMeta } from 'ducks/location'
 
 // Reducers & Routes
-import rootReducer from 'reducers'
+import rootReducer from 'ducks'
 
 module.exports = (req, res) => {
 	const context = createServerRenderContext()

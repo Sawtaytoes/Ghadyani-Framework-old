@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 // Store and Routes
-import { store } from 'utilities/store'
+import { store } from 'utils/store'
 
 // Components
 import Routes from 'routes'

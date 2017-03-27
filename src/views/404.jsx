@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 
 // Utilities
-import StylesLoader from 'utilities/styles-loader'
+import StylesLoader from 'utils/styles-loader'
 
 // Styles
 const stylesLoader = StylesLoader.create()

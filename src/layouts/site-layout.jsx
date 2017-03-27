@@ -2,7 +2,7 @@ import React, { PureComponent, PropTypes } from 'react'
 // import GoogleAnalytics from 'react-g-analytics'
 
 // Utilities
-import StylesLoader from 'utilities/styles-loader'
+import StylesLoader from 'utils/styles-loader'
 
 // Styles
 const stylesLoader = StylesLoader.create()
