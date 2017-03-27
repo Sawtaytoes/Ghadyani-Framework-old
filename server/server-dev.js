@@ -11,11 +11,7 @@ const config = require(`${dir.configs}config-settings`)
 const paths = require(`${dir.includes}paths`)
 const webpackClientConfig = require(`${dir.configs}webpack.config.client.dev`)
 const webpackServerConfig = require(`${dir.configs}webpack-dev-server.config`)
-
-const onBuild = (taskName, getServerUrl, err) => {
-	if (err) { console.error('webpack', err) }
-	console.info(`[${taskName}]`, getServerUrl())
-}
+const { onBuild } = require(`${dir.includes}webpack-build-helpers`)
 
 const sendEmail = (req, res) => {
 	require(`${dir.services}send-email`)(req.body, res)
@@ -32,7 +28,7 @@ const loadSite = (req, res) => {
 }
 
 new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
-.listen(config.getPort(), config.getHostname(), onBuild.bind(null, 'webpack-dev-server', config.getServerUrl))
+.listen(config.getPort(), config.getHostname(), onBuild('webpack-dev-server', config.getServerUrl()))
 
 express()
 .use(express.static(`${global.baseDir}${paths.root.dest}`, { redirect: false }))
@@ -45,5 +41,5 @@ express()
 .all('*', loadSite)
 
 .listen(config.getProxyPort(), config.getProxyHostname(),
-	onBuild.bind(null, 'express-server', config.getProxyServerUrl)
+	onBuild('express-server', config.getProxyServerUrl())
 )
