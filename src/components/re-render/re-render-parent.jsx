@@ -30,7 +30,7 @@ const ReRenderParent = ({ toggleValue, value }) => {
 				<h3>ToggleValue Reference</h3>
 				<ReRenderChild onClick={toggleValueRef} />
 
-				<h3>Return Called ToggleValue</h3>
+				<h3>Function Called ToggleValue</h3>
 				<ReRenderChild onClick={callToggleValue} />
 
 				<h3>Called Function Returning ToggleValue</h3>
