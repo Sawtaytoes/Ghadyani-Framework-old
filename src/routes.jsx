@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import SiteLayout from 'layouts/site-layout'
 import Home from 'views/home'
 import About from 'views/about'
+import ReRender from 'views/re-render'
 
 // Actions
 import { changeLocation } from 'ducks/location'
@@ -33,6 +34,9 @@ const Routes = () => (
 
 		<Route path="/about" component={About} />
 		<Route path="/about" component={ConnectedReduxLocation} />
+
+		<Route path="/re-render" component={ReRender} />
+		<Route path="/re-render" component={ConnectedReduxLocation} />
 	</SiteLayout>
 )
 
