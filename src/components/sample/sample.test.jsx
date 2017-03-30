@@ -2,7 +2,7 @@ import React from 'react'
 import ReactTestUtils from 'react-addons-test-utils'
 import test from 'tape-catch'
 
-import Sample from 'components/sample'
+import Sample from 'components/sample/sample'
 
 const renderSample = () => {
 	return ReactTestUtils.createRenderer().render(<Sample />)

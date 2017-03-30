@@ -5,17 +5,15 @@ import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
 
 import 'utils/polyfills'
+import Pages from 'pages'
 import renderFullPage from 'utils/render-full-page'
 import rootReducer from 'ducks'
-import Routes from 'routes'
-import { getInitialState } from 'utils/initial-state'
-import { updatePageMeta } from 'ducks/location'
+import { updatePageMeta } from 'ducks/page-meta'
 
 module.exports = (req, res) => {
 	const context = {}
 
-	const initialState = getInitialState()
-	const store = compose()(createStore)(rootReducer, initialState)
+	const store = compose()(createStore)(rootReducer)
 
 	const renderedContent = renderToString(
 		<Provider store={store}>
@@ -23,15 +21,10 @@ module.exports = (req, res) => {
 				location={req.url}
 				context={context}
 			>
-				<Routes />
+				<Pages />
 			</Router>
 		</Provider>
 	)
-
-	console.log('[CONTEXT]', context);
-	console.log('[URL 1]', context.url);
-	console.log('[URL 2]', req.url);
-	console.log('[URL 3]', req.originalUrl);
 
 	store.dispatch(updatePageMeta(req.url))
 	const renderedPage = renderFullPage(renderedContent, store.getState())

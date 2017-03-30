@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import Sample from 'components/sample'
+import Sample from 'components/sample/sample'
 
 const About = () => (
 	<div>

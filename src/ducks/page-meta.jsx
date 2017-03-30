@@ -2,8 +2,8 @@
 // Actions
 // --------------------------------------------------------
 
-const LOCATION_CHANGED = 'LOCATION_CHANGED'
-const PAGE_META_CHANGED = 'PAGE_META_CHANGED'
+const LOCATION_CHANGED = '@@router/LOCATION_CHANGE'
+const CHANGE_META_DATA = 'PAGE_META:CHANGE_META_DATA'
 
 
 // --------------------------------------------------------
@@ -19,7 +19,7 @@ export const changeLocation = payload => {
 
 export const updatePageMeta = path => {
 	return {
-		type: PAGE_META_CHANGED,
+		type: CHANGE_META_DATA,
 		path
 	}
 }
@@ -82,11 +82,19 @@ const updateScrollPosition = () => {
 	}
 }
 
-export default (state = {}, action) => {
+export const getInitialState = () => ({
+	currentPath: '/',
+	previousPath: '/',
+	pathChanged: false,
+	title: '',
+	description: '',
+})
+
+export default (state = getInitialState(), action) => {
 	const { type, path, payload } = action
 
 	switch (type) {
-	case PAGE_META_CHANGED:
+	case CHANGE_META_DATA:
 		changePageMeta(path)
 
 		return {

@@ -1,24 +1,23 @@
-import { compose, applyMiddleware, createStore } from 'redux'
-import { syncHistoryWithStore } from 'react-router-redux'
 import createBrowserHistory from 'history/createBrowserHistory'
+import { compose, applyMiddleware, createStore } from 'redux'
+import { routerMiddleware } from 'react-router-redux'
 
 import rootReducer from 'ducks'
-import { getInitialState } from 'utils/initial-state'
 
-const initialState = getInitialState()
+const initialState = typeof window !== 'undefined' && window.__INITIAL_STATE__
 const history = createBrowserHistory()
 
-let middlewares = []
+const middleware = [
+	routerMiddleware(history),
+]
 
-const store = compose(applyMiddleware(...middlewares))(
+const store = compose(applyMiddleware(...middleware))(
 	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
 )(rootReducer, initialState)
 
 module.hot && module.hot.accept('ducks', () => {
 	store.replaceReducer(require('ducks'))
 })
-
-syncHistoryWithStore(history, store)
 
 export {
 	history,

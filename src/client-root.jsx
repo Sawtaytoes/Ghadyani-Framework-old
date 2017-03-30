@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { ConnectedRouter as Router } from 'react-router-redux'
 
-// Store and Routes
-import { store } from 'utils/store'
-
-// Components
-import Routes from 'routes'
+import { history, store } from 'utils/store'
+import Pages from 'pages'
 
 export default class ClientRoot extends Component {
 	render() { return (
 		<Provider store={store}>
-			<Router>
-				<Routes />
+			<Router history={history}>
+				<Pages />
 			</Router>
 		</Provider>
 	)}
