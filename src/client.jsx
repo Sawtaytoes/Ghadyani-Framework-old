@@ -18,14 +18,12 @@ render(
 	</AppContainer>
 , RootElement)
 
-if (module.hot) {
-	module.hot.accept('./client-root', () => {
-		const ClientRootHotReload = require('./client-root').default
+module.hot && module.hot.accept('./client-root', () => {
+	const ClientRootHotReload = require('./client-root').default
 
-		render(
-			<AppContainer>
-				<ClientRootHotReload />
-			</AppContainer>
-		, RootElement)
-	})
-}
+	render(
+		<AppContainer>
+			<ClientRootHotReload />
+		</AppContainer>
+	, RootElement)
+})
