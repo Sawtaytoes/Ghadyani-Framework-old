@@ -1,31 +1,18 @@
 import React from 'react'
 import { renderToString } from 'react-dom/server'
-import { ServerRouter as Router, createServerRenderContext } from 'react-router-dom'
+import { StaticRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
 
-// Polyfills
 import 'utils/polyfills'
-import { getInitialState } from 'utils/initial-state'
 import renderFullPage from 'utils/render-full-page'
-
-// Components
+import rootReducer from 'ducks'
 import Routes from 'routes'
-
-// Actions
+import { getInitialState } from 'utils/initial-state'
 import { updatePageMeta } from 'ducks/location'
 
-// Reducers & Routes
-import rootReducer from 'ducks'
-
 module.exports = (req, res) => {
-	const context = createServerRenderContext()
-	const result = context.getResult()
-
-	if (result.redirect) {
-		res.redirect(301, result.redirect.pathname + result.redirect.search)
-		return
-	}
+	const context = {}
 
 	const initialState = getInitialState()
 	const store = compose()(createStore)(rootReducer, initialState)
@@ -41,13 +28,18 @@ module.exports = (req, res) => {
 		</Provider>
 	)
 
-	store.dispatch(updatePageMeta(req.originalUrl))
+	console.log('[CONTEXT]', context);
+	console.log('[URL 1]', context.url);
+	console.log('[URL 2]', req.url);
+	console.log('[URL 3]', req.originalUrl);
+
+	store.dispatch(updatePageMeta(req.url))
 	const renderedPage = renderFullPage(renderedContent, store.getState())
 
-	if (result.missed) {
-		res.status(404).send(renderedPage).end()
+	if (context.url) {
+		res.writeHead(302, { Location: context.url }).end()
 
 	} else {
-		res.status(200).send(renderedPage).end()
+		res.send(renderedPage).end()
 	}
 }
