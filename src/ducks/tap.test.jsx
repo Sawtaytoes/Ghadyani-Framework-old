@@ -14,7 +14,7 @@ import tap, {
 	setTapStartTime,
 	addTapMessage,
 	addTapFailure,
-} from 'ducks/tap'
+} from './tap'
 
 test('TAP: RegEx Start', t => {
 	const re = new RegExp(TAP_START_REGEX)
