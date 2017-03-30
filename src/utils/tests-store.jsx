@@ -5,10 +5,7 @@ import {
 	combineReducers,
 } from 'redux'
 
-// Reducers
 import tap from 'ducks/tap'
-
-// Actions
 import {
 	TAP_START_REGEX,
 	TAP_MESSAGE_REGEX,
