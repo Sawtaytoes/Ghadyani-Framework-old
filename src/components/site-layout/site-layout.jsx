@@ -6,8 +6,8 @@ import StylesLoader from 'utils/styles-loader'
 // Styles
 const stylesLoader = StylesLoader.create()
 .add(require('normalize.css'))
-.add(require('layouts/global.styl'))
-.add(require('layouts/site-layout.styl'))
+.add(require('./global.styl'))
+.add(require('./site-layout.styl'))
 
 export const SiteLayout = ({ children }) => (
 	<div>
