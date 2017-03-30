@@ -1,3 +1,7 @@
+import { htmlMeta } from 'utils/render-full-page-extras'
+import navItems from 'content/nav-items'
+
+
 // --------------------------------------------------------
 // Actions
 // --------------------------------------------------------
@@ -29,11 +33,6 @@ export const updatePageMeta = path => {
 // Reducer
 // --------------------------------------------------------
 
-import { htmlMeta } from 'utils/render-full-page-extras'
-
-// Content
-import navItems from 'content/nav-items'
-
 const pageMeta = {}
 
 const changePageMetaOnLinkMatch = (item, path, itemPathTo) => {
@@ -49,9 +48,9 @@ const changePageMetaOnLinkMatch = (item, path, itemPathTo) => {
 }
 
 const getMetaFromNavItems = (items, path, itemPathTo = '') => {
-	return items.some((item) => {
+	return items.some(item => {
 		if (item.subitems) {
-			return getMetaFromNavItems(item.subitems, path, `${item.to}/`)
+			return getMetaFromNavItems(item.subitems, path, `${itemPathTo}${item.to}/`)
 		}
 
 		return changePageMetaOnLinkMatch(item, path, itemPathTo)
