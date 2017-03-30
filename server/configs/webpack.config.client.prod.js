@@ -24,7 +24,7 @@ const webpackConfig = {
 			'react-fastclick',
 			// 'react-g-analytics',
 			'react-redux',
-			'react-router',
+			'react-router-dom',
 			'react-router-redux',
 		]
 	},
