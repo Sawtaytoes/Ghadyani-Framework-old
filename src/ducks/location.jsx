@@ -76,7 +76,7 @@ const changePageMeta = (path) => {
 	}
 }
 
-function updateScrollPosition() {
+const updateScrollPosition = () => {
 	if (typeof window !== 'undefined') {
 		window.scroll(0, 0)
 	}
