@@ -23,7 +23,6 @@ const webpackConfig = {
 			'react-dom/server',
 			'react-fastclick',
 			// 'react-g-analytics',
-			'react-hot-loader',
 			'react-redux',
 			'react-router',
 			'react-router-redux',
