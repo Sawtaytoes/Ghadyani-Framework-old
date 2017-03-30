@@ -2875,7 +2875,7 @@ hide-powered-by@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hide-powered-by/-/hide-powered-by-1.0.0.tgz#4a85ad65881f62857fc70af7174a1184dccce32b"
 
-history@^4.5.1, history@^4.6.0, history@^4.6.1:
+history@^4.3.0, history@^4.5.1, history@^4.6.0, history@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/history/-/history-4.6.1.tgz#911cf8eb65728555a94f2b12780a0c531a14d2fd"
   dependencies:
@@ -4840,7 +4840,7 @@ react-fastclick@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-fastclick/-/react-fastclick-3.0.1.tgz#e438f9a63cad77c0bb61bb7fa4fd6668451ed83d"
 
-react-hot-loader@next:
+react-hot-loader@3.0.0-beta.6:
   version "3.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-3.0.0-beta.6.tgz#463fac0bfc8b63a8385258af20c91636abce75f4"
   dependencies:
@@ -4867,14 +4867,14 @@ react-redux@^5.0.3:
     lodash-es "^4.2.0"
     loose-envify "^1.1.0"
 
-react-router-dom@next:
+react-router-dom@4.0.0-beta.8:
   version "4.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-4.0.0-beta.8.tgz#907a5a0a36e9190652c80f2feead0eadbbba262e"
   dependencies:
     history "^4.5.1"
     react-router "^4.0.0-beta.8"
 
-react-router-redux@next:
+react-router-redux@5.0.0-alpha.4:
   version "5.0.0-alpha.4"
   resolved "https://registry.yarnpkg.com/react-router-redux/-/react-router-redux-5.0.0-alpha.4.tgz#0f64a8633ee78e14ee3eb96c6354ee134aa6ce4f"
   dependencies:
