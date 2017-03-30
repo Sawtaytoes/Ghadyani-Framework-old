@@ -7,7 +7,7 @@ import navItems from 'content/nav-items'
 // --------------------------------------------------------
 
 const LOCATION_CHANGED = '@@router/LOCATION_CHANGE'
-const CHANGE_META_DATA = 'PAGE_META:CHANGE_META_DATA'
+const CHANGE_META_DATA = 'PAGE_META::CHANGE_META_DATA'
 
 
 // --------------------------------------------------------
