@@ -42,7 +42,7 @@ smtpCredentials: {                            // Configuration for a local maild
 }
 ```
 
-To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROTOCOL`, `HOSTNAME`, `PORT`, etc or create a `./includes/config.coffee` file and have it return an object with overrides like so:
+To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROTOCOL`, `HOSTNAME`, `PORT`, etc or create a `./server/configs/config.js` file and have it return an object with overrides like so:
 
 ```js
 module.exports = {
@@ -175,9 +175,8 @@ Let's Encrypt allows renewing using:
 ### Create & Update Dev SSL Certs
 > For ServiceWorker compatibility, update or use these certs along with `https` in `network-protocol`.
 
-Using [ZeroSSL](https://zerossl.com/free-ssl):
+Using [ZeroSSL](https://zerossl.com/free-ssl) and their [FREE SSL Certificate Wizard](https://zerossl.com/free-ssl/#crt):
 
-- Account ID is 2400598
 - Files are located in `conf/`
 
 ### Linting
