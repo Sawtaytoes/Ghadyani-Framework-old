@@ -3,7 +3,6 @@
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-// Utilities
 import {
 	htmlMeta,
 	dnsPrefetches,
@@ -67,7 +66,7 @@ module.exports = (renderedContent = undefined, state = {}) => {
 			<div id="root" dangerouslySetInnerHTML={{__html: renderedContent}}></div>
 
 			{/* App */}
-			<script dangerouslySetInnerHTML={{__html: 'window.__INITIAL_STATE__ =' + JSON.stringify(state)}} />
+			<script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`}} />
 			<script src="/manifest.bundle.js" />
 			{prod && <script src="/vendor.bundle.js" />}
 			<script src="/main.bundle.js" />
