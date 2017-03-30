@@ -49,7 +49,7 @@
     "react-hot-loader": "next",
     "react-redux": "^5.0.3",
     "react-router-dom": "next",
-    "react-router-redux": "^4.0.8",
+    "react-router-redux": "next",
     "redux": "^3.6.0",
     "style-loader": "^0.14.1",
     "stylus": "^0.54.5",
