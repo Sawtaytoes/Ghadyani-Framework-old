@@ -12,7 +12,8 @@
     "web:watch": "nodemon --config nodemon.json index.js",
     "compile": "node index.js compile",
     "server": "node index.js server",
-    "test": "node index.js test"
+    "test": "node index.js test",
+    "test:watch": "node index.js test:watch"
   },
   "engines": {
     "node": "7.2.0",
