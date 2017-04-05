@@ -30,7 +30,8 @@ module.exports = (req, res) => {
 	const renderedPage = renderFullPage(renderedContent, store.getState())
 
 	if (context.url) {
-		res.writeHead(302, { Location: context.url }).end()
+		res.writeHead(302, { Location: context.url })
+		res.end()
 
 	} else {
 		res.send(renderedPage).end()
