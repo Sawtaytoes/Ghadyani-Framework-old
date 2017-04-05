@@ -7,4 +7,4 @@ if [[ ! $numberOfServers ]]; then
 	numberOfServers=0
 fi
 
-pm2 start yarn -i $numberOfServers --name ${PWD##*/} -- server
+pm2 start npm -i $numberOfServers --name ${PWD##*/} -- run server
