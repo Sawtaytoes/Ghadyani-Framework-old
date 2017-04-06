@@ -7,10 +7,13 @@ const karmaDefaultConfig = config => ({
 	basePath: `${global.baseDir}`,
 	browsers: ['PhantomJS'],
 	colors: true,
-	files: [{
-		pattern: `./${paths.root.src}karma.jsx`,
-		watched: false
-	}],
+	files: [
+		`${paths.npm.src}phantomjs-polyfill-find/find-polyfill.js`,
+		{
+			pattern: `./${paths.root.src}karma.jsx`,
+			watched: false,
+		}
+	],
 	frameworks: ['tap'],
 	logLevel: config.LOG_INFO,
 	port: 9876,

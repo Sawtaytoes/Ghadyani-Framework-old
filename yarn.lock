@@ -2875,7 +2875,7 @@ hide-powered-by@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/hide-powered-by/-/hide-powered-by-1.0.0.tgz#4a85ad65881f62857fc70af7174a1184dccce32b"
 
-history@^4.3.0, history@^4.5.1, history@^4.6.0, history@^4.6.1:
+history@^4.5.1, history@^4.6.0, history@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/history/-/history-4.6.1.tgz#911cf8eb65728555a94f2b12780a0c531a14d2fd"
   dependencies:
@@ -4341,6 +4341,10 @@ pbkdf2@^3.0.3:
 pend@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/pend/-/pend-1.2.0.tgz#7a57eb550a6783f9115331fcf4663d5c8e007a50"
+
+phantomjs-polyfill-find@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/phantomjs-polyfill-find/-/phantomjs-polyfill-find-0.0.1.tgz#e5ba611361ecb4a969ffd5137638c811c9797be2"
 
 phantomjs-prebuilt@^2.1.7:
   version "2.1.14"
