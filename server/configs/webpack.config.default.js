@@ -35,20 +35,11 @@ const shared = {
 }
 
 const dev = {
-	// colors: true,
-	// debug: true,
 	devtool: 'eval-source-map',
-	// minimize: false,
-	// prerender: false,
 }
 
 const prod = {
-	// colors: false,
-	// debug: false,
 	devtool: false,
-	// minimize: true,
-	// noInfo: true,
-	// prerender: true,
 }
 
 module.exports = {
