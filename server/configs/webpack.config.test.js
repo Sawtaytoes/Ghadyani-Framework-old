@@ -10,8 +10,7 @@ const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
 const threadPool = HappyPack.ThreadPool({ size: 4 })
 
 const webpackConfig = {
-	// devtool: 'inline-source-map',
-	devtool: 'cheap-module-source-map',
+	devtool: 'cheap-module-eval-source-map',
 	node: { fs: 'empty' },
 	plugins: [
 		new webpack.ProgressPlugin((percentage, msg) => {
@@ -45,7 +44,7 @@ const webpackConfig = {
 				'isomorphic-style-loader',
 				'css-loader',
 				'postcss-loader',
-				'stylus-loader?linenos=false&compress=true',
+				'stylus-loader?linenos=false',
 			]
 		}),
 	],
