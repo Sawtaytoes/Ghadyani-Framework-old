@@ -75,8 +75,8 @@ const webpackConfig = {
 			id: 'styl', threadPool, loaders: [
 				'isomorphic-style-loader',
 				'css-loader',
-				'postcss-loader',
-				'stylus-loader?linenos=false',
+				'postcss-loader?sourceMap=inline',
+				'stylus-loader?linenos=false&sourceMap=inline',
 			]
 		}),
 		new webpack.optimize.CommonsChunkPlugin({ name: ['manifest'] }),
