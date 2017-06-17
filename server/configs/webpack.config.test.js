@@ -43,7 +43,7 @@ const webpackConfig = {
 			id: 'styl', threadPool, loaders: [
 				'isomorphic-style-loader',
 				'css-loader',
-				'postcss-loader',
+				'postcss-loader?sourceMap=inline',
 				'stylus-loader?linenos=false',
 			]
 		}),
