@@ -1,0 +1,199 @@
+//-------------------------------------------
+// Colors
+//-------------------------------------------
+
+// Tones
+white = #fff
+black = #000
+grey = #999
+grey-light = #ccc
+grey-dark = #444
+red = #f00
+blue = #3cf
+
+// Transparent Tones
+transparent-black = rgba(black, 0.4)
+transparent-grey-dark = rgba(grey-dark, 0.5)
+
+// Text Colors
+text-color--generic = black
+text-color--alternate = white
+text-color--light = grey
+text-color--wild = blue
+text-color--bold = grey-dark
+text-color--error = red
+
+// Background Colors
+background-color--generic = white
+background-color--alternate = transparent-grey-dark
+background-color--bold = grey-dark
+background-color--wild = grey-light
+background-color--muted = transparent-black
+background-color--error = red
+
+// Border Colors
+border-color--generic = black
+border-color--alternate = white
+border-color--light = grey
+border-color--wild = grey-light
+border-color--muted = grey-dark
+
+// Font Families
+font-family--base = Arial, Helvetica, sans-serif
+font-family--roboto = Roboto, font-family--base
+
+// Font Sizes
+font-size--base = 16px
+font-size--base--print = 10pt
+
+// font-size--heading = rem(36)
+// font-size--subheading = rem(16)
+// font-size--paragraph = rem(14)
+// font-size--information = rem(13)
+// font-size--fine-print = rem(11)
+
+
+//-------------------------------------------
+// Vars
+//-------------------------------------------
+
+// Sizing
+site-content-width = rem(1700)
+
+// Unicode Characters
+non-breaking-space = '\00a0'
+
+// Fake Text Outline
+text-outline--thin = -1px -1px 0 text-color--generic,
+	1px -1px 0 text-color--generic,
+	-1px 1px 0 text-color--generic,
+	1px 1px 0 text-color--generic,
+	rem(5 5) 0 text-color--generic
+
+
+//-------------------------------------------
+// Unit Size Calculations
+//-------------------------------------------
+
+base-font-size = 16px
+
+convert-px-to-rem(pixel-unit, base-font-size, unit-type)
+	unit(pixel-unit / base-font-size, unit-type)
+
+unit-calc(pixel-units, unit-type, units = false)
+	if length(pixel-units) == 1
+		convert-px-to-rem(pixel-units, base-font-size, unit-type)
+
+	else
+		for pixel-unit in pixel-units
+			pixel-unit = convert-px-to-rem(pixel-unit, base-font-size, unit-type)
+
+			if !units
+				units = pixel-unit
+			else
+				units = join(' ', units, pixel-unit)
+
+		unquote(units)
+
+rem(args)
+	unit-calc(args, 'rem')
+
+em(args)
+	unit-calc(args, 'em')
+
+
+//-------------------------------------------
+// Math
+//-------------------------------------------
+
+abs(n)
+	if n < 0
+		return n * -1
+	return n
+
+lower-bound(range)
+	if length(range) <= 0
+		return 0
+	return range[0]
+
+upper-bound(range)
+	if length(range) < 1
+		return 999999
+	return range[1]
+
+
+//-------------------------------------------
+// Media Queries
+//-------------------------------------------
+
+xsmall-range = (0 em(480))
+small-range = (em(481) em(768))
+medium-range = (em(769) em(1024))
+large-range = (em(1025) em(1200))
+xlarge-range = (em(1201) em(1440))
+xxlarge-range = (em(1441))
+
+screen-only = 'only screen'
+print-only = 'only print'
+
+ie = 'screen and (-ms-high-contrast: active), (-ms-high-contrast: none)'
+
+// Ranges
+xsmall-min = '(min-width ' + lower-bound(xsmall-range) + ')'
+xsmall-max = '(max-width ' + upper-bound(xsmall-range) + ')'
+
+small-min = '(min-width ' + lower-bound(small-range) + ')'
+small-max = '(max-width ' + upper-bound(small-range) + ')'
+
+medium-min = '(min-width ' + lower-bound(medium-range) + ')'
+medium-max = '(max-width ' + upper-bound(medium-range) + ')'
+
+large-min = '(min-width ' + lower-bound(large-range) + ')'
+large-max = '(max-width ' + upper-bound(large-range) + ')'
+
+xlarge-min = '(min-width ' + lower-bound(xlarge-range) + ')'
+xlarge-max = '(max-width ' + upper-bound(xlarge-range) + ')'
+
+xxlarge-min = '(min-width ' + lower-bound(xxlarge-range) + ')'
+xxlarge-max = '(max-width ' + upper-bound(xxlarge-range) + ')'
+
+// Definitions
+xsmall-only = screen-only + ' and ' + xsmall-max
+
+small-up = screen-only + ' and ' + small-min
+small-only = screen-only + ' and ' + small-min + ' and ' + small-max
+
+medium-up = screen-only + ' and ' + medium-min
+medium-only = screen-only + ' and ' + medium-min + ' and ' + medium-max
+
+large-up = screen-only + ' and ' + large-min
+large-only = screen-only + ' and ' + large-min + ' and ' + large-max
+
+xlarge-up = screen-only + ' and ' + xlarge-min
+xlarge-only = screen-only + ' and ' + xlarge-min + ' and ' + xlarge-max
+
+xxlarge-up = screen-only + ' and ' + xxlarge-min
+xxlarge-only = screen-only + ' and ' + xxlarge-min + ' and ' + xxlarge-max
+
+// Orientation
+landscape = '(orientation landscape)'
+landscape-only = screen-only + ' and ' + landscape
+
+portrait = '(orientation portrait)'
+portrait-only = screen-only + ' and ' + portrait
+
+
+//-------------------------------------------
+// Mixins
+//-------------------------------------------
+
+text()
+	margin-top 0
+
+	&:only-child
+	&:last-child
+		margin 0
+
+description()
+	margin-bottom rem(16)
+	line-height 1.6

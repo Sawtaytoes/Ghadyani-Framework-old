@@ -5,7 +5,7 @@
 ### Required
 - [Git](http://www.git-scm.com/downloads) (2.6.1 or higher)
 - [NodeJS](https://nodejs.org/en/download/) (6.2.2 or higher)
-- [npm](https://docs.npmjs.com/) (3.7.2 or higher)
+- [yarn](https://yarnpkg.com/en/) (0.21.2 or higher)
 - [Visual Studio](https://www.microsoft.com/en-us/download/details.aspx?id=48131) (2013 only) `Windows only`
 
 ### Optional
@@ -42,7 +42,7 @@ smtpCredentials: {                            // Configuration for a local maild
 }
 ```
 
-To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROTOCOL`, `HOSTNAME`, `PORT`, etc or create a `./includes/config.coffee` file and have it return an object with overrides like so:
+To override these configs, either setup Node env vars such as: `NODE_ENV`, `PROTOCOL`, `HOSTNAME`, `PORT`, etc or create a `./server/configs/config.js` file and have it return an object with overrides like so:
 
 ```js
 module.exports = {
@@ -77,7 +77,7 @@ Start the local catch-all SMTP server using the command `maildev`.
 
 ### Development: Local
 ```shell
-npm start
+yarn start
 ```
 
 OR
@@ -175,9 +175,8 @@ Let's Encrypt allows renewing using:
 ### Create & Update Dev SSL Certs
 > For ServiceWorker compatibility, update or use these certs along with `https` in `network-protocol`.
 
-Using [ZeroSSL](https://zerossl.com/free-ssl):
+Using [ZeroSSL](https://zerossl.com/free-ssl) and their [FREE SSL Certificate Wizard](https://zerossl.com/free-ssl/#crt):
 
-- Account ID is 2400598
 - Files are located in `conf/`
 
 ### Linting

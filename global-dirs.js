@@ -1,12 +1,14 @@
 // Setup directories
 const base = global.baseDir
-const includes = `${base}includes/`
-const services = `${base}services/`
-const webpack = `${base}webpack/`
+const server = `${base}server/`
+const configs = `${server}configs/`
+const includes = `${server}includes/`
+const services = `${server}services/`
 
 module.exports = {
 	base,
+	configs,
 	includes,
+	server,
 	services,
-	webpack,
 }
