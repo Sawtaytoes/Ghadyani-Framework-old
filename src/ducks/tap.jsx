@@ -60,8 +60,8 @@ export const TAP_COLOR = {
 	PASS: 'green',
 }
 
-const isInString = (string, critiera) => (
-	string.search(new RegExp(`^(${critiera})`)) === 0
+const isInString = (string, criteria) => (
+	string.search(new RegExp(`^(${criteria})`)) === 0
 )
 
 const getTestInfo = string => {
