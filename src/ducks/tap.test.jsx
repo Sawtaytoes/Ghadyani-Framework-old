@@ -280,9 +280,13 @@ test('TAP: Reducer Tap Messages', t => {
 		testNumber: 8,
 	}]
 
-	const state = tapMessages.reduce((newState, message) => (
-		tap(newState, addTapMessage(message))
-	), tap(getInitialState(), setTapStartTime()))
+	const state = (
+		tapMessages
+		.reduce(
+			(newState, message) => tap(newState, addTapMessage(message)),
+			tap(getInitialState(), setTapStartTime())
+		)
+	)
 
 	t.ok(state.duration > 0)
 	t.ok(state.endTime > state.startTime)
