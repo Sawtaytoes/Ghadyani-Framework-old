@@ -5,50 +5,70 @@ import { connect } from 'react-redux'
 // Enums
 import { TAP_COLOR } from 'ducks/tap'
 
+const fontSize = '2em'
+
+const styles = {
+	pageHeading: {
+		marginTop: 0
+	},
+
+	standardFontSize: {
+		fontSize
+	},
+
+	tapContainer: {
+		margin: '0 0.4em'
+	},
+
+	tapInfo: {
+		color: TAP_COLOR.INFO,
+		fontSize,
+	},
+
+	tapPass: {
+		color: TAP_COLOR.PASS,
+		fontSize,
+	},
+
+	tapFail: {
+		color: TAP_COLOR.FAIL,
+		fontSize,
+	},
+}
+
 export const TestsStats = ({
 	numTotal,
 	numPassed,
 	numFailed,
 	duration,
 	testsComplete,
-}) => {
-	const fontSize = '2em'
+}) => (
+	<div>
+		<h1 style={styles.pageHeading}>
+			{testsComplete ? 'Stats' : 'Running tests...'}
+		</h1>
 
-	return (
-		<div>
-			<h1 style={{ marginTop: 0 }}>
-				{testsComplete ? 'Stats' : 'Running tests...'}
-			</h1>
+		<p style={styles.tapContainer}>
+			<span style={styles.tapInfo}>{numTotal} </span>Total
 
-			<p style={{ margin: '0 0.4em' }}>
-				<span style={{
-					fontSize,
-					color: TAP_COLOR.INFO,
-				}}>{numTotal} </span>Total
+			<span style={styles.standardFontSize}> | </span>
+			<span style={styles.tapPass}>{numPassed} </span>{testsComplete ? 'Passed' : 'Passing'}
 
-				<span style={{ fontSize }}> | </span>
-				<span style={{
-					fontSize,
-					color: TAP_COLOR.PASS,
-				}}>{numPassed} </span>{testsComplete ? 'Passed' : 'Passing'}
+			<span style={styles.standardFontSize}> | </span>
+			<span style={styles.tapFail}>{numFailed} </span>{testsComplete ? 'Failed' : 'Failing'}
 
-				<span style={{ fontSize }}> | </span>
-				<span style={{
-					fontSize,
-					color: TAP_COLOR.FAIL,
-				}}>{numFailed} </span>{testsComplete ? 'Failed' : 'Failing'}
-
-				{duration && <span style={{ fontSize }}> | </span>}
-				{duration && <span>
-					<span style={{
-						fontSize,
-						color: TAP_COLOR.INFO,
-					}}>{duration.toFixed(1)}s </span>Duration
-				</span>}
-			</p>
-		</div>
-	)
-}
+			{duration && <span style={styles.standardFontSize}> | </span>}
+			{
+				duration
+				&& (
+					<span>
+						<span style={styles.tapInfo}>{duration.toFixed(1)}s </span>Duration
+					</span>
+				)
+			}
+		</p>
+	</div>
+)
 
 TestsStats.propTypes = {
 	duration: PropTypes.number,
