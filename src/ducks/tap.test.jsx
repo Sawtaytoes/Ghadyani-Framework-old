@@ -80,7 +80,10 @@ test('TAP: RegEx Message', t => {
 	.forEach(
 		({ text, shouldPass }) => {
 			const value = re.test(text)
-			shouldPass ? t.ok(value, text) : t.notOk(value, text)
+
+			shouldPass
+			? t.ok(value, text)
+			: t.notOk(value, text)
 		}
 	)
 
@@ -143,7 +146,10 @@ test('TAP: RegEx Failure', t => {
 	.forEach(
 		({ text, shouldPass }) => {
 			const value = re.test(text)
-			shouldPass ? t.ok(value, text) : t.notOk(value, text)
+
+			shouldPass
+			? t.ok(value, text)
+			: t.notOk(value, text)
 		}
 	)
 
@@ -341,7 +347,7 @@ test('TAP: Reducer Tap Messages', t => {
 	t.equal(state.numPassed, 5, "Shows number of tests passed")
 	t.equal(state.numFailed, 3, "Shows number of tests failed")
 
-	t.deepEqual(state.tests, tapTests)
+	t.deepEqual(state.tests, tapTests, "Tests should be parsed the same")
 
 	t.end()
 })
@@ -406,7 +412,7 @@ test('TAP: Reducer Tap Failures', t => {
 		)
 	)
 
-	t.deepEqual(state.failures, tapFailures)
+	t.deepEqual(state.failures, tapFailures, "Failures should be parsed the same")
 
 	t.end()
 })
