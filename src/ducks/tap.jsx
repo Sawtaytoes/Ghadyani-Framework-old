@@ -63,12 +63,6 @@ const getFailureInfo = message => {
 	}
 }
 
-const getIncompleteFailure = failures => (
-	failures
-	.slice(failures.length)
-	.find(() => true)
-)
-
 const getMessageInfo = message => {
 	const [ , , identifier, , , messageText] = message.match(TAP_MESSAGE_REGEX) || []
 
@@ -78,11 +72,6 @@ const getMessageInfo = message => {
 	}
 }
 
-const getPreviousFailures = failures => (
-	failures
-	.slice(0, failures.length - 1)
-)
-
 const getTestInfo = string => {
 	const [_, testNumber, text] = string.match(TAP_TEST_INFO_REGEX)
 
@@ -91,6 +80,11 @@ const getTestInfo = string => {
 		text,
 	}
 }
+
+
+// --------------------------------------------------------
+// Message Parsing
+// --------------------------------------------------------
 
 const isSuccessfulEndMessage = message => message === '# ok'
 
@@ -171,6 +165,73 @@ const tapTestParseActions = getParseActions(tapTestActions)
 
 
 // --------------------------------------------------------
+// Failure Parsing
+// --------------------------------------------------------
+
+const getIncompleteFailure = failures => (
+	failures
+	.slice(-1)
+	.find(() => true)
+)
+
+const getPreviousFailures = failures => (
+	failures
+	.slice(0, failures.length - 1)
+)
+
+const addToPreviousFailure = (failures, failureType, failureReason) => (
+	getPreviousFailures(failures)
+	.concat({
+		...getIncompleteFailure(failures),
+		[failureType]: failureReason,
+	})
+)
+
+const parseFailureType = (failures, failureType, failureReason) => (
+	failureType === 'operator'
+	? failures.concat({ [failureType]: failureReason })
+	: addToPreviousFailure(failures, failureType, failureReason)
+)
+
+const incompleteFailureActions = {
+	actual: failureReason => failureReason,
+	expected: failureReason => failureReason,
+	stack: (failureReason, incompleteFailureReason) => `${incompleteFailureReason}  ${failureReason}\n`,
+}
+
+const getNextIncompleteFailureReason = (
+	(failureType, failureReason, incompleteFailureReason) => (
+		incompleteFailureActions[failureType](failureReason, incompleteFailureReason)
+	)
+)
+
+const isNextFailureReason = failure => failureType => failure[failureType] === '|-'
+
+const parseFailureReason = (failures, failureReason) => {
+	const incompleteFailure = getIncompleteFailure(failures)
+	const incompleteFailureTypes = Object.keys(incompleteFailure)
+
+	const failureType = (
+		incompleteFailureTypes
+		.find(isNextFailureReason(incompleteFailure))
+		|| 'stack'
+	)
+
+	const incompleteFailureReason = incompleteFailure[failureType]
+
+	const nextFailureReason = (
+		getNextIncompleteFailureReason(
+			failureType,
+			failureReason,
+			incompleteFailureReason,
+		)
+	)
+
+	return addToPreviousFailure(failures, failureType, nextFailureReason)
+}
+
+
+// --------------------------------------------------------
 // Reducer
 // --------------------------------------------------------
 
@@ -230,42 +291,11 @@ const reducer = {
 	[ADD_TAP_FAILURE]: (state, { message }) => {
 		const { failureReason, failureType } = getFailureInfo(message)
 
-		const handleFailureType = (failures, failureType, failureReason) => (
-			failureType === 'operator'
-			? failures.concat({ [failureType]: failureReason })
-			: (
-				getPreviousFailures(failures)
-				.concat({
-					...getIncompleteFailure(failures),
-					[failureType]: failureReason,
-				})
-			)
-		)
-
 		const failures = (
 			failureType
-			? handleFailureType(state.failures, failureType, failureReason)
-			: state.failures.slice()
+			? parseFailureType(state.failures, failureType, failureReason)
+			: parseFailureReason(state.failures, failureReason)
 		)
-
-		if (!failureType) {
-			const prevFailure = failures.pop()
-
-			if (prevFailure.expected === '|-') {
-				prevFailure.expected = failureReason
-
-			} else if (prevFailure.actual === '|-') {
-				prevFailure.actual = failureReason
-
-			} else if (prevFailure.stack === '|-') {
-				prevFailure.stack = `${failureReason}\n`
-
-			} else {
-				prevFailure.stack += `  ${failureReason}\n`
-			}
-
-			failures.push(prevFailure)
-		}
 
 		return {
 			...state,
