@@ -196,32 +196,38 @@ const parseFailureType = (failures, failureType, failureReason) => (
 const incompleteFailureActions = {
 	actual: failureReason => failureReason,
 	expected: failureReason => failureReason,
-	stack: (failureReason, incompleteFailureReason) => `${incompleteFailureReason}  ${failureReason}\n`,
+	stack: failureReason => `${failureReason}\n`,
+	undefined: (failureReason, incompleteFailureReason) => `${incompleteFailureReason}  ${failureReason}\n`,
 }
 
 const getNextIncompleteFailureReason = (
 	(failureType, failureReason, incompleteFailureReason) => (
-		incompleteFailureActions[failureType](failureReason, incompleteFailureReason)
+		incompleteFailureActions[failureType](
+			failureReason,
+			incompleteFailureReason,
+		)
 	)
 )
 
-const isNextFailureReason = failure => failureType => failure[failureType] === '|-'
+const isFailureReasonPlaceholder = failureReason => failureReason === '|-'
+const isIncompleteFailure = failure => failureType => isFailureReasonPlaceholder(failure[failureType])
 
 const parseFailureReason = (failures, failureReason) => {
 	const incompleteFailure = getIncompleteFailure(failures)
 	const incompleteFailureTypes = Object.keys(incompleteFailure)
 
-	const failureType = (
+	const incompleteFailureType = (
 		incompleteFailureTypes
-		.find(isNextFailureReason(incompleteFailure))
-		|| 'stack'
+		.find(isIncompleteFailure(incompleteFailure))
 	)
+
+	const failureType = incompleteFailureType || 'stack'
 
 	const incompleteFailureReason = incompleteFailure[failureType]
 
 	const nextFailureReason = (
 		getNextIncompleteFailureReason(
-			failureType,
+			incompleteFailureType,
 			failureReason,
 			incompleteFailureReason,
 		)
