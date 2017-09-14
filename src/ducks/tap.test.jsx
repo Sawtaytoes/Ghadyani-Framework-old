@@ -200,25 +200,46 @@ test('TAP: Color Values', t => {
 test('TAP: Initial State', t => {
 	const state = getInitialState()
 
-	t.equal(typeof state, 'object')
+	t.equal(typeof state, 'object', "Initial state is the correct type")
+
 	Object.values(state)
 	.forEach(
-		value => t.ok(value === 0 || typeof value === 'boolean' || value.constructor.name === 'Array')
+		value => (
+			t.ok(
+				value === 0 || typeof value === 'boolean' || value.constructor.name === 'Array',
+				"Value in initial state is the correct type"
+			)
+		)
 	)
 
 	t.end()
 })
 
 test('TAP: Action Creators', t => {
-	t.ok(setTapStartTime().startTime instanceof Date, "Start time is a date object")
-	t.equal(addTapMessage('test').message, 'test', "Add a test passed message")
-	t.equal(addTapFailure('test').message, 'test', "Add a test failed message")
+	t.ok(
+		setTapStartTime().startTime instanceof Date,
+		"Start time is a date object"
+	)
+
+	t.equal(
+		addTapMessage('test').message,
+		'test',
+		"Add a test passed message"
+	)
+
+	t.equal(
+		addTapFailure('test').message,
+		'test',
+		"Add a test failed message"
+	)
+
 	t.end()
 })
 
 test('TAP: Reducer Start Time', t => {
 	const state = getInitialState()
 	const action = setTapStartTime()
+
 	const finalState = tap(state, action)
 
 	t.deepEqual(
