@@ -54,7 +54,14 @@ export const TAP_COLOR = {
 	PASS: 'green',
 }
 
-const getFailureInfo = message => message.match(TAP_FAILURE_REGEX)
+const getFailureInfo = message => {
+	const [ , , , failureType, failureReason] = message.match(TAP_FAILURE_REGEX) || []
+
+	return {
+		failureReason,
+		failureType,
+	}
+}
 
 const getMessageInfo = message => {
 	const [ , , identifier, , , messageText] = message.match(TAP_MESSAGE_REGEX) || []
@@ -210,24 +217,20 @@ const reducer = {
 	),
 
 	[ADD_TAP_FAILURE]: (state, { message }) => {
-		const newState = { ...state }
-		const failureInfo = getFailureInfo(message)
+		const { failureReason, failureType } = getFailureInfo(message)
 
-		const failureType = failureInfo[3]
-		const failureReason = failureInfo[4]
-
-		newState.failures = state.failures.slice()
+		const failures = state.failures.slice()
 
 		if (failureType) {
 			if (failureType === 'operator') {
-				newState.failures.push({ [failureType]: failureReason })
+				failures.push({ [failureType]: failureReason })
 
 			} else {
-				newState.failures[newState.failures.length - 1][failureType] = failureReason
+				failures[failures.length - 1][failureType] = failureReason
 			}
 
 		} else {
-			const prevFailure = newState.failures.pop()
+			const prevFailure = failures.pop()
 
 			if (prevFailure.expected === '|-') {
 				prevFailure.expected = failureReason
@@ -242,10 +245,13 @@ const reducer = {
 				prevFailure.stack += `  ${failureReason}\n`
 			}
 
-			newState.failures.push(prevFailure)
+			failures.push(prevFailure)
 		}
 
-		return { ...newState }
+		return {
+			...state,
+			failures,
+		}
 	},
 }
 
