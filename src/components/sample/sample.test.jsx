@@ -1,16 +1,14 @@
+import { shallow } from 'enzyme'
 import React from 'react'
-import ReactTestUtils from 'react-addons-test-utils'
 import test from 'tape-catch'
 
 import Sample from './sample'
 
-const renderSample = () => {
-	return ReactTestUtils.createRenderer().render(<Sample />)
-}
-
 test('Render <Sample />', t => {
-	const component = renderSample()
-	t.ok(component, "<Sample /> component should exist")
+	t.ok(
+		shallow(<Sample />).exists(),
+		"<Sample /> component should exist"
+	)
 
 	t.end()
 })
