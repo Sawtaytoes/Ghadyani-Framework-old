@@ -34,56 +34,56 @@ test('TAP: RegEx Message', t => {
 	const re = new RegExp(TAP_MESSAGE_REGEX)
 	const operations = [{
 		text: "not ok 3 Test Name",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "ok 2 Test Name",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "# header Test Name",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "# tests 3",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "# pass 3",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "# fail 3",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "# ok",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: " ",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "#",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "# ",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "Test",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "Should not work",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "#ok",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "ok",
-		shouldPass: false,
+		shouldPassTest: false,
 	}]
 
 	operations
 	.forEach(
-		({ text, shouldPass }) => {
+		({ text, shouldPassTest }) => {
 			const value = re.test(text)
 
-			shouldPass
-			? t.ok(value, text)
-			: t.notOk(value, text)
+			shouldPassTest
+			? t.ok(value, text, "Should parse as a passed test")
+			: t.notOk(value, text, "Should parse as a passed test")
 		}
 	)
 
@@ -94,62 +94,62 @@ test('TAP: RegEx Failure', t => {
 	const re = new RegExp(TAP_FAILURE_REGEX)
 	const operations = [{
 		text: "ok 1 <Sample /> component should exist",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "# Purposefully Failed Test 1",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "not ok 2 Math should equal",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "  ---",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "  ...",
-		shouldPass: false,
+		shouldPassTest: false,
 	}, {
 		text: "    operator: equal",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    operator: error",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    operator: notOk",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    expected: 2",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    expected: undefined",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    expected: |-",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    actual:   1",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    actual:   'This should error!'",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "    actual: |-",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "      false",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "      { $$typeof: Symbol(react.element), _owner: null, _store: {}, key: null, props: { children: [ { $$typeof: Symbol(react.element), _owner: null, _store: {}, key: null, props: { children: 'Sample' }, ref: null, type: 'h2' }, { $$typeof: Symbol(react.element), _owner: null, _store: {}, key: null, props: { children: 'This is a sample component.' }, ref: null, type: 'p' } ] }, ref: null, type: 'div' }",
-		shouldPass: true,
+		shouldPassTest: true,
 	}]
 
 	operations
 	.forEach(
-		({ text, shouldPass }) => {
+		({ text, shouldPassTest }) => {
 			const value = re.test(text)
 
-			shouldPass
-			? t.ok(value, text)
-			: t.notOk(value, text)
+			shouldPassTest
+			? t.ok(value, text, "Should parse as a failed test")
+			: t.notOk(value, text, "Should not parse as a failed test")
 		}
 	)
 
@@ -160,29 +160,29 @@ test('TAP: RegEx Test Info', t => {
 	const re = new RegExp(TAP_TEST_INFO_REGEX)
 	const operations = [{
 		text: "1 1",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "3 should work",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "4 should work",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "23 should work",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "234 should work",
-		shouldPass: true,
+		shouldPassTest: true,
 	}, {
 		text: "should not work",
-		shouldPass: false,
+		shouldPassTest: false,
 	}]
 
 	operations
 	.forEach(
-		({ text, shouldPass }) => {
+		({ text, shouldPassTest }) => {
 			const value = re.test(text)
-			shouldPass ? t.ok(value, text) : t.notOk(value, text)
+			shouldPassTest ? t.ok(value, text) : t.notOk(value, text)
 		}
 	)
 
