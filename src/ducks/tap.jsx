@@ -1,3 +1,6 @@
+import createReducer from 'utils/createReducer'
+
+
 // --------------------------------------------------------
 // Actions
 // --------------------------------------------------------
@@ -246,10 +249,4 @@ const reducer = {
 	},
 }
 
-const fpReducer = (reducer, initialState) => (state = initialState, action) => (
-	reducer[action.type]
-	? reducer[action.type](state, action)
-	: state
-)
-
-export default fpReducer(reducer, getInitialState())
+export default createReducer(reducer, getInitialState())
