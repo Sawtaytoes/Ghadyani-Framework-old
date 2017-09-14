@@ -18,8 +18,8 @@ test('250 Millisecond Passing Test', t => {
 })
 
 test('Purposefully Failed Test 1', t => {
-	t.equal(1, 2, "Math should equal")
-	t.notEqual(2, 3, "Math should equal")
+	t.equal(1, 2, "This test should fail")
+	t.notEqual(2, 3, "This test should pass")
 
 	t.end()
 })
