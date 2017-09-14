@@ -6,8 +6,8 @@
     ]
   },
   "scripts": {
-    "prestart": "yarn",
-    "start": "yarn web:watch",
+    "prestart": "npm run",
+    "start": "npm run web:watch",
     "web": "node index.js",
     "web:watch": "nodemon --config nodemon.json index.js",
     "compile": "node index.js compile",

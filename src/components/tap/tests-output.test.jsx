@@ -11,15 +11,18 @@ import test from 'tape-catch'
 test('250 Millisecond Passing Test', t => {
 	t.ok(true, "This happens immediately")
 
-	setTimeout(() => {
-		t.ok(true, "This happened after 250 milliseconds")
-		t.end()
-	}, 250)
+	setTimeout(
+		() => {
+			t.ok(true, "This happened after 250 milliseconds")
+			t.end()
+		},
+		250
+	)
 })
 
 test('Purposefully Failed Test 1', t => {
-	t.equal(1, 2, "Math should equal")
-	t.notEqual(2, 3, "Math should equal")
+	t.equal(1, 2, "This test should fail")
+	t.notEqual(2, 3, "This test should pass")
 
 	t.end()
 })
@@ -44,10 +47,13 @@ test('Purposefully Failed Test 4', t => {
 test('4 Second Passing Test', t => {
 	t.ok(true, "This happens immediately")
 
-	setTimeout(() => {
-		t.ok(true, "This happened after 4 seconds")
-		t.end()
-	}, 4000)
+	setTimeout(
+		() => {
+			t.ok(true, "This happened after 4 seconds")
+			t.end()
+		},
+		4000
+	)
 })
 
 

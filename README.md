@@ -1,4 +1,5 @@
 # Ghadyani Framework for Webpack, React, and Redux
+[ ![Codeship Status for Sawtaytoes/Ghadyani-Framework-Webpack-React-Redux](https://app.codeship.com/projects/6a9ebe50-fc1e-0134-257f-0aa8194bf520/status?branch=master)](https://app.codeship.com/projects/211675)
 
 ## Prerequisites
 
