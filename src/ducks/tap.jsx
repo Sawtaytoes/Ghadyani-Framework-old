@@ -61,10 +61,6 @@ export const TAP_COLOR = {
 	PASS: 'green',
 }
 
-const isInString = (string, criteria) => (
-	string.search(new RegExp(`^(${criteria})`)) === 0
-)
-
 const getTestInfo = string => {
 	const [_, testNumber, text] = string.match(TAP_TEST_INFO_REGEX)
 
@@ -103,55 +99,70 @@ export default (state = getInitialState(), action) => {
 		)
 
 		const test = {}
-		const tapMessageIs = isInString.bind(null, message)
 		const value = (message.match(TAP_MESSAGE_REGEX) || [])[5]
 
-		if (tapMessageIs('# tests')) {
-			newState.numTotal = Number(value)
+		const tapMessageActions = {
+			'# fail': () => {
+				newState.numFailed = Number(value)
+				newState.testsComplete = true
+			},
+			'# ok': () => {
+				newState.testsComplete = true
+			},
+			'# pass': () => {
+				newState.numPassed = Number(value)
+			},
+			'# tests': () => {
+				newState.numTotal = Number(value)
+			},
+			'# ': () => {
+				test.type = TAP_MESSAGE_TYPE.HEADER
+				test.text = value
 
-		} else if (tapMessageIs('# pass')) {
-			newState.numPassed = Number(value)
+				newState.tests = state.tests.slice()
+				newState.tests.push(test)
+			},
+			'not ok': () => {
+				const { testNumber, text } = getTestInfo(value)
 
-		} else if (tapMessageIs('# fail')) {
-			newState.numFailed = Number(value)
-			newState.testsComplete = true
+				test.type = TAP_MESSAGE_TYPE.FAIL
+				test.text = text
+				test.testNumber = testNumber
 
-		} else if (tapMessageIs('# ok')) {
-			newState.testsComplete = true
+				newState.tests = state.tests.slice()
+				newState.tests.push(test)
 
-		} else if (tapMessageIs('# ')) {
-			test.type = TAP_MESSAGE_TYPE.HEADER
-			test.text = value
+				newState.numTotal += 1
+				newState.numFailed += 1
+			},
+			'ok': () => {
+				const { testNumber, text } = getTestInfo(value)
 
-			newState.tests = state.tests.slice()
-			newState.tests.push(test)
+				test.type = TAP_MESSAGE_TYPE.PASS
+				test.text = text
+				test.testNumber = testNumber
 
-		} else if (tapMessageIs('ok')) {
-			const { testNumber, text } = getTestInfo(value)
+				newState.tests = state.tests.slice()
+				newState.tests.push(test)
 
-			test.type = TAP_MESSAGE_TYPE.PASS
-			test.text = text
-			test.testNumber = testNumber
-
-			newState.tests = state.tests.slice()
-			newState.tests.push(test)
-
-			newState.numTotal += 1
-			newState.numPassed += 1
-
-		} else if (tapMessageIs('not ok')) {
-			const { testNumber, text } = getTestInfo(value)
-
-			test.type = TAP_MESSAGE_TYPE.FAIL
-			test.text = text
-			test.testNumber = testNumber
-
-			newState.tests = state.tests.slice()
-			newState.tests.push(test)
-
-			newState.numTotal += 1
-			newState.numFailed += 1
+				newState.numTotal += 1
+				newState.numPassed += 1
+			},
 		}
+
+		const getNewState = (
+			Object
+			.keys(tapMessageActions)
+			.map(
+				tapMessageIdentifier => ({
+					tapMessageIdentifier,
+					parseAction: tapMessageActions[tapMessageIdentifier]
+				})
+			)
+			.find(({ tapMessageIdentifier }) => message.startsWith(tapMessageIdentifier))
+		)
+
+		getNewState && getNewState.parseAction()
 
 		return { ...newState }
 	}
