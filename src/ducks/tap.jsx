@@ -63,6 +63,12 @@ const getFailureInfo = message => {
 	}
 }
 
+const getIncompleteFailure = failures => (
+	failures
+	.slice(failures.length)
+	.find(() => true)
+)
+
 const getMessageInfo = message => {
 	const [ , , identifier, , , messageText] = message.match(TAP_MESSAGE_REGEX) || []
 
@@ -71,6 +77,11 @@ const getMessageInfo = message => {
 		messageText,
 	}
 }
+
+const getPreviousFailures = failures => (
+	failures
+	.slice(0, failures.length - 1)
+)
 
 const getTestInfo = string => {
 	const [_, testNumber, text] = string.match(TAP_TEST_INFO_REGEX)
@@ -219,17 +230,25 @@ const reducer = {
 	[ADD_TAP_FAILURE]: (state, { message }) => {
 		const { failureReason, failureType } = getFailureInfo(message)
 
-		const failures = state.failures.slice()
+		const handleFailureType = (failures, failureType, failureReason) => (
+			failureType === 'operator'
+			? failures.concat({ [failureType]: failureReason })
+			: (
+				getPreviousFailures(failures)
+				.concat({
+					...getIncompleteFailure(failures),
+					[failureType]: failureReason,
+				})
+			)
+		)
 
-		if (failureType) {
-			if (failureType === 'operator') {
-				failures.push({ [failureType]: failureReason })
+		const failures = (
+			failureType
+			? handleFailureType(state.failures, failureType, failureReason)
+			: state.failures.slice()
+		)
 
-			} else {
-				failures[failures.length - 1][failureType] = failureReason
-			}
-
-		} else {
+		if (!failureType) {
 			const prevFailure = failures.pop()
 
 			if (prevFailure.expected === '|-') {
