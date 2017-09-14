@@ -39,6 +39,7 @@ export const TAP_TEST_INFO_REGEX = /^(\d+)[ ](.+)$/
 export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
 
 export const getInitialState = () => ({
+	duration: 0,
 	failures: [],
 	numFailed: 0,
 	numPassed: 0,
