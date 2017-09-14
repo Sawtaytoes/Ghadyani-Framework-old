@@ -11,7 +11,7 @@ const configDefaults = {
 
 	//- Server
 	protocol: 'http',                             // Using `https` requires valid certificates.
-	hostname: '0.0.0.0',                          // Can be 0.0.0.0 for binding to all ports.
+	hostname: '0.0.0.0',                          // Can be 0.0.0.0 for binding to all IPs.
 	port: 3000,                                   // Port of webserver.
 	// proxyPort: 3001,                           // Optional. Will be `port + 1` if not defined.
 
