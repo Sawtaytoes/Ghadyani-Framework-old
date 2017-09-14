@@ -18,11 +18,15 @@ import tap, {
 
 test('TAP: RegEx Start', t => {
 	const re = new RegExp(TAP_START_REGEX)
+
 	t.ok(re.test("TAP version 13"), "TAP version accurate")
 	t.ok(re.test("TAP version 213"), "TAP version number can vary")
-	t.notOk(re.test("TAP version "),
+
+	t.notOk(
+		re.test("TAP version "),
 		"TAP should not start when missing version number"
 	)
+
 	t.end()
 })
 
@@ -72,10 +76,13 @@ test('TAP: RegEx Message', t => {
 		shouldPass: false,
 	}]
 
-	operations.forEach(({ text, shouldPass }) => {
-		const value = re.test(text)
-		shouldPass ? t.ok(value, text) : t.notOk(value, text)
-	})
+	operations
+	.forEach(
+		({ text, shouldPass }) => {
+			const value = re.test(text)
+			shouldPass ? t.ok(value, text) : t.notOk(value, text)
+		}
+	)
 
 	t.end()
 })
@@ -132,10 +139,13 @@ test('TAP: RegEx Failure', t => {
 		shouldPass: true,
 	}]
 
-	operations.forEach(({ text, shouldPass }) => {
-		const value = re.test(text)
-		shouldPass ? t.ok(value, text) : t.notOk(value, text)
-	})
+	operations
+	.forEach(
+		({ text, shouldPass }) => {
+			const value = re.test(text)
+			shouldPass ? t.ok(value, text) : t.notOk(value, text)
+		}
+	)
 
 	t.end()
 })
@@ -162,10 +172,13 @@ test('TAP: RegEx Test Info', t => {
 		shouldPass: false,
 	}]
 
-	operations.forEach(({ text, shouldPass }) => {
-		const value = re.test(text)
-		shouldPass ? t.ok(value, text) : t.notOk(value, text)
-	})
+	operations
+	.forEach(
+		({ text, shouldPass }) => {
+			const value = re.test(text)
+			shouldPass ? t.ok(value, text) : t.notOk(value, text)
+		}
+	)
 
 	t.end()
 })
@@ -187,30 +200,56 @@ test('TAP: Color Values', t => {
 test('TAP: Initial State', t => {
 	const state = getInitialState()
 
-	t.equal(typeof state, 'object')
-	Object.values(state).forEach(value => {
-		t.ok(value === 0 || typeof value === 'boolean' || value.constructor.name === 'Array')
-	})
+	t.equal(typeof state, 'object', "Initial state is the correct type")
+
+	Object.values(state)
+	.forEach(
+		value => (
+			t.ok(
+				value === 0 || typeof value === 'boolean' || value.constructor.name === 'Array',
+				"Value in initial state is the correct type"
+			)
+		)
+	)
 
 	t.end()
 })
 
 test('TAP: Action Creators', t => {
-	t.ok(setTapStartTime().startTime instanceof Date)
-	t.equal(addTapMessage('test').message, 'test')
-	t.equal(addTapFailure('test').message, 'test')
+	t.ok(
+		setTapStartTime().startTime instanceof Date,
+		"Start time is a date object"
+	)
+
+	t.equal(
+		addTapMessage('test').message,
+		'test',
+		"Add a test passed message"
+	)
+
+	t.equal(
+		addTapFailure('test').message,
+		'test',
+		"Add a test failed message"
+	)
+
 	t.end()
 })
 
 test('TAP: Reducer Start Time', t => {
 	const state = getInitialState()
 	const action = setTapStartTime()
+
 	const finalState = tap(state, action)
 
-	t.deepEqual(finalState, {
-		...state,
-		startTime: action.startTime,
-	}, "Start time should be the same as when we started")
+	t.deepEqual(
+		finalState,
+		{
+			...state,
+			startTime: action.startTime,
+		},
+		"Start time should be the same as when we started"
+	)
 
 	t.end()
 })
@@ -280,16 +319,27 @@ test('TAP: Reducer Tap Messages', t => {
 		testNumber: 8,
 	}]
 
-	const state = tapMessages.reduce((newState, message) => (
-		tap(newState, addTapMessage(message))
-	), tap(getInitialState(), setTapStartTime()))
+	const state = (
+		tapMessages
+		.reduce(
+			(newState, message) => tap(newState, addTapMessage(message)),
+			tap(getInitialState(), setTapStartTime())
+		)
+	)
 
-	t.ok(state.duration > 0)
-	t.ok(state.endTime > state.startTime)
+	t.ok(
+		state.duration >= 0,
+		"Timer started"
+	)
 
-	t.equal(state.numTotal, 8)
-	t.equal(state.numPassed, 5)
-	t.equal(state.numFailed, 3)
+	t.ok(
+		state.endTime.getTime() >= state.startTime.getTime(),
+		"End time occurs after start time"
+	)
+
+	t.equal(state.numTotal, 8, "Shows total number of tests")
+	t.equal(state.numPassed, 5, "Shows number of tests passed")
+	t.equal(state.numFailed, 3, "Shows number of tests failed")
 
 	t.deepEqual(state.tests, tapTests)
 
@@ -346,9 +396,15 @@ test('TAP: Reducer Tap Failures', t => {
 		stack: "ReferenceError: nonExistentVariable is not defined\n  at Test.eval (eval at <anonymous> (http://localhost:3000/tests.bundle.js:6182:2), <anonymous>:31:2)\n  at Test.bound [as _cb] (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5928:2), <anonymous>:66:32)\n  at Test.exports.Test.run (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5883:2), <anonymous>:26:10)\n  at Test.bound [as run] (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5928:2), <anonymous>:66:32)\n  at next (eval at <anonymous> (http://localhost:3000/tests.bundle.js:6135:2), <anonymous>:71:15)\n  at onNextTick (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5831:2), <anonymous>:64:12)\n  at Item.run (eval at <anonymous> (http://localhost:3000/tests.bundle.js:861:2), <anonymous>:153:14)\n  at drainQueue (eval at <anonymous> (http://localhost:3000/tests.bundle.js:861:2), <anonymous>:123:42)\n"
 	}]
 
-	const state = tapFailureMessages.reduce((newState, message) => (
-		tap(newState, addTapFailure(message))
-	), tap(getInitialState(), setTapStartTime()))
+	const state = (
+		tapFailureMessages
+		.reduce(
+			(newState, message) => (
+				tap(newState, addTapFailure(message))
+			),
+			tap(getInitialState(), setTapStartTime())
+		)
+	)
 
 	t.deepEqual(state.failures, tapFailures)
 

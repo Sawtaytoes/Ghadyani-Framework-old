@@ -39,6 +39,7 @@ export const TAP_TEST_INFO_REGEX = /^(\d+)[ ](.+)$/
 export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
 
 export const getInitialState = () => ({
+	duration: 0,
 	failures: [],
 	numFailed: 0,
 	numPassed: 0,
@@ -60,8 +61,8 @@ export const TAP_COLOR = {
 	PASS: 'green',
 }
 
-const isInString = (string, critiera) => (
-	string.search(new RegExp(`^(${critiera})`)) === 0
+const isInString = (string, criteria) => (
+	string.search(new RegExp(`^(${criteria})`)) === 0
 )
 
 const getTestInfo = string => {
