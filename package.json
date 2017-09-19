@@ -6,7 +6,6 @@
     ]
   },
   "scripts": {
-    "prestart": "npm run",
     "start": "npm run web:watch",
     "web": "node index.js",
     "web:watch": "nodemon --config nodemon.json index.js",
