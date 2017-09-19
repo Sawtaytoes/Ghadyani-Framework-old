@@ -86,16 +86,8 @@ const getTestInfo = string => {
 // Message Parsing
 // --------------------------------------------------------
 
-const isSuccessfulEndMessage = message => message === '# ok'
-
-const messageMatchesIdentifier = (
-	identifier => ({ messageIdentifier }) => (
-		identifier === messageIdentifier
-	)
-)
-
 const tapCountActions = {
-	'# fail': count => ({
+	'# fail': (_, count) => ({
 		numFailed: Number(count),
 		testsComplete: true,
 	}),
@@ -104,11 +96,11 @@ const tapCountActions = {
 		testsComplete: true,
 	}),
 
-	'# pass': count => ({
+	'# pass': (_, count) => ({
 		numPassed: Number(count),
 	}),
 
-	'# tests': count => ({
+	'# tests': (_, count) => ({
 		numTotal: Number(count),
 	}),
 }
@@ -149,19 +141,26 @@ const tapTestActions = {
 	}),
 }
 
-const getParseActions = parseActions => (
-	Object
-	.keys(parseActions)
-	.map(
-		messageIdentifier => ({
-			messageIdentifier,
-			parseAction: parseActions[messageIdentifier]
-		})
-	)
+const getTapMessageParser = parseActions => (state, { identifier, messageText }) => (
+	parseActions[identifier]
+	&& parseActions[identifier](state, messageText)
 )
 
-const tapCountParseActions = getParseActions(tapCountActions)
-const tapTestParseActions = getParseActions(tapTestActions)
+const getParsedTapCount = getTapMessageParser(tapCountActions)
+const getParsedTapTest = getTapMessageParser(tapTestActions)
+
+const isSuccessfulEndMessage = message => message === '# ok'
+
+const getParsedTapInfo = (state, messageInfo) => (
+	getParsedTapCount(state, messageInfo)
+	|| getParsedTapTest(state, messageInfo)
+)
+
+const getParsedTapMessageState = (state, message) => (
+	isSuccessfulEndMessage(message)
+	? tapCountActions[message]()
+	: getParsedTapInfo(state, getMessageInfo(message))
+)
 
 
 // --------------------------------------------------------
@@ -265,29 +264,11 @@ const reducer = {
 			const endTime = new Date()
 			const duration = (endTime - startTime) / SECOND_IN_MILLISECONDS
 
-			const { identifier, messageText } = getMessageInfo(message)
-
-			const [tapCounts] = (
-				tapCountParseActions
-				.filter(messageMatchesIdentifier(identifier))
-				.map(({ parseAction }) => parseAction(messageText))
-			)
-
-			const [tapTests] = (
-				tapTestParseActions
-				.filter(messageMatchesIdentifier(identifier))
-				.map(({ parseAction }) => parseAction(state, messageText))
-			)
-
-			const successfulEndState = (
-				isSuccessfulEndMessage(message)
-				&& tapCountActions[message]
-			)
+			const parsedTapMessageState = getParsedTapMessageState(state, message)
 
 			return {
 				...state,
-				...tapCounts,
-				...(successfulEndState || tapTests),
+				...parsedTapMessageState,
 				duration,
 				endTime,
 			}
