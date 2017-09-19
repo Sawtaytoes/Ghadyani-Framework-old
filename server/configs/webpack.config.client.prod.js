@@ -78,6 +78,7 @@ const webpackConfig = {
 				'manifest',
 			],
 		}),
+		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: { warnings: false },

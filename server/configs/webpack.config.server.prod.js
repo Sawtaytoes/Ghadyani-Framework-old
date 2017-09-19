@@ -56,6 +56,7 @@ const webpackConfig = {
 			]
 		}),
 		new webpack.optimize.CommonsChunkPlugin({ async: true }),
+		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: { warnings: false },
