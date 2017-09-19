@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React from 'react';
+import React from 'react'
 import { connect } from 'react-redux'
 
 import TestFailure from 'components/tap/test-failure'
