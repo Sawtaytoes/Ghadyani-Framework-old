@@ -1,14 +1,18 @@
 export default [{
+	description: "Get ready to get rocked!",
 	displayInHeader: true,
-	name: 'Home',
+	title: 'Home',
 	to: '',
-	description: ""
 }, {
+	description: "All about nothing.",
 	displayInHeader: true,
-	name: 'About',
+	title: 'About',
 	to: 'about',
-	description: ""
 }, {
-	name: 'Unit Tests',
+	title: 'Unit Tests',
 	to: 'tests',
+}, {
+	description: "404 - Page Not Found",
+	title: 'Page Not Found',
+	to: '404',
 }]

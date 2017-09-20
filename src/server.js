@@ -8,7 +8,7 @@ import 'utils/polyfills'
 import Pages from 'pages'
 import renderSite from 'utils/renderSite'
 import rootReducer from 'ducks'
-import { updatePageMeta } from 'ducks/page-meta'
+import { updatePageMeta } from 'ducks/pageMeta'
 
 module.exports = (req, res) => {
 	const context = {}

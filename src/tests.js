@@ -17,7 +17,9 @@ const runTests = isTestFile => (
 )
 
 const allTests = fileName => !fileName.includes('TapOutput.test.js')
-const specificTests = testName => fileName => console.debug(fileName) || fileName.includes(`/${testName}.test.js`)
+const specificTests = testName => fileName => (
+	fileName.includes(`/${testName}.test.js`)
+)
 
 runTests(
 	testName !== 'undefined'

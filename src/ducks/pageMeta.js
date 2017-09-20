@@ -15,10 +15,7 @@ const UPDATE_META_DATA = 'PAGE_META::UPDATE_META_DATA'
 // Action Creators
 // --------------------------------------------------------
 
-const noMatchNavItemMeta = {
-	description: '404 - File Not Found',
-	title: '404',
-}
+const hasDocument = typeof document !== 'undefined'
 
 const getPathRegEx = (path, parentPath) => (
 	new RegExp(`^/${parentPath}${path}$`)
@@ -31,10 +28,7 @@ const isMatchingNavLink = (link, currentPath, parentPath) => (
 
 const getPageMetaOnLinkMatch = (navItem, currentPath, parentPath) => (
 	isMatchingNavLink(navItem.to, currentPath, parentPath)
-	&& ({
-		description: navItem.description,
-		title: navItem.name,
-	})
+	&& navItem
 )
 
 const getMetaFromNavItems = (navItems, currentPath, parentPath = '') => (
@@ -58,32 +52,24 @@ const getMetaFromNavItems = (navItems, currentPath, parentPath = '') => (
 	))
 )
 
-const getPageMeta = currentPath => {
-	const navItemMeta = getMetaFromNavItems(navItems, currentPath)
+const noMatchNavItemMeta = navItems.find(({ to }) => to === '404')
 
-	console.log(navItemMeta);
-
-	if (!navItemMeta) {
-		return noMatchNavItemMeta
-	}
-
-	if (typeof window === 'undefined') {
-		return
-	}
-
-	return {
-		description: navItemMeta.description,
-		title: navItemMeta.name,
-	}
-}
+const getPageMeta = currentPath => (
+	getMetaFromNavItems(navItems, currentPath)
+	|| noMatchNavItemMeta
+)
 
 const updatePageTitle = title => (
-	title
+	hasDocument
 	&& (document.title = `${title}${htmlMeta.titlePostfix}`)
 )
 
 const updatePageDescription = (description = '') => {
-	const descriptionMetaTag = document.querySelector('meta[name=description]')
+	const descriptionMetaTag = (
+		hasDocument
+		&& document.querySelector('meta[name=description]')
+	)
+
 	descriptionMetaTag && (descriptionMetaTag.content = description)
 }
 
