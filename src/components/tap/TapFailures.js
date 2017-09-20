@@ -5,10 +5,19 @@ import { connect } from 'react-redux'
 import TapFailure from 'components/tap/TapFailure'
 import { tapMessageType } from 'ducks/tap'
 
+const addId = (test, index) => ({
+	...test,
+	id: index,
+})
+
+const isFailure = ({ type }) => type === tapMessageType.fail
+
 export const TapFailures = ({ tests, failures }) => {
-	const failedTests = tests
-		.map((test, index) => (test.id = index) && test)
-		.filter(({ type }) => type === tapMessageType.fail)
+	const failedTests = (
+		tests
+		.map(addId)
+		.filter(isFailure)
+	)
 
 	return (
 		<div>

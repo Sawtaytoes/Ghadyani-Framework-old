@@ -2,9 +2,35 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TapItem from 'components/tap/TapItem'
+import TapLineItem from 'components/tap/TapLineItem'
 
 const styles = {
+	container: {
+		backgroundColor: 'pink',
+	},
+
+	content: {
+		padding: '0 1em 1em',
+	},
+
+	failureContainer: {
+		display: 'table',
+	},
+
+	failureDescription: {
+		display: 'table-cell',
+	},
+
+	failureGroup: {
+		display: 'table-row',
+	},
+
+	failureName: {
+		display: 'table-cell',
+		paddingRight: '1em',
+		fontWeight: 'bold',
+	},
+
 	stackTrace: {
 		margin: 0,
 		padding: 0,
@@ -12,22 +38,8 @@ const styles = {
 		overflowX: 'scroll',
 	},
 
-	container: {
-		display: 'table',
-	},
-
-	description: {
-		display: 'table-cell',
-	},
-
-	group: {
-		display: 'table-row',
-	},
-
-	name: {
-		display: 'table-cell',
-		paddingRight: '1em',
-		fontWeight: 'bold',
+	testType: {
+		margin: 0,
 	},
 }
 
@@ -38,11 +50,11 @@ export const TapFailure = ({
 	operator,
 	stack,
 }) => (
-	<div style={{ backgroundColor: 'pink' }}>
-		<TapItem {...failedTest} />
+	<div style={styles.container}>
+		<TapLineItem {...failedTest} />
 
-		<div style={{ padding: '0 1em 1em' }}>
-			<h3 style={{ margin: 0 }}>{operator}</h3>
+		<div style={styles.content}>
+			<h3 style={styles.testType}>{operator}</h3>
 
 			{
 				stack
@@ -56,14 +68,14 @@ export const TapFailure = ({
 			{
 				!stack
 				&& (
-					<div style={styles.container}>
-						<p style={styles.group}>
-							<span style={styles.name}>Expected</span>
-							<span style={styles.description}>{expected}</span>
+					<div style={styles.failureContainer}>
+						<p style={styles.failureGroup}>
+							<span style={styles.failureName}>Expected</span>
+							<span style={styles.failureDescription}>{expected}</span>
 						</p>
-						<p style={styles.group}>
-							<span style={styles.name}>Actual</span>
-							<span style={styles.description}>{actual}</span>
+						<p style={styles.failureGroup}>
+							<span style={styles.failureName}>Actual</span>
+							<span style={styles.failureDescription}>{actual}</span>
 						</p>
 					</div>
 				)

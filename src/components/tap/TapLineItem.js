@@ -7,8 +7,10 @@ import {
 	tapColor,
 } from 'ducks/tap'
 
+const headerStyles = { margin: '10px 0 6px' }
+
 const Header = ({ text }) => (
-	<h2 style={{ margin: '10px 0 6px' }}>
+	<h2 style={headerStyles}>
 		{text}
 	</h2>
 )
@@ -17,7 +19,7 @@ Header.propTypes = {
 	text: PropTypes.string.isRequired,
 }
 
-const styles = {
+const testRunStyles = {
 	container: {
 		display: 'flex',
 		margin: '2px 0',
@@ -35,13 +37,13 @@ const styles = {
 
 const tapMessageStyles = {
 	[tapMessageType.pass]: {
-		...styles.container,
+		...testRunStyles.container,
 		color: 'greenyellow',
 		backgroundColor: tapColor.pass,
 	},
 
 	[tapMessageType.fail]: {
-		...styles.container,
+		...testRunStyles.container,
 		color: 'white',
 		backgroundColor: tapColor.fail,
 	},
@@ -49,11 +51,11 @@ const tapMessageStyles = {
 
 const TestRun = ({ testNumber, text, type }) => (
 	<p style={tapMessageStyles[type]}>
-		<b style={styles.testNumber}>
+		<b style={testRunStyles.testNumber}>
 			{testNumber}
 		</b>
 
-		<span style={styles.text}>
+		<span style={testRunStyles.text}>
 			{text}
 		</span>
 	</p>
@@ -65,7 +67,7 @@ TestRun.propTypes = {
 	type: PropTypes.string.isRequired,
 }
 
-export const TapItem = ({
+export const TapLineItem = ({
 	testNumber,
 	text,
 	type,
@@ -81,7 +83,7 @@ export const TapItem = ({
 	)
 )
 
-TapItem.propTypes = {
+TapLineItem.propTypes = {
 	testNumber: PropTypes.number.isRequired,
 	text: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
@@ -91,4 +93,4 @@ const mapStateToProps = (_, initialProps) => ({ tap }) => ({
 	...(tap.tests[initialProps.id] || {})
 })
 
-export default connect(mapStateToProps)(TapItem)
+export default connect(mapStateToProps)(TapLineItem)
