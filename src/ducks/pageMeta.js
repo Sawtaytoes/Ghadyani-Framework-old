@@ -1,5 +1,6 @@
-import { htmlMeta } from 'content/pageMeta'
+import createReducer from 'utils/createReducer'
 import navItems from 'content/navItems'
+import { htmlMeta } from 'content/pageMeta'
 
 
 // --------------------------------------------------------
@@ -7,24 +8,100 @@ import navItems from 'content/navItems'
 // --------------------------------------------------------
 
 const LOCATION_CHANGED = '@@router/LOCATION_CHANGE'
-const CHANGE_META_DATA = 'PAGE_META::CHANGE_META_DATA'
+const UPDATE_META_DATA = 'PAGE_META::UPDATE_META_DATA'
 
 
 // --------------------------------------------------------
 // Action Creators
 // --------------------------------------------------------
 
-export const changeLocation = payload => {
+const noMatchNavItemMeta = {
+	description: '404 - File Not Found',
+	title: '404',
+}
+
+const getPathRegEx = (path, parentPath) => (
+	new RegExp(`^/${parentPath}${path}$`)
+)
+
+const isMatchingNavLink = (link, currentPath, parentPath) => (
+	currentPath
+	&& getPathRegEx(link, parentPath).test(currentPath)
+)
+
+const getPageMetaOnLinkMatch = (navItem, currentPath, parentPath) => (
+	isMatchingNavLink(navItem.to, currentPath, parentPath)
+	&& ({
+		description: navItem.description,
+		title: navItem.name,
+	})
+)
+
+const getMetaFromNavItems = (navItems, currentPath, parentPath = '') => (
+	navItems
+	.find(navItem => (
+		navItem.subitems
+		? (
+			getMetaFromNavItems(
+				navItem.subitems,
+				currentPath,
+				`${parentPath}${navItem.to}/`
+			)
+		)
+		: (
+			getPageMetaOnLinkMatch(
+				navItem,
+				currentPath,
+				parentPath
+			)
+		)
+	))
+)
+
+const getPageMeta = currentPath => {
+	const navItemMeta = getMetaFromNavItems(navItems, currentPath)
+
+	console.log(navItemMeta);
+
+	if (!navItemMeta) {
+		return noMatchNavItemMeta
+	}
+
+	if (typeof window === 'undefined') {
+		return
+	}
+
 	return {
-		type: LOCATION_CHANGED,
-		payload,
+		description: navItemMeta.description,
+		title: navItemMeta.name,
 	}
 }
 
-export const updatePageMeta = path => {
+const updatePageTitle = title => (
+	title
+	&& (document.title = `${title}${htmlMeta.titlePostfix}`)
+)
+
+const updatePageDescription = (description = '') => {
+	const descriptionMetaTag = document.querySelector('meta[name=description]')
+	descriptionMetaTag && (descriptionMetaTag.content = description)
+}
+
+const updateScrollPosition = () => (
+	typeof window !== 'undefined'
+	&& window.scroll(0, 0)
+)
+
+export const updatePageMeta = currentPath => {
+	const { description, title } = getPageMeta(currentPath)
+
+	updatePageTitle(title)
+	updatePageDescription(description)
+
 	return {
-		type: CHANGE_META_DATA,
-		path
+		description,
+		title,
+		type: UPDATE_META_DATA,
 	}
 }
 
@@ -33,94 +110,40 @@ export const updatePageMeta = path => {
 // Reducer
 // --------------------------------------------------------
 
-const pageMeta = {}
-
-const changePageMetaOnLinkMatch = (item, path, itemPathTo) => {
-	const re = new RegExp(`^/${itemPathTo}${item.to}$`),
-		linkMatch = re.test(path)
-
-	if (linkMatch) {
-		pageMeta.title = item.name
-		pageMeta.description = item.description
-	}
-
-	return linkMatch
-}
-
-const getMetaFromNavItems = (items, path, itemPathTo = '') => {
-	return items.some(item => {
-		if (item.subitems) {
-			return getMetaFromNavItems(item.subitems, path, `${itemPathTo}${item.to}/`)
-		}
-
-		return changePageMetaOnLinkMatch(item, path, itemPathTo)
-	})
-}
-
-const changePageMeta = (path) => {
-	if (!getMetaFromNavItems(navItems, path)) {
-		pageMeta.title = '404'
-		pageMeta.description = '404 - File Not Found'
-	}
-
-	if (typeof window === 'undefined') {
-		return
-	}
-
-	const { title, description } = pageMeta
-	title && (document.title = `${title}${htmlMeta.titlePostfix}`)
-	if (description) {
-		const descriptionMetaTag = document.querySelector('meta[name=description]')
-		descriptionMetaTag && (descriptionMetaTag.content = description)
-	}
-}
-
-const updateScrollPosition = () => {
-	if (typeof window !== 'undefined') {
-		window.scroll(0, 0)
-	}
-}
-
 export const initialState = {
 	currentPath: '/',
-	previousPath: '/',
-	pathChanged: false,
-	title: '',
 	description: '',
+	hasPathChanged: false,
+	previousPath: '/',
+	title: '',
 }
 
-export default (state = initialState, action) => {
-	const { type, path, payload } = action
+const reducer = {
+	[UPDATE_META_DATA]: (state, { description, title }) => ({
+		...state,
+		description,
+		title,
+	}),
 
-	switch (type) {
-	case CHANGE_META_DATA:
-		changePageMeta(path)
-
-		return {
-			...state,
-			title: pageMeta.title,
-			description: pageMeta.description
-		}
-
-	case LOCATION_CHANGED: {
-		const currentPath = payload.pathname
+	[LOCATION_CHANGED]: (state, { payload: { pathname } }) => {
+		const currentPath = pathname
 		const previousPath = state.currentPath
-		const pathChanged = currentPath !== previousPath
 
-		changePageMeta(currentPath)
-		pathChanged && updateScrollPosition()
+		const hasPathChanged = currentPath !== previousPath
+
+		hasPathChanged && updateScrollPosition()
+
+		const { description, title } = updatePageMeta(currentPath)
 
 		return {
 			...state,
 			currentPath,
+			description,
+			hasPathChanged,
 			previousPath,
-			pathChanged,
-			title: pageMeta.title,
-			description: pageMeta.description
+			title,
 		}
-	}
-
-	default:
-		return state
-	}
+	},
 }
+
+export default createReducer(reducer, initialState)
