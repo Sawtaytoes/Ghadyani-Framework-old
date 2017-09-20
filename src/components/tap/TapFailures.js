@@ -12,7 +12,11 @@ const addId = (test, index) => ({
 
 const isFailure = ({ type }) => type === tapMessageType.fail
 
+const hasFailedTests = failures => failures.length > 0
+
 export const TapFailures = ({ tests, failures }) => {
+	if (!hasFailedTests(failures)) { return null }
+
 	const failedTests = (
 		tests
 		.map(addId)
@@ -21,8 +25,8 @@ export const TapFailures = ({ tests, failures }) => {
 
 	return (
 		<div>
-			{failures.length > 0 && <hr />}
-			{failures.length > 0 && <h2>Failures</h2>}
+			<hr />
+			<h2>Failures</h2>
 			{
 				failures
 				.map((_, index) => (
