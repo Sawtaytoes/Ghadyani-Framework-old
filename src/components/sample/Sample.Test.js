@@ -2,7 +2,7 @@ import { shallow } from 'enzyme'
 import React from 'react'
 import test from 'tape-catch'
 
-import Sample from './sample'
+import Sample from './Sample'
 
 test('Render <Sample />', t => {
 	t.ok(
