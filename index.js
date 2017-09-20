@@ -12,10 +12,16 @@ require(`${dir.services}setupNewrelic`)
 // Set App Mode
 const runTests = serverRunMode.mode === 'test'
 const runTestsWatch = serverRunMode.mode === 'test:watch'
-const runCompiler = serverRunMode.isLocalProductionTesting
+
+const runCompiler = (
+	serverRunMode.isLocalProductionTesting
 	|| serverRunMode.mode === 'compile'
-const runServer = serverRunMode.isLocalProductionTesting
+)
+
+const runServer = (
+	serverRunMode.isLocalProductionTesting
 	|| serverRunMode.mode === 'server'
+)
 
 // Start Webservers
 if (runTests) {
