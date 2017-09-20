@@ -22,9 +22,7 @@ const loadTests = (req, res) => {
 }
 
 const loadSite = (req, res) => {
-	res.end(require(`${global.baseDir}${paths.root.src}utils/renderSite.js`)(undefined, {
-		pageMeta: { title: req.url }
-	}))
+	res.end(require(`${global.baseDir}${paths.root.src}utils/renderSite.js`)(undefined, { pageMeta: {} }))
 }
 
 new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
