@@ -9,4 +9,5 @@ import test from 'tape-catch'
 
 test('Page Meta: Test', t => {
 	t.ok(true, 'yo!')
+	t.end()
 })
