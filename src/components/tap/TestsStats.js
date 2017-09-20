@@ -2,8 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-// Enums
-import { TAP_COLOR } from 'ducks/tap'
+import { tapColor } from 'ducks/tap'
 
 const fontSize = '2em'
 
@@ -21,26 +20,26 @@ const styles = {
 	},
 
 	tapInfo: {
-		color: TAP_COLOR.INFO,
+		color: tapColor.info,
 		fontSize,
 	},
 
 	tapPass: {
-		color: TAP_COLOR.PASS,
+		color: tapColor.pass,
 		fontSize,
 	},
 
 	tapFail: {
-		color: TAP_COLOR.FAIL,
+		color: tapColor.fail,
 		fontSize,
 	},
 }
 
 export const TestsStats = ({
-	numTotal,
-	numPassed,
-	numFailed,
 	duration,
+	numFailed,
+	numPassed,
+	numTotal,
 	testsComplete,
 }) => (
 	<div>
@@ -71,7 +70,7 @@ export const TestsStats = ({
 )
 
 TestsStats.propTypes = {
-	duration: PropTypes.number,
+	duration: PropTypes.number.isRequired,
 	numFailed: PropTypes.number.isRequired,
 	numPassed: PropTypes.number.isRequired,
 	numTotal: PropTypes.number.isRequired,

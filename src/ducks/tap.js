@@ -41,17 +41,16 @@ export const TAP_MESSAGE_REGEX = /^((ok|not ok|(# (ok|tests|pass|fail)?))[ ]*)(.
 export const TAP_TEST_INFO_REGEX = /^(\d+)[ ](.+)$/
 export const TAP_FAILURE_REGEX = /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/
 
-const Enum = () => ({})
-export const TAP_MESSAGE_TYPE = {
-	HEADER: Enum(),
-	PASS: Enum(),
-	FAIL: Enum(),
+export const tapMessageType = {
+	header: 'header',
+	pass: 'pass',
+	fail: 'fail',
 }
 
-export const TAP_COLOR = {
-	FAIL: 'crimson',
-	INFO: 'dimgrey',
-	PASS: 'green',
+export const tapColor = {
+	fail: 'crimson',
+	info: 'dimgrey',
+	pass: 'green',
 }
 
 const getFailureInfo = message => {
@@ -111,7 +110,7 @@ const tapTestActions = {
 			tests
 			.concat({
 				text,
-				type: TAP_MESSAGE_TYPE.HEADER,
+				type: tapMessageType.header,
 			})
 		)
 	}),
@@ -123,7 +122,7 @@ const tapTestActions = {
 			tests
 			.concat({
 				...getTestInfo(messageText),
-				type: TAP_MESSAGE_TYPE.FAIL,
+				type: tapMessageType.fail,
 			})
 		),
 	}),
@@ -135,7 +134,7 @@ const tapTestActions = {
 			tests
 			.concat({
 				...getTestInfo(messageText),
-				type: TAP_MESSAGE_TYPE.PASS,
+				type: tapMessageType.pass,
 			})
 		),
 	}),
@@ -240,7 +239,7 @@ const parseFailureReason = (failures, failureReason) => {
 // Reducer
 // --------------------------------------------------------
 
-export const getInitialState = () => ({
+export const initialState = {
 	duration: 0,
 	failures: [],
 	numFailed: 0,
@@ -248,7 +247,7 @@ export const getInitialState = () => ({
 	numTotal: 0,
 	tests: [],
 	testsComplete: false,
-})
+}
 
 const reducer = {
 	[SET_TAP_START_TIME]: (
@@ -291,4 +290,4 @@ const reducer = {
 	},
 }
 
-export default createReducer(reducer, getInitialState())
+export default createReducer(reducer, initialState)

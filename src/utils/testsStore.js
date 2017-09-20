@@ -15,7 +15,7 @@ import {
 	addTapMessage,
 	addTapFailure,
 
-	getInitialState as tapInitialState,
+	initialState as tapInitialState,
 } from 'ducks/tap'
 
 // Pretty TAP output in the console
@@ -23,13 +23,25 @@ import 'tap-dev-tool/register'
 
 const middlewares = []
 
-const store = compose(applyMiddleware(...middlewares))(
-	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
-)(combineReducers({ tap }), { tap: tapInitialState()})
+const store = (
+	compose(
+		applyMiddleware(...middlewares)
+	)(
+		window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
+	)(
+		combineReducers({ tap }),
+		{ tap: tapInitialState }
+	)
+)
 
-module.hot && module.hot.accept('ducks', () => {
-	store.replaceReducer(combineReducers(require('ducks/tap')))
-})
+module.hot && module.hot.accept(
+	'ducks',
+	() => (
+		store.replaceReducer(
+			combineReducers(require('ducks/tap'))
+		)
+	)
+)
 
 const log = console.log
 window.console.log = function(message) {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { stylesLoader } from 'utils/styles-loader'
+import { stylesLoader } from 'utils/stylesLoader'
 
 export const Sample = () => (
 	<div className="sample">

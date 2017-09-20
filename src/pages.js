@@ -1,10 +1,10 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import SiteLayout from 'components/site-layout/site-layout'
-import Home from 'components/pages/home'
-import About from 'components/pages/about'
-import NoMatch from 'components/pages/no-match'
+import SiteLayout from 'components/site-layout/SiteLayout'
+import Home from 'components/pages/Home'
+import About from 'components/pages/About'
+import NoMatch from 'components/pages/NoMatch'
 
 const Pages = () => (
 	<SiteLayout>

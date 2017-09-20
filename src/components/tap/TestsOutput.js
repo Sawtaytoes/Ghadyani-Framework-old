@@ -1,8 +1,8 @@
 import React from 'react'
 
-import TestsStats from 'components/tap/tests-stats'
-import TestsFailures from 'components/tap/tests-failures'
-import TestsList from 'components/tap/tests-list'
+import TestsStats from 'components/tap/TestsStats'
+import TestsFailures from 'components/tap/TestsFailures'
+import TestsList from 'components/tap/TestsList'
 
 export const TestsOutput = () => (
 	<div>

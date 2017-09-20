@@ -6,29 +6,29 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
 // Configs
-const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.configs}config-settings`)
+const dir = require(`${global.baseDir}globalDirs`)
+const config = require(`${dir.configs}configSettings`)
 const paths = require(`${dir.includes}paths`)
 const webpackClientConfig = require(`${dir.configs}webpack.config.client.dev`)
-const webpackServerConfig = require(`${dir.configs}webpack-dev-server.config`)
-const { onBuild } = require(`${dir.includes}webpack-build-helpers`)
+const webpackServerConfig = require(`${dir.configs}webpackDevServer.config`)
+const { onBuild } = require(`${dir.includes}webpackBuildHelpers`)
 
 const sendEmail = (req, res) => {
-	require(`${dir.services}send-email`)(req.body, res)
+	require(`${dir.services}sendEmail`)(req.body, res)
 }
 
 const loadTests = (req, res) => {
-	res.end(require(`${global.baseDir}${paths.root.src}utils/render-tests-page.jsx`)(req.params.testName))
+	res.end(require(`${global.baseDir}${paths.root.src}utils/renderTests.js`)(req.params.testName))
 }
 
 const loadSite = (req, res) => {
-	res.end(require(`${global.baseDir}${paths.root.src}utils/render-full-page.jsx`)(undefined, {
+	res.end(require(`${global.baseDir}${paths.root.src}utils/renderSite.js`)(undefined, {
 		pageMeta: { title: req.url }
 	}))
 }
 
 new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
-.listen(config.getPort(), config.getHostname(), onBuild('webpack-dev-server', config.getServerUrl()))
+.listen(config.getPort(), config.getHostname(), onBuild('webpackDevServer', config.getServerUrl()))
 
 express()
 .use(express.static(`${global.baseDir}${paths.root.dest}`, { redirect: false }))

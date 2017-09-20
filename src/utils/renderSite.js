@@ -6,8 +6,8 @@ import { renderToStaticMarkup } from 'react-dom/server'
 import {
 	htmlMeta,
 	dnsPrefetches,
-	thirdPartyAssets
-} from './render-full-page-extras'
+	thirdPartyAssets,
+} from '../content/pageMeta'
 import { getStyles } from './styles'
 
 const cacheAge = 604800 // 1wk -> 60s x 60m x 24h x 7d

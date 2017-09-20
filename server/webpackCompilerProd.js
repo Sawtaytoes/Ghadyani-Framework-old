@@ -1,11 +1,11 @@
 const webpack = require('webpack')
 
 // Config Vars
-const dir = require(`${global.baseDir}/global-dirs`)
-const serverRunMode = require(`${dir.includes}server-run-mode`)
+const dir = require(`${global.baseDir}globalDirs`)
+const serverRunMode = require(`${dir.includes}serverRunMode`)
 const webpackClientConfig = require(`${dir.configs}webpack.config.client.prod`)
 const webpackServerConfig = require(`${dir.configs}webpack.config.server.prod`)
-const { onBuild } = require(`${dir.includes}webpack-build-helpers`)
+const { onBuild } = require(`${dir.includes}webpackBuildHelpers`)
 
 module.exports = () => {
 	if (serverRunMode.isLocalProductionTesting) {

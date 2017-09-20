@@ -1,19 +1,18 @@
 import test from 'tape-catch'
 
-import tap, {
-	TAP_START_REGEX,
-	TAP_MESSAGE_REGEX,
+import tapReducer, {
 	TAP_FAILURE_REGEX,
+	TAP_MESSAGE_REGEX,
+	TAP_START_REGEX,
 	TAP_TEST_INFO_REGEX,
 
-	TAP_MESSAGE_TYPE,
-	TAP_COLOR,
-
-	getInitialState,
-
-	setTapStartTime,
-	addTapMessage,
 	addTapFailure,
+	addTapMessage,
+	setTapStartTime,
+
+	tapMessageType,
+
+	initialState,
 } from './tap'
 
 test('TAP: RegEx Start', t => {
@@ -189,26 +188,11 @@ test('TAP: RegEx Test Info', t => {
 	t.end()
 })
 
-test('TAP: Message Type Enums', t => {
-	t.notEqual(TAP_MESSAGE_TYPE.HEADER, TAP_MESSAGE_TYPE.FAIL)
-	t.notEqual(TAP_MESSAGE_TYPE.HEADER, TAP_MESSAGE_TYPE.PASS)
-	t.notEqual(TAP_MESSAGE_TYPE.PASS, TAP_MESSAGE_TYPE.FAIL)
-	t.end()
-})
-
-test('TAP: Color Values', t => {
-	t.equal(typeof TAP_COLOR.FAIL, 'string')
-	t.equal(typeof TAP_COLOR.INFO, 'string')
-	t.equal(typeof TAP_COLOR.PASS, 'string')
-	t.end()
-})
-
 test('TAP: Initial State', t => {
-	const state = getInitialState()
+	t.equal(typeof initialState, 'object', "Initial state is the correct type")
 
-	t.equal(typeof state, 'object', "Initial state is the correct type")
-
-	Object.values(state)
+	Object
+	.values(initialState)
 	.forEach(
 		value => (
 			t.ok(
@@ -243,15 +227,14 @@ test('TAP: Action Creators', t => {
 })
 
 test('TAP: Reducer Start Time', t => {
-	const state = getInitialState()
 	const action = setTapStartTime()
 
-	const finalState = tap(state, action)
+	const finalState = tapReducer(initialState, action)
 
 	t.deepEqual(
 		finalState,
 		{
-			...state,
+			...initialState,
 			startTime: action.startTime,
 		},
 		"Start time should be the same as when we started"
@@ -280,47 +263,47 @@ test('TAP: Reducer Tap Messages', t => {
 	]
 
 	const tapTests = [{
-		type: TAP_MESSAGE_TYPE.HEADER,
+		type: tapMessageType.header,
 		text: "Passing Test 1",
 	}, {
-		type: TAP_MESSAGE_TYPE.PASS,
+		type: tapMessageType.pass,
 		text: "Passes",
 		testNumber: 1,
 	}, {
-		type: TAP_MESSAGE_TYPE.HEADER,
+		type: tapMessageType.header,
 		text: "Failing Test 1",
 	}, {
-		type: TAP_MESSAGE_TYPE.FAIL,
+		type: tapMessageType.fail,
 		text: "Fails",
 		testNumber: 2,
 	}, {
-		type: TAP_MESSAGE_TYPE.FAIL,
+		type: tapMessageType.fail,
 		text: "Fails",
 		testNumber: 3,
 	}, {
-		type: TAP_MESSAGE_TYPE.HEADER,
+		type: tapMessageType.header,
 		text: "Failing Test 2",
 	}, {
-		type: TAP_MESSAGE_TYPE.FAIL,
+		type: tapMessageType.fail,
 		text: "Fails",
 		testNumber: 4,
 	}, {
-		type: TAP_MESSAGE_TYPE.PASS,
+		type: tapMessageType.pass,
 		text: "Passes",
 		testNumber: 5,
 	}, {
-		type: TAP_MESSAGE_TYPE.PASS,
+		type: tapMessageType.pass,
 		text: "Passes",
 		testNumber: 6,
 	}, {
-		type: TAP_MESSAGE_TYPE.PASS,
+		type: tapMessageType.pass,
 		text: "Passes",
 		testNumber: 7,
 	}, {
-		type: TAP_MESSAGE_TYPE.HEADER,
+		type: tapMessageType.header,
 		text: "Passing Test 2",
 	}, {
-		type: TAP_MESSAGE_TYPE.PASS,
+		type: tapMessageType.pass,
 		text: "Passes",
 		testNumber: 8,
 	}]
@@ -328,8 +311,8 @@ test('TAP: Reducer Tap Messages', t => {
 	const state = (
 		tapMessages
 		.reduce(
-			(newState, message) => tap(newState, addTapMessage(message)),
-			tap(getInitialState(), setTapStartTime())
+			(newState, message) => tapReducer(newState, addTapMessage(message)),
+			tapReducer(initialState, setTapStartTime())
 		)
 	)
 
@@ -406,9 +389,9 @@ test('TAP: Reducer Tap Failures', t => {
 		tapFailureMessages
 		.reduce(
 			(newState, message) => (
-				tap(newState, addTapFailure(message))
+				tapReducer(newState, addTapFailure(message))
 			),
-			tap(getInitialState(), setTapStartTime())
+			tapReducer(initialState, setTapStartTime())
 		)
 	)
 

@@ -5,10 +5,10 @@ const fs = require('fs')
 const helmet = require('helmet')
 
 // Configs
-const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.configs}config-settings`)
+const dir = require(`${global.baseDir}globalDirs`)
+const config = require(`${dir.configs}configSettings`)
 const paths = require(`${dir.includes}paths`)
-const serverRunMode = require(`${dir.includes}server-run-mode`)
+const serverRunMode = require(`${dir.includes}serverRunMode`)
 
 const secureServer = app => {
 	const https = require('https')
@@ -24,7 +24,7 @@ const secureServer = app => {
 }
 
 const sendEmail = (req, res) => {
-	require(`${dir.services}send-email`)(req.body, res)
+	require(`${dir.services}sendEmail`)(req.body, res)
 }
 
 const loadSite = (req, res) => {

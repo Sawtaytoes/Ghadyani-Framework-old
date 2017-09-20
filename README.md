@@ -16,7 +16,7 @@
 ## Setup
 
 #### Config Settings
-Default configs are `config-settings.js`. Here's an example of what defaults might look like
+Default configs are `configSettings.js`. Here's an example of what defaults might look like
 ```js
 env: 'production',                            // Can be 'development' or 'production'.
 
@@ -119,7 +119,7 @@ If you update the update.sh file, make sure to run `git pull` prior to running t
 
 #### Stop the Server
 ```shell
-bash stop-server.sh
+bash stopServer.sh
 ```
 
 ### Create SSL Cert

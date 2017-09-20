@@ -1,8 +1,8 @@
 const fs = require('fs')
 
 // Configs
-const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.configs}config-settings`)
+const dir = require(`${global.baseDir}globalDirs`)
+const config = require(`${dir.configs}configSettings`)
 const paths = require(`${dir.includes}paths`)
 const webpackClientConfig = require(`${dir.configs}webpack.config.client.dev`)
 

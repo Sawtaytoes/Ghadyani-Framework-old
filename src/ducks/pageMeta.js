@@ -1,5 +1,5 @@
-import { htmlMeta } from 'utils/render-full-page-extras'
-import navItems from 'content/nav-items'
+import { htmlMeta } from 'content/pageMeta'
+import navItems from 'content/navItems'
 
 
 // --------------------------------------------------------
@@ -81,15 +81,15 @@ const updateScrollPosition = () => {
 	}
 }
 
-export const getInitialState = () => ({
+export const initialState = {
 	currentPath: '/',
 	previousPath: '/',
 	pathChanged: false,
 	title: '',
 	description: '',
-})
+}
 
-export default (state = getInitialState(), action) => {
+export default (state = initialState, action) => {
 	const { type, path, payload } = action
 
 	switch (type) {

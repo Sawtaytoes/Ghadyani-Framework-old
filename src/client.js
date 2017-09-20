@@ -7,7 +7,7 @@ import 'react-fastclick'
 import 'utils/polyfills'
 
 // Root Component
-import ClientRoot from 'client-root'
+import ClientRoot from 'ClientRoot'
 
 // Vars
 const RootElement = document.getElementById('root')
@@ -18,12 +18,13 @@ render(
 	</AppContainer>
 , RootElement)
 
-module.hot && module.hot.accept('./client-root', () => {
-	const ClientRootHotReload = require('./client-root').default
+module.hot && module.hot.accept('./ClientRoot', () => {
+	const ClientRootHotReload = require('./ClientRoot').default
 
 	render(
 		<AppContainer>
 			<ClientRootHotReload />
-		</AppContainer>
-	, RootElement)
+		</AppContainer>,
+		RootElement
+	)
 })

@@ -1,5 +1,5 @@
 // Config Vars
-const dir = require(`${global.baseDir}/global-dirs`)
+const dir = require(`${global.baseDir}globalDirs`)
 const { Server, config } = require('karma')
 
 const karmaRunner = configFilename => {

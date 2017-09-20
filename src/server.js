@@ -6,13 +6,12 @@ import { compose, createStore } from 'redux'
 
 import 'utils/polyfills'
 import Pages from 'pages'
-import renderFullPage from 'utils/render-full-page'
+import renderSite from 'utils/renderSite'
 import rootReducer from 'ducks'
 import { updatePageMeta } from 'ducks/page-meta'
 
 module.exports = (req, res) => {
 	const context = {}
-
 	const store = compose()(createStore)(rootReducer)
 
 	const renderedContent = renderToString(
@@ -27,7 +26,7 @@ module.exports = (req, res) => {
 	)
 
 	store.dispatch(updatePageMeta(req.url))
-	const renderedPage = renderFullPage(renderedContent, store.getState())
+	const renderedPage = renderSite(renderedContent, store.getState())
 
 	if (context.url) {
 		res.writeHead(302, { Location: context.url })
