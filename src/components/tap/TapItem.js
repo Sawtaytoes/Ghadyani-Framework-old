@@ -65,7 +65,7 @@ TestRun.propTypes = {
 	type: PropTypes.string.isRequired,
 }
 
-export const TestItem = ({
+export const TapItem = ({
 	testNumber,
 	text,
 	type,
@@ -81,7 +81,7 @@ export const TestItem = ({
 	)
 )
 
-TestItem.propTypes = {
+TapItem.propTypes = {
 	testNumber: PropTypes.number.isRequired,
 	text: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
@@ -91,4 +91,4 @@ const mapStateToProps = (_, initialProps) => ({ tap }) => ({
 	...(tap.tests[initialProps.id] || {})
 })
 
-export default connect(mapStateToProps)(TestItem)
+export default connect(mapStateToProps)(TapItem)

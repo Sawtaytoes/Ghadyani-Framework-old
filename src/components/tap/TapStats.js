@@ -35,7 +35,7 @@ const styles = {
 	},
 }
 
-export const TestsStats = ({
+export const TapStats = ({
 	duration,
 	numFailed,
 	numPassed,
@@ -69,7 +69,7 @@ export const TestsStats = ({
 	</div>
 )
 
-TestsStats.propTypes = {
+TapStats.propTypes = {
 	duration: PropTypes.number.isRequired,
 	numFailed: PropTypes.number.isRequired,
 	numPassed: PropTypes.number.isRequired,
@@ -83,4 +83,4 @@ export default connect(({ tap }) => ({
 	numPassed: tap.numPassed,
 	numTotal: tap.numTotal,
 	testsComplete: tap.testsComplete,
-}))(TestsStats)
+}))(TapStats)

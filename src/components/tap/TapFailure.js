@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TestItem from 'components/tap/TestItem'
+import TapItem from 'components/tap/TapItem'
 
 const styles = {
 	stackTrace: {
@@ -31,9 +31,15 @@ const styles = {
 	},
 }
 
-export const TestFailure = ({ failedTest, operator, expected, actual, stack }) => (
+export const TapFailure = ({
+	actual,
+	expected,
+	failedTest,
+	operator,
+	stack,
+}) => (
 	<div style={{ backgroundColor: 'pink' }}>
-		<TestItem {...failedTest} />
+		<TapItem {...failedTest} />
 
 		<div style={{ padding: '0 1em 1em' }}>
 			<h3 style={{ margin: 0 }}>{operator}</h3>
@@ -66,7 +72,7 @@ export const TestFailure = ({ failedTest, operator, expected, actual, stack }) =
 	</div>
 )
 
-TestFailure.propTypes = {
+TapFailure.propTypes = {
 	actual: PropTypes.string,
 	expected: PropTypes.string,
 	failedTest: PropTypes.shape({
@@ -79,8 +85,10 @@ TestFailure.propTypes = {
 	stack: PropTypes.string,
 }
 
-const mapStateToProps = (_, initialProps) => ({ tap: { failures } }) => ({
-	...(failures[initialProps.id] || {})
-})
+const mapStateToProps = (_, initialProps) => (
+	({ tap: { failures } }) => ({
+		...(failures[initialProps.id] || {})
+	})
+)
 
-export default connect(mapStateToProps)(TestFailure)
+export default connect(mapStateToProps)(TapFailure)

@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 
 import 'utils/polyfills'
-import TestsOutput from 'components/tap/TestsOutput'
+import TapOutput from 'components/tap/TapOutput'
 import store from 'utils/testsStore'
 
 // Setup testing files to watch
@@ -16,7 +16,7 @@ const runTests = isTestFile => (
 	.forEach(context)
 )
 
-const allTests = fileName => !fileName.includes('TestsOutput.test.js')
+const allTests = fileName => !fileName.includes('TapOutput.test.js')
 const specificTests = testName => fileName => console.debug(fileName) || fileName.includes(`/${testName}.test.js`)
 
 runTests(
@@ -27,7 +27,7 @@ runTests(
 
 render(
 	<Provider store={store}>
-		<TestsOutput />
+		<TapOutput />
 	</Provider>,
 	document.getElementById('root')
 )

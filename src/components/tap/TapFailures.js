@@ -2,10 +2,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TestFailure from 'components/tap/TestFailure'
+import TapFailure from 'components/tap/TapFailure'
 import { tapMessageType } from 'ducks/tap'
 
-export const TestsFailures = ({ tests, failures }) => {
+export const TapFailures = ({ tests, failures }) => {
 	const failedTests = tests
 		.map((test, index) => (test.id = index) && test)
 		.filter(({ type }) => type === tapMessageType.fail)
@@ -17,7 +17,7 @@ export const TestsFailures = ({ tests, failures }) => {
 			{
 				failures
 				.map((_, index) => (
-					<TestFailure
+					<TapFailure
 						key={index}
 						id={index}
 						failedTest={failedTests[index]}
@@ -28,7 +28,7 @@ export const TestsFailures = ({ tests, failures }) => {
 	)
 }
 
-TestsFailures.propTypes = {
+TapFailures.propTypes = {
 	tests: PropTypes.arrayOf(PropTypes.object).isRequired,
 	failures: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
@@ -36,4 +36,4 @@ TestsFailures.propTypes = {
 export default connect(({ tap }) => ({
 	tests: tap.tests,
 	failures: tap.failures,
-}))(TestsFailures)
+}))(TapFailures)

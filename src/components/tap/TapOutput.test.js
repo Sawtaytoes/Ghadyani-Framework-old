@@ -3,7 +3,7 @@
 	Use these to display pass and failure messages
 	so you can better-style the UI
 
-	Go to `/tests/testsOutput` to view them.
+	Go to `/tests/TapOutput` to view them.
 */
 
 import test from 'tape-catch'
