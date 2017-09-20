@@ -9,4 +9,4 @@ export const Sample = () => (
 	</div>
 )
 
-export default stylesLoader(require('./sample.styl'))(Sample)
+export default stylesLoader(require('./Sample.styl'))(Sample)
