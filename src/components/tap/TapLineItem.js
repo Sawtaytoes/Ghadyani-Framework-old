@@ -84,7 +84,7 @@ export const TapLineItem = ({
 )
 
 TapLineItem.propTypes = {
-	testNumber: PropTypes.number.isRequired,
+	testNumber: PropTypes.number,
 	text: PropTypes.string.isRequired,
 	type: PropTypes.string.isRequired,
 };
