@@ -1,4 +1,3 @@
-// Utilities
 import renderStyles from 'utils/styles'
 
 class StylesLoader {

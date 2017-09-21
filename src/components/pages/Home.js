@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { pure } from 'recompose'
 
 import Sample from 'components/sample/sample'
 
@@ -16,4 +17,4 @@ export const Home = () => (
 	</div>
 )
 
-export default Home
+export default pure(Home)
