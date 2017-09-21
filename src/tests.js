@@ -17,10 +17,11 @@ const runTests = isTestFile => (
 	.forEach(context)
 )
 
-const allTests = fileName => !fileName.includes('TapOutput.test.js')
+const isTapTester = fileName => fileName.includes('TapOutput.test.js')
 
+const allTests = fileName => !isTapTester(fileName)
 const specificTests = testName => fileName => (
-	isWildcard && !fileName.includes('TapOutput.test.js')
+	isWildcard && !isTapTester(fileName)
 	? (
 		fileName.match(
 			new RegExp(`${testName.replace('*', '')}.*\\.test\\.js`)
