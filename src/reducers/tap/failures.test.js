@@ -50,7 +50,7 @@ test('TAP Failures: Parse TAP Output', t => {
 		actual: "[ReferenceError: nonExistentVariable is not defined]",
 		expected: "undefined",
 		operator: "error",
-		stack: "ReferenceError: nonExistentVariable is not defined\n  at Test.eval (eval at <anonymous> (http://localhost:3000/tests.bundle.js:6182:2), <anonymous>:31:2)\n  at Test.bound [as _cb] (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5928:2), <anonymous>:66:32)\n  at Test.exports.Test.run (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5883:2), <anonymous>:26:10)\n  at Test.bound [as run] (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5928:2), <anonymous>:66:32)\n  at next (eval at <anonymous> (http://localhost:3000/tests.bundle.js:6135:2), <anonymous>:71:15)\n  at onNextTick (eval at <anonymous> (http://localhost:3000/tests.bundle.js:5831:2), <anonymous>:64:12)\n  at Item.run (eval at <anonymous> (http://localhost:3000/tests.bundle.js:861:2), <anonymous>:153:14)\n  at drainQueue (eval at <anonymous> (http://localhost:3000/tests.bundle.js:861:2), <anonymous>:123:42)\n"
+		stack: "ReferenceError: nonExistentVariable is not defined"
 	}]
 
 	const actualState = (

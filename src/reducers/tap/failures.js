@@ -34,8 +34,8 @@ const parseFailureType = (failures, failureType, failureReason) => (
 const incompleteFailureActions = {
 	actual: failureReason => failureReason,
 	expected: failureReason => failureReason,
-	stack: failureReason => `${failureReason}\n`,
-	undefined: (failureReason, incompleteFailureReason) => `${incompleteFailureReason}  ${failureReason}\n`,
+	stack: failureReason => failureReason,
+	undefined: (failureReason, incompleteFailureReason) => incompleteFailureReason,
 }
 
 const getNextIncompleteFailureReason = (
