@@ -1,7 +1,7 @@
 import React from 'react'
 import { pure } from 'recompose'
 
-import { stylesLoader } from 'utils/stylesLoader'
+import { stylesLoader } from 'components/styles-loader/StylesLoader'
 
 export const Sample = () => (
 	<div className="sample">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { pure } from 'recompose'
 
-import StylesLoader from 'utils/stylesLoader'
+import StylesLoader from 'components/styles-loader/StylesLoader'
 
 // Styles
 const stylesLoader = StylesLoader.create()
