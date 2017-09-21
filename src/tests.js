@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 
 import 'utils/polyfills'
 import TapOutput from 'components/tap/TapOutput'
-import store from 'utils/testsStore'
+import store from 'reducers/testsStore'
 
 // Setup testing files to watch
 const context = require.context('./', true, /^\.\/.*\.test\.js$/)

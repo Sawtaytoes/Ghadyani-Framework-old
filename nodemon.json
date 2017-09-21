@@ -9,8 +9,8 @@
     "globalDirs.js",
     "postcss.config.js",
     "src/content/pageMeta.js",
-    "src/utils/renderSite.js",
-    "src/utils/renderTests.js",
+    "src/renderers/renderSite.js",
+    "src/renderers/renderTests.js",
     "server/"
   ]
 }

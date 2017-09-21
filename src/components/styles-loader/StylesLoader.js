@@ -1,4 +1,4 @@
-import renderStyles from 'utils/renderStyles'
+import renderStyles from 'renderers/renderStyles'
 
 export default class StylesLoader {
 	static create() {
