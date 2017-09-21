@@ -68,6 +68,7 @@ test('StylesLoader: Render', t => {
 		"Wrapped component rendered inside of StylesLoader"
 	)
 
+	wrapper.unmount()
 	t.end()
 })
 
@@ -100,5 +101,6 @@ test('stylesLoader: Render', t => {
 		"Wrapped component rendered inside of stylesLoader"
 	)
 
+	wrapper.unmount()
 	t.end()
 })
