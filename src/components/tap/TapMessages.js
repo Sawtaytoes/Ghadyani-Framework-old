@@ -21,8 +21,8 @@ TapMessages.propTypes = {
 	tests: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-const mapStateToProps = ({ tap }) => ({
-	tests: tap.tests,
+const mapStateToProps = ({ tap: { tests } }) => ({
+	tests,
 })
 
 export default connect(mapStateToProps)(TapMessages)

@@ -2,7 +2,10 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { tapColor } from 'ducks/tap'
+import {
+	isDoneProcessing,
+	tapColor,
+} from 'reducers/tap/helpers'
 
 const fontSize = '2em'
 
@@ -37,24 +40,24 @@ const styles = {
 
 export const TapStats = ({
 	duration,
+	isDoneProcessing,
 	numFailed,
 	numPassed,
 	numTotal,
-	testsComplete,
 }) => (
 	<div>
 		<h1 style={styles.pageHeading}>
-			{testsComplete ? 'Stats' : 'Running tests...'}
+			{isDoneProcessing ? 'Stats' : 'Running tests...'}
 		</h1>
 
 		<p style={styles.tapContainer}>
 			<span style={styles.tapInfo}>{numTotal} </span>Total
 
 			<span style={styles.standardFontSize}> | </span>
-			<span style={styles.tapPass}>{numPassed} </span>{testsComplete ? 'Passed' : 'Passing'}
+			<span style={styles.tapPass}>{numPassed} </span>{isDoneProcessing ? 'Passed' : 'Passing'}
 
 			<span style={styles.standardFontSize}> | </span>
-			<span style={styles.tapFail}>{numFailed} </span>{testsComplete ? 'Failed' : 'Failing'}
+			<span style={styles.tapFail}>{numFailed} </span>{isDoneProcessing ? 'Failed' : 'Failing'}
 
 			{duration && <span style={styles.standardFontSize}> | </span>}
 			{
@@ -71,16 +74,16 @@ export const TapStats = ({
 
 TapStats.propTypes = {
 	duration: PropTypes.number.isRequired,
+	isDoneProcessing: PropTypes.bool.isRequired,
 	numFailed: PropTypes.number.isRequired,
 	numPassed: PropTypes.number.isRequired,
 	numTotal: PropTypes.number.isRequired,
-	testsComplete: PropTypes.bool.isRequired,
 };
 
-export default connect(({ tap }) => ({
-	duration: tap.duration,
-	numFailed: tap.numFailed,
-	numPassed: tap.numPassed,
-	numTotal: tap.numTotal,
-	testsComplete: tap.testsComplete,
+export default connect(({ tap: { stats, status, timer } }) => ({
+	duration: timer.duration,
+	isDoneProcessing: isDoneProcessing(status),
+	numFailed: stats.numFailed,
+	numPassed: stats.numPassed,
+	numTotal: stats.numTotal,
 }))(TapStats)

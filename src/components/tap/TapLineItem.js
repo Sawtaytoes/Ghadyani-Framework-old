@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import {
 	tapMessageType,
 	tapColor,
-} from 'ducks/tap'
+} from 'reducers/tap/helpers'
 
 const headerStyles = { margin: '10px 0 6px' }
 
@@ -89,8 +89,10 @@ TapLineItem.propTypes = {
 	type: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (_, initialProps) => ({ tap }) => ({
-	...(tap.tests[initialProps.id] || {})
-})
+const mapStateToProps = (_, initialProps) => (
+	({ tap: { tests } }) => ({
+		...(tests[initialProps.id] || {})
+	})
+)
 
 export default connect(mapStateToProps)(TapLineItem)

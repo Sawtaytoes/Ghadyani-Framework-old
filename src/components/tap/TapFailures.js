@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import TapFailure from 'components/tap/TapFailure'
-import { tapMessageType } from 'ducks/tap'
+import { tapMessageType } from 'reducers/tap/helpers'
 
 const addId = (test, index) => ({
 	...test,
@@ -46,7 +46,7 @@ TapFailures.propTypes = {
 	failures: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-export default connect(({ tap }) => ({
-	tests: tap.tests,
-	failures: tap.failures,
+export default connect(({ tap: { failures, tests } }) => ({
+	failures,
+	tests,
 }))(TapFailures)

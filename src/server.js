@@ -7,8 +7,8 @@ import { compose, createStore } from 'redux'
 import 'utils/polyfills'
 import Pages from 'pages'
 import renderSite from 'utils/renderSite'
-import rootReducer from 'ducks'
-import { updatePageMeta } from 'ducks/pageMeta'
+import rootReducer from 'reducers'
+import { updatePageMeta } from 'reducers/pageMeta'
 
 module.exports = (req, res) => {
 	const context = {}

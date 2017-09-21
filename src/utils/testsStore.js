@@ -5,21 +5,21 @@ import {
 	combineReducers,
 } from 'redux'
 
-import tap from 'ducks/tap'
+import tap from 'reducers/tap'
 import {
-	TAP_START_REGEX,
-	TAP_MESSAGE_REGEX,
-	TAP_FAILURE_REGEX,
+	isDoneProcessing,
+	tapParsers,
+} from 'reducers/tap/helpers'
 
+import {
 	setTapStartTime,
 	addTapMessage,
 	addTapFailure,
-
-	initialState as tapInitialState,
-} from 'ducks/tap'
+} from 'reducers/tap/actions'
 
 // Pretty TAP output in the console
-import 'tap-dev-tool/register'
+// [Disabled] because it conflicts with `setTimeout`
+// import 'tap-dev-tool/register'
 
 const middlewares = []
 
@@ -30,35 +30,44 @@ const store = (
 		window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
 	)(
 		combineReducers({ tap }),
-		{ tap: tapInitialState }
 	)
 )
 
 module.hot && module.hot.accept(
-	'ducks',
+	'reducers',
 	() => (
 		store.replaceReducer(
-			combineReducers(require('ducks/tap'))
+			combineReducers(require('reducers/tap'))
 		)
 	)
 )
 
-const log = console.log
+const consoleLog = console.log
 window.console.log = function(message) {
-	log.apply(console, arguments)
+	if (isDoneProcessing(store.getState().tap.status)) {
+		window.console.log = consoleLog
+	}
 
-	// Is valid TAP message
-	if (store.getState().tap.testsComplete) {
-		window.console.log = log
+	else if (message.match(tapParsers.start)) {
+		store.dispatch(
+			setTapStartTime()
+		)
+	}
 
-	} else if (message.search(TAP_START_REGEX) === 0) {
-		store.dispatch(setTapStartTime())
+	else if (message.match(tapParsers.message)) {
+		store.dispatch(
+			addTapMessage(message)
+		)
+	}
 
-	} else if (message.search(TAP_MESSAGE_REGEX) === 0) {
-		store.dispatch(addTapMessage(message))
+	else if (message.match(tapParsers.failure)) {
+		store.dispatch(
+			addTapFailure(message)
+		)
+	}
 
-	} else if (message.search(TAP_FAILURE_REGEX) === 0) {
-		store.dispatch(addTapFailure(message))
+	else {
+		consoleLog.apply(console, arguments)
 	}
 }
 

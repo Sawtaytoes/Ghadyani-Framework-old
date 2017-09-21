@@ -90,7 +90,7 @@ TapFailure.propTypes = {
 	failedTest: PropTypes.shape({
 		testNumber: PropTypes.number.isRequired,
 		text: PropTypes.string.isRequired,
-		type: PropTypes.object.isRequired,
+		type: PropTypes.string.isRequired,
 	}).isRequired,
 	id: PropTypes.number.isRequired,
 	operator: PropTypes.string.isRequired,
