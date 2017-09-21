@@ -2,35 +2,29 @@ import hash from 'murmurhash-js'
 import React, { PureComponent } from 'react'
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
 
-const cssDictionary = new Set()
-const styles = []
+const styles = new Map()
 
-export const getStyles = () => styles.join('')
+export const getStyles = () => (
+	Array.from(styles.values())
+	.join('')
+)
 
-export const setPreRenderedStyles = css => {
-	const cssHash = hash(css)
-
-	if (!cssDictionary.has(cssHash)) {
-		cssDictionary.add(cssHash)
-		styles.push(css)
-	}
-}
+export const setStyles = css => (
+	styles.set(hash(css), css)
+)
 
 const addStyles = stylesFiles => (
 	stylesFiles
 	.map(stylesFile => (
 		canUseDOM
 		? stylesFile._insertCss()
-		: setPreRenderedStyles(stylesFile._getCss())
+		: setStyles(stylesFile._getCss())
 	))
 )
 
 const removeStyles = (styleRemovers = []) => () => (
 	styleRemovers
-	.forEach(styleRemover => (
-		typeof styleRemover === 'function'
-		&& styleRemover()
-	))
+	.map(styleRemover => styleRemover())
 )
 
 const renderStyles = (ComposedComponent, stylesFiles = []) => (
