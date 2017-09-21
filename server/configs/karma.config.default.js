@@ -14,7 +14,7 @@ const karmaDefaultConfig = config => ({
 			watched: false,
 		}
 	],
-	frameworks: ['tap'],
+	frameworks: ['ava', 'tap'],
 	logLevel: config.LOG_INFO,
 	port: 9876,
 	preprocessors: {

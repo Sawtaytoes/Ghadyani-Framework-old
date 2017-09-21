@@ -65,7 +65,7 @@
     "webpack": "^3.5.6"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
+    "ava": "jamestalmage/ava#karma-ava",
     "babel-eslint": "^8.0.0",
     "bell-on-bundler-error-plugin": "^2.0.0",
     "brfs": "^1.4.3",
@@ -74,6 +74,8 @@
     "eslint-loader": "^1.9.0",
     "eslint-plugin-react": "^7.3.0",
     "karma": "^1.7.1",
+    "karma-ava": "^0.0.1",
+    "karma-chrome-launcher": "^2.2.0",
     "karma-phantomjs-launcher": "^1.0.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-tap": "^3.1.1",
