@@ -9,11 +9,6 @@ import pageMetaReducer, {
 
 const getPathWithoutLeadingSlash = path => path.replace(/^\//, '')
 
-test('Page Meta: Test', t => {
-	t.ok(true, 'yo!')
-	t.end()
-})
-
 test('Page Meta: Update Page Meta from `/`', t => {
 	const currentPath = '/'
 
