@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { ConnectedRouter as Router } from 'react-router-redux'
 
-import { history, store } from 'utils/store'
+import { history, store } from 'reducers/store'
 import Pages from 'pages'
 
 export default class ClientRoot extends Component {

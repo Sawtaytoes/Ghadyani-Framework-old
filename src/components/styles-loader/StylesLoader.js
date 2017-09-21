@@ -1,25 +1,24 @@
-import renderStyles from 'utils/styles'
+import renderStyles from 'renderers/renderStyles'
 
-class StylesLoader {
+export default class StylesLoader {
 	static create() {
 		return new StylesLoader()
 	}
 
 	constructor() {
-		this.stylesFiles = []
+		this.styleFiles = []
 	}
 
 	add(file) {
-		this.stylesFiles.push(file)
+		this.styleFiles.push(file)
 		return this
 	}
 
 	render(component) {
-		return renderStyles(component, this.stylesFiles)
+		return renderStyles(component, this.styleFiles)
 	}
 }
 
-export default StylesLoader
 export const stylesLoader = file => {
 	const stylesLoader = StylesLoader.create().add(file)
 	return stylesLoader.render.bind(stylesLoader)
