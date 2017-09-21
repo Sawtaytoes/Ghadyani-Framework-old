@@ -2,33 +2,26 @@ import hash from 'murmurhash-js'
 import React, { PureComponent } from 'react'
 import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
 
+const cssDictionary = new Set()
 const styles = []
-const cssDictionary = {}
 
-const setDomStyles = (css, stylesFile) => {
-	styles.push(css)
-	return stylesFile._insertCss()
-}
+export const getStyles = () => styles.join('')
 
-const setPreRenderedStyles = css => {
+export const setPreRenderedStyles = css => {
 	const cssHash = hash(css)
 
-	if (!cssDictionary[cssHash]) {
-		cssDictionary[cssHash] = true
+	if (!cssDictionary.has(cssHash)) {
+		cssDictionary.add(cssHash)
 		styles.push(css)
 	}
 }
 
 const addStyles = stylesFiles => (
 	stylesFiles
-	.map(stylesFile => ({
-		css: stylesFile._getCss(),
-		stylesFile,
-	}))
-	.map(({ css, stylesFile }) => (
+	.map(stylesFile => (
 		canUseDOM
-		? setDomStyles(css, stylesFile)
-		: setPreRenderedStyles(css)
+		? stylesFile._insertCss()
+		: setPreRenderedStyles(stylesFile._getCss())
 	))
 )
 

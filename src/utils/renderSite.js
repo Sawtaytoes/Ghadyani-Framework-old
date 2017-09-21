@@ -3,12 +3,13 @@
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
+import { getStyles } from './renderStyles'
+
 import {
 	htmlMeta,
 	dnsPrefetches,
 	thirdPartyAssets,
 } from '../content/pageMeta'
-import { getStyles } from './styles'
 
 const cacheAge = 604800 // 1wk -> 60s x 60m x 24h x 7d
 const prod = process.env.NODE_ENV === 'production'
