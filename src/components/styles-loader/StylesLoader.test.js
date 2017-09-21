@@ -8,7 +8,7 @@ test('StylesLoader: Initialize', t => {
 	const loader = StylesLoader.create()
 
 	t.deepEqual(
-		loader.stylesFiles,
+		loader.styleFiles,
 		[],
 		"Has no styles files"
 	)
@@ -27,7 +27,7 @@ test('StylesLoader: Add Styles', t => {
 	loader.add(require('./StylesLoader.styl'))
 
 	t.deepEqual(
-		loader.stylesFiles,
+		loader.styleFiles,
 		[require('./StylesLoader.styl')],
 		"Has one styles file"
 	)
@@ -35,7 +35,7 @@ test('StylesLoader: Add Styles', t => {
 	loader.add(require('./StylesLoader.styl'))
 
 	t.deepEqual(
-		loader.stylesFiles,
+		loader.styleFiles,
 		[
 			require('./StylesLoader.styl'),
 			require('./StylesLoader.styl'),

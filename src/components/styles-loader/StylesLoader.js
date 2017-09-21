@@ -6,16 +6,16 @@ export default class StylesLoader {
 	}
 
 	constructor() {
-		this.stylesFiles = []
+		this.styleFiles = []
 	}
 
 	add(file) {
-		this.stylesFiles.push(file)
+		this.styleFiles.push(file)
 		return this
 	}
 
 	render(component) {
-		return renderStyles(component, this.stylesFiles)
+		return renderStyles(component, this.styleFiles)
 	}
 }
 
