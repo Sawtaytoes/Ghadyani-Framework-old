@@ -50,7 +50,7 @@ test('TAP Failures: Parse TAP Output', t => {
 		actual: "[ReferenceError: nonExistentVariable is not defined]",
 		expected: "undefined",
 		operator: "error",
-		stack: "",
+		stack: "ReferenceError: nonExistentVariable is not defined",
 	}]
 
 	const actualState = (

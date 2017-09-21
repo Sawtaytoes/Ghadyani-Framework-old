@@ -25,41 +25,33 @@ const addToPreviousFailure = (failures, failureType, failureReason) => (
 	})
 )
 
-const parseFailureType = (failures, failureType, failureReason) => (
+const isIncompleteFailure = failure => failureType => failure[failureType] === '|-'
+
+const addOrUpdateFailure = (failures, failureType, failureReason) => (
 	failureType === 'operator'
 	? failures.concat({ [failureType]: failureReason })
 	: addToPreviousFailure(failures, failureType, failureReason)
 )
 
-const incompleteFailureActions = {
-	actual: failureReason => failureReason,
-	expected: failureReason => failureReason,
-	stack: () => '',
-	undefined: () => '',
-}
-
-const isFailureReasonPlaceholder = failureReason => failureReason === '|-'
-const isIncompleteFailure = failure => failureType => isFailureReasonPlaceholder(failure[failureType])
-
-const parseFailureReason = (failures, failureReason) => {
+const updateFailureReason = (failures, failureReason) => {
 	const incompleteFailure = getIncompleteFailure(failures)
-	const incompleteFailureTypes = Object.keys(incompleteFailure)
 
 	const failureType = (
-		incompleteFailureTypes
+		Object
+		.keys(incompleteFailure)
 		.find(isIncompleteFailure(incompleteFailure))
 	)
 
-	const nextFailureReason = (
-		incompleteFailureActions[failureType](failureReason)
-	)
-
 	return (
-		addToPreviousFailure(
-			failures,
-			failureType || 'stack',
-			nextFailureReason
+		failureType
+		? (
+			addToPreviousFailure(
+				failures,
+				failureType,
+				failureReason
+			)
 		)
+		: failures
 	)
 }
 
@@ -73,8 +65,8 @@ export const initialState = []
 const reducer = {
 	[ADD_FAILURE]: (prevFailures, { failureReason, failureType }) => (
 		failureType
-		? parseFailureType(prevFailures, failureType, failureReason)
-		: parseFailureReason(prevFailures, failureReason)
+		? addOrUpdateFailure(prevFailures, failureType, failureReason)
+		: updateFailureReason(prevFailures, failureReason)
 	),
 }
 
