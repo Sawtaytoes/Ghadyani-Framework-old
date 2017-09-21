@@ -11,7 +11,9 @@ export const Sample = () => (
 )
 
 export default (
-	pure(
-		stylesLoader(require('./Sample.styl'))(Sample)
+	stylesLoader(
+		require('./Sample.styl')
+	)(
+		pure(Sample)
 	)
 )

@@ -22,7 +22,7 @@ SiteLayout.propTypes = {
 }
 
 export default (
-	pure(
-		stylesLoader.render(SiteLayout)
+	stylesLoader.render(
+		pure(SiteLayout)
 	)
 )
