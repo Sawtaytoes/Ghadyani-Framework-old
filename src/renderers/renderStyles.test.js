@@ -70,8 +70,9 @@ test('renderStyles: Render', t => {
 		"Wrapped component rendered inside of Styles"
 	)
 
-	t.ok(
-		wrapper.instance().styleRemovers.length === 2,
+	t.equal(
+		wrapper.instance().styleRemovers.length,
+		2,
 		"Loaded styles"
 	)
 
