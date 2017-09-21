@@ -1,4 +1,5 @@
 import React from 'react'
+import { pure } from 'recompose'
 
 import { stylesLoader } from 'utils/stylesLoader'
 
@@ -9,4 +10,8 @@ export const Sample = () => (
 	</div>
 )
 
-export default stylesLoader(require('./Sample.styl'))(Sample)
+export default (
+	pure(
+		stylesLoader(require('./Sample.styl'))(Sample)
+	)
+)

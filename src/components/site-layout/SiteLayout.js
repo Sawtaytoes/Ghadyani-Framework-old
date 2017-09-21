@@ -1,6 +1,7 @@
+// import GoogleAnalytics from 'react-g-analytics'
 import PropTypes from 'prop-types'
 import React from 'react'
-// import GoogleAnalytics from 'react-g-analytics'
+import { pure } from 'recompose'
 
 import StylesLoader from 'utils/stylesLoader'
 
@@ -20,4 +21,8 @@ SiteLayout.propTypes = {
 	children: PropTypes.node.isRequired
 }
 
-export default stylesLoader.render(SiteLayout)
+export default (
+	pure(
+		stylesLoader.render(SiteLayout)
+	)
+)
