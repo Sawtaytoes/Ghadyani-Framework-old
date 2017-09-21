@@ -38,12 +38,6 @@ const incompleteFailureActions = {
 	undefined: () => '',
 }
 
-const getNextIncompleteFailureReason = (
-	(failureType, failureReason) => (
-		incompleteFailureActions[failureType](failureReason)
-	)
-)
-
 const isFailureReasonPlaceholder = failureReason => failureReason === '|-'
 const isIncompleteFailure = failure => failureType => isFailureReasonPlaceholder(failure[failureType])
 
@@ -51,21 +45,22 @@ const parseFailureReason = (failures, failureReason) => {
 	const incompleteFailure = getIncompleteFailure(failures)
 	const incompleteFailureTypes = Object.keys(incompleteFailure)
 
-	const incompleteFailureType = (
+	const failureType = (
 		incompleteFailureTypes
 		.find(isIncompleteFailure(incompleteFailure))
 	)
 
-	const failureType = incompleteFailureType || 'stack'
-
 	const nextFailureReason = (
-		getNextIncompleteFailureReason(
-			incompleteFailureType,
-			failureReason
-		)
+		incompleteFailureActions[failureType](failureReason)
 	)
 
-	return addToPreviousFailure(failures, failureType, nextFailureReason)
+	return (
+		addToPreviousFailure(
+			failures,
+			failureType || 'stack',
+			nextFailureReason
+		)
+	)
 }
 
 
