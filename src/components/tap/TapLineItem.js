@@ -22,7 +22,7 @@ Header.propTypes = {
 const testRunStyles = {
 	container: {
 		display: 'flex',
-		margin: '2px 0',
+		margin: '3px 0',
 		padding: '10px',
 	},
 

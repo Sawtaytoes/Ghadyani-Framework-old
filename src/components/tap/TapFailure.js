@@ -31,15 +31,10 @@ const styles = {
 		fontWeight: 'bold',
 	},
 
-	stackTrace: {
-		margin: 0,
-		padding: 0,
-		lineHeight: '1.5em',
-		overflowX: 'auto',
-	},
-
 	testType: {
-		margin: 0,
+		margin: '0.5em 0',
+		fontWeight: 'bold',
+		fontSize: '1.25em',
 	},
 }
 
@@ -48,38 +43,23 @@ export const TapFailure = ({
 	expected,
 	failedTest,
 	operator,
-	stack,
 }) => (
 	<div style={styles.container}>
 		<TapLineItem {...failedTest} />
 
 		<div style={styles.content}>
-			<h3 style={styles.testType}>{operator}</h3>
+			<div style={styles.testType}>{operator}</div>
 
-			{
-				stack
-				&& (
-					<p style={styles.failureGroup}>
-						<span style={styles.failureDescription}>{stack}</span>
-					</p>
-				)
-			}
-
-			{
-				!stack
-				&& (
-					<div style={styles.failureContainer}>
-						<p style={styles.failureGroup}>
-							<span style={styles.failureName}>Expected</span>
-							<span style={styles.failureDescription}>{expected}</span>
-						</p>
-						<p style={styles.failureGroup}>
-							<span style={styles.failureName}>Actual</span>
-							<span style={styles.failureDescription}>{actual}</span>
-						</p>
-					</div>
-				)
-			}
+			<div style={styles.failureContainer}>
+				<p style={styles.failureGroup}>
+					<span style={styles.failureName}>Expected</span>
+					<span style={styles.failureDescription}>{expected}</span>
+				</p>
+				<p style={styles.failureGroup}>
+					<span style={styles.failureName}>Actual</span>
+					<span style={styles.failureDescription}>{actual}</span>
+				</p>
+			</div>
 		</div>
 	</div>
 )
@@ -94,7 +74,6 @@ TapFailure.propTypes = {
 	}).isRequired,
 	id: PropTypes.number.isRequired,
 	operator: PropTypes.string.isRequired,
-	stack: PropTypes.string,
 }
 
 const mapStateToProps = (_, initialProps) => (
