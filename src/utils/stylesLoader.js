@@ -1,6 +1,6 @@
-import renderStyles from 'utils/styles'
+import renderStyles from 'utils/renderStyles'
 
-class StylesLoader {
+export default class StylesLoader {
 	static create() {
 		return new StylesLoader()
 	}
@@ -19,7 +19,6 @@ class StylesLoader {
 	}
 }
 
-export default StylesLoader
 export const stylesLoader = file => {
 	const stylesLoader = StylesLoader.create().add(file)
 	return stylesLoader.render.bind(stylesLoader)
