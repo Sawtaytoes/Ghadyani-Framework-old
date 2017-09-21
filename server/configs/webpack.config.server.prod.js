@@ -1,4 +1,5 @@
 const HappyPack = require('happypack')
+const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 
 // Configs
@@ -11,6 +12,11 @@ const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
 	entry: `./${paths.root.src}server`,
+	externals: [
+		nodeExternals({
+			whitelist: [/.*\.css/]
+		})
+	],
 	output: {
 		filename: 'backend.js',
 		libraryTarget: 'commonjs2',
