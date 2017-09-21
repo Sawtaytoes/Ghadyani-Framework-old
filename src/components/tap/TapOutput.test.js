@@ -44,7 +44,7 @@ test('Purposefully Failed Test 4', t => {
 	t.end()
 })
 
-test('4 Second Passing Test', t => {
+test('Multi-Second Passing Test', t => {
 	t.ok(true, "This happens immediately")
 
 	setTimeout(
@@ -55,7 +55,6 @@ test('4 Second Passing Test', t => {
 		4000
 	)
 })
-
 
 test('Passing Test', t => {
 	t.ok(true, "This should pass")
