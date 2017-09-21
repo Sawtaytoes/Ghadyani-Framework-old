@@ -6,11 +6,11 @@
     "web"
   ],
   "watch": [
-    "global-dirs.js",
+    "globalDirs.js",
     "postcss.config.js",
-    "src/utils/render-full-page.jsx",
-    "src/utils/render-full-page-extras.jsx",
-    "src/utils/render-tests-page.jsx",
+    "src/content/pageMeta.js",
+    "src/renderers/renderSite.js",
+    "src/renderers/renderTests.js",
     "server/"
   ]
 }

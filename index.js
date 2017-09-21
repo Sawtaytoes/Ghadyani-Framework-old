@@ -2,32 +2,38 @@
 global.baseDir = `${__dirname}/`
 
 // Load Config settings
-const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.configs}config-settings`)
-const serverRunMode = require(`${dir.includes}server-run-mode`)
+const dir = require(`${global.baseDir}globalDirs`)
+const config = require(`${dir.configs}configSettings`)
+const serverRunMode = require(`${dir.includes}serverRunMode`)
 
 // Bring in NewRelic if it's available
-require(`${dir.services}setup-newrelic`)
+require(`${dir.services}setupNewrelic`)
 
 // Set App Mode
 const runTests = serverRunMode.mode === 'test'
 const runTestsWatch = serverRunMode.mode === 'test:watch'
-const runCompiler = serverRunMode.isLocalProductionTesting
+
+const runCompiler = (
+	serverRunMode.isLocalProductionTesting
 	|| serverRunMode.mode === 'compile'
-const runServer = serverRunMode.isLocalProductionTesting
+)
+
+const runServer = (
+	serverRunMode.isLocalProductionTesting
 	|| serverRunMode.mode === 'server'
+)
 
 // Start Webservers
 if (runTests) {
-	require(`${dir.server}compiler-test`)('test')
+	require(`${dir.server}karmaTestRunner`)('test')
 
 } else if (runTestsWatch) {
-	require(`${dir.server}compiler-test`)('test.watch')
+	require(`${dir.server}karmaTestRunner`)('test.watch')
 
 } else if (config.isProd()) {
-	runCompiler && require(`${dir.server}compiler-prod`)()
-	runServer && require(`${dir.server}server-prod`)
+	runCompiler && require(`${dir.server}webpackCompilerProd`)()
+	runServer && require(`${dir.server}serverProd`)
 
 } else {
-	require(`${dir.server}server-dev`)
+	require(`${dir.server}serverDev`)
 }
