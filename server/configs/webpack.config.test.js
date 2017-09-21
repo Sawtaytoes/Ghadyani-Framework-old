@@ -3,8 +3,8 @@ const HappyPack = require('happypack')
 const webpack = require('webpack')
 
 // Configs
-const dir = require(`${global.baseDir}/global-dirs`)
-const config = require(`${dir.configs}config-settings`)
+const dir = require(`${global.baseDir}globalDirs`)
+const config = require(`${dir.configs}configSettings`)
 const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
 
 const threadPool = HappyPack.ThreadPool({ size: 4 })
@@ -27,7 +27,7 @@ const webpackConfig = {
 		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
-			id: 'jsx', threadPool, loaders: [
+			id: 'js', threadPool, loaders: [
 				'babel-loader',
 				'eslint-loader',
 			]

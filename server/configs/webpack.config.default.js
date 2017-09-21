@@ -1,12 +1,12 @@
 // Configs
-const dir = require(`${global.baseDir}/global-dirs`)
+const dir = require(`${global.baseDir}globalDirs`)
 const files = require(`${dir.includes}files`)
 
 const shared = {
 	cache: true,
 	module: { rules: [{
-		test: /\.jsx$/,
-		loader: 'happypack/loader?id=jsx',
+		test: /\.js$/,
+		loader: 'happypack/loader?id=js',
 		include: [files],
 	}, {
 		test: /\.css$/,
@@ -29,7 +29,7 @@ const shared = {
 		loader: 'file-loader?name=[name].[ext]',
 	}]},
 	resolve: {
-		extensions: ['.js', '.jsx', '.json', '.css', '.styl'],
+		extensions: ['.js', '.json', '.css', '.styl'],
 		modules: [files, 'node_modules'],
 	},
 }
@@ -45,7 +45,9 @@ const prod = {
 module.exports = {
 	getDev: () => {
 		const webpackDefaultConfig = Object.assign({}, shared, dev )
-		webpackDefaultConfig.module.rules.push({
+
+		webpackDefaultConfig.module.rules
+		.push({
 			test: /\.json$/,
 			loaders: [
 				'json-loader',
