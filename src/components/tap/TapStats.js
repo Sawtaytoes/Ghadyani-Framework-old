@@ -59,15 +59,10 @@ export const TapStats = ({
 			<span style={styles.standardFontSize}> | </span>
 			<span style={styles.tapFail}>{numFailed} </span>{isDoneProcessing ? 'Failed' : 'Failing'}
 
-			{duration && <span style={styles.standardFontSize}> | </span>}
-			{
-				duration
-				&& (
-					<span>
-						<span style={styles.tapInfo}>{duration.toFixed(1)}s </span>Duration
-					</span>
-				)
-			}
+			<span style={styles.standardFontSize}> | </span>
+			<span>
+				<span style={styles.tapInfo}>{duration.toFixed(1)}s </span>Duration
+			</span>
 		</p>
 	</div>
 )
