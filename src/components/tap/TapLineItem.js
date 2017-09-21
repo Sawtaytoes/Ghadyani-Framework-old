@@ -91,7 +91,7 @@ TapLineItem.propTypes = {
 
 const mapStateToProps = (_, initialProps) => (
 	({ tap: { tests } }) => ({
-		...(tests[initialProps.id] || {})
+		...tests[initialProps.id]
 	})
 )
 

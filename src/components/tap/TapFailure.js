@@ -78,7 +78,7 @@ TapFailure.propTypes = {
 
 const mapStateToProps = (_, initialProps) => (
 	({ tap: { failures } }) => ({
-		...(failures[initialProps.id] || {})
+		...failures[initialProps.id]
 	})
 )
 
