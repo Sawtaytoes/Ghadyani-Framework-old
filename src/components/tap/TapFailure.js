@@ -35,7 +35,7 @@ const styles = {
 		margin: 0,
 		padding: 0,
 		lineHeight: '1.5em',
-		overflowX: 'scroll',
+		overflowX: 'auto',
 	},
 
 	testType: {
@@ -59,9 +59,9 @@ export const TapFailure = ({
 			{
 				stack
 				&& (
-					<pre style={styles.stackTrace}>
-						{stack}
-					</pre>
+					<p style={styles.failureGroup}>
+						<span style={styles.failureDescription}>{stack}</span>
+					</p>
 				)
 			}
 
