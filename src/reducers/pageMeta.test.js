@@ -17,7 +17,7 @@ test('Page Meta: Update Page Meta from `/`', t => {
 
 	const action = updatePageMeta(currentPath)
 
-	const { description, title } = (
+	const { description, name } = (
 		pageMetaReducer(
 			initialState,
 			action
@@ -31,9 +31,9 @@ test('Page Meta: Update Page Meta from `/`', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()
@@ -47,7 +47,7 @@ test('Page Meta: Update Page Meta from `/about`', t => {
 
 	const action = updatePageMeta(currentPath)
 
-	const { description, title } = (
+	const { description, name } = (
 		pageMetaReducer(
 			initialState,
 			action
@@ -61,9 +61,9 @@ test('Page Meta: Update Page Meta from `/about`', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()
@@ -76,7 +76,7 @@ test('Page Meta: Update Page Meta from `/no-match`', t => {
 
 	const action = updatePageMeta(currentPath)
 
-	const { description, title } = (
+	const { description, name } = (
 		pageMetaReducer(
 			initialState,
 			action
@@ -90,9 +90,9 @@ test('Page Meta: Update Page Meta from `/no-match`', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()
@@ -110,7 +110,7 @@ test('Page Meta: Update Page Meta from Many Actions', t => {
 		updatePageMeta(finalPath),
 	]
 
-	const { description, title } = (
+	const { description, name } = (
 		actions
 		.reduce(
 			pageMetaReducer,
@@ -125,9 +125,9 @@ test('Page Meta: Update Page Meta from Many Actions', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()
