@@ -61,7 +61,7 @@ const getPageMeta = currentPath => (
 
 const updatePageTitle = name => (
 	hasDocument
-	&& (document.title = `${name}${htmlMeta.namePostfix}`)
+	&& (document.title = `${name}${htmlMeta.titlePostfix}`)
 )
 
 const updatePageDescription = (description = '') => {
