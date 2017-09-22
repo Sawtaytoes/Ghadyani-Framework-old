@@ -11,13 +11,26 @@ const middleware = [
 	routerMiddleware(history),
 ]
 
-const store = compose(applyMiddleware(...middleware))(
-	window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
-)(rootReducer, initialState)
+const store = (
+	compose(
+		applyMiddleware(...middleware)
+	)(
+		window.devToolsExtension
+		? window.devToolsExtension()(createStore)
+		: createStore
+	)(
+		rootReducer,
+		initialState
+	)
+)
 
-module.hot && module.hot.accept('reducers', () => {
-	store.replaceReducer(require('reducers'))
-})
+module.hot
+&& (
+	module.hot.accept(
+		'reducers',
+		() => store.replaceReducer(require('reducers'))
+	)
+)
 
 export {
 	history,

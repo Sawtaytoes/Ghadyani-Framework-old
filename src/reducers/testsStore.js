@@ -21,23 +21,28 @@ import {
 // [Disabled] because it conflicts with `setTimeout`
 // import 'tap-dev-tool/register'
 
-const middlewares = []
+const middleware = []
 
 const store = (
 	compose(
-		applyMiddleware(...middlewares)
+		applyMiddleware(...middleware)
 	)(
-		window.devToolsExtension ? window.devToolsExtension()(createStore) : createStore
+		window.devToolsExtension
+		? window.devToolsExtension()(createStore)
+		: createStore
 	)(
-		combineReducers({ tap }),
+		combineReducers({ tap })
 	)
 )
 
-module.hot && module.hot.accept(
-	'reducers',
-	() => (
-		store.replaceReducer(
-			combineReducers(require('reducers/tap'))
+module.hot
+&& (
+	module.hot.accept(
+		'reducers',
+		() => (
+			store.replaceReducer(
+				combineReducers(require('reducers/tap'))
+			)
 		)
 	)
 )
