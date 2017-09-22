@@ -13,8 +13,8 @@ export const setStyles = css => (
 	styles.set(hash(css), css)
 )
 
-const addStyles = stylesFiles => (
-	stylesFiles
+const addStyles = styleFiles => (
+	styleFiles
 	.map(stylesFile => (
 		canUseDOM
 		? stylesFile._insertCss()
@@ -27,15 +27,19 @@ const removeStyles = (styleRemovers = []) => () => (
 	.map(styleRemover => styleRemover())
 )
 
-const renderStyles = (ComposedComponent, stylesFiles = []) => (
+const renderStyles = (styleFiles = []) => ComposedComponent => (
 	class Styles extends PureComponent {
 		componentWillMount() {
-			this.styleRemovers = addStyles(stylesFiles)
+			this.styleRemovers = (
+				addStyles([].concat(styleFiles))
+			)
 		}
 
 		componentWillUnmount() {
 			new Promise(setTimeout)
-			.then(removeStyles(this.styleRemovers))
+			.then(
+				removeStyles(this.styleRemovers)
+			)
 		}
 
 		render() {

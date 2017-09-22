@@ -3,12 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { pure } from 'recompose'
 
-import StylesLoader from 'components/styles-loader/StylesLoader'
-
-// Styles
-const stylesLoader = StylesLoader.create()
-.add(require('normalize.css'))
-.add(require('./SiteLayout.styl'))
+import renderStyles from 'renderers/renderStyles'
 
 export const SiteLayout = ({ children }) => (
 	<div>
@@ -22,7 +17,10 @@ SiteLayout.propTypes = {
 }
 
 export default (
-	stylesLoader.render(
+	renderStyles([
+		require('normalize.css'),
+		require('./SiteLayout.styl'),
+	])(
 		pure(SiteLayout)
 	)
 )
