@@ -13,8 +13,9 @@ test('StylesLoader: Initialize', t => {
 		"Has no styles files"
 	)
 
-	t.ok(
-		typeof loader.render === 'function',
+	t.equal(
+		typeof loader.render,
+		'function',
 		"Has render function"
 	)
 
@@ -75,8 +76,9 @@ test('StylesLoader: Render', t => {
 test('stylesLoader: Load Single Styles File', t => {
 	const render = stylesLoader(require('./StylesLoader.styl'))
 
-	t.ok(
-		typeof render === 'function',
+	t.equal(
+		typeof render,
+		'function',
 		"Has render function"
 	)
 

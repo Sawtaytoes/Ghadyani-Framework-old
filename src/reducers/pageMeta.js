@@ -59,9 +59,9 @@ const getPageMeta = currentPath => (
 	|| noMatchNavItemMeta
 )
 
-const updatePageTitle = title => (
+const updatePageTitle = name => (
 	hasDocument
-	&& (document.title = `${title}${htmlMeta.titlePostfix}`)
+	&& (document.title = `${name}${htmlMeta.namePostfix}`)
 )
 
 const updatePageDescription = (description = '') => {
@@ -79,14 +79,14 @@ const updateScrollPosition = () => (
 )
 
 export const updatePageMeta = currentPath => {
-	const { description, title } = getPageMeta(currentPath)
+	const { description, name } = getPageMeta(currentPath)
 
-	updatePageTitle(title)
+	updatePageTitle(name)
 	updatePageDescription(description)
 
 	return {
 		description,
-		title,
+		name,
 		type: UPDATE_META_DATA,
 	}
 }
@@ -101,14 +101,14 @@ export const initialState = {
 	description: '',
 	hasPathChanged: false,
 	previousPath: '/',
-	title: '',
+	name: '',
 }
 
 const reducer = {
-	[UPDATE_META_DATA]: (state, { description, title }) => ({
+	[UPDATE_META_DATA]: (state, { description, name }) => ({
 		...state,
 		description,
-		title,
+		name,
 	}),
 
 	[LOCATION_CHANGED]: (state, { payload: { pathname } }) => {
@@ -119,7 +119,7 @@ const reducer = {
 
 		hasPathChanged && updateScrollPosition()
 
-		const { description, title } = updatePageMeta(currentPath)
+		const { description, name } = updatePageMeta(currentPath)
 
 		return {
 			...state,
@@ -127,7 +127,7 @@ const reducer = {
 			description,
 			hasPathChanged,
 			previousPath,
-			title,
+			name,
 		}
 	},
 }

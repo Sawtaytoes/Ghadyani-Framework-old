@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { pure } from 'recompose'
 
-import Sample from 'components/sample/sample'
+import Sample from 'components/sample/Sample'
 
 export const About = () => (
 	<div>
