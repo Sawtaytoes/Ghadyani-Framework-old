@@ -8,7 +8,7 @@ import {
 } from 'reducers/tap/helpers'
 
 const headerStyles = {
-	margin: '10px 0 6px',
+	margin: '10px 10px 6px',
 	fontSize: '1em',
 }
 
