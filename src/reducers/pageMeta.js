@@ -104,7 +104,7 @@ export const initialState = {
 	name: '',
 }
 
-const reducer = {
+const reducerActions = {
 	[UPDATE_META_DATA]: (state, { description, name }) => ({
 		...state,
 		description,
@@ -132,4 +132,4 @@ const reducer = {
 	},
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

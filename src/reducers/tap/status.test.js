@@ -13,7 +13,7 @@ test('TAP Status: Tests Are Running', t => {
 		"ok 3 Passes",
 	]
 
-	const actualState = (
+	const state = (
 		tapMessages
 		.map(addTapMessage)
 		.reduce(
@@ -22,11 +22,9 @@ test('TAP Status: Tests Are Running', t => {
 		)
 	)
 
-	const expectedState = tapStatus.running
-
 	t.deepEqual(
-		actualState,
-		expectedState,
+		state,
+		tapStatus.running,
 		"Tests are running"
 	)
 
@@ -46,7 +44,7 @@ test('TAP Status: Tests Complete Successfully', t => {
 		"# ok",
 	]
 
-	const actualState = (
+	const state = (
 		tapMessages
 		.map(addTapMessage)
 		.reduce(
@@ -55,11 +53,9 @@ test('TAP Status: Tests Complete Successfully', t => {
 		)
 	)
 
-	const expectedState = tapStatus.done
-
 	t.deepEqual(
-		actualState,
-		expectedState,
+		state,
+		tapStatus.done,
 		"Tests ended after running all when all passed"
 	)
 
@@ -78,7 +74,7 @@ test('TAP Status: Tests Have Failures', t => {
 		"# fail  1",
 	]
 
-	const actualState = (
+	const state = (
 		tapMessages
 		.map(addTapMessage)
 		.reduce(
@@ -87,11 +83,9 @@ test('TAP Status: Tests Have Failures', t => {
 		)
 	)
 
-	const expectedState = tapStatus.done
-
 	t.deepEqual(
-		actualState,
-		expectedState,
+		state,
+		tapStatus.done,
 		"Tests ended after running all when some failed"
 	)
 

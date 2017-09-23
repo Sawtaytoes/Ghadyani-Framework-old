@@ -13,7 +13,7 @@ export const initialState = {
 	startTime: 0,
 }
 
-const reducer = {
+const reducerActions = {
 	[SET_START_TIME]: (
 		(state, { startTime }) => ({
 			...state,
@@ -36,4 +36,4 @@ const reducer = {
 	),
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

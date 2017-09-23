@@ -30,7 +30,7 @@ const isEndMessage = message => message === '# ok'
 
 export const initialState = []
 
-const reducer = {
+const reducerActions = {
 	[ADD_MESSAGE]: (
 		(prevTests, { identifier, message, testNumber, text }) => (
 			isEndMessage(message) || !messageParsing[identifier]
@@ -45,4 +45,4 @@ const reducer = {
 	),
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

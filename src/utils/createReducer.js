@@ -1,7 +1,7 @@
-export default (reducer, initialState) => (
+export default (reducerActions, initialState) => (
 	(state = initialState, action) => (
-		reducer[action.type]
-		? reducer[action.type](state, action)
+		reducerActions[action.type]
+		? reducerActions[action.type](state, action)
 		: state
 	)
 )
