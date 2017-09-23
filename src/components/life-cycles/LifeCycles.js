@@ -3,7 +3,7 @@ import { PureComponent } from 'react'
 
 export default class LifeCycles extends PureComponent {
 	static propTypes = {
-		children: PropTypes.element.isRequired,
+		children: PropTypes.any,
 		componentDidMount: PropTypes.func,
 		componentDidUpdate: PropTypes.func,
 		componentWillMount: PropTypes.func,
@@ -22,6 +22,6 @@ export default class LifeCycles extends PureComponent {
 	shouldComponentUpdate = this.props.shouldComponentUpdate
 
 	render() {
-		return this.props.children
+		return this.props.children || null
 	}
 }
