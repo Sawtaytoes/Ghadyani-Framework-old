@@ -5,7 +5,7 @@ import {
 	combineReducers,
 } from 'redux'
 
-import tapListener from 'reducers/tap/rx'
+import tapListener from 'reducers/tap/listener'
 import tap from 'reducers/tap'
 
 // Pretty TAP output in the console
