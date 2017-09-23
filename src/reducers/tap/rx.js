@@ -33,11 +33,6 @@ const tapListener = store => {
 		.create(stateObserver(store))
 	)
 
-	const stateTapStatus$ = (
-		state$
-		.takeWhile(status => !isDoneProcessing(status))
-	)
-
 	const consoleLog$ = (
 		Rx.Observable
 		.create(consoleLogObserver)
@@ -45,48 +40,41 @@ const tapListener = store => {
 		.share()
 	)
 
-	const consoleLogWithoutTapOutput$ = (
-		consoleLog$
-		.filter(([message]) => !(
-			typeof message === 'string'
-			&& (
-				message.match(tapParsers.start)
-				|| message.match(tapParsers.message)
-				|| message.match(tapParsers.failure)
-			)
-		))
-	)
-
-	const consoleLogStrings$ = (
+	const consoleLogString$ = (
 		consoleLog$
 		.map(([message]) => message)
 		.filter(message => typeof message === 'string')
 	)
 
-	const tapStart$ = (
-		consoleLogStrings$
-		.filter(message => message.match(tapParsers.start))
-	)
+	state$
+	.takeWhile(status => !isDoneProcessing(status))
+	.subscribe()
 
-	const tapMessage$ = (
-		consoleLogStrings$
-		.filter(message => message.match(tapParsers.message))
-	)
-
-	const tapFailure$ = (
-		consoleLogStrings$
-		.filter(message => message.match(tapParsers.failure))
-	)
-
-	stateTapStatus$.subscribe()
-	consoleLogWithoutTapOutput$.subscribe({
+	consoleLog$
+	.filter(([message]) => !(
+		typeof message === 'string'
+		&& (
+			message.match(tapParsers.start)
+			|| message.match(tapParsers.message)
+			|| message.match(tapParsers.failure)
+		)
+	))
+	.subscribe({
 		next: args => windowConsoleLog(...args),
 		complete: () => window.console.log = windowConsoleLog,
 	})
 
-	tapStart$.subscribe(() => store.dispatch(setTapStartTime()))
-	tapMessage$.subscribe(message => store.dispatch(addTapMessage(message)))
-	tapFailure$.subscribe(message => store.dispatch(addTapFailure(message)))
+	consoleLogString$
+	.filter(message => message.match(tapParsers.start))
+	.subscribe(() => store.dispatch(setTapStartTime()))
+
+	consoleLogString$
+	.filter(message => message.match(tapParsers.message))
+	.subscribe(message => store.dispatch(addTapMessage(message)))
+
+	consoleLogString$
+	.filter(message => message.match(tapParsers.failure))
+	.subscribe(message => store.dispatch(addTapFailure(message)))
 }
 
 export default tapListener
