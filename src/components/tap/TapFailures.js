@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TapFailure from 'components/tap/TapFailure'
+import TapFailure from './TapFailure'
 import { tapMessageType } from 'reducers/tap/helpers'
 
 const addId = (test, index) => ({

@@ -7,12 +7,15 @@ import {
 	tapColor,
 } from 'reducers/tap/helpers'
 
-const headerStyles = { margin: '10px 0 6px' }
+const headerStyles = {
+	margin: '10px 0 6px',
+	fontSize: '1.25em',
+}
 
 const Header = ({ text }) => (
-	<h2 style={headerStyles}>
+	<div style={headerStyles}>
 		{text}
-	</h2>
+	</div>
 )
 
 Header.propTypes = {

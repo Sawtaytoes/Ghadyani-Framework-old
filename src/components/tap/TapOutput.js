@@ -1,9 +1,9 @@
 import React from 'react'
 import { pure } from 'recompose'
 
-import TapStats from 'components/tap/TapStats'
-import TapFailures from 'components/tap/TapFailures'
-import TapMessages from 'components/tap/TapMessages'
+import TapStats from './TapStats'
+import TapFailures from './TapFailures'
+import TapMessages from './TapMessages'
 
 export const TapOutput = () => (
 	<div>
