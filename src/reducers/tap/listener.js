@@ -33,17 +33,24 @@ const tapListener = store => {
 		.create(stateObserver(store))
 	)
 
-	const consoleLog$ = (
+	const [tapMessage$, consoleLog$] = (
 		Rx.Observable
 		.create(consoleLogObserver)
 		.takeUntil(state$.filter(isDoneProcessing))
 		.share()
+		.partition(([message]) => (
+			typeof message === 'string'
+			&& (
+				message.match(tapParsers.start)
+				|| message.match(tapParsers.message)
+				|| message.match(tapParsers.failure)
+			)
+		))
 	)
 
-	const consoleLogString$ = (
-		consoleLog$
+	const tapMessageString$ = (
+		tapMessage$
 		.map(([message]) => message)
-		.filter(message => typeof message === 'string')
 	)
 
 	state$
@@ -51,28 +58,20 @@ const tapListener = store => {
 	.subscribe()
 
 	consoleLog$
-	.filter(([message]) => !(
-		typeof message === 'string'
-		&& (
-			message.match(tapParsers.start)
-			|| message.match(tapParsers.message)
-			|| message.match(tapParsers.failure)
-		)
-	))
 	.subscribe({
 		next: args => windowConsoleLog(...args),
 		complete: () => window.console.log = windowConsoleLog,
 	})
 
-	consoleLogString$
+	tapMessageString$
 	.filter(message => message.match(tapParsers.start))
 	.subscribe(() => store.dispatch(setTapStartTime()))
 
-	consoleLogString$
+	tapMessageString$
 	.filter(message => message.match(tapParsers.message))
 	.subscribe(message => store.dispatch(addTapMessage(message)))
 
-	consoleLogString$
+	tapMessageString$
 	.filter(message => message.match(tapParsers.failure))
 	.subscribe(message => store.dispatch(addTapFailure(message)))
 }
