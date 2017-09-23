@@ -13,7 +13,7 @@ import {
 
 const windowConsoleLog = window.console.log
 
-const stateObserver = store => observer => (
+export const stateObserver = store => observer => (
 	store.subscribe(
 		() => {
 			observer.next(
@@ -23,7 +23,7 @@ const stateObserver = store => observer => (
 	)
 )
 
-const consoleLogObserver = observer => {
+export const consoleLogObserver = observer => {
 	window.console.log = (...args) => observer.next(args)
 }
 
