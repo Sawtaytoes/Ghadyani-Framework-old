@@ -12,9 +12,7 @@ import tap from 'reducers/tap'
 // [Disabled] because it conflicts with `setTimeout`
 // import 'tap-dev-tool/register'
 
-const middleware = [
-	listenForTapStrings,
-]
+const middleware = []
 
 const store = (
 	compose(
@@ -39,5 +37,7 @@ module.hot
 		)
 	)
 )
+
+listenForTapStrings(store)
 
 export default store

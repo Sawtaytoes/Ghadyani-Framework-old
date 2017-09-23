@@ -9,37 +9,40 @@ import {
 	addTapFailure,
 } from 'reducers/tap/actions'
 
-const listenForTapStrings = ({ dispatch, getState }) => {
-	const consoleLog = console.log
-	window.console.log = function(message) {
-		if (typeof message !== 'string') { return }
+const consoleLogReplacement = ({ dispatch, getState }, consoleLog) => (...args) => {
+	const [message] = args
 
-		if (isDoneProcessing(getState().tap.status)) {
-			window.console.log = consoleLog
-		}
+	// if (typeof message !== 'string') { return }
 
-		else if (message.match(tapParsers.start)) {
-			dispatch(
-				setTapStartTime()
-			)
-		}
-
-		else if (message.match(tapParsers.message)) {
-			dispatch(
-				addTapMessage(message)
-			)
-		}
-
-		else if (message.match(tapParsers.failure)) {
-			dispatch(
-				addTapFailure(message)
-			)
-		}
-
-		else {
-			consoleLog.apply(console, arguments)
-		}
+	if (isDoneProcessing(getState().tap.status)) {
+		window.console.log = consoleLog
 	}
+
+	else if (message.match(tapParsers.start)) {
+		dispatch(
+			setTapStartTime()
+		)
+	}
+
+	else if (message.match(tapParsers.message)) {
+		dispatch(
+			addTapMessage(message)
+		)
+	}
+
+	else if (message.match(tapParsers.failure)) {
+		dispatch(
+			addTapFailure(message)
+		)
+	}
+
+	else {
+		consoleLog.apply(console, args)
+	}
+}
+
+const listenForTapStrings = store => {
+	window.console.log = consoleLogReplacement(store, console.log)
 }
 
 export default listenForTapStrings
