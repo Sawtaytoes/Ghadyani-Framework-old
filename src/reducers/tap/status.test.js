@@ -91,3 +91,31 @@ test('TAP Status: Tests Have Failures', t => {
 
 	t.end()
 })
+
+test('TAP Status: Invalid Inputs', t => {
+	const tapMessages = [
+		"# Passing Test 1",
+		"ok 1 Passes",
+		"invalid",
+		false,
+		null,
+		undefined,
+	]
+
+	const state = (
+		tapMessages
+		.map(addTapMessage)
+		.reduce(
+			reducer,
+			initialState
+		)
+	)
+
+	t.deepEqual(
+		state,
+		tapStatus.running,
+		"Test status retains even with invalid inputs"
+	)
+
+	t.end()
+})
