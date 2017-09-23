@@ -9,7 +9,7 @@ import {
 
 const headerStyles = {
 	margin: '10px 0 6px',
-	fontSize: '1.25em',
+	fontSize: '1em',
 }
 
 const Header = ({ text }) => (
