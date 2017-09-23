@@ -5,7 +5,7 @@ import {
 	combineReducers,
 } from 'redux'
 
-import listenForTapStrings from 'reducers/tap/middleware'
+import tapListener from 'reducers/tap/rx'
 import tap from 'reducers/tap'
 
 // Pretty TAP output in the console
@@ -38,6 +38,6 @@ module.hot
 	)
 )
 
-listenForTapStrings(store)
+tapListener(store)
 
 export default store

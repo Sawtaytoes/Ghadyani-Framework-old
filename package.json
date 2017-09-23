@@ -54,6 +54,8 @@
     "react-router-redux": "^5.0.0-alpha.6",
     "recompose": "^0.25.0",
     "redux": "^3.7.2",
+    "redux-observable": "^0.16.0",
+    "rxjs": "^5.4.3",
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
