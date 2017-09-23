@@ -9,13 +9,13 @@ import {
 	addTapFailure,
 } from 'reducers/tap/actions'
 
-const consoleLogReplacement = ({ dispatch, getState }, consoleLog) => (...args) => {
+export const consoleLogReplacement = ({ dispatch, getState }, windowConsoleLog) => (...args) => {
 	const [message] = args
 
 	// if (typeof message !== 'string') { return }
 
 	if (isDoneProcessing(getState().tap.status)) {
-		window.console.log = consoleLog
+		window.console.log = windowConsoleLog
 	}
 
 	else if (message.match(tapParsers.start)) {
@@ -37,7 +37,7 @@ const consoleLogReplacement = ({ dispatch, getState }, consoleLog) => (...args) 
 	}
 
 	else {
-		consoleLog.apply(console, args)
+		windowConsoleLog.apply(console, args)
 	}
 }
 
