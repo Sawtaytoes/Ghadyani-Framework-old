@@ -49,6 +49,8 @@ module.hot
 
 const consoleLog = console.log
 window.console.log = function(message) {
+	if (typeof message !== 'string') { return }
+
 	if (isDoneProcessing(store.getState().tap.status)) {
 		window.console.log = consoleLog
 	}
