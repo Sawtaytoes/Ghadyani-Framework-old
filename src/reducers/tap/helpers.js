@@ -15,8 +15,6 @@ export const tapStatus = {
 	done: 'done',
 }
 
-export const isDoneProcessing = status => status === tapStatus.done
-
 export const tapParsers = {
 	header: /^()(.+)$/,
 	failure: /^((\s{4}(operator|expected|actual|stack):)|\s{6})[ ]*(.+)$/,
@@ -24,3 +22,7 @@ export const tapParsers = {
 	start: /^TAP version \d+$/,
 	test: /^(\d+)[ ](.+)$/,
 }
+
+export const isDoneProcessing = status => status === tapStatus.done
+
+export const isSuccessfulEndMessage = message => message === '# ok'

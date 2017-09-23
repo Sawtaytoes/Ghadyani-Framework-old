@@ -1,6 +1,10 @@
 import createReducer from 'utils/createReducer'
 import { ADD_MESSAGE } from './actions'
-import { tapMessageType } from './helpers'
+
+import {
+	isSuccessfulEndMessage,
+	tapMessageType,
+} from './helpers'
 
 
 // --------------------------------------------------------
@@ -26,14 +30,12 @@ const messageParsing = {
 	}),
 }
 
-const isEndMessage = message => message === '# ok'
-
 export const initialState = []
 
 const reducerActions = {
 	[ADD_MESSAGE]: (
 		(prevTests, { identifier, message, testNumber, text }) => (
-			isEndMessage(message) || !messageParsing[identifier]
+			isSuccessfulEndMessage(message) || !messageParsing[identifier]
 			? prevTests
 			: (
 				prevTests
