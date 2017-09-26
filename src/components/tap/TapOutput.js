@@ -1,9 +1,9 @@
 import React from 'react'
-import { pure } from 'recompose'
 
-import TapStats from './TapStats'
+import renderPure from 'renderers/renderPure'
 import TapFailures from './TapFailures'
 import TapMessages from './TapMessages'
+import TapStats from './TapStats'
 
 export const TapOutput = () => (
 	<div>
@@ -13,4 +13,4 @@ export const TapOutput = () => (
 	</div>
 )
 
-export default pure(TapOutput)
+export default renderPure(TapOutput)

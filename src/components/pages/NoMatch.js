@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { pure } from 'recompose'
+
+import renderPure from 'renderers/renderPure'
 
 export const NoMatch = () => (
 	<div>
@@ -9,4 +10,4 @@ export const NoMatch = () => (
 	</div>
 )
 
-export default pure(NoMatch)
+export default renderPure(NoMatch)

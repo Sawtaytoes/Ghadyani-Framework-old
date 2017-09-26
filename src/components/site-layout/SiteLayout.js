@@ -1,8 +1,8 @@
 // import GoogleAnalytics from 'react-g-analytics'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { pure } from 'recompose'
 
+import renderPure from 'renderers/renderPure'
 import renderStyles from 'renderers/renderStyles'
 
 export const SiteLayout = ({ children }) => (
@@ -21,6 +21,6 @@ export default (
 		require('normalize.css'),
 		require('./SiteLayout.styl'),
 	])(
-		pure(SiteLayout)
+		renderPure(SiteLayout)
 	)
 )

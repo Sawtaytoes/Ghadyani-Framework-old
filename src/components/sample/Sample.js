@@ -1,6 +1,6 @@
 import React from 'react'
-import { pure } from 'recompose'
 
+import renderPure from 'renderers/renderPure'
 import renderStyles from 'renderers/renderStyles'
 
 export const Sample = () => (
@@ -14,6 +14,6 @@ export default (
 	renderStyles(
 		require('./Sample.styl')
 	)(
-		pure(Sample)
+		renderPure(Sample)
 	)
 )
