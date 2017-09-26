@@ -36,8 +36,7 @@ const renderStyles = (styleFiles = []) => ComposedComponent => (
 		}
 
 		componentWillUnmount() {
-			new Promise(setTimeout)
-			.then(
+			setTimeout(
 				removeStyles(this.styleRemovers)
 			)
 		}
