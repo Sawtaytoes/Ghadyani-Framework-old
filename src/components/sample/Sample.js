@@ -1,7 +1,7 @@
 import React from 'react'
-import { pure } from 'recompose'
 
-import { stylesLoader } from 'components/styles-loader/StylesLoader'
+import renderPure from 'renderers/renderPure'
+import renderStyles from 'renderers/renderStyles'
 
 export const Sample = () => (
 	<div className="sample">
@@ -11,9 +11,9 @@ export const Sample = () => (
 )
 
 export default (
-	stylesLoader(
+	renderStyles(
 		require('./Sample.styl')
 	)(
-		pure(Sample)
+		renderPure(Sample)
 	)
 )

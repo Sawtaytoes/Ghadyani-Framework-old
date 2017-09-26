@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TapFailure from 'components/tap/TapFailure'
+import TapFailure from './TapFailure'
 import { tapMessageType } from 'reducers/tap/helpers'
 
 const addId = (test, index) => ({
@@ -14,11 +14,11 @@ const isFailure = ({ type }) => type === tapMessageType.fail
 
 const hasFailedTests = failures => failures.length > 0
 
-export const TapFailures = ({ tests, failures }) => {
+export const TapFailures = ({ messages, failures }) => {
 	if (!hasFailedTests(failures)) { return null }
 
 	const failedTests = (
-		tests
+		messages
 		.map(addId)
 		.filter(isFailure)
 	)
@@ -42,11 +42,11 @@ export const TapFailures = ({ tests, failures }) => {
 }
 
 TapFailures.propTypes = {
-	tests: PropTypes.arrayOf(PropTypes.object).isRequired,
 	failures: PropTypes.arrayOf(PropTypes.object).isRequired,
+	messages: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-export default connect(({ tap: { failures, tests } }) => ({
+export default connect(({ tap: { failures, messages } }) => ({
 	failures,
-	tests,
+	messages,
 }))(TapFailures)

@@ -1,3 +1,5 @@
+import { LOCATION_CHANGE } from 'react-router-redux'
+
 import createReducer from 'utils/createReducer'
 import navItems from 'content/navItems'
 import { htmlMeta } from 'content/pageMeta'
@@ -7,7 +9,6 @@ import { htmlMeta } from 'content/pageMeta'
 // Actions
 // --------------------------------------------------------
 
-const LOCATION_CHANGED = '@@router/LOCATION_CHANGE'
 const UPDATE_META_DATA = 'PAGE_META::UPDATE_META_DATA'
 
 
@@ -104,14 +105,14 @@ export const initialState = {
 	name: '',
 }
 
-const reducer = {
+const reducerActions = {
 	[UPDATE_META_DATA]: (state, { description, name }) => ({
 		...state,
 		description,
 		name,
 	}),
 
-	[LOCATION_CHANGED]: (state, { payload: { pathname } }) => {
+	[LOCATION_CHANGE]: (state, { payload: { pathname } }) => {
 		const currentPath = pathname
 		const previousPath = state.currentPath
 
@@ -132,4 +133,4 @@ const reducer = {
 	},
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

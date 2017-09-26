@@ -1,6 +1,6 @@
 import test from 'tape-catch'
 
-import reducer, { initialState } from './tests'
+import reducer, { initialState } from './messages'
 import { addTapMessage } from './actions'
 import { tapMessageType } from './helpers'
 

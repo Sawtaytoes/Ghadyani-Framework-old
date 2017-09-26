@@ -4,7 +4,7 @@ import { tapStatus } from './helpers'
 
 export const initialState = tapStatus.running
 
-const reducer = {
+const reducerActions = {
 	[ADD_MESSAGE]: (
 		(prevStatus, { message, identifier }) => (
 			message === '# ok'
@@ -15,4 +15,4 @@ const reducer = {
 	),
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

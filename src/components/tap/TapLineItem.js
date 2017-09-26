@@ -7,12 +7,15 @@ import {
 	tapColor,
 } from 'reducers/tap/helpers'
 
-const headerStyles = { margin: '10px 0 6px' }
+const headerStyles = {
+	margin: '10px 10px 6px',
+	fontSize: '1em',
+}
 
 const Header = ({ text }) => (
-	<h2 style={headerStyles}>
+	<div style={headerStyles}>
 		{text}
-	</h2>
+	</div>
 )
 
 Header.propTypes = {
@@ -90,8 +93,8 @@ TapLineItem.propTypes = {
 };
 
 const mapStateToProps = (_, initialProps) => (
-	({ tap: { tests } }) => ({
-		...tests[initialProps.id]
+	({ tap: { messages } }) => ({
+		...messages[initialProps.id]
 	})
 )
 

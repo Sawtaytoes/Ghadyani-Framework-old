@@ -9,6 +9,7 @@ export default [{
 	name: 'About',
 	to: 'about',
 }, {
+	description: "TEST ALL THE THINGS!",
 	name: 'Unit Tests',
 	to: 'tests',
 }, {
