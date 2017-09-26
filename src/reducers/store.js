@@ -8,8 +8,10 @@ import { rootEpic, rootReducer } from 'reducers'
 const initialState = typeof window !== 'undefined' && window.__INITIAL_STATE__
 const history = createBrowserHistory()
 
+const epicMiddleware = createEpicMiddleware(rootEpic)
+
 const middleware = [
-	createEpicMiddleware(rootEpic),
+	epicMiddleware,
 	routerMiddleware(history),
 ]
 
@@ -26,13 +28,15 @@ const store = (
 	)
 )
 
+const onHotReload = () => {
+	const { rootEpic, rootReducer } = require('reducers')
+
+	epicMiddleware.replaceEpic(rootEpic)
+	store.replaceReducer(rootReducer)
+}
+
 module.hot
-&& (
-	module.hot.accept(
-		'reducers',
-		() => store.replaceReducer(require('reducers'))
-	)
-)
+&& module.hot.accept('reducers', onHotReload)
 
 export {
 	history,
