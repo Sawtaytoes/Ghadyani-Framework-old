@@ -1,10 +1,17 @@
+import Adapter from 'enzyme-adapter-react-16'
 import React from 'react'
-import { render } from 'react-dom'
+import { configure } from 'enzyme'
 import { Provider } from 'react-redux'
+import { render } from 'react-dom'
+
 
 import 'utils/polyfills'
+
 import TapOutput from 'components/tap/TapOutput'
 import store from 'reducers/testsStore'
+
+// Setup Enzyme for React 16
+configure({ adapter: new Adapter() })
 
 // Setup testing files to watch
 const context = require.context('./', true, /^\.\/.*\.test\.js$/)
