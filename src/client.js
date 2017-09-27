@@ -1,30 +1,44 @@
 import React from 'react'
-import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { hydrate, render } from 'react-dom'
 
-// Polyfills
+// Compatibility Polyfills
 import 'react-fastclick'
 import 'utils/polyfills'
 
-// Root Component
 import ClientRoot from 'ClientRoot'
 
-// Vars
-const RootElement = document.getElementById('root')
+const isProd = process.env.NODE_ENV === 'production'
+const rootElement = document.getElementById('root')
 
-render(
-	<AppContainer>
-		<ClientRoot />
-	</AppContainer>
-, RootElement)
+Promise.resolve(
+	isProd
+	? hydrate
+	: render
+)
+.then(domRender => (
+	domRender(
+		(
+			<AppContainer>
+				<ClientRoot />
+			</AppContainer>
+		),
+		rootElement
+	)
+))
 
-module.hot && module.hot.accept('./ClientRoot', () => {
+const onHotReload = () => {
 	const ClientRootHotReload = require('./ClientRoot').default
 
 	render(
-		<AppContainer>
-			<ClientRootHotReload />
-		</AppContainer>,
-		RootElement
+		(
+			<AppContainer>
+				<ClientRootHotReload />
+			</AppContainer>
+		),
+		rootElement
 	)
-})
+}
+
+module.hot
+&& module.hot.accept('./ClientRoot', onHotReload)
