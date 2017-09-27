@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Provider } from 'react-redux'
 import { ConnectedRouter as Router } from 'react-router-redux'
 
 import { history, store } from 'reducers/store'
 import Pages from 'pages'
 
-export default class ClientRoot extends Component {
-	render() { return (
-		<Provider store={store}>
-			<Router history={history}>
-				<Pages />
-			</Router>
-		</Provider>
-	)}
-}
+const ClientRoot = () => (
+	<Provider store={store}>
+		<Router history={history}>
+			<Pages />
+		</Router>
+	</Provider>
+)
+
+export default ClientRoot
