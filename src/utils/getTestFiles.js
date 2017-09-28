@@ -1,6 +1,8 @@
 import Adapter from 'enzyme-adapter-react-16'
 import { configure } from 'enzyme'
 
+import 'utils/polyfills'
+
 // Setup Enzyme for React 16
 configure({ adapter: new Adapter() })
 

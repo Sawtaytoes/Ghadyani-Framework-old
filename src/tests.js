@@ -2,8 +2,6 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { render } from 'react-dom'
 
-import 'utils/polyfills'
-
 import getTestFiles, { isTapTestFile } from 'utils/getTestFiles'
 import store from 'reducers/testsStore'
 import TapOutput from 'components/tap/TapOutput'
