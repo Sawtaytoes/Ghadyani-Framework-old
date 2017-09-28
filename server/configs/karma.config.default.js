@@ -1,7 +1,7 @@
 // Config Vars
 const dir = require(`${global.baseDir}globalDirs`)
 const paths = require(`${dir.includes}paths`)
-const webpackTestConfig = require(`${dir.configs}webpack.config.test`)
+const webpackKarmaConfig = require(`${dir.configs}webpack.config.karma`)
 
 const karmaDefaultConfig = config => ({
 	basePath: `${global.baseDir}`,
@@ -30,7 +30,7 @@ const karmaDefaultConfig = config => ({
 	tapReporter: {
 		prettify: require('tap-spec'),
 	},
-	webpack: webpackTestConfig,
+	webpack: webpackKarmaConfig,
 	webpackMiddleware: {
 		noInfo: true,
 		stats: 'errors-only',
