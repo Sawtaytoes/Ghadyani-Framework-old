@@ -51,11 +51,10 @@ const webpackConfig = {
 		new BellOnBundlerErrorPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
+			'./.happypack/',
 			'./conf/',
-			'./includes/',
 			'./node_modules/',
-			'./services/',
-			'./webpack/',
+			'./server/',
 		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
