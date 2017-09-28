@@ -2,7 +2,6 @@ const BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
-// Configs
 const dir = require(`${global.baseDir}globalDirs`)
 const config = require(`${dir.configs}configSettings`)
 const paths = require(`${dir.includes}paths`)
@@ -51,11 +50,10 @@ const webpackConfig = {
 		new BellOnBundlerErrorPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
+			'./.happypack/',
 			'./conf/',
-			'./includes/',
 			'./node_modules/',
-			'./services/',
-			'./webpack/',
+			'./server/',
 		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({

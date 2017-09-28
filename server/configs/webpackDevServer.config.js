@@ -1,6 +1,5 @@
 const fs = require('fs')
 
-// Configs
 const dir = require(`${global.baseDir}globalDirs`)
 const config = require(`${dir.configs}configSettings`)
 const paths = require(`${dir.includes}paths`)

@@ -1,5 +1,8 @@
-const context = require.context('./', true, /^\.\/.*\.test\.js$/)
-context
+import getTestFiles, { isValidTestFile } from 'utils/getTestFiles'
+
+const testFiles = getTestFiles()
+
+testFiles
 .keys()
-.filter(fileName => fileName.search('TapOutput.test.js') === -1)
-.forEach(context)
+.filter(isValidTestFile)
+.forEach(testFiles)

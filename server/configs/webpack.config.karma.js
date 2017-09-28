@@ -2,7 +2,6 @@ const BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
-// Configs
 const dir = require(`${global.baseDir}globalDirs`)
 const config = require(`${dir.configs}configSettings`)
 const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
@@ -10,7 +9,7 @@ const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
 const threadPool = HappyPack.ThreadPool({ size: 4 })
 
 const webpackConfig = {
-	devtool: 'cheap-module-eval-source-map',
+	devtool: 'inline-source-map',
 	node: { fs: 'empty' },
 	plugins: [
 		new webpack.ProgressPlugin((percentage, msg) => {
@@ -19,11 +18,10 @@ const webpackConfig = {
 		new BellOnBundlerErrorPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
+			'./.happypack/',
 			'./conf/',
-			'./includes/',
 			'./node_modules/',
-			'./services/',
-			'./webpack/',
+			'./server/',
 		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
