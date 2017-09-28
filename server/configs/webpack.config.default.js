@@ -34,19 +34,6 @@ const prod = {
 }
 
 module.exports = {
-	getDev: () => {
-		const webpackDefaultConfig = Object.assign({}, shared, dev )
-
-		webpackDefaultConfig.module.rules
-		.push({
-			test: /\.json$/,
-			loaders: [
-				'json-loader',
-				'transform-loader?brfs',
-			]
-		})
-
-		return webpackDefaultConfig
-	},
-	getProd: () => Object.assign({}, shared, prod),
+	getDev: () => ({ ...shared, ...dev }),
+	getProd: () => ({ ...shared, ...prod }),
 }

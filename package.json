@@ -70,7 +70,6 @@
     "eslint": "^4.6.1",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-react": "^7.3.0",
-    "json-loader": "^0.5.7",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
     "karma-sourcemap-loader": "^0.3.7",
