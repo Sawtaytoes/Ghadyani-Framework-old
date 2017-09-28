@@ -6,7 +6,7 @@ import { hydrate, render } from 'react-dom'
 import 'react-fastclick'
 import 'utils/polyfills'
 
-import ClientRoot from 'ClientRoot'
+import ClientRoot from 'components/client-root/ClientRoot'
 
 const isProd = process.env.NODE_ENV === 'production'
 const rootElement = document.getElementById('root')
@@ -28,7 +28,7 @@ Promise.resolve(
 ))
 
 const onHotReload = () => {
-	const ClientRootHotReload = require('./ClientRoot').default
+	const ClientRootHotReload = require('./components/client-root/ClientRoot').default
 
 	render(
 		(
@@ -41,4 +41,4 @@ const onHotReload = () => {
 }
 
 module.hot
-&& module.hot.accept('./ClientRoot', onHotReload)
+&& module.hot.accept('./components/client-root/ClientRoot', onHotReload)

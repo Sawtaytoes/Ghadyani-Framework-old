@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter as Router } from 'react-router-redux'
 
 import { history, store } from 'reducers/store'
-import Pages from 'pages'
+import Pages from 'components/pages'
 
 const ClientRoot = () => (
 	<Provider store={store}>
