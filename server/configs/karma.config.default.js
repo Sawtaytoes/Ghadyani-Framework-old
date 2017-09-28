@@ -5,21 +5,14 @@ const webpackKarmaConfig = require(`${dir.configs}webpack.config.karma`)
 
 const karmaDefaultConfig = config => ({
 	basePath: `${global.baseDir}`,
-	browsers: [
-		'jsdom',
-		'PhantomJS',
-		'SlimerJS',
-	],
+	browsers: ['ChromeHeadless'],
 	colors: true,
-	files: [
-		`${paths.nodeModules}babel-polyfill/dist/polyfill.js`,
-		{
-			pattern: `./${paths.root.src}karma.js`,
-			watched: false,
-		}
-	],
+	files: [{
+		pattern: `./${paths.root.src}karma.js`,
+		watched: false,
+	}],
 	frameworks: ['tap'],
-	logLevel: config.LOG_INFO,
+	logLevel: config.LOG_ERROR,
 	port: 9876,
 	preprocessors: {
 		[`./${paths.root.src}karma.js`]: [
