@@ -8,7 +8,7 @@
       "es2015": { "modules": false }
     }],
     "stage-0",
-    "@ava/stage-4",
+    // "@ava/stage-4",
     "react",
   ],
 }
