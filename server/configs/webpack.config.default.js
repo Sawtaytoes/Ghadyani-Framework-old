@@ -16,16 +16,7 @@ const shared = {
 		loader: 'happypack/loader?id=styl',
 		include: [files],
 	}, {
-		test: /\.(jpe?g|png|gif|svg)$/i,
-		loader: 'url-loader?limit=10000',
-	}, {
-		test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-		loader: 'url-loader?limit=10000&minetype=application/font-woff',
-	}, {
-		test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-		loader: 'file-loader',
-	}, {
-		test: /\.html$|\.css$/,
+		test: /\.html$/,
 		loader: 'file-loader?name=[name].[ext]',
 	}]},
 	resolve: {

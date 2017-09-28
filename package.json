@@ -59,7 +59,6 @@
     "style-loader": "^0.18.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
-    "url-loader": "^0.5.9",
     "webpack": "^3.5.6",
     "webpack-node-externals": "^1.6.0"
   },
