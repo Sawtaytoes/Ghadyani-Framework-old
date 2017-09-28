@@ -8,7 +8,8 @@ const karmaDefaultConfig = config => ({
 	browsers: ['PhantomJS'],
 	colors: true,
 	files: [
-		`${paths.npm.src}phantomjs-polyfill-find/find-polyfill.js`,
+		`${paths.nodeModules}phantomjs-polyfill-find/find-polyfill.js`,
+		`${paths.nodeModules}phantomjs-polyfill-string-includes.js`,
 		{
 			pattern: `./${paths.root.src}karma.js`,
 			watched: false,
