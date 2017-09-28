@@ -20,9 +20,7 @@ const karmaDefaultConfig = config => ({
 			'sourcemap',
 		],
 	},
-	reporters: [
-		'tap-pretty',
-	],
+	reporters: ['tap-pretty'],
 	tapReporter: {
 		prettify: require('tap-spec'),
 	},
