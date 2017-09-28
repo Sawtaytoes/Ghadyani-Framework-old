@@ -7,8 +7,8 @@ import 'utils/polyfills'
 configure({ adapter: new Adapter() })
 
 // Check if file is a test specificially meant to run with failures for testing TAP parsing
-export const isTapTestFile = fileName => (
-	fileName.includes('TapOutput.test.js')
+export const isValidTestFile = fileName => (
+	!fileName.includes('TapOutput.test.js')
 )
 
 // Setup `*.test.js` files to watch

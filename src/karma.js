@@ -1,8 +1,8 @@
-import getTestFiles, { isTapTestFile } from 'utils/getTestFiles'
+import getTestFiles, { isValidTestFile } from 'utils/getTestFiles'
 
 const testFiles = getTestFiles()
 
 testFiles
 .keys()
-.filter(isTapTestFile)
+.filter(isValidTestFile)
 .forEach(testFiles)

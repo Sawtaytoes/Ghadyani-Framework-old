@@ -2,7 +2,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { render } from 'react-dom'
 
-import getTestFiles, { isTapTestFile } from 'utils/getTestFiles'
+import getTestFiles, { isValidTestFile } from 'utils/getTestFiles'
 import store from 'reducers/testsStore'
 import TapOutput from 'components/tap/TapOutput'
 
@@ -11,9 +11,9 @@ const testFiles = getTestFiles()
 const testName = window.__TESTNAME__
 const isWildcard = testName.match(/\*$/)
 
-const allTests = fileName => !isTapTestFile(fileName)
+const allTests = isValidTestFile
 const specificTests = testName => fileName => (
-	isWildcard && !isTapTestFile(fileName)
+	isWildcard && isValidTestFile(fileName)
 	? (
 		fileName.match(
 			new RegExp(`${testName.replace('*', '')}.*\\.test\\.js`)
