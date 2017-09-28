@@ -2,7 +2,6 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
-// Configs
 const dir = require(`${global.baseDir}globalDirs`)
 const config = require(`${dir.configs}configSettings`)
 const paths = require(`${dir.includes}paths`)

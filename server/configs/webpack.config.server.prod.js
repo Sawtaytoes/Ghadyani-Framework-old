@@ -2,7 +2,6 @@ const HappyPack = require('happypack')
 const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 
-// Configs
 const dir = require(`${global.baseDir}globalDirs`)
 const config = require(`${dir.configs}configSettings`)
 const paths = require(`${dir.includes}paths`)

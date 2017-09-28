@@ -1,4 +1,3 @@
-// Configs
 const dir = require(`${global.baseDir}globalDirs`)
 const files = require(`${dir.includes}files`)
 
