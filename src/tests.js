@@ -1,10 +1,9 @@
 import React from 'react'
-import { Provider } from 'react-redux'
+import { AppContainer } from 'react-hot-loader'
 import { render } from 'react-dom'
 
 import getTestFiles, { isValidTestFile } from 'utils/getTestFiles'
-import store from 'reducers/testsStore'
-import TapOutput from 'components/tap/TapOutput'
+import TestsRoot from 'components/root/TestsRoot'
 
 const testFiles = getTestFiles()
 
@@ -35,9 +34,27 @@ runTests(
 	: allTests
 )
 
+const rootElement = document.getElementById('root')
+
 render(
-	<Provider store={store}>
-		<TapOutput />
-	</Provider>,
+	<AppContainer>
+		<TestsRoot />
+	</AppContainer>,
 	document.getElementById('root')
 )
+
+const onHotReload = () => {
+	const TestsRootHotReload = require('./components/root/TestsRoot').default
+
+	render(
+		(
+			<AppContainer>
+				<TestsRootHotReload />
+			</AppContainer>
+		),
+		rootElement
+	)
+}
+
+module.hot
+&& module.hot.accept('./components/root/TestsRoot', onHotReload)
