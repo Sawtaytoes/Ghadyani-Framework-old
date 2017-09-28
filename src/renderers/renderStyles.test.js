@@ -26,7 +26,7 @@ const getStylesFromDOM = () => (
 test('renderStyles: Initialize', t => {
 	const TestComponent = () => <div>Test Component</div>
 
-	const Styles = renderStyles(TestComponent)
+	const Styles = renderStyles()(TestComponent)
 
 	const wrapper = shallow(<Styles />)
 
@@ -49,12 +49,11 @@ test('renderStyles: Render', t => {
 	const TestComponent = () => <div>Test Component</div>
 
 	const Styles = (
-		renderStyles(
-			TestComponent,
-			[
-				require('./renderStyles.styl'),
-				require('./renderStyles.styl'),
-			]
+		renderStyles([
+			require('./renderStyles.styl'),
+			require('./renderStyles.styl'),
+		])(
+			TestComponent
 		)
 	)
 
@@ -84,12 +83,11 @@ test('renderStyles: <style /> tag in <head />', t => {
 	const TestComponent = () => <div>Test Component</div>
 
 	const Styles = (
-		renderStyles(
-			TestComponent,
-			[
-				require('./renderStyles.styl'),
-				require('./renderStyles.styl'),
-			]
+		renderStyles([
+			require('./renderStyles.styl'),
+			require('./renderStyles.styl'),
+		])(
+			TestComponent
 		)
 	)
 
@@ -128,12 +126,11 @@ test('renderStyles: Render Multiple Styles-Wrapped Components', t => {
 	const TestComponent = () => <div>Test Component</div>
 
 	const Styles = (
-		renderStyles(
-			TestComponent,
-			[
-				require('./renderStyles.styl'),
-				require('./renderStyles.styl'),
-			]
+		renderStyles([
+			require('./renderStyles.styl'),
+			require('./renderStyles.styl'),
+		])(
+			TestComponent
 		)
 	)
 

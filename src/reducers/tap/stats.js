@@ -31,7 +31,7 @@ export const initialState = {
 	numTotal: 0,
 }
 
-const reducer = {
+const reducerActions = {
 	[ADD_MESSAGE]: (
 		(prevStats, { identifier, messageText }) => {
 			const stats = (
@@ -47,4 +47,4 @@ const reducer = {
 	),
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

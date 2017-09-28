@@ -3,11 +3,9 @@ const root = {
 	dest: 'web/',
 }
 
-const npm = {
-	src: 'node_modules/',
-}
+const nodeModules = 'node_modules/'
 
 module.exports = {
-	npm,
+	nodeModules,
 	root,
 }

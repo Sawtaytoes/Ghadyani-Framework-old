@@ -5,9 +5,10 @@ import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
 
 import 'utils/polyfills'
+
 import Pages from 'pages'
 import renderSite from 'renderers/renderSite'
-import rootReducer from 'reducers'
+import { rootReducer } from 'reducers'
 import { updatePageMeta } from 'reducers/pageMeta'
 
 module.exports = (req, res) => {
@@ -25,14 +26,20 @@ module.exports = (req, res) => {
 		</Provider>
 	)
 
-	store.dispatch(updatePageMeta(req.url))
+	store.dispatch(
+		updatePageMeta(req.url)
+	)
+
 	const renderedPage = renderSite(renderedContent, store.getState())
 
 	if (context.url) {
-		res.writeHead(302, { Location: context.url })
-		res.end()
+		res
+		.writeHead(302, { Location: context.url })
+		.end()
 
 	} else {
-		res.send(renderedPage).end()
+		res
+		.send(renderedPage)
+		.end()
 	}
 }

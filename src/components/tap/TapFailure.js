@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TapLineItem from 'components/tap/TapLineItem'
+import TapLineItem from './TapLineItem'
 
 const styles = {
 	container: {

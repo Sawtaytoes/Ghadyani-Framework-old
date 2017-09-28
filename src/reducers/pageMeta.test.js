@@ -1,11 +1,29 @@
 import test from 'tape-catch'
 
-import navItems from 'content/navItems'
 import pageMetaReducer, {
-	updatePageMeta,
-
 	initialState,
+	updatePageMeta,
 } from './pageMeta'
+
+const navItems = [{
+	description: "Get ready to get rocked!",
+	displayInHeader: true,
+	name: 'Home',
+	to: '',
+}, {
+	description: "All about nothing.",
+	displayInHeader: true,
+	name: 'About',
+	to: 'about',
+}, {
+	description: "TEST ALL THE THINGS!",
+	name: 'Unit Tests',
+	to: 'tests',
+}, {
+	description: "404 - Page Not Found",
+	name: 'Page Not Found',
+	to: '404',
+}]
 
 const getPathWithoutLeadingSlash = path => path.replace(/^\//, '')
 
@@ -17,7 +35,7 @@ test('Page Meta: Update Page Meta from `/`', t => {
 
 	const action = updatePageMeta(currentPath)
 
-	const { description, title } = (
+	const { description, name } = (
 		pageMetaReducer(
 			initialState,
 			action
@@ -31,9 +49,9 @@ test('Page Meta: Update Page Meta from `/`', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()
@@ -47,7 +65,7 @@ test('Page Meta: Update Page Meta from `/about`', t => {
 
 	const action = updatePageMeta(currentPath)
 
-	const { description, title } = (
+	const { description, name } = (
 		pageMetaReducer(
 			initialState,
 			action
@@ -61,9 +79,9 @@ test('Page Meta: Update Page Meta from `/about`', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()
@@ -76,7 +94,7 @@ test('Page Meta: Update Page Meta from `/no-match`', t => {
 
 	const action = updatePageMeta(currentPath)
 
-	const { description, title } = (
+	const { description, name } = (
 		pageMetaReducer(
 			initialState,
 			action
@@ -90,16 +108,16 @@ test('Page Meta: Update Page Meta from `/no-match`', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()
 })
 
 test('Page Meta: Update Page Meta from Many Actions', t => {
-	const finalPath = '/about'
+	const finalPath = '/tests'
 
 	const pathWithoutSlash = getPathWithoutLeadingSlash(finalPath)
 	const navItem = navItems.find(({ to }) => to === pathWithoutSlash)
@@ -110,7 +128,7 @@ test('Page Meta: Update Page Meta from Many Actions', t => {
 		updatePageMeta(finalPath),
 	]
 
-	const { description, title } = (
+	const { description, name } = (
 		actions
 		.reduce(
 			pageMetaReducer,
@@ -125,9 +143,9 @@ test('Page Meta: Update Page Meta from Many Actions', t => {
 	)
 
 	t.equal(
-		title,
-		navItem.title,
-		"Page title was updated"
+		name,
+		navItem.name,
+		"Page name was updated"
 	)
 
 	t.end()

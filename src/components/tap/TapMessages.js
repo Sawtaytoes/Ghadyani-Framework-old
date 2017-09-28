@@ -2,14 +2,14 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import TapLineItem from 'components/tap/TapLineItem'
+import TapLineItem from './TapLineItem'
 
 const styles = { marginTop: '1em' }
 
-export const TapMessages = ({ tests }) => (
+export const TapMessages = ({ messages }) => (
 	<div style={styles}>
 		{
-			tests
+			messages
 			.map((_, index) => (
 				<TapLineItem key={index} id={index} />
 			))
@@ -18,11 +18,11 @@ export const TapMessages = ({ tests }) => (
 )
 
 TapMessages.propTypes = {
-	tests: PropTypes.arrayOf(PropTypes.object).isRequired,
+	messages: PropTypes.arrayOf(PropTypes.object).isRequired,
 }
 
-const mapStateToProps = ({ tap: { tests } }) => ({
-	tests,
+const mapStateToProps = ({ tap: { messages } }) => ({
+	messages,
 })
 
 export default connect(mapStateToProps)(TapMessages)

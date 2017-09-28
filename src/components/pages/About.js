@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { pure } from 'recompose'
 
+import renderPure from 'renderers/renderPure'
 import Sample from 'components/sample/Sample'
 
 export const About = () => (
@@ -12,4 +12,4 @@ export const About = () => (
 	</div>
 )
 
-export default pure(About)
+export default renderPure(About)

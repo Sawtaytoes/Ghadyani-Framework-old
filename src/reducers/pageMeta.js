@@ -1,3 +1,5 @@
+import { LOCATION_CHANGE } from 'react-router-redux'
+
 import createReducer from 'utils/createReducer'
 import navItems from 'content/navItems'
 import { htmlMeta } from 'content/pageMeta'
@@ -7,7 +9,6 @@ import { htmlMeta } from 'content/pageMeta'
 // Actions
 // --------------------------------------------------------
 
-const LOCATION_CHANGED = '@@router/LOCATION_CHANGE'
 const UPDATE_META_DATA = 'PAGE_META::UPDATE_META_DATA'
 
 
@@ -59,9 +60,9 @@ const getPageMeta = currentPath => (
 	|| noMatchNavItemMeta
 )
 
-const updatePageTitle = title => (
+const updatePageTitle = name => (
 	hasDocument
-	&& (document.title = `${title}${htmlMeta.titlePostfix}`)
+	&& (document.title = `${name}${htmlMeta.titlePostfix}`)
 )
 
 const updatePageDescription = (description = '') => {
@@ -79,14 +80,14 @@ const updateScrollPosition = () => (
 )
 
 export const updatePageMeta = currentPath => {
-	const { description, title } = getPageMeta(currentPath)
+	const { description, name } = getPageMeta(currentPath)
 
-	updatePageTitle(title)
+	updatePageTitle(name)
 	updatePageDescription(description)
 
 	return {
 		description,
-		title,
+		name,
 		type: UPDATE_META_DATA,
 	}
 }
@@ -101,17 +102,17 @@ export const initialState = {
 	description: '',
 	hasPathChanged: false,
 	previousPath: '/',
-	title: '',
+	name: '',
 }
 
-const reducer = {
-	[UPDATE_META_DATA]: (state, { description, title }) => ({
+const reducerActions = {
+	[UPDATE_META_DATA]: (state, { description, name }) => ({
 		...state,
 		description,
-		title,
+		name,
 	}),
 
-	[LOCATION_CHANGED]: (state, { payload: { pathname } }) => {
+	[LOCATION_CHANGE]: (state, { payload: { pathname } }) => {
 		const currentPath = pathname
 		const previousPath = state.currentPath
 
@@ -119,7 +120,7 @@ const reducer = {
 
 		hasPathChanged && updateScrollPosition()
 
-		const { description, title } = updatePageMeta(currentPath)
+		const { description, name } = updatePageMeta(currentPath)
 
 		return {
 			...state,
@@ -127,9 +128,9 @@ const reducer = {
 			description,
 			hasPathChanged,
 			previousPath,
-			title,
+			name,
 		}
 	},
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

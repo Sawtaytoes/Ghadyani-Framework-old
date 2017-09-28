@@ -1,21 +1,18 @@
 // Config Vars
 const dir = require(`${global.baseDir}globalDirs`)
 const paths = require(`${dir.includes}paths`)
-const webpackTestConfig = require(`${dir.configs}webpack.config.test`)
+const webpackKarmaConfig = require(`${dir.configs}webpack.config.karma`)
 
 const karmaDefaultConfig = config => ({
 	basePath: `${global.baseDir}`,
-	browsers: ['PhantomJS'],
+	browsers: ['ChromeHeadless'],
 	colors: true,
-	files: [
-		`${paths.npm.src}phantomjs-polyfill-find/find-polyfill.js`,
-		{
-			pattern: `./${paths.root.src}karma.js`,
-			watched: false,
-		}
-	],
+	files: [{
+		pattern: `./${paths.root.src}karma.js`,
+		watched: false,
+	}],
 	frameworks: ['ava', 'tap'],
-	logLevel: config.LOG_INFO,
+	logLevel: config.LOG_ERROR,
 	port: 9876,
 	preprocessors: {
 		[`./${paths.root.src}karma.js`]: [
@@ -23,13 +20,11 @@ const karmaDefaultConfig = config => ({
 			'sourcemap',
 		],
 	},
-	reporters: [
-		'tap-pretty',
-	],
+	reporters: ['tap-pretty'],
 	tapReporter: {
 		prettify: require('tap-spec'),
 	},
-	webpack: webpackTestConfig,
+	webpack: webpackKarmaConfig,
 	webpackMiddleware: {
 		noInfo: true,
 		stats: 'errors-only',

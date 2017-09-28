@@ -62,7 +62,7 @@ const updateFailureReason = (failures, failureReason) => {
 
 export const initialState = []
 
-const reducer = {
+const reducerActions = {
 	[ADD_FAILURE]: (prevFailures, { failureReason, failureType }) => (
 		failureType
 		? addOrUpdateFailure(prevFailures, failureType, failureReason)
@@ -70,4 +70,4 @@ const reducer = {
 	),
 }
 
-export default createReducer(reducer, initialState)
+export default createReducer(reducerActions, initialState)

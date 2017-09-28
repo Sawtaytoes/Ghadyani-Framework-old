@@ -15,6 +15,7 @@ test('TAP Helpers: RegEx Start', t => {
 
 	t.end()
 })
+
 test('TAP Helpers: RegEx Message', t => {
 	const regex = tapParsers.message
 	const operations = [{
@@ -65,10 +66,11 @@ test('TAP Helpers: RegEx Message', t => {
 	.forEach(
 		({ text, shouldPassTest }) => {
 			const messageText = regex.test(text)
+			const tapSafeText = text.replace('#', '#\\')
 
 			shouldPassTest
-			? t.ok(messageText, text)
-			: t.notOk(messageText, text)
+			? t.ok(messageText, tapSafeText)
+			: t.notOk(messageText, tapSafeText)
 		}
 	)
 
