@@ -5,12 +5,11 @@ import {
 	combineReducers,
 } from 'redux'
 
+// Pretty TAP output in the console
+import 'tap-dev-tool/register'
+
 import tapListener from 'reducers/tap/listener'
 import tap from 'reducers/tap'
-
-// Pretty TAP output in the console
-// [Disabled] because it conflicts with `setTimeout`
-// import 'tap-dev-tool/register'
 
 const middleware = []
 
@@ -26,17 +25,16 @@ const store = (
 	)
 )
 
-module.hot
-&& (
-	module.hot.accept(
-		'reducers',
-		() => (
-			store.replaceReducer(
-				combineReducers(require('reducers/tap'))
-			)
+const onHotReload = () => {
+	store.replaceReducer(
+		combineReducers(
+			require('reducers/tap')
 		)
 	)
-)
+}
+
+module.hot
+&& module.hot.accept('reducers', onHotReload)
 
 tapListener(store)
 

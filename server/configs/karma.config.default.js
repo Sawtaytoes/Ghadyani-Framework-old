@@ -27,12 +27,12 @@ const karmaDefaultConfig = config => ({
 			'sourcemap',
 		],
 	},
-	// reporters: [
-	// 	'tap-pretty',
-	// ],
-	// tapReporter: {
-	// 	prettify: require('tap-spec'),
-	// },
+	reporters: [
+		'tap-pretty',
+	],
+	tapReporter: {
+		prettify: require('tap-spec'),
+	},
 	webpack: webpackKarmaConfig,
 	webpackMiddleware: {
 		noInfo: true,
