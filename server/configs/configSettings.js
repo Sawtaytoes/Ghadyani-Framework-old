@@ -43,12 +43,8 @@ const configDefaults = {
 	// Path that's used when doing a POST to send mail.
 	mailSendPath: '/contact/send',
 
-	// Options for Nodemailer.
-	mailOptions: {
-
-		// When sending mail, this appears in the `FROM` field
-		from: 'Fake User <fake.user@example.com>',
-	},
+	// When sending mail, this appears in the `FROM` field
+	mailFrom: 'Fake User <fake.user@example.com>',
 
 	// Configuration for a local maildev server.
 	smtpCredentials: {
@@ -62,15 +58,15 @@ const configDefaults = {
 
 const configEnv = {
 	env: process.env.NODE_ENV,
-	protocol: process.env.PROTOCOL,
 	hostname: process.env.HOSTNAME,
+	mailFrom: process.env.MAIL_FROM,
+	mailSendPath: process.env.MAIL_SEND_PATH,
 	port: process.env.PORT,
+	protocol: process.env.PROTOCOL,
 	proxyHostname: process.env.PROXY_HOSTNAME,
 	proxyPort: process.env.PROXY_PORT,
-	testsPath: process.env.TESTS_PATH,
-	mailSendPath: process.env.MAIL_SEND_PATH,
-	mailOptions: process.env.MAIL_FROM && { from: process.env.MAIL_FROM },
 	smtpCredentials: process.env.SMTP_CREDENTIALS,
+	testsPath: process.env.TESTS_PATH,
 }
 
 Object.keys(configEnv)
@@ -100,7 +96,7 @@ module.exports = {
 	getServerUrl: () => `${config.protocol}://${config.hostname}:${config.port}`,
 	getProxyServerUrl: () => `http://${config.proxyHostname}:${config.proxyPort}`,
 
+	getMailFrom: () => config.mailFrom,
 	getMailSendPath: () => config.mailSendPath,
-	getMailOptions: () => config.mailOptions,
 	getSmtpCredentials: () => config.smtpCredentials,
 }
