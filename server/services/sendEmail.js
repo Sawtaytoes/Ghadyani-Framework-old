@@ -50,13 +50,14 @@ module.exports = (reqBody, res) => {
 	}
 
 	// Configure Mail Options
-	const mailOptions = Object.assign({}, {
+	const mailOptions = {
+		from: config.getMailFrom(),
 		to: mailTo,
 		replyTo: `${reqBody.name} <${reqBody.email}>`,
 		subject: reqBody.subject,
 		text: `${reqBody.name} ${reqBody.email}\n${reqBody.message}`,
 		html: `${reqBody.name} &lt;${reqBody.email}&gt;<br><br>${reqBody.message.replace(/\n/gm, '<br>')}`,
-	}, config.getMailOptions())
+	}
 
 	// Send Email
 	global.__transporter.sendMail(mailOptions, (err, info) => {

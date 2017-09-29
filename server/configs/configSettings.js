@@ -7,23 +7,47 @@ try {
 }
 
 const configDefaults = {
-	env: 'production',                            // Can be 'development' or 'production'.
+	// Use either 'development' or 'production'.
+	env: 'production',
 
-	//- Server
-	protocol: 'http',                             // Using `https` requires valid certificates.
-	hostname: '0.0.0.0',                          // Can be 0.0.0.0 for binding to all IPs.
-	port: 3000,                                   // Port of webserver.
-	// proxyPort: 3001,                           // Optional. Will be `port + 1` if not defined.
 
-	//- Testing
-	testsPath: '/tests',                          // Path used when performing unit-tests
+	// -----------------------------------------
+	// Web Server
+	// -----------------------------------------
 
-	//- Email Submission
-	mailSendPath: '/contact/send',                // Path that's used when doing a POST to send mail.
-	mailOptions: {                                // Options for Nodemailer.
-		from: 'Fake User <fake.user@example.com>', // When sending mail, this appears in the `FROM` field
-	},
-	smtpCredentials: {                            // Configuration for a local maildev server.
+	// Using `https` requires valid certificates.
+	protocol: 'http',
+
+	// Can be 0.0.0.0 for binding to all IPs.
+	hostname: '0.0.0.0',
+
+	// Port of webserver.
+	port: 3000,
+
+	// Optional. Will be `port + 1` if not defined.
+	// proxyPort: 3001,
+
+
+	// -----------------------------------------
+	// Testing
+	// -----------------------------------------
+
+	// Path used when performing unit-tests
+	testsPath: '/tests',
+
+
+	// -----------------------------------------
+	// eMail
+	// -----------------------------------------
+
+	// Path that's used when doing a POST to send mail.
+	mailSendPath: '/contact/send',
+
+	// When sending mail, this appears in the `FROM` field
+	mailFrom: 'Fake User <fake.user@example.com>',
+
+	// Configuration for a local maildev server.
+	smtpCredentials: {
 		host: 'localhost',
 		port: 1025,
 		tls: {
@@ -34,15 +58,15 @@ const configDefaults = {
 
 const configEnv = {
 	env: process.env.NODE_ENV,
-	protocol: process.env.PROTOCOL,
 	hostname: process.env.HOSTNAME,
+	mailFrom: process.env.MAIL_FROM,
+	mailSendPath: process.env.MAIL_SEND_PATH,
 	port: process.env.PORT,
+	protocol: process.env.PROTOCOL,
 	proxyHostname: process.env.PROXY_HOSTNAME,
 	proxyPort: process.env.PROXY_PORT,
-	testsPath: process.env.TESTS_PATH,
-	mailSendPath: process.env.MAIL_SEND_PATH,
-	mailOptions: process.env.MAIL_FROM && { from: process.env.MAIL_FROM },
 	smtpCredentials: process.env.SMTP_CREDENTIALS,
+	testsPath: process.env.TESTS_PATH,
 }
 
 Object.keys(configEnv)
@@ -72,7 +96,7 @@ module.exports = {
 	getServerUrl: () => `${config.protocol}://${config.hostname}:${config.port}`,
 	getProxyServerUrl: () => `http://${config.proxyHostname}:${config.proxyPort}`,
 
+	getMailFrom: () => config.mailFrom,
 	getMailSendPath: () => config.mailSendPath,
-	getMailOptions: () => config.mailOptions,
 	getSmtpCredentials: () => config.smtpCredentials,
 }
