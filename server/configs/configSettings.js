@@ -7,23 +7,51 @@ try {
 }
 
 const configDefaults = {
-	env: 'production',                            // Can be 'development' or 'production'.
+	// Use either 'development' or 'production'.
+	env: 'production',
 
-	//- Server
-	protocol: 'http',                             // Using `https` requires valid certificates.
-	hostname: '0.0.0.0',                          // Can be 0.0.0.0 for binding to all IPs.
-	port: 3000,                                   // Port of webserver.
-	// proxyPort: 3001,                           // Optional. Will be `port + 1` if not defined.
 
-	//- Testing
-	testsPath: '/tests',                          // Path used when performing unit-tests
+	// -----------------------------------------
+	// Web Server
+	// -----------------------------------------
 
-	//- Email Submission
-	mailSendPath: '/contact/send',                // Path that's used when doing a POST to send mail.
-	mailOptions: {                                // Options for Nodemailer.
-		from: 'Fake User <fake.user@example.com>', // When sending mail, this appears in the `FROM` field
+	// Using `https` requires valid certificates.
+	protocol: 'http',
+
+	// Can be 0.0.0.0 for binding to all IPs.
+	hostname: '0.0.0.0',
+
+	// Port of webserver.
+	port: 3000,
+
+	// Optional. Will be `port + 1` if not defined.
+	// proxyPort: 3001,
+
+
+	// -----------------------------------------
+	// Testing
+	// -----------------------------------------
+
+	// Path used when performing unit-tests
+	testsPath: '/tests',
+
+
+	// -----------------------------------------
+	// eMail
+	// -----------------------------------------
+
+	// Path that's used when doing a POST to send mail.
+	mailSendPath: '/contact/send',
+
+	// Options for Nodemailer.
+	mailOptions: {
+
+		// When sending mail, this appears in the `FROM` field
+		from: 'Fake User <fake.user@example.com>',
 	},
-	smtpCredentials: {                            // Configuration for a local maildev server.
+
+	// Configuration for a local maildev server.
+	smtpCredentials: {
 		host: 'localhost',
 		port: 1025,
 		tls: {
