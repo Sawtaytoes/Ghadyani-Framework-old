@@ -10,8 +10,8 @@ module.exports = {
 	historyApiFallback: true,
 	hot: true,
 	https: config.isSecure() && {
-		cert: config.isSecure() ? fs.readFileSync('./conf/domain-crt.txt') : null,
-		key: config.isSecure() ? fs.readFileSync('./conf/key.pem') : null,
+		cert: config.isSecure() ? fs.readFileSync('./cert/domain-crt.txt') : null,
+		key: config.isSecure() ? fs.readFileSync('./cert/key.pem') : null,
 	},
 	// progress: true,
 	proxy: {

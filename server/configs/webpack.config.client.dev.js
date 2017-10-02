@@ -51,7 +51,7 @@ const webpackConfig = {
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
 		new webpack.WatchIgnorePlugin([
 			'./.happypack/',
-			'./conf/',
+			'./cert/',
 			'./node_modules/',
 			'./server/',
 		]),
