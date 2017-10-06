@@ -1,4 +1,4 @@
-const dir = require(`${global.baseDir}globalDirs`)
+const dir = require(`${global.baseDir}directories`)
 const files = require(`${dir.includes}files`)
 
 const shared = {

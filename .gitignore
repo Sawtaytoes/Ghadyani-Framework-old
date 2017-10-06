@@ -1,7 +1,9 @@
+## Cache ##
+.happypack
+
 ## Configs ##
 .env
-.happypack
-server/configs/config.js
+configs/custom.js
 
 ## Generated ##
 web/*

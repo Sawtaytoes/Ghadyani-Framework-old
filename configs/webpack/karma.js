@@ -2,9 +2,9 @@ const BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
-const dir = require(`${global.baseDir}globalDirs`)
-const config = require(`${dir.configs}configSettings`)
-const webpackDefaultConfig = require(`${dir.configs}webpack.config.default`)
+const dir = require(`${global.baseDir}directories`)
+const config = require(`${dir.configs}`)
+const webpackDefaultConfig = require(`${dir.configs}webpack/default`)
 
 const threadPool = HappyPack.ThreadPool({ size: 4 })
 

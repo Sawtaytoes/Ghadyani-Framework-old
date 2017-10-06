@@ -1,10 +1,9 @@
 const webpack = require('webpack')
 
-// Config Vars
-const dir = require(`${global.baseDir}globalDirs`)
+const dir = require(`${global.baseDir}directories`)
 const serverRunMode = require(`${dir.includes}serverRunMode`)
-const webpackClientConfig = require(`${dir.configs}webpack.config.client.prod`)
-const webpackServerConfig = require(`${dir.configs}webpack.config.server.prod`)
+const webpackClientConfig = require(`${dir.configs}webpack/clientProd`)
+const webpackServerConfig = require(`${dir.configs}webpack/serverProd`)
 const { onBuild } = require(`${dir.includes}webpackBuildHelpers`)
 
 module.exports = () => {

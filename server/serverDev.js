@@ -6,11 +6,11 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
 // Configs
-const dir = require(`${global.baseDir}globalDirs`)
-const config = require(`${dir.configs}configSettings`)
+const dir = require(`${global.baseDir}directories`)
+const config = require(`${dir.configs}`)
 const paths = require(`${dir.includes}paths`)
-const webpackClientConfig = require(`${dir.configs}webpack.config.client.dev`)
-const webpackServerConfig = require(`${dir.configs}webpackDevServer.config`)
+const webpackClientConfig = require(`${dir.configs}webpack/clientDev`)
+const webpackServerConfig = require(`${dir.configs}webpackDevServer`)
 const { onBuild } = require(`${dir.includes}webpackBuildHelpers`)
 
 const sendEmail = (req, res) => {

@@ -1,9 +1,9 @@
 const fs = require('fs')
 
-const dir = require(`${global.baseDir}globalDirs`)
-const config = require(`${dir.configs}configSettings`)
+const dir = require(`${global.baseDir}directories`)
+const config = require(`${dir.configs}`)
 const paths = require(`${dir.includes}paths`)
-const webpackClientConfig = require(`${dir.configs}webpack.config.client.dev`)
+const webpackClientConfig = require(`${dir.configs}webpack/clientDev`)
 
 module.exports = {
 	contentBase: `${global.baseDir}${paths.root.dest}`,

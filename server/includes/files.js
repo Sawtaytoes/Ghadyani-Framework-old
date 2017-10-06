@@ -1,7 +1,7 @@
 const path = require('path')
 
 // Load Config settings
-const dir = require(`${global.baseDir}globalDirs`)
+const dir = require(`${global.baseDir}directories`)
 const paths = require(`${dir.includes}paths`)
 
 const getFilesAtPath = x => path.join(dir.base, x)
