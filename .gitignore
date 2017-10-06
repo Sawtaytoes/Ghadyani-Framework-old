@@ -25,8 +25,5 @@ npm-debug.log*
 ## npm ##
 node_modules
 
-## New Relic ##
-newrelic.js
-
 ## Project Files ##
 ~res
