@@ -48,7 +48,7 @@ const webpackConfig = {
 	],
 }
 
-module.exports = Object.assign({},
-	webpackDefaultConfig.getDev(),
-	webpackConfig
-)
+module.exports = {
+	...webpackDefaultConfig.getDev(),
+	...webpackConfig,
+}

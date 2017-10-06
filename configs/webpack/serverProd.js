@@ -75,7 +75,7 @@ const webpackConfig = {
 	target: 'node',
 }
 
-module.exports = Object.assign({},
-	webpackDefaultConfig.getProd(),
-	webpackConfig
-)
+module.exports = {
+	...webpackDefaultConfig.getProd(),
+	...webpackConfig,
+}
