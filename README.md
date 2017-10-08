@@ -1,4 +1,6 @@
-# Ghadyani Framework for Webpack, React, and Redux
+# Ghadyani Framework
+> For Webpack, React, and Redux
+
 [ ![Codeship Status for Sawtaytoes/Ghadyani-Framework-Webpack-React-Redux](https://app.codeship.com/projects/6a9ebe50-fc1e-0134-257f-0aa8194bf520/status?branch=master)](https://app.codeship.com/projects/211675)
 
 - [Configuration](docs/configuration.md)
@@ -11,7 +13,7 @@
 - [Software Requirements](docs/software-requirements.md)
 
 
-## Running Locally
+## Run Locally
 ```shell
 yarn start
 ```
@@ -32,3 +34,9 @@ module.exports = {
 ```
 
 More tweaks available in the [Configuration](docs/configuration.md).
+
+
+## Migrating
+
+- [3.3 to 4.0](docs/migrating/3.3-to-4.0.md)
+- [2.3 to 4.0](docs/migrating/2.3-to-4.0.md)
