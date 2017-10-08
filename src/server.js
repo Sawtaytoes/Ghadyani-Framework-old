@@ -6,7 +6,7 @@ import { compose, createStore } from 'redux'
 
 import 'utils/polyfills'
 
-import Pages from 'components/pages/index'
+import Pages from 'components/pages'
 import renderSite from 'renderers/renderSite'
 import { rootReducer } from 'reducers'
 import { updatePageMeta } from 'reducers/pageMeta'
