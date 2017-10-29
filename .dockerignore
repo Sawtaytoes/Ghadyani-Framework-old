@@ -1,0 +1,12 @@
+# Generated
+.git
+logs
+*.log
+node_modules
+npm-debug.log*
+
+# Misc
+.DS_Store
+[Tt]humbs.db
+*.dmp
+._*
