@@ -5,11 +5,7 @@ RUN apk add yarn
 
 WORKDIR ~/
 COPY package.json yarn.lock /
-# COPY package.json .
-# COPY yarn.lock .
 RUN yarn install
-# RUN npm install
-# COPY . /
 
 COPY . .
 RUN yarn compile
