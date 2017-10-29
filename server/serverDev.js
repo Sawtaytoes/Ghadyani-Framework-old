@@ -1,5 +1,3 @@
-require('babel-core/register')({ presets: ['latest'] })
-
 const bodyParser = require('body-parser')
 const express = require('express')
 const webpack = require('webpack')
@@ -7,6 +5,7 @@ const WebpackDevServer = require('webpack-dev-server')
 
 // Configs
 const dir = require(`${global.baseDir}directories`)
+require(`${dir.includes}loadBabelNodeConfig`)()
 const config = require(`${dir.configs}`)
 const paths = require(`${dir.includes}paths`)
 const webpackClientConfig = require(`${dir.configs}webpack/clientDev`)

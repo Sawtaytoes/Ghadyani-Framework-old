@@ -41,7 +41,7 @@ const webpackConfig = {
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [
-				'babel-loader?presets[]=latest,presets[]=stage-0,presets[]=react',
+				'babel-loader',
 			]
 		}),
 		new HappyPack({
@@ -64,12 +64,7 @@ const webpackConfig = {
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: { warnings: false },
-			mangle: { except: ['$super', '$', 'exports', 'require'] },
-			output: {
-				comments: false,
-				screw_ie8: true,
-			},
-			sourceMap: config.isDev(),
+			mangle: { except: ['$', 'exports', 'require'] },
 		}),
 	],
 	target: 'node',

@@ -1,13 +1,15 @@
 {
   "plugins": [
+    "transform-object-rest-spread",
     "transform-runtime",
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
   ],
   "presets": [
-    ["latest", {
-      "es2015": { "modules": false }
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "ie 11"]
+      }
     }],
-    "stage-0",
     "react",
   ],
 }

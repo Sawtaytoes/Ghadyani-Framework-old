@@ -80,19 +80,14 @@ const webpackConfig = {
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
 			compress: { warnings: false },
-			mangle: { except: ['$super', '$', 'exports', 'require'] },
-			output: {
-				comments: false,
-				screw_ie8: true,
-			},
-			sourceMap: config.isDev(),
+			mangle: { except: ['$', 'exports', 'require'] },
 		}),
 		new CompressionPlugin({
-			asset: "[path].gz[query]",
 			algorithm: "gzip",
+			asset: "[path].gz[query]",
+			minRatio: 0.8,
 			test: /\.js$/,
 			threshold: 0,
-			minRatio: 0.8
 		}),
 	],
 }
