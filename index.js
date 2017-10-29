@@ -26,14 +26,17 @@ const runServer = (
 // Start Webservers
 if (runTests) {
 	require(`${dir.server}karmaTestRunner`)('tests')
+}
 
-} else if (runTestsWatch) {
+else if (runTestsWatch) {
 	require(`${dir.server}karmaTestRunner`)('testsWatch')
+}
 
-} else if (config.isProd()) {
+else if (runCompiler || runServer) {
 	runCompiler && require(`${dir.server}webpackCompilerProd`)()
 	runServer && require(`${dir.server}serverProd`)
+}
 
-} else {
+else {
 	require(`${dir.server}serverDev`)
 }
