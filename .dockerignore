@@ -1,3 +1,7 @@
+# Configs
+.env
+configs/custom.js
+
 # Generated
 .git
 logs

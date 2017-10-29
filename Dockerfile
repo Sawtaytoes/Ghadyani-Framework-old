@@ -4,7 +4,7 @@ RUN apk update
 RUN apk add yarn
 
 WORKDIR ~/
-COPY package.json yarn.lock /
+COPY package.json yarn.lock ./
 RUN yarn install
 
 COPY . .
