@@ -1,6 +1,13 @@
 version: '3.3'
+
 services:
+  proxy:
+    build: proxy
+    ports:
+      - 80:80
+
   web:
-    image: node:8.8.1-alpine
+    build: .
     environment:
       NODE_ENV: production
+    image: node:8.8.1-alpine
