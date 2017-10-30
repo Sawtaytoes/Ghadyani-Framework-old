@@ -1,0 +1,6 @@
+version: '3.3'
+services:
+  web:
+    image: node:8.8.1-alpine
+    environment:
+      NODE_ENV: production

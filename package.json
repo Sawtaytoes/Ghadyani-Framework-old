@@ -15,8 +15,8 @@
     "test:watch": "node index.js test:watch"
   },
   "engines": {
-    "node": "8.5.0",
-    "npm": "5.3.0"
+    "node": "^8.8.1",
+    "npm": "^5.4.2"
   },
   "dependencies": {
     "autoprefixer": "^7.1.4",
@@ -47,10 +47,10 @@
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-fastclick": "^3.0.2",
-    "react-hot-loader": "^3.0.0-beta.7",
+    "react-hot-loader": "^3.1.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-router-redux": "^5.0.0-alpha.6",
+    "react-router-redux": "^5.0.0-alpha.8",
     "redux": "^3.7.2",
     "redux-observable": "^0.16.0",
     "rxjs": "^5.4.3",

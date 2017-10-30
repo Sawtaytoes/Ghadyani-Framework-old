@@ -1,29 +1,26 @@
-## Cache ##
+# Cache
 .happypack
 
-## Configs ##
+# Configs
 .env
 configs/custom.js
 
-## Generated ##
+# Generated
 web/*
 !web/favicons
 !web/images
 !web/static
 
-## Logs ##
+# Logs
 logs
 *.log
-npm-debug.log*
 
-## Misc ##
+# Misc
 .DS_Store
 [Tt]humbs.db
 *.dmp
 ._*
 
-## npm ##
+# npm
 node_modules
-
-## Project Files ##
-~res
+npm-debug.log*

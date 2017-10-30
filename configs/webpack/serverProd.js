@@ -65,6 +65,7 @@ const webpackConfig = {
 		new webpack.optimize.UglifyJsPlugin({
 			compress: { warnings: false },
 			mangle: { except: ['$', 'exports', 'require'] },
+			sourceMap: config.isDev(),
 		}),
 	],
 	target: 'node',
