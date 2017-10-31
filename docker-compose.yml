@@ -10,4 +10,3 @@ services:
     build: .
     environment:
       NODE_ENV: production
-    image: node:8.8.1-alpine
