@@ -32,7 +32,10 @@ else if (runTestsWatch) {
 	require(`${dir.server}karmaTestRunner`)('testsWatch')
 }
 
-else if (config.isProd() || runCompiler || runServer) {
+else if (
+	config.isProd()
+	|| runCompiler !== runServer
+) {
 	runCompiler && require(`${dir.server}webpackCompilerProd`)()
 	runServer && require(`${dir.server}serverProd`)
 }
