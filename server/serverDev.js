@@ -17,11 +17,11 @@ const sendEmail = (req, res) => {
 }
 
 const loadTests = (req, res) => {
-	res.end(require(`${global.baseDir}${paths.root.src}renderers/renderTests.js`)(req.params.testName))
+	res.send(require(`${global.baseDir}${paths.root.src}renderers/renderTests.js`)(req.params.testName))
 }
 
 const loadSite = (req, res) => {
-	res.end(require(`${global.baseDir}${paths.root.src}renderers/renderSite.js`)(undefined, { pageMeta: {} }))
+	res.send(require(`${global.baseDir}${paths.root.src}renderers/renderSite.js`)(undefined, { pageMeta: {} }))
 }
 
 new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
