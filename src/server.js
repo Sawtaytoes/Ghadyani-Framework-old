@@ -15,15 +15,17 @@ module.exports = (req, res) => {
 	const context = {}
 	const store = compose()(createStore)(rootReducer)
 
-	const renderedContent = renderToString(
-		<Provider store={store}>
-			<Router
-				location={req.url}
-				context={context}
-			>
-				<Pages />
-			</Router>
-		</Provider>
+	const renderedContent = (
+		renderToString(
+			<Provider store={store}>
+				<Router
+					location={req.url}
+					context={context}
+				>
+					<Pages />
+				</Router>
+			</Provider>
+		)
 	)
 
 	store.dispatch(
