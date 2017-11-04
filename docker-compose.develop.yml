@@ -1,0 +1,15 @@
+version: '3.3'
+
+services:
+  web:
+    build:
+      args:
+        LOCAL_DEVELOPMENT: 'true'
+        NODE_ENV: development
+      dockerfile: docker/develop/Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./config:/~/config
+      - ./server:/~/server
+      - ./src:/~/src

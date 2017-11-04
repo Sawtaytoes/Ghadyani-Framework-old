@@ -9,9 +9,8 @@ ENV NODE_ENV ${NODE_ENV}
 WORKDIR ~/
 
 COPY package.json yarn.lock ./
-RUN yarn install --production
+RUN yarn install
 
 COPY . .
-RUN yarn compile
 
-CMD [ "yarn", "server" ]
+CMD [ "yarn", "start" ]

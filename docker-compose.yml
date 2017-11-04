@@ -2,13 +2,27 @@ version: '3.3'
 
 services:
   proxy:
-    build: proxy
+    build: docker/proxy
     ports:
       - 80:80
 
-  web:
-    build: .
+  proxy_web:
+    build:
+      args:
+        NODE_ENV: production
+      context: .
     environment:
-      NODE_ENV: production
+      PORT: 80
+    expose:
+      - 80
+    ports:
+      - 80
+
+  web:
+    build:
+      args:
+        NODE_ENV: production
+      context: .
+      dockerfile: docker/full/Dockerfile
     ports:
       - 3000:3000

@@ -45,7 +45,7 @@ module.exports = {
 
 	getTestsPath: () => config.testsPath,
 
-	getServerUrl: () => `${config.protocol}://${config.hostname}:${config.port}`,
+	getServerUrl: () => `${config.protocol}://0.0.0.0:${config.port}`,
 	getProxyServerUrl: () => `http://${config.proxyHostname}:${config.proxyPort}`,
 
 	getMailFrom: () => config.mailFrom,

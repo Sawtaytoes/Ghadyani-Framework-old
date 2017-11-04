@@ -1,6 +1,5 @@
 # Configs
 .env
-config/custom.js
 
 # Generated
 .git
