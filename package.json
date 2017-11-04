@@ -1,10 +1,5 @@
 {
   "private": true,
-  "browserify": {
-    "transform": [
-      "brfs"
-    ]
-  },
   "scripts": {
     "start": "npm run web:watch",
     "web": "node index.js",
