@@ -5,9 +5,8 @@ config/custom.js
 # Generated
 .git
 logs
-*.log
+*.log*
 node_modules
-npm-debug.log*
 
 # Misc
 .DS_Store

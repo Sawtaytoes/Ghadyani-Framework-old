@@ -5,15 +5,17 @@
     "react-hot-loader/babel",
   ],
   "presets": [
-    ["env", {
-      "targets": {
-        "browsers": [
-          "last 4 versions",
-          "> 5%",
-          "ie 11",
-        ]
+    [
+      "env", {
+        "targets": {
+          "browsers": [
+            "last 4 versions",
+            "> 5%",
+            "ie 11",
+          ]
+        }
       }
-    }],
+    ],
     "react",
   ],
 }

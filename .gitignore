@@ -13,7 +13,7 @@ web/*
 
 # Logs
 logs
-*.log
+*.log*
 
 # Misc
 .DS_Store
@@ -23,4 +23,3 @@ logs
 
 # npm
 node_modules
-npm-debug.log*
