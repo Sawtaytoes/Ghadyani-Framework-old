@@ -35,7 +35,7 @@ module.exports = (renderedContent = undefined, state) => (
 
 			{/* Favicons */}
 			{/*<link rel="icon" href="/favicons/favicon.png" />*/}
-			{/*<link rel="shortcut icon" href="/favicons/favicon.ico" />*/}
+			<link rel="shortcut icon" href="/favicons/favicon.ico" />
 
 			{/* Windows & IE Icons */}
 			<meta name="application-name" content={htmlMeta.msAppName} />
