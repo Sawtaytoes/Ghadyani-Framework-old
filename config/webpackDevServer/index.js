@@ -6,10 +6,13 @@ const webpackClientConfig = require('config/webpack/clientDev')
 module.exports = {
 	historyApiFallback: true,
 	hot: true,
-	https: config.isSecure() && {
-		cert: config.isSecure() ? fs.readFileSync('./cert/domain-crt.txt') : null,
-		key: config.isSecure() ? fs.readFileSync('./cert/key.pem') : null,
-	},
+	https: (
+		config.isSecure()
+		&& {
+			cert: fs.readFileSync('./cert/domain-crt.txt'),
+			key: fs.readFileSync('./cert/key.pem'),
+		}
+	),
 	proxy: {
 		'*': { target: config.getProxyServerUrl() }
 	},
