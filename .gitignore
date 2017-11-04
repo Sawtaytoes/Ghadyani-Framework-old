@@ -3,7 +3,7 @@
 
 # Configs
 .env
-configs/custom.js
+config/custom.js
 
 # Generated
 web/*

@@ -1,7 +1,7 @@
 # Configuration
-Default config values are found in [configs/index.js](configs/index.js).
+Default config values are found in [config/index.js](config/index.js).
 
-Create a `custom.js` in `configs/` to override default and `process.env` config values.
+Create a `custom.js` in `config/` to override default and `process.env` config values.
 
 
 ## Example

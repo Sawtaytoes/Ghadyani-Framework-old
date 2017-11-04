@@ -6,7 +6,7 @@ const helmet = require('helmet')
 
 // Configs
 const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.configs}`)
+const config = require(`${dir.config}`)
 const paths = require(`${dir.includes}paths`)
 const serverRunMode = require(`${dir.includes}serverRunMode`)
 

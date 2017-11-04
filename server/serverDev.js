@@ -6,10 +6,10 @@ const WebpackDevServer = require('webpack-dev-server')
 // Configs
 const dir = require(`${global.baseDir}directories`)
 require(`${dir.includes}loadBabelNodeConfig`)()
-const config = require(`${dir.configs}`)
+const config = require(`${dir.config}`)
 const paths = require(`${dir.includes}paths`)
-const webpackClientConfig = require(`${dir.configs}webpack/clientDev`)
-const webpackServerConfig = require(`${dir.configs}webpackDevServer`)
+const webpackClientConfig = require(`${dir.config}webpack/clientDev`)
+const webpackServerConfig = require(`${dir.config}webpackDevServer`)
 const { onBuild } = require(`${dir.includes}webpackBuildHelpers`)
 
 const sendEmail = (req, res) => {

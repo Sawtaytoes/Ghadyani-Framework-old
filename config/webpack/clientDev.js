@@ -3,15 +3,47 @@ const HappyPack = require('happypack')
 const webpack = require('webpack')
 
 const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.configs}`)
-const webpackDefaultConfig = require(`${dir.configs}webpack/default`)
+const config = require(`${dir.config}`)
+const paths = require(`${dir.includes}paths`)
+const webpackDefaultConfig = require(`${dir.config}webpack/default`)
 
 const threadPool = HappyPack.ThreadPool({ size: 4 })
 
 const webpackConfig = {
-	devtool: 'inline-source-map',
+	entry: {
+		main: [
+			'react-hot-loader/patch',
+			`webpack-dev-server/client?${config.getServerUrl()}`,
+			'webpack/hot/dev-server',
+			`./${paths.root.src}client`,
+		],
+		tests: [
+			'react-hot-loader/patch',
+			`webpack-dev-server/client?${config.getServerUrl()}`,
+			'webpack/hot/dev-server',
+			`./${paths.root.src}tests`,
+		],
+	},
+	externals: {
+		'react/addons': 'react',
+		'react/lib/ExecutionEnvironment': 'react',
+		'react/lib/ReactContext': 'react',
+	},
 	node: { fs: 'empty' },
+	output: {
+		filename: '[name].bundle.js',
+		chunkFilename: '[id].bundle.js',
+		path: '/',
+		pathinfo: true,
+		publicPath: '/',
+	},
+	performance: {
+		hints: false,
+	},
 	plugins: [
+		new webpack.LoaderOptionsPlugin({
+			debug: true
+		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
 			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
 		}),
@@ -45,6 +77,9 @@ const webpackConfig = {
 				'stylus-loader?linenos=false',
 			]
 		}),
+		new webpack.optimize.CommonsChunkPlugin({ name: ['manifest'] }),
+		new webpack.HotModuleReplacementPlugin(),
+		new webpack.NamedModulesPlugin(),
 	],
 }
 

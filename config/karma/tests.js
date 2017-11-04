@@ -1,5 +1,5 @@
 const dir = require(`${global.baseDir}directories`)
-const karmaDefaultConfig = require(`${dir.configs}karma/default`)
+const karmaDefaultConfig = require(`${dir.config}karma/default`)
 
 module.exports = config => (
 	config.set({

@@ -2,8 +2,8 @@ const webpack = require('webpack')
 
 const dir = require(`${global.baseDir}directories`)
 const serverRunMode = require(`${dir.includes}serverRunMode`)
-const webpackClientConfig = require(`${dir.configs}webpack/clientProd`)
-const webpackServerConfig = require(`${dir.configs}webpack/serverProd`)
+const webpackClientConfig = require(`${dir.config}webpack/clientProd`)
+const webpackServerConfig = require(`${dir.config}webpack/serverProd`)
 const { onBuild } = require(`${dir.includes}webpackBuildHelpers`)
 
 module.exports = () => {

@@ -1,24 +1,35 @@
+const CompressionPlugin = require('compression-webpack-plugin')
 const HappyPack = require('happypack')
-const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 
 const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.configs}`)
+const config = require(`${dir.config}`)
 const paths = require(`${dir.includes}paths`)
-const webpackDefaultConfig = require(`${dir.configs}webpack/default`)
+const webpackDefaultConfig = require(`${dir.config}webpack/default`)
 
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
-	entry: `./${paths.root.src}server`,
-	externals: [
-		nodeExternals({
-			whitelist: [/.*\.css/]
-		})
-	],
+	entry: {
+		main: `./${paths.root.src}client`,
+		vendor: [
+			'history/createBrowserHistory',
+			'murmurhash-js',
+			'react',
+			'fbjs/lib/ExecutionEnvironment',
+			'redux',
+			'react-dom',
+			'react-dom/server',
+			'react-fastclick',
+			// 'react-g-analytics',
+			'react-redux',
+			'react-router-dom',
+			'react-router-redux',
+		]
+	},
 	output: {
-		filename: 'backend.js',
-		libraryTarget: 'commonjs2',
+		filename: '[name].bundle.js',
+		chunkFilename: '[id].bundle.js',
 		path: `${global.baseDir}/web/`,
 		pathinfo: false,
 		publicPath: '/',
@@ -28,7 +39,7 @@ const webpackConfig = {
 			minimize: true,
 		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
-			console.info(Math.round(percentage * 100), `prod-server ${msg}`)
+			console.info(Math.round(percentage * 100), `prod-client ${msg}`)
 		}),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
@@ -59,7 +70,12 @@ const webpackConfig = {
 				'stylus-loader?linenos=false&compress=true',
 			]
 		}),
-		new webpack.optimize.CommonsChunkPlugin({ async: true }),
+		new webpack.optimize.CommonsChunkPlugin({
+			name: [
+				'vendor',
+				'manifest',
+			],
+		}),
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
@@ -67,8 +83,14 @@ const webpackConfig = {
 			mangle: { except: ['$', 'exports', 'require'] },
 			sourceMap: config.isDev(),
 		}),
+		new CompressionPlugin({
+			algorithm: "gzip",
+			asset: "[path].gz[query]",
+			minRatio: 0.8,
+			test: /\.js$/,
+			threshold: 0,
+		}),
 	],
-	target: 'node',
 }
 
 module.exports = {

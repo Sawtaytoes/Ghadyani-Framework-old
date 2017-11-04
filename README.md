@@ -20,9 +20,9 @@ yarn start
 
 
 ## Configuration Settings
-Default config values are found in [configs/index.js](configs/index.js).
+Default config values are found in [config/index.js](config/index.js).
 
-Create a `custom.js` in `configs/` to change from the default 'production' to 'development' and use https so long as there is a provided local SSL cert in `conf/`.
+Create a `custom.js` in `config/` to change from the default 'production' to 'development' and use https so long as there is a provided local SSL cert in `conf/`.
 
 ### Example
 ```js

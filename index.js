@@ -3,7 +3,7 @@ global.baseDir = `${__dirname}/`
 
 // Load Config settings
 const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.configs}`)
+const config = require(`${dir.config}`)
 const serverRunMode = require(`${dir.includes}serverRunMode`)
 
 // Bring in NewRelic if it's available

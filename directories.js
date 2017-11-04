@@ -1,7 +1,7 @@
 // Setup directories
 const base = global.baseDir
 
-const configs = `${base}configs/`
+const configs = `${base}config/`
 const server = `${base}server/`
 
 const includes = `${server}includes/`
