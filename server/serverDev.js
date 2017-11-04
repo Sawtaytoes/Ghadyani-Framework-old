@@ -4,24 +4,23 @@ const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
 // Configs
-const dir = require(`${global.baseDir}directories`)
-require(`${dir.includes}loadBabelNodeConfig`)()
-const config = require(`${dir.config}`)
-const paths = require(`${dir.includes}paths`)
-const webpackClientConfig = require(`${dir.config}webpack/clientDev`)
-const webpackServerConfig = require(`${dir.config}webpackDevServer`)
-const { onBuild } = require(`${dir.includes}webpackBuildHelpers`)
+require('server/includes/loadBabelNodeConfig')()
+const config = require('config')
+const paths = require('server/includes/paths')
+const webpackClientConfig = require('config/webpack/clientDev')
+const webpackServerConfig = require('config/webpackDevServer')
+const { onBuild } = require('server/includes/webpackBuildHelpers')
 
 const sendEmail = (req, res) => {
-	require(`${dir.services}sendEmail`)(req.body, res)
+	require('server/services/sendEmail')(req.body, res)
 }
 
 const loadTests = (req, res) => {
-	res.send(require(`${global.baseDir}${paths.root.src}renderers/renderTests.js`)(req.params.testName))
+	res.send(require('src/renderers/renderTests.js')(req.params.testName))
 }
 
 const loadSite = (req, res) => {
-	res.send(require(`${global.baseDir}${paths.root.src}renderers/renderSite.js`)(undefined, { pageMeta: {} }))
+	res.send(require('src/renderers/renderSite.js')(undefined, { pageMeta: {} }))
 }
 
 new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)

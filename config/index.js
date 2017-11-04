@@ -1,10 +1,9 @@
 const fs = require('fs')
 
-const dir = require(`${global.baseDir}directories`)
-const defaultConfig = require(`${dir.config}default`)
-const envConfig = require(`${dir.config}env`)
+const defaultConfig = require('config/default')
+const envConfig = require('config/env')
 
-const configFilePath = `${dir.config}custom.js`
+const configFilePath = 'config/custom.js'
 const customConfig = (
 	fs.existsSync(configFilePath)
 	? require(configFilePath)

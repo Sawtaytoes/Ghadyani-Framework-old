@@ -2,8 +2,7 @@ const nodemailer = require('nodemailer')
 const smtpTransport = require('nodemailer-smtp-transport')
 
 // Configs
-const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.config}`)
+const config = require('config')
 
 const validation = [
 	'name',

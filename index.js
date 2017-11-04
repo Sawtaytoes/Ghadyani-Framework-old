@@ -1,10 +1,8 @@
-// Global Dir Hack
-global.baseDir = `${__dirname}/`
+require('app-module-path').addPath(__dirname)
 
 // Load Config settings
-const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.config}`)
-const serverRunMode = require(`${dir.includes}serverRunMode`)
+const config = require('config')
+const serverRunMode = require('server/includes/serverRunMode')
 
 // Set App Mode
 const runTests = serverRunMode.mode === 'test'
@@ -22,21 +20,21 @@ const runServer = (
 
 // Start Webservers
 if (runTests) {
-	require(`${dir.server}karmaTestRunner`)('tests')
+	require('${dir.server}karmaTestRunner')('tests')
 }
 
 else if (runTestsWatch) {
-	require(`${dir.server}karmaTestRunner`)('testsWatch')
+	require('${dir.server}karmaTestRunner')('testsWatch')
 }
 
 else if (
 	config.isProd()
 	|| runCompiler !== runServer
 ) {
-	runCompiler && require(`${dir.server}webpackCompilerProd`)()
-	runServer && require(`${dir.server}serverProd`)
+	runCompiler && require('${dir.server}webpackCompilerProd')()
+	runServer && require('${dir.server}serverProd')
 }
 
 else {
-	require(`${dir.server}serverDev`)
+	require('${dir.server}serverDev')
 }

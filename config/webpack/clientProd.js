@@ -2,10 +2,9 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
-const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.config}`)
-const paths = require(`${dir.includes}paths`)
-const webpackDefaultConfig = require(`${dir.config}webpack/default`)
+const config = require('config')
+const paths = require('server/includes/paths')
+const webpackDefaultConfig = require('config/webpack/default')
 
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 

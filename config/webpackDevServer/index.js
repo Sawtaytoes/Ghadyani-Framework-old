@@ -1,8 +1,7 @@
 const fs = require('fs')
 
-const dir = require(`${global.baseDir}directories`)
-const config = require(`${dir.config}`)
-const webpackClientConfig = require(`${dir.config}webpack/clientDev`)
+const config = require('config')
+const webpackClientConfig = require('config/webpack/clientDev')
 
 module.exports = {
 	historyApiFallback: true,

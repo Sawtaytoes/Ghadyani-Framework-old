@@ -1,5 +1,4 @@
-const dir = require(`${global.baseDir}directories`)
-const files = require(`${dir.includes}files`)
+const files = require('server/includes/files')
 
 const shared = {
 	cache: true,

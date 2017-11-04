@@ -1,6 +1,5 @@
-const dir = require(`${global.baseDir}directories`)
-const paths = require(`${dir.includes}paths`)
-const webpackKarmaConfig = require(`${dir.config}webpack/karma`)
+const paths = require('server/includes/paths')
+const webpackKarmaConfig = require('config/webpack/karma')
 
 const karmaDefaultConfig = config => ({
 	basePath: `${global.baseDir}`,
