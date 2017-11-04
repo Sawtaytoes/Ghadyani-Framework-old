@@ -2,7 +2,7 @@ require('app-module-path').addPath(__dirname)
 
 // Load Config settings
 const config = require('config')
-const serverRunMode = require('server/includes/serverRunMode')
+const serverRunMode = require('server/utils/serverRunMode')
 
 // Set App Mode
 const runTests = serverRunMode.mode === 'test'

@@ -3,16 +3,15 @@ const express = require('express')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
 
-// Configs
-require('server/includes/loadBabelNodeConfig')()
+require('server/utils/loadBabelNodeConfig')()
 const config = require('config')
-const paths = require('server/includes/paths')
+const paths = require('server/utils/paths')
 const webpackClientConfig = require('config/webpack/clientDev')
 const webpackServerConfig = require('config/webpackDevServer')
-const { onBuild } = require('server/includes/webpackBuildHelpers')
+const { onBuild } = require('server/utils/webpackBuildHelpers')
 
 const sendEmail = (req, res) => {
-	require('server/services/sendEmail')(req.body, res)
+	require('server/middleware/sendEmail')(req.body, res)
 }
 
 const loadTests = (req, res) => {

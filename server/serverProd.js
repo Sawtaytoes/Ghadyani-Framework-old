@@ -4,10 +4,9 @@ const express = require('express')
 const fs = require('fs')
 const helmet = require('helmet')
 
-// Configs
 const config = require('config')
-const paths = require('server/includes/paths')
-const serverRunMode = require('server/includes/serverRunMode')
+const paths = require('server/utils/paths')
+const serverRunMode = require('server/utils/serverRunMode')
 
 const secureServer = app => {
 	const https = require('https')
@@ -23,7 +22,7 @@ const secureServer = app => {
 }
 
 const sendEmail = (req, res) => {
-	require('server/services/sendEmail')(req.body, res)
+	require('server/middleware/sendEmail')(req.body, res)
 }
 
 const loadSite = (req, res) => {

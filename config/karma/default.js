@@ -1,4 +1,4 @@
-const paths = require('server/includes/paths')
+const paths = require('server/utils/paths')
 const webpackKarmaConfig = require('config/webpack/karma')
 
 const karmaDefaultConfig = config => ({

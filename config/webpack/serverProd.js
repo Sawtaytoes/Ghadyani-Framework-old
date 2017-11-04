@@ -3,7 +3,7 @@ const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 
 const config = require('config')
-const paths = require('server/includes/paths')
+const paths = require('server/utils/paths')
 const webpackDefaultConfig = require('config/webpack/default')
 
 const threadPool = HappyPack.ThreadPool({ size: 2 })

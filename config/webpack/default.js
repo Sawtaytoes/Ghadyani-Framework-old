@@ -1,4 +1,4 @@
-const files = require('server/includes/files')
+const files = require('server/utils/files')
 
 const shared = {
 	cache: true,

@@ -1,9 +1,9 @@
 const webpack = require('webpack')
 
-const serverRunMode = require('server/includes/serverRunMode')
+const serverRunMode = require('server/utils/serverRunMode')
 const webpackClientConfig = require('config/webpack/clientProd')
 const webpackServerConfig = require('config/webpack/serverProd')
-const { onBuild } = require('server/includes/webpackBuildHelpers')
+const { onBuild } = require('server/utils/webpackBuildHelpers')
 
 module.exports = () => {
 	if (serverRunMode.isLocalProductionTesting) {
