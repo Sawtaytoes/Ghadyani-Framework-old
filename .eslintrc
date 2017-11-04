@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "commonjs": true,
     "es6": true,
     "node": true
   },
@@ -18,7 +19,7 @@
     "sourceType": "module"
   },
   "rules": {
-    "no-console": "never",
+    "no-console": "off",
     "no-unused-vars": "warn",
     "react/prop-types": "warn",
     "react/jsx-uses-react": "warn",
