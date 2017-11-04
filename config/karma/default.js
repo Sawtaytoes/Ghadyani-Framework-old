@@ -1,8 +1,9 @@
+const basePath = require('server/utils/basePath')
 const paths = require('server/utils/paths')
 const webpackKarmaConfig = require('config/webpack/karma')
 
-const karmaDefaultConfig = config => ({
-	basePath: `${global.baseDir}`,
+const karmaDefaultConfig = karmaConfig => ({
+	basePath,
 	browsers: ['ChromeHeadless'],
 	colors: true,
 	files: [{
@@ -10,7 +11,7 @@ const karmaDefaultConfig = config => ({
 		watched: false,
 	}],
 	frameworks: ['tap'],
-	logLevel: config.LOG_ERROR,
+	logLevel: karmaConfig.LOG_ERROR,
 	port: 9876,
 	preprocessors: {
 		[`./${paths.root.src}karma.js`]: [

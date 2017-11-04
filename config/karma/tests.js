@@ -1,8 +1,8 @@
 const karmaDefaultConfig = require('config/karma/default')
 
-module.exports = config => (
-	config.set({
-		...karmaDefaultConfig(config),
+module.exports = karmaConfig => (
+	karmaConfig.set({
+		...karmaDefaultConfig(karmaConfig),
 		singleRun: true,
 	})
 )
