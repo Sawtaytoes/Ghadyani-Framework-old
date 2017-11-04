@@ -4,6 +4,7 @@ const express = require('express')
 const fs = require('fs')
 const helmet = require('helmet')
 
+const basePath = require('server/utils/basePath')
 const config = require('config')
 const paths = require('server/utils/paths')
 const serverRunMode = require('server/utils/serverRunMode')
@@ -26,7 +27,8 @@ const sendEmail = (req, res) => {
 }
 
 const loadSite = (req, res) => {
-	const fileName = require.resolve(`${global.baseDir}${paths.root.dest}backend`)
+	const fileName = require.resolve(`${basePath}/${paths.root.dest}backend`)
+
 	serverRunMode.isLocalProductionTesting && delete require.cache[fileName]
 	require(fileName)(req, res)
 }
@@ -36,7 +38,7 @@ const app = express()
 app
 .use(compression())
 .use(helmet())
-.use(express.static(`${global.baseDir}${paths.root.dest}`, { redirect: false }))
+.use(express.static(`${basePath}/${paths.root.dest}`, { redirect: false }))
 .use(bodyParser.json())
 .use(bodyParser.urlencoded({ extended: false }))
 .disable('x-powered-by')
