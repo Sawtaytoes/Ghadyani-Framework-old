@@ -3,14 +3,10 @@
     ".git",
     ".happypack",
     "node_modules",
+    "src",
     "web"
   ],
   "watch": [
-    "globalDirs.js",
-    "postcss.config.js",
-    "src/content/pageMeta.js",
-    "src/renderers/renderSite.js",
-    "src/renderers/renderTests.js",
-    "server/"
+    "*.*"
   ]
 }
