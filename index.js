@@ -6,9 +6,6 @@ const dir = require(`${global.baseDir}directories`)
 const config = require(`${dir.config}`)
 const serverRunMode = require(`${dir.includes}serverRunMode`)
 
-// Bring in NewRelic if it's available
-require(`${dir.services}newrelic`)
-
 // Set App Mode
 const runTests = serverRunMode.mode === 'test'
 const runTestsWatch = serverRunMode.mode === 'test:watch'
