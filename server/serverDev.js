@@ -14,14 +14,14 @@ const { onBuild } = require('server/utils/webpackBuildHelpers')
 require('server/utils/loadBabelNodeConfig')()
 
 const loadTests = (req, res) => {
-	const fileName = require.resolve(`${paths.root.src}/renderers/renderTests.js`)
+	const fileName = require.resolve(`${paths.root.src}renderers/renderTests.js`)
 
 	delete require.cache[fileName]
 	res.send(require(fileName)(req))
 }
 
 const loadSite = (req, res) => {
-	const fileName = require.resolve(`${paths.root.src}/renderers/renderSite.js`)
+	const fileName = require.resolve(`${paths.root.src}renderers/renderSite.js`)
 
 	delete require.cache[fileName]
 	res.send(require(fileName)(undefined, { pageMeta: {} }))
