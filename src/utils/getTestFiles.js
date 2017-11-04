@@ -11,14 +11,11 @@ export const isValidTestFile = fileName => (
 	!fileName.includes('TapOutput.test.js')
 )
 
-// Setup `*.test.js` files to watch
-const getTestFiles = () => (
-	require
-	.context(
+// Watch `*.test.js` files
+export default () => (
+	require.context(
 		'../',
 		true,
 		/^\.\/.*\.test\.js$/
 	)
 )
-
-export default getTestFiles
