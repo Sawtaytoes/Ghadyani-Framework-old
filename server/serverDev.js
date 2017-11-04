@@ -28,18 +28,32 @@ const loadSite = (req, res) => {
 }
 
 new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
-.listen(config.getPort(), config.getHostname(), onBuild('webpackDevServer', config.getServerUrl()))
+.listen(
+	config.getPort(),
+	config.getHostname(),
+	onBuild('webpackDevServer', config.getServerUrl())
+)
 
 express()
-.use(express.static(`${basePath}/${paths.root.dest}`, { redirect: false }))
+.use(
+	express.static(
+		`${basePath}/${paths.root.dest}`,
+		{ redirect: false }
+	)
+)
+
 .use(bodyParser.json())
 .use(bodyParser.urlencoded({ extended: false }))
 
 .get(config.getTestsPath(), loadTests)
 .get(`${config.getTestsPath()}/:testName`, loadTests)
+
 .post(config.getMailSendPath(), sendEmail)
+
 .all('*', loadSite)
 
-.listen(config.getProxyPort(), config.getProxyHostname(),
+.listen(
+	config.getProxyPort(),
+	config.getProxyHostname(),
 	onBuild('express-server', config.getProxyServerUrl())
 )
