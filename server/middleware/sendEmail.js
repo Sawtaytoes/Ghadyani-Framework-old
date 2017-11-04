@@ -12,7 +12,7 @@ const validation = [
 	'reason',
 ]
 
-module.exports = (reqBody, res) => {
+module.exports = ({ body }, res) => {
 	// Setup SMTP Transport
 	if (!global.__transporter) {
 		global.__transporter = nodemailer.createTransport(
@@ -22,7 +22,7 @@ module.exports = (reqBody, res) => {
 
 	let validationIssues = ''
 	validation.forEach(item => {
-		if (!reqBody[item] || reqBody[item] === '') {
+		if (!body[item] || body[item] === '') {
 			validationIssues += `, ${item}`
 		}
 	})
@@ -34,7 +34,7 @@ module.exports = (reqBody, res) => {
 
 	// Set `To:` Email Address
 	let mailTo
-	switch(reqBody.reason) {
+	switch(body.reason) {
 		case 'press':
 			mailTo = 'Press <press@example.com>'
 			break;
@@ -52,10 +52,10 @@ module.exports = (reqBody, res) => {
 	const mailOptions = {
 		from: config.getMailFrom(),
 		to: mailTo,
-		replyTo: `${reqBody.name} <${reqBody.email}>`,
-		subject: reqBody.subject,
-		text: `${reqBody.name} ${reqBody.email}\n${reqBody.message}`,
-		html: `${reqBody.name} &lt;${reqBody.email}&gt;<br><br>${reqBody.message.replace(/\n/gm, '<br>')}`,
+		replyTo: `${body.name} <${body.email}>`,
+		subject: body.subject,
+		text: `${body.name} ${body.email}\n${body.message}`,
+		html: `${body.name} &lt;${body.email}&gt;<br><br>${body.message.replace(/\n/gm, '<br>')}`,
 	}
 
 	// Send Email

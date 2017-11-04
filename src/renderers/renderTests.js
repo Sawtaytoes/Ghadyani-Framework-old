@@ -3,8 +3,8 @@
 import React from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-module.exports = testName => {
-	return '<!DOCTYPE html>' + renderToStaticMarkup(
+module.exports = ({ params: { testName }}) => (
+	'<!DOCTYPE html>' + renderToStaticMarkup(
 		<html lang="en">
 		<head>
 			{/* Document Info */}
@@ -76,4 +76,4 @@ module.exports = testName => {
 		</body>
 		</html>
 	)
-}
+)

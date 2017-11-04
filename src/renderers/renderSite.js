@@ -14,21 +14,19 @@ import {
 const cacheAge = 604800 // 1wk -> 60s x 60m x 24h x 7d
 const isProd = process.env.NODE_ENV === 'production'
 
-module.exports = (renderedContent = undefined, state = {}) => {
-	const { pageMeta: { description = '', name = '' } } = state
-
-	return '<!DOCTYPE html>' + renderToStaticMarkup(
+module.exports = (renderedContent = undefined, state) => (
+	'<!DOCTYPE html>' + renderToStaticMarkup(
 		<html lang="en">
 		<head>
 			{/* Document Info */}
 			<meta charSet="utf-8" />
 			<meta httpEquiv="content-language" content="en-us" />
-			<title>{`${name}${htmlMeta.titlePostfix}`}</title>
+			<title>{`${state.pageMeta.name}${htmlMeta.titlePostfix}`}</title>
 
 			{/* Site Info */}
 			<meta name="author" content={htmlMeta.author} />
 			<meta name="copyright" content={htmlMeta.copyright} />
-			<meta name="description" content={description} />
+			<meta name="description" content={state.pageMeta.description} />
 			<meta name="keywords" content={htmlMeta.keywords} />
 
 			{/* Cache */}
@@ -77,4 +75,4 @@ module.exports = (renderedContent = undefined, state = {}) => {
 		</body>
 		</html>
 	)
-}
+)
