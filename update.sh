@@ -8,7 +8,7 @@ export NODE_ENV=production
 rm -r web/*
 git reset --hard HEAD
 git pull
-yarn
+yarn install
 yarn compile
 chown -R www-data:www-data .
 pm2 gracefulReload ${PWD##*/}
