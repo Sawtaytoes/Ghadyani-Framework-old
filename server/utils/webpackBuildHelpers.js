@@ -1,16 +1,18 @@
-const onBuild = (taskName, serverUrl = '') => (err, stats) => {
-	if (err) {
-		throw console.error('webpack', err)
-	}
+const handleError = (taskName, err) => {
+	throw console.error(taskName, err)
+}
 
-	console.info(
+const onBuild = (taskName, serverUrl = '') => (err, stats) => (
+	err
+	? handleError(taskName, err)
+	: console.info(
 		`[${taskName}]`,
 		serverUrl,
 		stats
 		? stats.toString({ colors: true })
 		: ''
 	)
-}
+)
 
 module.exports = Object.freeze({
 	onBuild,

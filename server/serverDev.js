@@ -31,7 +31,7 @@ new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)
 .listen(
 	config.getPort(),
 	config.getHostname(),
-	onBuild('webpackDevServer', config.getServerUrl())
+	onBuild('Webpack Dev Server', config.getServerUrl())
 )
 
 express()
@@ -55,5 +55,5 @@ express()
 .listen(
 	config.getProxyPort(),
 	config.getProxyHostname(),
-	onBuild('express-server', config.getProxyServerUrl())
+	onBuild('Express Server', config.getProxyServerUrl())
 )

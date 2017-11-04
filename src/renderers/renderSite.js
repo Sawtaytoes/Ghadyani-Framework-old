@@ -58,14 +58,19 @@ module.exports = (renderedContent = undefined, state) => (
 
 			{/* Styles */}
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<style dangerouslySetInnerHTML={{__html: getStyles()}} />
+			<style dangerouslySetInnerHTML={{ __html: getStyles() }} />
 		</head>
 		<body>
 			{/* HTML */}
-			<div id="root" dangerouslySetInnerHTML={{__html: renderedContent}}></div>
+			<div id="root" dangerouslySetInnerHTML={{ __html: renderedContent }} />
 
 			{/* App */}
-			<script dangerouslySetInnerHTML={{__html: `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`}} />
+			<script
+				dangerouslySetInnerHTML={{
+					__html: `window.__INITIAL_STATE__ = ${JSON.stringify(state)}`
+				}}
+			/>
+
 			<script src="/manifest.bundle.js" />
 			{isProd && <script src="/vendor.bundle.js" />}
 			<script src="/main.bundle.js" />

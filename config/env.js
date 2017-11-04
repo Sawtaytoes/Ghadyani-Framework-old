@@ -1,5 +1,6 @@
 const processEnvConfigValues = {
 	HOSTNAME: 'hostname',
+	LOCAL_DEVELOPMENT: 'localDevelopment',
 	MAIL_FROM: 'mailFrom',
 	MAIL_SEND_PATH: 'mailSendPath',
 	NODE_ENV: 'env',

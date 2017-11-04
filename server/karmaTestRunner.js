@@ -4,7 +4,7 @@ const karmaRunner = configFilename => {
 	const server = (
 		new Server(
 			config.parseConfig(
-				'config/karma/${configFilename}',
+				`config/karma/${configFilename}`,
 				exitCode => {
 					console.log('Karma has exited with ' + exitCode)
 					process.exit(exitCode)

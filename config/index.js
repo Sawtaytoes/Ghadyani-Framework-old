@@ -28,6 +28,8 @@ config.proxyHostname = (
 )
 
 module.exports = {
+	isLocalDevelopment: () => config.localDevelopment,
+
 	isSecure: () => config.protocol === 'https',
 	isDev: () => config.env === 'development',
 	isProd: () => config.env === 'production',

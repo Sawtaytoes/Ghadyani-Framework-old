@@ -1,6 +1,9 @@
 module.exports = {
-	// Use either 'development' or 'production'.
+	// Use either 'development' or 'production' to mimic NODE_ENV changes.
 	env: 'production',
+
+	// Set to `true` for local development and testing.
+	localDevelopment: false,
 
 
 	// -----------------------------------------

@@ -5,6 +5,9 @@ const webpackServerConfig = require('config/webpack/serverProd')
 const { onBuild } = require('server/utils/webpackBuildHelpers')
 
 module.exports = () => {
-	webpack(webpackClientConfig, onBuild('webpack-client'))
-	webpack(webpackServerConfig, onBuild('webpack-server'))
+	webpack(webpackClientConfig)
+	.watch(100, onBuild('webpack-client'))
+
+	webpack(webpackServerConfig)
+	.watch(100, onBuild('webpack-server'))
 }
