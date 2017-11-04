@@ -11,14 +11,14 @@ const testName = window.__TESTNAME__
 const isWildcard = testName.match(/\*$/)
 
 const allTests = isValidTestFile
-const specificTests = testName => fileName => (
-	isWildcard && isValidTestFile(fileName)
+const specificTests = testName => filename => (
+	isWildcard && isValidTestFile(filename)
 	? (
-		fileName.match(
+		filename.match(
 			new RegExp(`${testName.replace('*', '')}.*\\.test\\.js`)
 		)
 	)
-	: fileName.includes(`/${testName}.test.js`)
+	: filename.includes(`/${testName}.test.js`)
 )
 
 const runTests = isTestFile => (
