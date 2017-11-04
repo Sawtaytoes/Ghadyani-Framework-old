@@ -1,8 +1,8 @@
 import { LOCATION_CHANGE } from 'react-router-redux'
 
 import createReducer from 'utils/createReducer'
+import htmlMeta from 'content/htmlMeta'
 import navItems from 'content/navItems'
-import { htmlMeta } from 'content/pageMeta'
 
 
 // --------------------------------------------------------

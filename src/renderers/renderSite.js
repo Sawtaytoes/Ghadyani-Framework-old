@@ -5,11 +5,13 @@ import { renderToStaticMarkup } from 'react-dom/server'
 
 import { getStyles } from './renderStyles'
 
-import {
+import
 	htmlMeta,
-	dnsPrefetches,
-	thirdPartyAssets,
-} from '../content/pageMeta'
+	{
+		DnsPrefetches,
+		ThirdPartyAssets,
+	}
+from '../content/htmlMeta'
 
 const cacheAge = 604800 // 1wk -> 60s x 60m x 24h x 7d
 const isProd = process.env.NODE_ENV === 'production'
@@ -30,8 +32,7 @@ module.exports = (renderedContent = undefined, state) => (
 			<meta name="keywords" content={htmlMeta.keywords} />
 
 			{/* Cache */}
-			{isProd && <meta httpEquiv="cache-control" content={`max-age=${cacheAge}`} />}
-			{isProd && <meta httpEquiv="expires" content={new Date(Date.now() + (cacheAge * 1000))} />}
+			<meta httpEquiv="cache-control" content={`max-age=${cacheAge}`} />
 
 			{/* Favicons */}
 			{/*<link rel="icon" href="/favicons/favicon.png" />*/}
@@ -54,7 +55,7 @@ module.exports = (renderedContent = undefined, state) => (
 
 			{/* DNS Prefetching */}
 			<meta httpEquiv="x-dns-prefetch-control" content="on" />
-			{dnsPrefetches}
+			<DnsPrefetches />
 
 			{/* Styles */}
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -76,7 +77,7 @@ module.exports = (renderedContent = undefined, state) => (
 			<script src="/main.bundle.js" />
 
 			{/* 3rd Party Styles */}
-			{thirdPartyAssets}
+			<ThirdPartyAssets />
 		</body>
 		</html>
 	)
