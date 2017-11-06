@@ -1,7 +1,6 @@
 const bodyParser = require('body-parser')
 const express = require('express')
 
-const basePath = require('server/utils/basePath')
 const config = require('config')
 const loadHtmlRenderer = require('server/utils/loadHtmlRenderer')
 const paths = require('server/utils/paths')
@@ -30,7 +29,7 @@ const httpServerConfig = express()
 httpServerConfig
 .use(
 	express.static(
-		`${basePath}/${paths.static}`,
+		`${paths.base}/${paths.static}`,
 		{ redirect: false }
 	)
 )

@@ -1,9 +1,8 @@
-const basePath = require('server/utils/basePath')
 const paths = require('server/utils/paths')
 const webpackKarmaConfig = require('config/webpack/karma')
 
 const karmaDefaultConfig = karmaConfig => ({
-	basePath,
+	basePath: paths.base,
 	browsers: ['ChromeHeadless'],
 	colors: true,
 	files: [{

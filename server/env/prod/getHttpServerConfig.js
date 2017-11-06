@@ -3,7 +3,6 @@ const compression = require('compression')
 const express = require('express')
 const helmet = require('helmet')
 
-const basePath = require('server/utils/basePath')
 const config = require('config')
 const loadHtmlRenderer = require('server/utils/loadHtmlRenderer')
 const paths = require('server/utils/paths')
@@ -12,7 +11,7 @@ const sendEmail = require('server/middleware/sendEmail')
 const loadSite = (req, res) => (
 	loadHtmlRenderer({
 		args: [req, res],
-		filename: `${basePath}/${paths.dest}backend`,
+		filename: `${paths.base}/${paths.dest}backend`,
 		res,
 	})
 )
@@ -25,7 +24,7 @@ httpServerConfig
 
 .use(
 	express.static(
-		`${basePath}/${paths.static}`,
+		`${paths.base}/${paths.static}`,
 		{ redirect: false }
 	)
 )

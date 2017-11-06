@@ -2,7 +2,6 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const HappyPack = require('happypack')
 const webpack = require('webpack')
 
-const basePath = require('server/utils/basePath')
 const config = require('config')
 const paths = require('server/utils/paths')
 const webpackDefaultConfig = require('config/webpack/default')
@@ -30,7 +29,7 @@ const webpackConfig = {
 	output: {
 		filename: '[name].bundle.js',
 		chunkFilename: '[id].bundle.js',
-		path: `${basePath}/web/`,
+		path: `${paths.base}/web/`,
 		pathinfo: false,
 		publicPath: '/',
 	},
