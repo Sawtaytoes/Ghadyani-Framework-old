@@ -2,7 +2,7 @@
 
 Default runner (same as yarn web:watch)
 ```shell
-yarn web
+yarn start
 ```
 
 Run the project

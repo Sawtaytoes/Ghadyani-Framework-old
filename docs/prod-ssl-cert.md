@@ -49,4 +49,4 @@ Let's Encrypt allows renewing using:
 /usr/share/letsencrypt/letsencrypt-auto renew
 ```
 
-- Files are located in `conf/`
+- Files are located in `cert/`
