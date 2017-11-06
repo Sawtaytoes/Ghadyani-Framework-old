@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import renderPure from 'renderers/renderPure'
 import Sample from 'components/sample/Sample'
 
 export const Home = () => (
@@ -17,4 +16,4 @@ export const Home = () => (
 	</div>
 )
 
-export default renderPure(Home)
+export default Home
