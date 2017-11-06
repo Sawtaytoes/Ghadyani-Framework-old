@@ -1,4 +1,4 @@
-const paths = require('server/utils/paths')
+const paths = require('scripts/utils/paths')
 const webpackKarmaConfig = require('config/webpack/karma')
 
 const karmaDefaultConfig = karmaConfig => ({
@@ -6,14 +6,14 @@ const karmaDefaultConfig = karmaConfig => ({
 	browsers: ['ChromeHeadless'],
 	colors: true,
 	files: [{
-		pattern: `./${paths.src}karma.js`,
+		pattern: `./${paths.app}karma.js`,
 		watched: false,
 	}],
 	frameworks: ['tap'],
 	logLevel: karmaConfig.LOG_ERROR,
 	port: 9876,
 	preprocessors: {
-		[`./${paths.src}karma.js`]: [
+		[`./${paths.app}karma.js`]: [
 			'webpack',
 			'sourcemap',
 		],

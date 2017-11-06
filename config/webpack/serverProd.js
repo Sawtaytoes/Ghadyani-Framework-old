@@ -3,13 +3,13 @@ const nodeExternals = require('webpack-node-externals')
 const webpack = require('webpack')
 
 const config = require('config')
-const paths = require('server/utils/paths')
+const paths = require('scripts/utils/paths')
 const webpackDefaultConfig = require('config/webpack/default')
 
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
-	entry: `./${paths.src}server`,
+	entry: `./${paths.app}server`,
 	externals: [
 		nodeExternals({
 			whitelist: [/.*\.css/]
@@ -30,13 +30,6 @@ const webpackConfig = {
 			console.info(Math.round(percentage * 100), `prod-server ${msg}`)
 		}),
 		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
-		new webpack.WatchIgnorePlugin([
-			'./.happypack/',
-			'./cert/',
-			'./node_modules/',
-			'./server/',
-		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [

@@ -1,7 +1,7 @@
 module.exports = {
+	app: 'app/',
 	base: process.cwd(),
-	dest: 'web/',
+	bundle: 'public/bundles/',
 	nodeModules: 'node_modules/',
-	src: 'src/',
-	static: 'static/',
+	static: 'public/static/',
 }

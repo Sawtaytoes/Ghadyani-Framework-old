@@ -1,23 +1,23 @@
 require('app-module-path').addPath(__dirname)
 
 const config = require('config')
-const serverRunMode = require('server/utils/serverRunMode')
+const runMode = require('scripts/utils/runMode')
 
 const loadLocalDevelopmentEnvironment = () => (
 	config.isDev()
-	? require('server/env/dev')()
+	? require('scripts/server/develop')()
 	: (
-		require('server/compiler/webpackWatch')()
-		|| require('server/env/prod')()
+		require('scripts/compiler/webpackWatch')()
+		|| require('scripts/server/prod')()
 	)
 )
 
 const runModes = {
-	'compile': () => require('server/compiler/webpack')(),
-	'server': () => require('server/env/prod')(),
-	'test': () => require('server/karmaTestRunner')('tests'),
-	'test:watch': () => require('server/karmaTestRunner')('testsWatch'),
+	'compile': () => require('scripts/compiler/webpack')(),
+	'server': () => require('scripts/server/deploy')(),
+	'test': () => require('scripts/tester/karma')('tests'),
+	'test:watch': () => require('scripts/tester/karma')('testsWatch'),
 	'undefined': loadLocalDevelopmentEnvironment
 }
 
-runModes[serverRunMode]()
+runModes[runMode]()

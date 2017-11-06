@@ -16,11 +16,18 @@ const onBuild = (taskName, serverUrl = '') => (err, stats) => (
 	)
 )
 
-const watchOptions = (
-	config.isDocker()
-	? { poll: 100 }
-	: {}
-)
+const watchOptions = ({
+	ignored: [
+		'./cert/',
+		'./config/',
+		'./docker/',
+		'./docs/',
+		'./node_modules/',
+		'./public/',
+		'./scripts/',
+	],
+	poll: config.isDocker() && 100,
+})
 
 module.exports = Object.freeze({
 	onBuild,

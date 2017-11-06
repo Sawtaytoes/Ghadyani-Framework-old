@@ -3,7 +3,7 @@ const HappyPack = require('happypack')
 const webpack = require('webpack')
 
 const config = require('config')
-const paths = require('server/utils/paths')
+const paths = require('scripts/utils/paths')
 const webpackDefaultConfig = require('config/webpack/default')
 
 const threadPool = HappyPack.ThreadPool({ size: 4 })
@@ -14,13 +14,13 @@ const webpackConfig = {
 			'react-hot-loader/patch',
 			`webpack-dev-server/client?${config.getServerUrl()}`,
 			'webpack/hot/dev-server',
-			`./${paths.src}client`,
+			`./${paths.app}client`,
 		],
 		tests: [
 			'react-hot-loader/patch',
 			`webpack-dev-server/client?${config.getServerUrl()}`,
 			'webpack/hot/dev-server',
-			`./${paths.src}tests`,
+			`./${paths.app}tests`,
 		],
 	},
 	externals: {
@@ -47,13 +47,6 @@ const webpackConfig = {
 			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
 		}),
 		new BellOnBundlerErrorPlugin(),
-		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
-		new webpack.WatchIgnorePlugin([
-			'./.happypack/',
-			'./cert/',
-			'./node_modules/',
-			'./server/',
-		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [

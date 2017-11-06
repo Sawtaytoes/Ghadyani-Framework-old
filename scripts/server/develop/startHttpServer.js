@@ -1,5 +1,5 @@
 const config = require('config')
-const { onBuild } = require('server/utils/webpackBuildHelpers')
+const { onBuild } = require('scripts/utils/webpackBuildHelpers')
 
 module.exports = httpServerConfig => (
 	httpServerConfig

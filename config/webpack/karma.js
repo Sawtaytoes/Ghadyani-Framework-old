@@ -15,13 +15,6 @@ const webpackConfig = {
 			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
 		}),
 		new BellOnBundlerErrorPlugin(),
-		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
-		new webpack.WatchIgnorePlugin([
-			'./.happypack/',
-			'./cert/',
-			'./node_modules/',
-			'./server/',
-		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [

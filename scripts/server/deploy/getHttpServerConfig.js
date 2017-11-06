@@ -4,9 +4,9 @@ const express = require('express')
 const helmet = require('helmet')
 
 const config = require('config')
-const loadHtmlRenderer = require('server/utils/loadHtmlRenderer')
-const paths = require('server/utils/paths')
-const sendEmail = require('server/middleware/sendEmail')
+const loadHtmlRenderer = require('scripts/utils/loadHtmlRenderer')
+const paths = require('scripts/utils/paths')
+const sendEmail = require('scripts/server/middleware/sendEmail')
 
 const loadSite = (req, res) => (
 	loadHtmlRenderer({
@@ -25,6 +25,12 @@ httpServerConfig
 .use(
 	express.static(
 		`${paths.base}/${paths.static}`,
+		{ redirect: false }
+	)
+)
+.use(
+	express.static(
+		`${paths.base}/${paths.bundles}`,
 		{ redirect: false }
 	)
 )

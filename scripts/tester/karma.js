@@ -1,5 +1,5 @@
 const { config, Server } = require('karma')
-const paths = require('server/utils/paths')
+const paths = require('scripts/utils/paths')
 
 const karmaRunner = karmaConfigFilename => {
 	const server = (

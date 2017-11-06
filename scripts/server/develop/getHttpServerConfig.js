@@ -2,16 +2,16 @@ const bodyParser = require('body-parser')
 const express = require('express')
 
 const config = require('config')
-const loadHtmlRenderer = require('server/utils/loadHtmlRenderer')
-const paths = require('server/utils/paths')
-const sendEmail = require('server/middleware/sendEmail')
+const loadHtmlRenderer = require('scripts/utils/loadHtmlRenderer')
+const paths = require('scripts/utils/paths')
+const sendEmail = require('scripts/server/middleware/sendEmail')
 
-require('server/utils/loadBabelNodeConfig')()
+require('scripts/utils/loadBabelNodeConfig')()
 
 const loadSite = (req, res) => (
 	loadHtmlRenderer({
 		args: [undefined, { pageMeta: {} }],
-		filename: `${paths.src}renderers/renderSite`,
+		filename: `${paths.app}renderers/renderSite`,
 		res,
 	})
 )
@@ -19,7 +19,7 @@ const loadSite = (req, res) => (
 const loadTests = (req, res) => (
 	loadHtmlRenderer({
 		args: [res],
-		filename: `${paths.src}renderers/renderTests`,
+		filename: `${paths.app}renderers/renderTests`,
 		res,
 	})
 )
@@ -30,6 +30,12 @@ httpServerConfig
 .use(
 	express.static(
 		`${paths.base}/${paths.static}`,
+		{ redirect: false }
+	)
+)
+.use(
+	express.static(
+		`${paths.base}/${paths.bundles}`,
 		{ redirect: false }
 	)
 )

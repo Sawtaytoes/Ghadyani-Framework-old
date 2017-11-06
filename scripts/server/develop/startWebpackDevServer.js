@@ -4,7 +4,7 @@ const WebpackDevServer = require('webpack-dev-server')
 const config = require('config')
 const webpackClientConfig = require('config/webpack/clientDev')
 const webpackServerConfig = require('config/webpackDevServer')
-const { onBuild } = require('server/utils/webpackBuildHelpers')
+const { onBuild } = require('scripts/utils/webpackBuildHelpers')
 
 module.exports = () => (
 	new WebpackDevServer(webpack(webpackClientConfig), webpackServerConfig)

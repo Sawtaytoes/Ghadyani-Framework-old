@@ -3,14 +3,14 @@ const HappyPack = require('happypack')
 const webpack = require('webpack')
 
 const config = require('config')
-const paths = require('server/utils/paths')
+const paths = require('scripts/utils/paths')
 const webpackDefaultConfig = require('config/webpack/default')
 
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
 	entry: {
-		main: `./${paths.src}client`,
+		main: `./${paths.app}client`,
 		vendor: [
 			'history/createBrowserHistory',
 			'murmurhash-js',
@@ -41,13 +41,6 @@ const webpackConfig = {
 			console.info(Math.round(percentage * 100), `prod-client ${msg}`)
 		}),
 		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.IgnorePlugin(/^\.\/locale$/, [/moment$/]),
-		new webpack.WatchIgnorePlugin([
-			'./.happypack/',
-			'./cert/',
-			'./node_modules/',
-			'./server/',
-		]),
 		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [

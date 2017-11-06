@@ -2,7 +2,7 @@ const webpack = require('webpack')
 
 const webpackClientConfig = require('config/webpack/clientProd')
 const webpackServerConfig = require('config/webpack/serverProd')
-const { onBuild, watchOptions } = require('server/utils/webpackBuildHelpers')
+const { onBuild, watchOptions } = require('scripts/utils/webpackBuildHelpers')
 
 module.exports = () => {
 	webpack(webpackClientConfig)
