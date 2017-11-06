@@ -1,12 +1,13 @@
 const BellOnBundlerErrorPlugin = require('bell-on-bundler-error-plugin')
 const HappyPack = require('happypack')
+const os = require('os')
 const webpack = require('webpack')
 
 const config = require('config')
 const paths = require('scripts/utils/paths')
 const webpackDefaultConfig = require('config/webpack/default')
 
-const threadPool = HappyPack.ThreadPool({ size: 4 })
+const threadPool = HappyPack.ThreadPool({ size: os.cpus().length })
 
 const webpackConfig = {
 	entry: {

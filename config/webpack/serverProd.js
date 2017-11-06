@@ -1,12 +1,13 @@
 const HappyPack = require('happypack')
 const nodeExternals = require('webpack-node-externals')
+const os = require('os')
 const webpack = require('webpack')
 
 const config = require('config')
 const paths = require('scripts/utils/paths')
 const webpackDefaultConfig = require('config/webpack/default')
 
-const threadPool = HappyPack.ThreadPool({ size: 2 })
+const threadPool = HappyPack.ThreadPool({ size: os.cpus().length / 2 })
 
 const webpackConfig = {
 	entry: `./${paths.app}server`,
