@@ -1,12 +1,9 @@
-# Cache
-.happypack
-
 # Configs
 .env
 config/custom.js
 
 # Generated
-web
+public/bundles
 
 # Logs
 logs
