@@ -5,7 +5,7 @@ PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export PATH
 export NODE_ENV=production
 
-rm -r web/*
+rm -r public/bundles/*
 git reset --hard HEAD
 git pull
 yarn install
