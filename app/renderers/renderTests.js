@@ -14,17 +14,15 @@ module.exports = ({ params: { testName }}) => (
 
 			{/* Site Info */}
 			<meta name="description" content="" />
+			<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 			{/* Favicons */}
 			<link rel="icon" href="/favicons/favicon.png" />
 			<link rel="shortcut icon" href="/favicons/favicon.ico" />
-
-			{/* Styles */}
-			<meta name="viewport" content="width=device-width, initial-scale=1" />
 		</head>
 		<body>
 			{/* HTML */}
-			<div id="root" />
+			<div id="react-root" />
 
 			{/* App */}
 			<script src="/manifest.bundle.js" />

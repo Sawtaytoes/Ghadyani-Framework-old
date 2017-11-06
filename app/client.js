@@ -9,7 +9,7 @@ import 'utils/polyfills'
 import ClientRoot from 'components/root/ClientRoot'
 
 const isProd = process.env.NODE_ENV === 'production'
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('react-root')
 
 Promise.resolve(
 	isProd
