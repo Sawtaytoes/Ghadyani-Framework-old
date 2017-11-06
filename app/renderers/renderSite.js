@@ -35,11 +35,10 @@ module.exports = (renderedContent = undefined, state) => (
 				}}
 			/>
 
-			<script src="/manifest.bundle.js" />
-			{isProd && <script src="/vendor.bundle.js" />}
-			<script src="/main.bundle.js" />
+			<script defer src="/manifest.bundle.js" />
+			{isProd && <script defer src="/vendor.bundle.js" />}
+			<script defer src="/main.bundle.js" />
 
-			{/* 3rd Party Styles */}
 			<ThirdPartyAssets />
 		</body>
 		</html>
