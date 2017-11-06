@@ -6,4 +6,4 @@ const paths = require('server/utils/paths')
 
 const getFilesAtPath = x => path.join(basePath, x)
 
-module.exports = getFilesAtPath(paths.root.src)
+module.exports = getFilesAtPath(paths.src)

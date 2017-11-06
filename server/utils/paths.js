@@ -1,11 +1,6 @@
-const root = {
-	src: 'src/',
-	dest: 'web/',
-}
-
-const nodeModules = 'node_modules/'
-
 module.exports = {
-	nodeModules,
-	root,
+	dest: 'web/',
+	nodeModules: 'node_modules/',
+	src: 'src/'
+	static: 'static/',
 }

@@ -11,7 +11,7 @@ const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
 	entry: {
-		main: `./${paths.root.src}client`,
+		main: `./${paths.src}client`,
 		vendor: [
 			'history/createBrowserHistory',
 			'murmurhash-js',

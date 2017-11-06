@@ -10,7 +10,7 @@ const webpackDefaultConfig = require('config/webpack/default')
 const threadPool = HappyPack.ThreadPool({ size: 2 })
 
 const webpackConfig = {
-	entry: `./${paths.root.src}server`,
+	entry: `./${paths.src}server`,
 	externals: [
 		nodeExternals({
 			whitelist: [/.*\.css/]

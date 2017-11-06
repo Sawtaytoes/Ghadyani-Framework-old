@@ -12,7 +12,7 @@ require('server/utils/loadBabelNodeConfig')()
 const loadSite = (req, res) => (
 	loadHtmlRenderer({
 		args: [undefined, { pageMeta: {} }],
-		filename: `${paths.root.src}renderers/renderSite`,
+		filename: `${paths.src}renderers/renderSite`,
 		res,
 	})
 )
@@ -20,7 +20,7 @@ const loadSite = (req, res) => (
 const loadTests = (req, res) => (
 	loadHtmlRenderer({
 		args: [res],
-		filename: `${paths.root.src}renderers/renderTests`,
+		filename: `${paths.src}renderers/renderTests`,
 		res,
 	})
 )
@@ -30,7 +30,7 @@ const httpServerConfig = express()
 httpServerConfig
 .use(
 	express.static(
-		`${basePath}/${paths.root.dest}`,
+		`${basePath}/${paths.static}`,
 		{ redirect: false }
 	)
 )

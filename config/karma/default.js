@@ -7,14 +7,14 @@ const karmaDefaultConfig = karmaConfig => ({
 	browsers: ['ChromeHeadless'],
 	colors: true,
 	files: [{
-		pattern: `./${paths.root.src}karma.js`,
+		pattern: `./${paths.src}karma.js`,
 		watched: false,
 	}],
 	frameworks: ['tap'],
 	logLevel: karmaConfig.LOG_ERROR,
 	port: 9876,
 	preprocessors: {
-		[`./${paths.root.src}karma.js`]: [
+		[`./${paths.src}karma.js`]: [
 			'webpack',
 			'sourcemap',
 		],

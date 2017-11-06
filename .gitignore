@@ -6,10 +6,7 @@
 config/custom.js
 
 # Generated
-web/*
-!web/favicons
-!web/images
-!web/static
+web
 
 # Logs
 logs

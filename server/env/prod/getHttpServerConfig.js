@@ -12,7 +12,7 @@ const sendEmail = require('server/middleware/sendEmail')
 const loadSite = (req, res) => (
 	loadHtmlRenderer({
 		args: [req, res],
-		filename: `${basePath}/${paths.root.dest}backend`,
+		filename: `${basePath}/${paths.dest}backend`,
 		res,
 	})
 )
@@ -25,7 +25,7 @@ httpServerConfig
 
 .use(
 	express.static(
-		`${basePath}/${paths.root.dest}`,
+		`${basePath}/${paths.static}`,
 		{ redirect: false }
 	)
 )

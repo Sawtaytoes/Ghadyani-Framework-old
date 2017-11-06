@@ -14,13 +14,13 @@ const webpackConfig = {
 			'react-hot-loader/patch',
 			`webpack-dev-server/client?${config.getServerUrl()}`,
 			'webpack/hot/dev-server',
-			`./${paths.root.src}client`,
+			`./${paths.src}client`,
 		],
 		tests: [
 			'react-hot-loader/patch',
 			`webpack-dev-server/client?${config.getServerUrl()}`,
 			'webpack/hot/dev-server',
-			`./${paths.root.src}tests`,
+			`./${paths.src}tests`,
 		],
 	},
 	externals: {
