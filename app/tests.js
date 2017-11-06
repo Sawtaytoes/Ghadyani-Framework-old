@@ -34,7 +34,7 @@ runTests(
 	: allTests
 )
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('react-root')
 
 render(
 	<AppContainer>
