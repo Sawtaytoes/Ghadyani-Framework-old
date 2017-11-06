@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import SiteLayout from 'components/site-layout/SiteLayout'
+import SiteLayout from 'components/siteLayout/SiteLayout'
 import Home from 'components/pages/Home'
 import About from 'components/pages/About'
 import NoMatch from 'components/pages/NoMatch'
