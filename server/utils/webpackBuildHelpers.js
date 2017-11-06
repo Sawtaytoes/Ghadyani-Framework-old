@@ -1,3 +1,5 @@
+const config = require('config')
+
 const handleError = (taskName, err) => {
 	throw console.error(taskName, err)
 }
@@ -14,6 +16,13 @@ const onBuild = (taskName, serverUrl = '') => (err, stats) => (
 	)
 )
 
+const watchOptions = (
+	config.isDocker()
+	? { poll: 100 }
+	: {}
+)
+
 module.exports = Object.freeze({
 	onBuild,
+	watchOptions,
 })

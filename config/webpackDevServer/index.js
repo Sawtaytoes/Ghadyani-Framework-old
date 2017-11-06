@@ -2,6 +2,7 @@ const fs = require('fs')
 
 const config = require('config')
 const webpackClientConfig = require('config/webpack/clientDev')
+const { watchOptions } = require('server/utils/webpackBuildHelpers')
 
 module.exports = {
 	historyApiFallback: true,
@@ -18,4 +19,5 @@ module.exports = {
 	},
 	publicPath: webpackClientConfig.output.publicPath,
 	stats: 'minimal',
+	watchOptions,
 }

@@ -7,9 +7,13 @@ services:
         LOCAL_DEVELOPMENT: 'true'
         NODE_ENV: development
       dockerfile: docker/develop/Dockerfile
+    environment:
+      DOCKER: 'true'
     ports:
       - 3000:3000
     volumes:
-      - ./config:/~/config
-      - ./server:/~/server
-      - ./src:/~/src
+      - .:/~
+      - node_modules:/code/node_modules
+
+volumes:
+  node_modules:

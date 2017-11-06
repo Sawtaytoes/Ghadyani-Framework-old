@@ -28,6 +28,7 @@ config.proxyHostname = (
 )
 
 module.exports = {
+	isDocker: () => config.docker,
 	isLocalDevelopment: () => config.localDevelopment,
 
 	isSecure: () => config.protocol === 'https',

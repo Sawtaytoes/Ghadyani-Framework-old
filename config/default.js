@@ -2,8 +2,11 @@ module.exports = {
 	// Use either 'development' or 'production' to mimic NODE_ENV changes.
 	env: 'production',
 
-	// Set to `true` for local development and testing.
+	// Enables watching the filesystem for local development.
 	localDevelopment: false,
+
+	// Changes the way Webpack and Nodemon poll for file changes.
+	docker: false,
 
 
 	// -----------------------------------------

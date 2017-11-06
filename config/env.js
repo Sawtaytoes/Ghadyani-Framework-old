@@ -1,4 +1,5 @@
 const processEnvConfigValues = {
+	DOCKER: 'docker',
 	HOSTNAME: 'hostname',
 	LOCAL_DEVELOPMENT: 'localDevelopment',
 	MAIL_FROM: 'mailFrom',

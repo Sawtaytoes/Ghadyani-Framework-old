@@ -7,13 +7,13 @@ const loadLocalDevelopmentEnvironment = () => (
 	config.isDev()
 	? require('server/env/dev')()
 	: (
-		require('server/compiler/webpackCompilerWatch')()
+		require('server/compiler/webpackWatch')()
 		|| require('server/env/prod')()
 	)
 )
 
 const runModes = {
-	'compile': () => require('server/compiler/webpackCompiler')(),
+	'compile': () => require('server/compiler/webpack')(),
 	'server': () => require('server/env/prod')(),
 	'test': () => require('server/karmaTestRunner')('tests'),
 	'test:watch': () => require('server/karmaTestRunner')('testsWatch'),

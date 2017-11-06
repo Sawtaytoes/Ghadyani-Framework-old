@@ -2,12 +2,12 @@ const webpack = require('webpack')
 
 const webpackClientConfig = require('config/webpack/clientProd')
 const webpackServerConfig = require('config/webpack/serverProd')
-const { onBuild } = require('server/utils/webpackBuildHelpers')
+const { onBuild, watchOptions } = require('server/utils/webpackBuildHelpers')
 
 module.exports = () => {
 	webpack(webpackClientConfig)
-	.watch(100, onBuild('webpack-client'))
+	.watch(watchOptions, onBuild('webpack-client'))
 
 	webpack(webpackServerConfig)
-	.watch(100, onBuild('webpack-server'))
+	.watch(watchOptions, onBuild('webpack-server'))
 }
