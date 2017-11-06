@@ -1,10 +1,10 @@
 {
   "ignore": [
     ".git",
-    ".happypack",
+    "app",
+    "docs",
     "node_modules",
-    "src",
-    "web"
+    "public"
   ],
   "watch": [
     "*"
