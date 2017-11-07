@@ -67,7 +67,7 @@ const webpackConfig = {
 				'isomorphic-style-loader',
 				'css-loader',
 				'postcss-loader',
-				'stylus-loader?linenos=false&compress=true',
+				'stylus-loader?sourceMap=false&compress=true',
 			]
 		}),
 		new webpack.optimize.CommonsChunkPlugin({

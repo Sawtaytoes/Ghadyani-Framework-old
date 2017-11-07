@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 const config = require('config')
-const webpackClientConfig = require('config/webpack/clientDev')
+const webpackClientConfig = require('config/webpack/clientDevelop')
 const { watchOptions } = require('scripts/utils/webpackBuildHelpers')
 
 module.exports = {
