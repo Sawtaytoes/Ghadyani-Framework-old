@@ -28,9 +28,12 @@ const webpackConfig = {
 			minimize: true,
 		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
-			console.info(
-				Math.round(percentage * 100),
-				`prod-server ${msg}`
+			!msg.includes('building modules')
+			&& (
+				console.info(
+					Math.round(percentage * 100),
+					`prod-server ${msg}`
+				)
 			)
 		}),
 		new webpack.NoEmitOnErrorsPlugin(),
