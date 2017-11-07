@@ -28,13 +28,18 @@ const webpackConfig = {
 			minimize: true,
 		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
-			console.info(Math.round(percentage * 100), `prod-server ${msg}`)
+			console.info(
+				Math.round(percentage * 100),
+				`prod-server ${msg}`
+			)
 		}),
 		new webpack.NoEmitOnErrorsPlugin(),
-		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(config.getEnv())
+		}),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [
-				'babel-loader',
+				'babel-loader?cacheDirectory=true',
 			]
 		}),
 		new HappyPack({
@@ -56,6 +61,7 @@ const webpackConfig = {
 		new webpack.optimize.ModuleConcatenationPlugin(),
 		new webpack.optimize.AggressiveMergingPlugin(),
 		new webpack.optimize.UglifyJsPlugin({
+			cache: true,
 			compress: { warnings: false },
 			mangle: { except: ['$', 'exports', 'require'] },
 			sourceMap: config.isDev(),

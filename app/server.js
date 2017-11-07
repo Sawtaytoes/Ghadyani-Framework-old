@@ -1,13 +1,11 @@
 import React from 'react'
-import { renderToString } from 'react-dom/server'
-import { StaticRouter as Router } from 'react-router-dom'
-import { Provider } from 'react-redux'
 import { compose, createStore } from 'redux'
+import { renderToString } from 'react-dom/server'
 
 import 'utils/polyfills'
 
-import Pages from 'components/pages'
 import renderSite from 'renderers/renderSite'
+import ServerRoot from 'components/root/ServerRoot'
 import { rootReducer } from 'reducers'
 import { updatePageMeta } from 'reducers/pageMeta'
 
@@ -17,14 +15,11 @@ module.exports = (req, res) => {
 
 	const renderedContent = (
 		renderToString(
-			<Provider store={store}>
-				<Router
-					location={req.url}
-					context={context}
-				>
-					<Pages />
-				</Router>
-			</Provider>
+			<ServerRoot
+				context={context}
+				location={req.url}
+				store={store}
+			/>
 		)
 	)
 

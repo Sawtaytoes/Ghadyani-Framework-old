@@ -2,18 +2,14 @@ const bodyParser = require('body-parser')
 const compression = require('compression')
 const express = require('express')
 const helmet = require('helmet')
+const path = require('path')
 
 const config = require('config')
-const loadHtmlRenderer = require('scripts/utils/loadHtmlRenderer')
 const paths = require('scripts/utils/paths')
 const sendEmail = require('scripts/server/middleware/sendEmail')
 
 const loadSite = (req, res) => (
-	loadHtmlRenderer({
-		args: [req, res],
-		filename: `${paths.base}/${paths.dest}backend`,
-		res,
-	})
+	require(`${paths.base}/${paths.bundle}backend`)(req, res)
 )
 
 const httpServerConfig = express()
@@ -22,15 +18,24 @@ httpServerConfig
 .use(compression())
 .use(helmet())
 
+.get('*.js', (req, res, next) => {
+	req.url = `${req.url}.gz`
+
+	res.set('Content-Encoding', 'gzip')
+	res.set('Content-Type', 'application/javascript')
+
+	next()
+})
+
 .use(
 	express.static(
-		`${paths.base}/${paths.static}`,
+		path.join(paths.base, paths.static),
 		{ redirect: false }
 	)
 )
 .use(
 	express.static(
-		`${paths.base}/${paths.bundles}`,
+		path.join(paths.base, paths.bundle),
 		{ redirect: false }
 	)
 )
@@ -39,12 +44,6 @@ httpServerConfig
 .use(bodyParser.urlencoded({ extended: false }))
 
 .disable('x-powered-by')
-
-.get('*.js', (req, res, next) => {
-	req.url = `${req.url}.gz`
-	res.set('Content-Encoding', 'gzip')
-	next()
-})
 
 .post(config.getMailSendPath(), sendEmail)
 

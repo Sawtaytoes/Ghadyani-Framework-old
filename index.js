@@ -8,7 +8,7 @@ const loadLocalDevelopmentEnvironment = () => (
 	? require('scripts/server/develop')()
 	: (
 		require('scripts/compiler/webpackWatch')()
-		|| require('scripts/server/prod')()
+		|| require('scripts/server/deploy')()
 	)
 )
 

@@ -45,29 +45,37 @@ const webpackConfig = {
 			debug: true
 		}),
 		new webpack.ProgressPlugin((percentage, msg) => {
-			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
+			!msg.includes('building modules')
+			&& (
+				console.info(
+					Math.round(percentage * 100),
+					`dev ${msg}`
+				)
+			)
 		}),
 		new BellOnBundlerErrorPlugin(),
-		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(config.getEnv())
+		}),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [
-				'babel-loader',
+				'babel-loader?cacheDirectory=true',
 				'eslint-loader',
 			]
 		}),
 		new HappyPack({
 			id: 'css', threadPool, loaders: [
-				'isomorphic-style-loader',
-				'css-loader',
-				'postcss-loader',
+				'isomorphic-style-loader?sourceMap=true',
+				'css-loader?sourceMap=true',
+				'postcss-loader?sourceMap=true',
 			]
 		}),
 		new HappyPack({
 			id: 'styl', threadPool, loaders: [
-				'isomorphic-style-loader',
-				'css-loader',
-				'postcss-loader?sourceMap=inline',
-				'stylus-loader?linenos=false',
+				'isomorphic-style-loader?sourceMap=true',
+				'css-loader?sourceMap=true',
+				'postcss-loader?sourceMap=true',
+				'stylus-loader?sourceMap=true',
 			]
 		}),
 		new webpack.optimize.CommonsChunkPlugin({ name: ['manifest'] }),

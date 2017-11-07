@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import SiteLayout from 'components/siteLayout/SiteLayout'
-import Home from 'components/pages/Home'
 import About from 'components/pages/About'
+import Home from 'components/pages/Home'
 import NoMatch from 'components/pages/NoMatch'
+import SiteLayout from 'components/siteLayout/SiteLayout'
 
-const Pages = () => (
+const AppRoot = () => (
 	<SiteLayout>
 		<Switch>
 			<Route exact path="/" component={Home} />
@@ -16,4 +16,4 @@ const Pages = () => (
 	</SiteLayout>
 )
 
-export default Pages
+export default AppRoot

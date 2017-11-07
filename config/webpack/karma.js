@@ -13,10 +13,18 @@ const webpackConfig = {
 	node: { fs: 'empty' },
 	plugins: [
 		new webpack.ProgressPlugin((percentage, msg) => {
-			!msg.includes('building modules') && console.info(Math.round(percentage * 100), `dev ${msg}`)
+			!msg.includes('building modules')
+			&& (
+				console.info(
+					Math.round(percentage * 100),
+					`test ${msg}`
+				)
+			)
 		}),
 		new BellOnBundlerErrorPlugin(),
-		new webpack.DefinePlugin({ 'process.env.NODE_ENV': JSON.stringify(config.getEnv()) }),
+		new webpack.DefinePlugin({
+			'process.env.NODE_ENV': JSON.stringify(config.getEnv())
+		}),
 		new HappyPack({
 			id: 'js', threadPool, loaders: [
 				'babel-loader',
@@ -34,8 +42,8 @@ const webpackConfig = {
 			id: 'styl', threadPool, loaders: [
 				'isomorphic-style-loader',
 				'css-loader',
-				'postcss-loader?sourceMap=inline',
-				'stylus-loader?linenos=false',
+				'postcss-loader',
+				'stylus-loader',
 			]
 		}),
 	],

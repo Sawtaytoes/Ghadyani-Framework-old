@@ -3,10 +3,12 @@
     ".git",
     "app",
     "docs",
+    "docker",
     "node_modules",
     "public"
   ],
   "watch": [
-    "*"
+    "*",
+    "app/renderers/"
   ]
 }
