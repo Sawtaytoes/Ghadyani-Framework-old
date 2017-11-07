@@ -37,10 +37,12 @@ runTests(
 const rootElement = document.getElementById('react-root')
 
 render(
-	<AppContainer>
-		<TestsRoot />
-	</AppContainer>,
-	document.getElementById('root')
+	(
+		<AppContainer>
+			<TestsRoot />
+		</AppContainer>
+	),
+	rootElement
 )
 
 const onHotReload = () => {

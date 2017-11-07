@@ -19,7 +19,7 @@ const loadSite = (req, res) => (
 
 const loadTests = (req, res) => (
 	res.send(
-		require(`${paths.app}renderers/renderTests`)(res)
+		require(`${paths.app}renderers/renderTests`)(req)
 	)
 )
 
