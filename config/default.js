@@ -1,6 +1,6 @@
 module.exports = {
 	// Use either 'development' or 'production' to mimic NODE_ENV changes.
-	env: 'production',
+	env: 'development',
 
 	// Enables watching the filesystem for local development.
 	localDevelopment: false,
