@@ -81,6 +81,6 @@
     "tap-spec": "^4.1.1",
     "tape": "^4.8.0",
     "tape-catch": "^1.0.6",
-    "webpack-dev-server": "^2.8.1"
+    "webpack-dev-server": "^3.1.11"
   }
 }
